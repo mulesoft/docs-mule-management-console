@@ -99,7 +99,7 @@ Lists all managed Clusters.
 
 === Using CURL
 
-Note that this syntax is an example. Be sure to replace `localhost:8585/mmc-3.7.0` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin http://localhost:8585/mmc-3.7.0/api/clusters
