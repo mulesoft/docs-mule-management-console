@@ -8,7 +8,8 @@ The Mule Management Console offers a GUI interface that displays performance dat
 
 == Assumptions
 
-This section assumes that you have a clear picture of xref:architecture-of-the-mule-management-console.adoc[Architecture of the Mule Management Console] and that you have already xref:installing-mmc.adoc[installed the Management Console] in your machine.
+This section assumes that you have a clear picture of what
+ xref:architecture-of-the-mule-management-console.adoc[what MMC is for] and that you have already xref:installing-mmc.adoc[installed the Management Console] in your machine.
 
 == Monitoring Systems
 

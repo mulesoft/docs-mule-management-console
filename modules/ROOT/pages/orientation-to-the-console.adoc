@@ -7,16 +7,16 @@ This page introduces the Mule Management Console's user interface. It covers bas
 
 == Assumptions
 
-This document assumes that you have [downloaded and installed] either the trial version or the production version of the *Mule Management Console*.
+This document assumes that you have  the  *Mule Management Console*.
 
 [TIP]
 ====
-If you have downloaded the [trial version] of the Mule ESB Enterprise with Management Tools, you have everything you need to get started. Fire up Mule and enter +http://localhost:8585/mmc+  in your browser to log in. The default login is `admin` and the default password is also `admin`.
+Fire up Mule and enter `+http://localhost:8585/mmc-<version>+` in your browser to log in. For example, for version 3.6.1 the URL is `+http://localhost:8585/mmc-3.6.1+`. The default login is `admin` and the default password is also `admin`.
 
-If you have downloaded the [production version], start Mule and enter http://localhost:8080/mmc in your browser to log in. The default login is `admin` and the default password in `admin`.  Note that you will need to register you Mule ESB servers before most console features discussed in this document will be available to you.
+If you have downloaded the xref:installing-the-production-version-of-mmc.adoc[production version], enter the URL for the MMC application as served by your application server. For example, in Tomcat this usually is `+http://localhost:8080/mmc-console-<version+`. The default login is  `admin`  and the default password is also  `admin` . Note that you will need to register your Mule  servers before most console features discussed in this document will be available to you.
 ====
 
-This document also assumes that you are familiar with [Mule applications and Mule flows].
+This document also assumes that you are familiar with  https://docs.mulesoft.com/mule-user-guide/v/3.6/mule-concepts[Mule applications and Mule flows] .
 
 == The Quick Start Panel
 
@@ -24,31 +24,28 @@ When you first start the console and log in, you are presented with the Quick St
 
 image::mmc-quickstartpanel.png[MMC-quickstartpanel]
 
-The icons on the left side provide a quick links to screens for registering servers, deploying applications, creating alerts, and managing users and permissions. If you hover your mouse over the individual tabs, pop-up tips display.
+The icons on the left side provide quick links to screens for registering servers, deploying applications, creating alerts, and managing users and permissions. If you hover your mouse over the individual tabs, pop-up tips display.
 
-Keep in mind that if you have just installed Mule ESB server, the server must be registered with the console and you may need to connect the console to that server before using any other console features. To register servers, click the icon to the left of *Register Server* or the *Servers* tab at the top.
+Keep in mind that if you have just installed a Mule  server, the server must be registered with the console and you may need to connect the console to that server before using any of the other console features. To register servers, click the icon to the left of *Register Servers* or the *Servers* tab at the top.
 
-[WARNING]
-If you are using the [trial version], the console is running embedded in the Mule server and is already connected and monitoring the local instance.
-
-Click the *X* at the top right of the Quick Start panel to dismiss the panel and view dashboard.
+Click the *X* at the top right of the Quick Start panel to dismiss the panel and view the dashboard.
 
 == The Dashboard
 
-By default, the Dashboard displays four portlets: Server Health, Raised Alerts, Deployment Status, and Server Metrics. A *portlet* is a customized view of information about your servers or applications. To display additional portlet, click the *Add Portlet* button, then click those portlets you want displayed. Click the *X* icon in the title bar of a portlet you want removed from the dashboard. For more information on customizing the dashboard, see [Customizing the Dashboard].
+By default, the Dashboard displays four portlets: Server Health, Raised Alerts, Deployment Status, and Server Metrics. A *portlet* is a customized view of information about your servers or applications. To display additional portlets, click the *Add Portlet* button, then click those portlets you want displayed. Click the *X* icon in the title bar of a portlet you want removed from the dashboard. For more information on customizing the dashboard, see xref:customizing-the-dashboard.adoc[Customizing the Dashboard].
 
 image::mmc-dashboard-annotated.png[]
 
 == Layout of the Console
 
-Notice that, for many of the console tabs, the Management Console screen is divided into two sections.
+Notice that, for many of the console tabs, the Management Console screen is divided into two sections:
 
-* A context-sensitive navigation pane on the left.
-* A details pane on the right that reflects the particular tab you have selected.
+* A context-sensitive navigation pane on the left
+* A details pane on the right that reflects the particular tab you have selected
 
-For example, the figure below shows how to *Servers* tab might appear when you first log in. When you select the Severs tab, the navigation pane displays the organization or grouping of the servers, while the details pane shows summary information in columnar form about each server instance. Notice that when you hover the mouse over a column, a pull-down menu icon appears, allowing you to sort by that column's data or configure which columns to display or hide.
+For example, the figure below shows how the *Servers* tab might appear when you first log in. When you select the Servers tab, the navigation pane displays the organization or grouping of the servers, while the details pane shows summary information in columnar form about each server instance. Notice that when you hover the mouse over a column, a pull-down menu icon appears, allowing you to sort by that column's data or configure which columns to display or hide.
 
-The function buttons for the navigation pane let you add a new server group, rename a group, or delete a group. Similarly, the buttons available for the details pane provide functions for operating on individual servers. Notice that these buttons, except for *Add*, are grayed out. When you select a particular server, by clicking the box to the left of the sever, the buttons become operational and you can click the function you want to apply, such as adding the server to a group.
+The function buttons for the navigation pane let you add a new server group, rename a group, or delete a group. Similarly, the buttons available for the details pane provide functions for operating on individual servers. Notice that these buttons, except for *Add*, are grayed out. When you select a particular server, by clicking the box to the left of that server, the buttons become operational and you can click the function you want to apply, such as adding the server to a group.
 
 image::mmc-console-navigation.png[]
 
@@ -58,20 +55,22 @@ Use the tabs across the top of the console to view and manage your servers, appl
 
 If you are in *Operations*, you might be particularly interested in these console tabs and screens, depending on the tasks you need to perform:
 
-* To manage the application repository and deployments, use [Deployments] tab.
-* To monitor a server or cluster, such as to check if the server/cluster is up or down, see how much memory it is using, or generally keep an eye on the sever profile, use the [Servers] tab.
-* To define or view alerts about server or cluster health, memory usage, etc., use the [Alerts] tab.
-* To check on performance bottlenecks so that you can alert developers, look a the [Flows] tab as well as the Flow Analyzer tab.
+* To manage the application repository and deployments, use the <<Deployments Tab>> tab
+* To monitor a server or cluster, such as to check if the server/cluster is up or down, see how much memory it is using, or generally keep an eye on the server profile, use the <<Servers Tab>> tab
+* To define or view alerts about server or cluster health, memory usage, etc, use the <<Alerts Tab>> tab
+* To check on performance bottlenecks so that you can alert developers, look at the <<Flows Tab>> tab as well as the +
 
-If you are a *developer*, you might find these tabs and screen most useful to you:
+  Flow Analyzer tab
 
-* To diagnose problems, such as memory and performance bottlenecks, use the [Flows] and [Flow Analyzer] tabs. The Flow Analyzer tab is particularly helpful because it lets you audit a flow so that you can debug the flow performance and verify payload content along with message properties.
-* If you need to manage deployments for the application repository, use the [Deployments] tab.
-* If you need to create scripts to automate tasks, use the [Administrator] tab.
+If you are a *developer*, you might find these tabs and screens of most use to you:
 
-The [Administration] tab is intended for Management Console *administrators*. They can use these screens to manage users and roles, handle licensing issues, and scheduled automated tasks.
+* To diagnose problems, such as memory and performance bottlenecks, use the <<Flows Tab>> and <<Flow Analyzer Tab>> tabs. The Flow Analyzer tab is particularly helpful because it lets you audit a flow so that you can debug the flow performance and verify payload content along with message properties
+* If you need to manage deployments or the application repository, use the <<Deployments Tab>> tab
+* If you need to create scripts to automate tasks, use the <<Administration Tab>> tab
 
-=== Server Tabs
+The <<Administration Tab>> tab is intended for Management Console *administrators*. They can use these screens to manage users and roles, handle licensing issues, and schedule automated tasks.
+
+=== Servers Tab
 
 Click the *Servers* tab to add and remove Mule ESB server instances, register servers, create your own groups to organize servers, add servers to one or more groups, start or stop servers, or move them between groups. You can also use the Servers tab to create a new cluster, add nodes to a cluster, or disband a cluster.
 
@@ -85,7 +84,7 @@ image::mmc-serverdetails.png[]
 
 Click any of the tabs in the details pane to view more specific information about the selected server, such as the applications deployed on that server, any alerts that have occurred and memory usage; plus information about threads, pools, files, server properties, OS resources, JMX, and settings for the server.
 
-See [Monitoring a Server] for more details on using the server screens.
+See xref:monitoring-a-server.adoc[Monitoring a Server] for more details on using the server screens.
 
 === Deployments Tab
 
@@ -95,9 +94,9 @@ From this tab, you can deploy, redeploy, and undeploy groups of applications. Yo
 
 image::mmc-deploymentstab.png[]
 
-See [Deploying Applications] for details on deployments.
+See xref:deploying-applications.adoc[Deploying Applications] for details on deployments.
 
-See [Maintaining the Server Application Repository] for more information on the repository.
+See xref:maintaining-the-server-application-repository.adoc[Maintaining the Server Application Repository] for more information on the repository.
 
 === Applications Tab
 
@@ -119,44 +118,43 @@ Use the *Flow Analyzer* tab to see detailed information about your flows that th
 +
 image::mmc-flowanalyzerstep1.png[]
 
-. Select one or more *applications* deployed on that server, then select on or more *flows*.
+. Select one or more *applications* deployed on that server, then select one or more *flows*.
 +
 image::mmc-analyzeflowsstep2.png[]
 
-. Click *Start*
+. Click *Start*.
 +
 image::mmc-analyzeflowsstep3.png[]
-
 
 Once you have started the flow analyzer, MMC audits and records details about each message that passes through the flow. You can click into messages, message processors, and properties to view granular information about your flow activity.
 
 image::mmc-auditingflow.png[]
 
-See [Working with Flows] and [Debugging Message Processing] for more details on analyzing flows.
+See xref:working-with-flows.adoc[Working with Flows]  and xref:debugging-message-processing.adoc[Debugging Message Processing] for more details on analyzing flows.
 
 [WARNING]
-Flow analysis is not available for clusters. It is primairly a development-time tool. However, you use it on a standalone server running an application that you plan to deploy to a cluster.
+Flow analysis is not available for clusters. It is primarily a development-time tool. However, you can use it on a standalone server running an application that you plan to deploy to a cluster.
 
 === Business Events Tab
 
 Use the Business Events tab to retrieve information, such as processing time and errors, for business transactions and events on your Mule servers. You can set up queries to select and view subsets of business transactions handled by your servers. You specify various criteria for selecting transactions, search for particular values, and apply filters to the results.
 
-See [Analyzing Business Events] for more details.
+See xref:analyzing-business-events.adoc[Analyzing Business Events] for more details.
 
 === Alerts Tab
 
 Use the Alerts tab to view and manage alerts or SLAs.
 
-See [Working With Alerts] and [Defining SLAs and Alerts] for more details.
+See xref:working-with-alerts.adoc[Working With Alerts] and xref:defining-slas-and-alerts.adoc[Defining SLAs and Alerts] for more details.
 
 === Administration Tab
 
 The Administration tab lets you manage users and user groups, as well as set up and schedule utility scripts.
 
-See [Managing MMC Users and Roles] for more details on administering users.
+See xref:managing-mmc-users-and-roles.adoc[Managing MMC Users and Roles] for more details on administering users.
 
-See [Automating Tasks Using Scripts] to get started with utility scripts.
+See xref:automating-tasks-using-scripts.adoc[Automating Tasks Using Scripts] to get started with utility scripts.
 
 == See Also
 
-* Learn the basics of using MMC with the [MMC Walkthrough].
+* Learn the basics of using MMC with the  xref:mmc-walkthrough.adoc[MMC Walkthrough] .

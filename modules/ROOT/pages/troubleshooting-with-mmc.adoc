@@ -6,11 +6,11 @@ endif::[]
 
 The following set of documentation offers solutions to common issues that may arise when using the Mule Management Console.
 
-* xref:using-the-management-console-for-performance-tuning.adoc[Troubleshooting Tips]
+* xref:using-the-management-console-for-performance-tuning.adoc[image:icon-checkmark-blue-big.png[]Troubleshooting Tips]
 
-* xref:using-the-management-console-for-performance-tuning.adoc[Monitoring and Debugging Applications]
+* xref:using-the-management-console-for-performance-tuning.adoc[image:icon-clipboard-blue-big.png[]Monitoring and Debugging Applications]
 
-* xref:using-the-management-console-for-performance-tuning.adoc[Using the Management Console for Performance Tuning]
+* xref:using-the-management-console-for-performance-tuning.adoc[image:icon-stopwatch-blue-big.png[]Using the Management Console for Performance Tuning]
 
 == See Also
 

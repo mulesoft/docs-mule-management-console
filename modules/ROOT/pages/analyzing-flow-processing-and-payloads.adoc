@@ -122,7 +122,7 @@ image::flows-being-analyzed.png[flows_being_analyzed]
 
 === Granting User Permissions to Stop Flow Analyzer
 
-If you want to enable an MMC user to stop Flow Analyzer, assign the `Audit Flows - Admin Functions` permission to the user group that the user belongs. Refer to xref:3.7@managing-mmc-users-and-roles.adoc[Managing MMC Users and Roles] for details on assigning permissions.
+If you want to enable an MMC user to stop Flow Analyzer, assign the `Audit Flows - Admin Functions` permission to the user group that the user belongs. Refer to xref:managing-mmc-users-and-roles.adoc[Managing MMC Users and Roles] for details on assigning permissions.
 
 == Viewing Message Payload When Using Streams
 
@@ -139,8 +139,8 @@ However, if your application processes SOAP requests using streams for CXF conne
 
 == See Also
 
-* xref:3.7@tracking-flows.adoc[Tracking Flows] provides more information on using the Flows tab and setting up flow tracking, a prerequisite for flow analysis.
-* xref:3.7@analyzing-message-flows.adoc[Analyzing Message Flows] takes you through using the Flow Analyzer panes in detail.
-* xref:3.6@debugging-message-processing.adoc[Debugging Message Processing] illustrates the general steps for debugging an application's message processing.
-* xref:3.6@debugging-the-loan-broker-example-application.adoc[Debugging the Loan Broker Example Application] shows how to use the console Flow Analyzer screen to find an application logic bug.
+* xref:tracking-flows.adoc[Tracking Flows] provides more information on using the Flows tab and setting up flow tracking, a prerequisite for flow analysis.
+* xref:analyzing-message-flows.adoc[Analyzing Message Flows] takes you through using the Flow Analyzer panes in detail.
+* xref:debugging-message-processing.adoc[Debugging Message Processing] illustrates the general steps for debugging an application's message processing.
+* xref:debugging-the-loan-broker-example-application.adoc[Debugging the Loan Broker Example Application] shows how to use the console Flow Analyzer screen to find an application logic bug.
 * https://docs.mulesoft.com/mule-user-guide/v/3.6/routers[Using Message Processors to Control Message Flow] provides reference information for the available Mule message processors or routers.

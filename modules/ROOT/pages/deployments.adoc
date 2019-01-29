@@ -2,23 +2,22 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:keywords: deployments, console, rest, json
 
-This document, as well as the rest of the documents that make up the xref:3.7@rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with https://www.mulesoft.com/resources/esb/what-mule-esb[MULE ESB], xref:3.7@deployments.adoc[Deployments], and the xref:3.7@using-the-management-console-api.adoc[REST API.]
+This document, as well as the rest of the documents that make up the xref:rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with https://www.mulesoft.com/resources/esb/what-mule-esb[MULE ESB], xref:deployments.adoc[Deployments], and the xref:using-the-management-console-api.adoc[REST API.]
 
-*Assumptions:*
-
-[%header,cols="2*a"]
+== Assumptions
+[cols="2*"]
 |===
-|Item|Value
-|Host|`localhost`
-|Port|`8080`
-|Deployed App|`mmc.war`
-|User/Password|`admin` and `admin`
+|*Host* |localhost
+|*Port* |8080
+|*Deployed app* |mmc.war
+|*User/Password* |admin/admin
 |===
 
-For a detailed description of the format used in this document, consult xref:3.7@rest-api-reference.adoc[Content Organization and Conventions].
+For a detailed description of the format used in this document, consult xref:rest-api-reference.adoc[Content Organization and Conventions].
 
-[source,console,linenums]
+[source,text,linenums]
 ----
 /api/deployments
 ----
@@ -26,9 +25,10 @@ For a detailed description of the format used in this document, consult xref:3.7
 [cols="34,33,33"]
 |===
 a|
-POST
+*POST*
 
-CREATE
+[discrete]
+==== CREATE
 
  |
 |===
@@ -40,9 +40,10 @@ Creates a new Deployment.
 [discrete.view]
 === Request
 
-JSON:
+[discrete]
+==== JSON
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "name":"Example",
@@ -69,26 +70,27 @@ JSON:
 [NOTE]
 You cannot create a deployment using the server names and application names. Instead, use the server or version ID.
 
-*Using CURL on Windows*
+[discrete]
+==== Using CURL on Windows
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin -d  "{\"name\" : \"ExampleDeployment\" , \"servers\": [ \"local$26f2fea8-3b7c-45a7-84a8-d1509e73fca4\" ], \"applications\": [ \"local$32bb47d3-d180-4bb9-8906-2378dad9ae21\" ]}" --header "Content-Type: application/json" http://localhost:8080/mmc/api/deployments
+ curl --basic -u admin:admin -d  "{\"name\" : \"ExampleDeployment\" , \"servers\": [ \"local$26f2fea8-3b7c-45a7-84a8-d1509e73fca4\" ], \"applications\": [ \"local$32bb47d3-d180-4bb9-8906-2378dad9ae21\" ]}" --header "Content-Type: application/json" http://localhost:8080/mmc/api/deployments
 ----
 
-*Using CURL on Linux*
+[discrete]
+==== Using CURL on Linux
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin -d '{"name" : "ExampleDeployment" , "servers": [ "local$26f2fea8-3b7c-45a7-84a8-d1509e73fca4" ], "applications": [ "local$32bb47d3-d180-4bb9-8906-2378dad9ae21" ]}' --header 'Content-Type: application/json' http://localhost:8080/mmc/api/deployments
+ curl --basic -u admin:admin -d '{"name" : "ExampleDeployment" , "servers": [ "local$26f2fea8-3b7c-45a7-84a8-d1509e73fca4" ], "applications": [ "local$32bb47d3-d180-4bb9-8906-2378dad9ae21" ]}' --header 'Content-Type: application/json' http://localhost:8080/mmc/api/deployments
 ----
 
 [discrete.view]
 === Response
 
-JSON:
+[discrete]
+==== JSON
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "applications":
@@ -152,9 +154,10 @@ JSON:
 [cols="34,33,33"]
 |===
 a|
-GET
+*GET*
 a|
- LIST ALL
+[discrete]
+==== LIST ALL
 |
 |===
 
@@ -165,7 +168,8 @@ Lists all available Deployments.
 [discrete.view]
 === Request
 
-Syntax
+[discrete]
+==== Syntax
 
 `GET http://localhost:8080/mmc/api/deployments[?server={serverId}|?cluster={clusterId}]`
 
@@ -176,24 +180,25 @@ Syntax
 |cluster |String |(Optional) ID of the cluster from which the deployments are listed. Mutually exclusive with the `server` key described above. If not specified, results are not filtered |—
 |===
 
-*Using CURL on Windows*
+[discrete]
+==== Using CURL on Windows
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin http://localhost:8080/mmc/api/deploymentscurl --basic -u admin:admin http://localhost:8080/mmc/api/deployments?server=local$3a99adfe-e942-4b52-b082-1a351de01420curl --basic -u admin:admin http://localhost:8080/mmc/api/deployments?cluster=0bf1d75d-3fbb-4489-b4c4-bd0249cb8a34
+ curl --basic -u admin:admin http://localhost:8080/mmc/api/deploymentscurl --basic -u admin:admin http://localhost:8080/mmc/api/deployments?server=local$3a99adfe-e942-4b52-b082-1a351de01420curl --basic -u admin:admin http://localhost:8080/mmc/api/deployments?cluster=0bf1d75d-3fbb-4489-b4c4-bd0249cb8a34
 ----
 
-*Using CURL on Linux*
+[discrete]
+==== Using CURL on Linux
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin http://localhost:8080/mmc/api/deploymentscurl --basic -u admin:admin 'http://localhost:8080/mmc/api/deployments?server=local$3a99adfe-e942-4b52-b082-1a351de01420'curl --basic -u admin:admin 'http://localhost:8080/mmc/api/deployments?cluster=0bf1d75d-3fbb-4489-b4c4-bd0249cb8a34'
+ curl --basic -u admin:admin http://localhost:8080/mmc/api/deploymentscurl --basic -u admin:admin 'http://localhost:8080/mmc/api/deployments?server=local$3a99adfe-e942-4b52-b082-1a351de01420'curl --basic -u admin:admin 'http://localhost:8080/mmc/api/deployments?cluster=0bf1d75d-3fbb-4489-b4c4-bd0249cb8a34'
 ----
 
 [discrete.view]
 === Response
 
-JSON
+[discrete]
+==== JSON
 
 [source,text,linenums]
 ----
@@ -261,14 +266,15 @@ JSON
 
 =====
 
-`/api/deployments/{deploymentId}`
+#*/api/deployments/\{deploymentId}*#
 
 [cols="34,33,33"]
 |===
 a|
-GET
-|
-LIST
+#*GET*#
+a|
+[discrete]
+==== LIST
 |
 |===
 
@@ -279,28 +285,29 @@ Lists details for a specific Deployment.
 [discrete.view]
 === Request
 
-SYNTAX
+[discrete]
+==== SYNTAX
 
 `GET http://localhost:8080/mmc/api/deployments/{deploymentId}`
 
 [%header,cols="4*"]
 |===
 |Key |Type |Summary |Child of
-|deploymentId |String |ID of the deployment to be listed. Invoke `LIST ALL` to obtain it. |—
+|deploymentId |String |ID of the deployment to be listed. Invoke <<LIST ALL>> to obtain it. |—
 |===
 
-*Using CURL on Windows*
+[discrete]
+==== Using CURL on Windows
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36
+ curl --basic -u admin:admin http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36
 ----
 
-*Using CURL on Linux*
+[discrete]
+==== Using CURL on Linux
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin 'http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36'
+ curl --basic -u admin:admin 'http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36'
 ----
 
 [discrete.view]
@@ -309,7 +316,7 @@ curl --basic -u admin:admin 'http://localhost:8080/mmc/api/deployments/local$97e
 [discrete]
 ==== JSON
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "data":
@@ -373,14 +380,15 @@ curl --basic -u admin:admin 'http://localhost:8080/mmc/api/deployments/local$97e
 
 =====
 
-`/api/deployments/{deploymentId}/add`
+#*/api/deployments/\{deploymentId}/add*#
 
 [cols="34,33,33"]
 |===
 a|
-PUT
+#*PUT*#
 a|
- UPDATE BY ADDING
+[discrete]
+==== UPDATE BY ADDING
 |
 |===
 
@@ -391,9 +399,10 @@ Updates a specific Deployment by adding the specified elements if not defined on
 [discrete.view]
 === Request
 
-JSON:
+[discrete]
+==== JSON
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
     "applications":
@@ -415,26 +424,27 @@ JSON:
 |applications |Array |(Optional) List of application version IDs to be assigned to the specified deployment |—
 |===
 
-*Using CURL on Windows*
+[discrete]
+==== Using CURL on Windows
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin -X PUT -d "\{\"applications\":[\"local$497d0c3a-8b29-4ff9-b22b-0d0ac4fe4eb2\"], \"lastModified\":\"Thu, 18 Apr 2013 13:54:09.443 ART\", \"name\":\"Deployment Test\"\} --header "Content-Type:application/json" http://localhost:8080/mmc/api/deployments/local$731305bb-95ad-433c-8840-8cc9fb8be4fa/add
+ curl --basic -u admin:admin -X PUT -d "\{\"applications\":[\"local$497d0c3a-8b29-4ff9-b22b-0d0ac4fe4eb2\"], \"lastModified\":\"Thu, 18 Apr 2013 13:54:09.443 ART\", \"name\":\"Deployment Test\"\} --header "Content-Type:application/json" http://localhost:8080/mmc/api/deployments/local$731305bb-95ad-433c-8840-8cc9fb8be4fa/add
 ----
 
-*Using CURL on Linux*
+[discrete]
+==== Using CURL on Linux
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin -X PUT -d '{"applications":["local$497d0c3a-8b29-4ff9-b22b-0d0ac4fe4eb2"], "lastModified":"Thu, 18 Apr 2013 13:54:09.443 ART", "name":"Deployment Test"}' --header 'Content-Type:application/json' 'http://localhost:8080/mmc/api/deployments/local$731305bb-95ad-433c-8840-8cc9fb8be4fa/add'
+ curl --basic -u admin:admin -X PUT -d '{"applications":["local$497d0c3a-8b29-4ff9-b22b-0d0ac4fe4eb2"], "lastModified":"Thu, 18 Apr 2013 13:54:09.443 ART", "name":"Deployment Test"}' --header 'Content-Type:application/json' 'http://localhost:8080/mmc/api/deployments/local$731305bb-95ad-433c-8840-8cc9fb8be4fa/add'
 ----
 
 [discrete.view]
 === Response
 
-JSON:
+[discrete]
+==== JSON
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
     "name": "Deployment Test",
@@ -487,14 +497,15 @@ JSON:
 
 =====
 
-`/api/deployments/{deploymentId}/remove`
+#*/api/deployments/\{deploymentId}/remove*#
 
 [cols="34,33,33"]
 |===
 a|
-PUT
+#*PUT*#
 a|
-UPDATE BY REMOVING
+[discrete]
+==== UPDATE BY REMOVING
 |
 |===
 
@@ -505,9 +516,10 @@ Updates a specific Deployment by removing the specified elements if defined on t
 [discrete.view]
 === Request
 
-JSON:
+[discrete]
+==== JSON
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
     "applications":
@@ -529,16 +541,16 @@ JSON:
 |applications |Array |(Optional) List of application version IDs to be assigned to the specified deployment |—
 |===
 
-*Using CURL on Windows*
+[discrete]
+==== Using CURL on Windows
 
-[source,console,linenums]
 ----
  curl --basic -u admin:admin -X PUT -d "{\"applications\":[\"local$497d0c3a-8b29-4ff9-b22b-0d0ac4fe4eb2\"], \"lastModified\":\"Thu, 18 Apr 2013 14:14:23.121 ART\", \"name\":\"Deployment Test\"\} --header "Content-Type:application/json" http://localhost:8080/mmc/api/deployments/local$731305bb-95ad-433c-8840-8cc9fb8be4fa/remove
 ----
 
-*Using CURL on Linux*
+[discrete]
+==== Using CURL on Linux
 
-[source,console,linenums]
 ----
  curl --basic -u admin:admin -X PUT -d '{"applications":["local$497d0c3a-8b29-4ff9-b22b-0d0ac4fe4eb2"], "lastModified":"Thu, 18 Apr 2013 14:14:23.121 ART", "name":"Deployment Test"}' --header 'Content-Type:application/json' 'http://localhost:8080/mmc/api/deployments/local$731305bb-95ad-433c-8840-8cc9fb8be4fa/remove'
 ----
@@ -546,9 +558,10 @@ JSON:
 [discrete.view]
 === Response
 
-JSON:
+[discrete]
+==== JSON
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
     "name": "Deployment Test",
@@ -601,9 +614,10 @@ JSON:
 [cols="34,33,33"]
 |===
 a|
-DELETE
+*DELETE*
 a|
-REMOVE
+[discrete]
+==== REMOVE
 |
 |===
 
@@ -614,34 +628,36 @@ Removes a specific Deployment.
 [discrete.view]
 === Request
 
-SYNTAX:
+[discrete]
+==== SYNTAX
 
 `DELETE http://localhost:8080/mmc/api/deployments/{deploymentId}`
 
 [%header,cols="4*"]
 |===
 |Key |Type |Summary |Child of
-|deploymentId |String |Id of the deployment to be removed. Invoke `LIST ALL` to obtain it. |—
+|deploymentId |String |Id of the deployment to be removed. Invoke <<LIST ALL>> to obtain it. |—
 |===
 
-*Using CURL on Windows*
+[discrete]
+==== Using CURL on Windows
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/deployments/local$3a99adfe-e942-4b52-b082-1a351de01420
+ curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/deployments/local$3a99adfe-e942-4b52-b082-1a351de01420
 ----
 
-*Using CURL on Linux*
+[discrete]
+==== Using CURL on Linux
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc/api/deployments/local$3a99adfe-e942-4b52-b082-1a351de01420'
+ curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc/api/deployments/local$3a99adfe-e942-4b52-b082-1a351de01420'
 ----
 
 [discrete.view]
 === Response
 
-JSON:
+[discrete]
+==== JSON
 
 `200 OK`
 
@@ -667,14 +683,15 @@ JSON:
 
 =====
 
-`/api/deployments/{deploymentId}/deploy`
+#*/api/deployments/\{deploymentId}/deploy*#
 
 [cols="34,33,33"]
 |===
 a|
-POST
-|
-PERFORM DEPLOY
+#*POST*#
+a|
+[discrete]
+==== PERFORM DEPLOY
 |
 |===
 
@@ -683,9 +700,10 @@ Deploys the apps specified on the deployment to the specified target.
 [.ex]
 =====
 [discrete.view]
-=== Studio Visual Editor
+=== STUDIO Visual Editor
 
-JSON:
+[discrete]
+==== JSON
 
 `POST http://localhost:8080/mmc/api/deployments/{deploymentId}/deploy`
 
@@ -695,24 +713,25 @@ JSON:
 |deploymentId |String |ID of the deployment |—
 |===
 
-*Using CURL on Windows*
+[discrete]
+==== Using CURL on Windows
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/deploy
+ curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/deploy
 ----
 
-*Using CURL on Linux*
+[discrete]
+==== Using CURL on Linux
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/deploy'
+ curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/deploy'
 ----
 
 [discrete.view]
 === Response
 
-JSON:
+[discrete]
+==== JSON
 
 `200`
 
@@ -722,7 +741,7 @@ JSON:
 [cols="2*"]
 |===
 |*200* |Operation successful
-|*400* |Error deploying the deployment / Policies do not allow deploying the deployment
+|*400* |Error deploying the deployment/ Policies do not allow deploying the deployment
 |*404* |A deployment with that ID was not found
 |*500* |Internal error
 |===
@@ -734,27 +753,31 @@ JSON:
 |===
 |From |3.2.2
 |===
+=====
 
-`/api/deployments/{deploymentId}/redeploy`
+
+#*/api/deployments/\{deploymentId}/redeploy*#
 
 [cols="34,33,33"]
 |===
 a|
 #*POST*#
-|
-PERFORM REDEPLOY
+a|
+[discrete]
+==== PERFORM REDEPLOY
 |
 |===
-=====
 
 Redeploys the apps specified on the deployment to the specified target.
+
 
 [.ex]
 =====
 [discrete.view]
 === Request
 
-JSON:
+[discrete]
+==== JSON
 
 `POST http://localhost:8080/mmc/api/deployments/{deploymentId}/redeploy`
 
@@ -764,24 +787,25 @@ JSON:
 |deploymentId |String |ID of the deployment |—
 |===
 
-*Using CURL on Windows*
+[discrete]
+==== Using CURL on Windows
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/redeploy
+ curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/redeploy
 ----
 
-*Using CURL on Linux*
+[discrete]
+==== Using CURL on Linux
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/redeploy'
+ curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/redeploy'
 ----
 
 [discrete.view]
 === Response
 
-JSON:
+[discrete]
+==== JSON
 
 `200`
 
@@ -805,14 +829,15 @@ JSON:
 |===
 =====
 
-`/api/deployments/{deploymentId}/undeploy`
+#*/api/deployments/\{deploymentId}/undeploy*#
 
 [cols="34,33,33"]
 |===
 a|
-POST
-|
-PERFORM UNDEPLOY
+#*POST*#
+a|
+[discrete]
+==== PERFORM UNDEPLOY
 |
 |===
 
@@ -823,7 +848,8 @@ Undeploys the apps specified on the deployment to the specified target.
 [discrete.view]
 === Request
 
-JSON:
+[discrete]
+==== JSON
 
 `POST http://localhost:8080/mmc/api/deployments/{deploymentId}/undeploy`
 
@@ -833,24 +859,25 @@ JSON:
 |deploymentId |String |ID of the deployment |—
 |===
 
-*Using CURL on Windows*
+[discrete]
+==== Using CURL on Windows
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/undeploy
+ curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/undeploy
 ----
 
-*Using CURL on Linux*
+[discrete]
+==== Using CURL on Linux
 
-[source,console,linenums]
 ----
-curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/undeploy'
+ curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc/api/deployments/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/undeploy'
 ----
 
 [discrete.view]
 === Response
 
-JSON:
+[discrete]
+==== JSON
 
 `200`
 

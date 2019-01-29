@@ -5,7 +5,7 @@ endif::[]
 
 The *Mule Management Console* provides http://en.wikipedia.org/wiki/Representational_state_transfer[*REST APIs*] that you can use to programmatically access much of the console's functionality.
 
-For details on the management console API, consult xref:3.7@using-the-management-console-api.adoc[Using the Management Console API].
+For details on the management console API, consult xref:using-the-management-console-api.adoc[Using the Management Console API].
 
 == Intended Audience
 
@@ -15,12 +15,12 @@ This document, and the child pages of the REST API Reference Guide, are a techni
 
 This guide comprises a total of six documents, which cover the following topics:
 
-* xref:3.7@clusters.adoc[Clusters]
-* xref:3.7@deployments.adoc[Deployments]
-* xref:3.6@repository-of-applications.adoc[Repository of Applications]
-* xref:3.7@server-groups.adoc[Server Groups]
-* xref:3.7@servers.adoc[Servers]
-* xref:3.7@user-groups.adoc[User Groups]
+* xref:clusters.adoc[Clusters]
+* xref:deployments.adoc[Deployments]
+* xref:repository-of-applications.adoc[Repository of Applications]
+* xref:server-groups.adoc[Server Groups]
+* xref:servers.adoc[Servers]
+* xref:user-groups.adoc[User Groups]
 
 These documents are a technical reference only, and do not contain instructions or contextual information.
 
@@ -53,13 +53,13 @@ This section lists assumed parameters for all operations detailed in the documen
 
 === Section: REST Resource Name
 
-The title of this section is the http://en.wikipedia.org/wiki/Uniform_Resource_Identifier[URI] of the REST resource documented in the section. For example, the first section in the xref:3.7@deployments.adoc[Deployments] page is:
+The title of this section is the http://en.wikipedia.org/wiki/Uniform_Resource_Identifier[URI] of the REST resource documented in the section. For example, the first section in the xref:deployments.adoc[Deployments] page is:
 
 __________
 *_/api/deployments_*
 __________
 
-A single document may contain more than one Resource section. In such cases, the first section always corresponds to the http://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Relationship_to_URL_and_URN[URL], and subsequent sections refer to URIs. For example, in the xref:3.7@servers.adoc[Servers] page, the first Resource section is `/api/Servers`; subsequent sections are `/api/Servers/{serverId`}, `/api/Servers/{serverId}/applications`, etc.
+A single document may contain more than one Resource section. In such cases, the first section always corresponds to the http://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Relationship_to_URL_and_URN[URL], and subsequent sections refer to URIs. For example, in the xref:servers.adoc[Servers] page, the first Resource section is `/api/Servers`; subsequent sections are `/api/Servers/{serverId`}, `/api/Servers/{serverId}/applications`, etc.
 
 [TIP]
 ====

@@ -10,10 +10,10 @@ For an overview of clusters, including benefits and best practices, see https://
 
 You can perform the following cluster-related tasks with the console:
 
-* xref:3.7@creating-or-disbanding-a-cluster.adoc[Create a cluster]
-* xref:3.6@deploying-redeploying-or-undeploying-an-application-to-or-from-a-cluster.adoc[Deploy, redeploy, or undeploy an application to or from a cluster]
-* xref:3.6@monitoring-a-cluster.adoc[Monitor a cluster, including its status]
-* xref:3.7@creating-or-disbanding-a-cluster.adoc["Disband" or delete a cluster]
+* xref:creating-or-disbanding-a-cluster.adoc[Create a cluster]
+* xref:deploying-redeploying-or-undeploying-an-application-to-or-from-a-cluster.adoc[Deploy, redeploy, or undeploy an application to or from a cluster]
+* xref:monitoring-a-cluster.adoc[Monitor a cluster, including its status]
+* xref:creating-or-disbanding-a-cluster.adoc["Disband" or delete a cluster]
 
 You can also create and manage a cluster programmatically using REST APIs.
 

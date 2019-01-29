@@ -12,7 +12,7 @@ You can also deploy, redeploy, or undeploy a deployment unit to or from a cluste
 
 == Deploying an Application To a Cluster
 
-. If you have not yet created a cluster, then create a cluster as described in xref:3.7@creating-or-disbanding-a-cluster.adoc[Creating or Disbanding a Cluster].
+. If you have not yet created a cluster, then create a cluster as described in xref:creating-or-disbanding-a-cluster.adoc[Creating or Disbanding a Cluster].
 
 . Click the Applications tab. From the All Deployments pane, click the New button to create a new deployment.
 
@@ -48,4 +48,4 @@ When an application is undeployed from a cluster, the application is first stopp
 
 == More Information
 
-For more information on managing application deployments, see xref:3.6@deploying-applications.adoc[Deploying Applications] and xref:3.6@maintaining-the-server-application-repository.adoc[Maintaining the Server Application Repository].
+For more information on managing application deployments, see xref:deploying-applications.adoc[Deploying Applications] and xref:maintaining-the-server-application-repository.adoc[Maintaining the Server Application Repository].

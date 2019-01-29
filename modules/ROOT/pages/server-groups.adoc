@@ -2,27 +2,26 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:keywords: server groups, curl, rest
 
-This document, as well as the rest of the documents that make up the xref:3.7@rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with https://www.mulesoft.com/resources/esb/what-mule-esb[MULE ESB], Server Groups and the xref:3.7@using-the-management-console-api.adoc[REST API].
+This document, as well as the rest of the documents that make up the xref:rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with https://www.mulesoft.com/resources/esb/what-mule-esb[MULE ESB], Server Groups and the xref:using-the-management-console-api.adoc[REST API].
 
-[%header,cols="1s,1"]
+[cols="2*"]
 |===
-2+|Assumptions:
-|Host |localhost
-|Port |8080
-|Deployed app |mmc.war
-|User/Password |admin/admin
+|*Host* |localhost
+|*Port* |8080
+|*Deployed app* |mmc.war
+|*User/Password* |admin/admin
 |===
 
-For a detailed description of the format used in this document, consult xref:3.7@rest-api-reference.adoc[Content Organization and Conventions].
+For a detailed description of the format used in this document, consult xref:rest-api-reference.adoc[Content Organization and Conventions].
 
-#*/api/serverGroups*#
+*/api/serverGroups*
 
-[cols="3*a"]
+[cols="2*a"]
 |===
-|#*POST*#
-|*CREATE*
-|
+|*POST*
+|CREATE
 |===
 
 Creates a new Server Group.
@@ -109,10 +108,10 @@ Creates a new Server Group.
 
 =====
 
-[cols="3*a"]
+[cols="2*a"]
 |===
-|#*GET*#
-|*LIST ALL*
+|*GET*
+|LIST ALL
 |
 |===
 
@@ -181,12 +180,12 @@ Lists all available Server Groups.
 
 =====
 
-#*/api/serverGroups/\{serverGroupId}*#
+*/api/serverGroups/\{serverGroupId}*
 
 [cols="3*a"]
 |===
-|#*GET*#
-|*LIST*
+|*GET*
+|LIST
 |
 |===
 
@@ -259,10 +258,10 @@ GET http://localhost:8080/mmc/api/serverGroups/{serverGroupId}
 |===
 =====
 
-[cols="3*a"]
+[cols="2*a"]
 |===
-|#*PUT*#
-|*RENAME*
+|*PUT*
+|RENAME
 |
 |===
 
@@ -357,8 +356,8 @@ curl --basic -u admin:admin -X PUT -d '{"name":"NewName","id":"330d9139-4462-4e3
 
 [cols="3*a"]
 |===
-|#*DELETE*#
-|*REMOVE*
+|*DELETE*
+|REMOVE
 |
 |===
 

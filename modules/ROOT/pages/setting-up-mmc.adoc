@@ -7,17 +7,16 @@ endif::[]
 
 This document describes requisites, options and recommendations for setting up MMC in a production environment.
 
-To set up MMC, you first need to register your Mule servers with MMC. For details on how to do this, see xref:3.7@setting-up-mmc-mule-esb-communications.adoc[Setting Up MMC-Mule ESB Communications].
+To set up MMC, you will first need to register your Mule ESB servers with MMC. For details on how to do this, see xref:setting-up-mmc-mule-esb-communications.adoc[Setting Up MMC-Mule ESB Communications].
 
-To use MMC in a production environment, you need to deploy MMC to a Web application server such as Tomcat. You do this when xref:3.6@installing-the-production-version-of-mmc.adoc[installing the production version of MMC].
+To use MMC in a production environment, you need to deploy MMC to a Web application server such as Tomcat. You do this when xref:installing-the-production-version-of-mmc.adoc[installing the production version of MMC].
 
 The <<Setup Decisions>> below lists the default options as well as the alternate setup configurations that you can select when setting up MMC. By default, MMC stores environment or transaction data, as well as user and group information, in internal databases. Using alternate configurations, you can:
 
-* xref:3.7@persisting-mmc-data-on-external-databases.adoc[Set up external databases] to persist MMC environment or transaction data (Business Events)
-* xref:3.7@managing-mmc-users-and-roles.adoc[Manage MMC users and roles] via LDAP
+* xref:persisting-mmc-data-on-external-databases.adoc[Set up external databases] to persist MMC environment or transaction data (Business Events)
+* xref:managing-mmc-users-and-roles.adoc[Manage MMC users and roles] via LDAP
 
 These options are covered in <<Setup Decisions>> in this document.
-
 
 
 == Assumptions
@@ -26,7 +25,7 @@ This document assumes you are an administrator account holder in MMC. It also as
 
 * *Mule Enterprise 3.4.1 or later*. Download it from the http://www.mulesoft.com/support-login[customer portal] if you need to upgrade to this version.
 * *MMC Version 3.4.1 or later*. Download it from the http://www.mulesoft.com/support-login[customer portal] if you need to upgrade to this version.
-* *a Web application server such as Tcat, Tomcat, or JBoss*. Refer to the https://docs.mulesoft.com/mule-user-guide/v/3.7/hardware-and-software-requirements[Hardware and Software Requirements] for the latest information about hardware requirements and supported application servers, Java Runtime Environments, and browsers.
+* *a Web application server such as Tcat, Tomcat, or JBoss*. Refer to the https://docs.mulesoft.com/mule-user-guide/v/3.6/hardware-and-software-requirements[Hardware and Software Requirements] for the latest information about hardware requirements and supported application servers, Java Runtime Environments, and browsers.
 
 == Recommended Environment Architecture
 
@@ -62,11 +61,11 @@ image::mmc-usermanagement.png[]
 
 MMC includes built in user-management capabilities that allow you to define user groups, assign fine-grained access controls to those groups, and add and manage users.
 
-See xref:3.6@setting-up-and-managing-users-in-mmc.adoc[Setting Up and Managing Users in MMC] for more information.
+See xref:setting-up-and-managing-users-in-mmc.adoc[Setting Up and Managing Users in MMC] for more information.
 
-If you have an existing LDAP database to manage user data such as usernames and passwords, you can configure MMC to connect directly to the LDAP server for user management. Note that you will still need to xref:3.7@managing-mmc-users-and-roles.adoc[define user groups and permissions] using the MMC interface.
+If you have an existing LDAP database to manage user data such as usernames and passwords, you can configure MMC to connect directly to the LDAP server for user management. Note that you will still need to xref:managing-mmc-users-and-roles.adoc[define user groups and permissions] using the MMC interface.
 
-See xref:3.6@setting-up-and-managing-users-via-ldap.adoc[Setting Up and Managing Users via LDAP] for more information.
+See xref:setting-up-and-managing-users-via-ldap.adoc[Setting Up and Managing Users via LDAP] for more information.
 
 === Data Persistence
 
@@ -91,35 +90,35 @@ You can externalize your data through JDBC to any supported database. Follow the
 
 ==== Oracle
 
-* xref:3.6@persisting-mmc-data-to-oracle.adoc[MMC version 3.4.1 and earlier]
-* xref:3.6@persisting-mmc-data-to-oracle.adoc[MMC version 3.4.2 and later]
+* xref:persisting-mmc-data-to-oracle.adoc[MMC version 3.4.1 and earlier]
+* xref:persisting-mmc-data-to-oracle.adoc[MMC version 3.4.2 and later]
 
 ==== PostgresSQL
 
-* xref:3.6@persisting-mmc-data-to-postgresql.adoc[MMC version 3.4.1 and earlier]
-* xref:3.6@persisting-mmc-data-to-postgresql.adoc[MMC version 3.4.2]xref:3.6@persisting-mmc-data-to-oracle.adoc[and later]
+* xref:persisting-mmc-data-to-postgresql.adoc[MMC version 3.4.1 and earlier]
+* xref:persisting-mmc-data-to-postgresql.adoc[MMC version 3.4.2]xref:persisting-mmc-data-to-oracle.adoc[and later]
 
 ==== MySQL
 
-* xref:3.7@persisting-mmc-data-to-mysql.adoc[MMC version 3.4.1 and earlier]
-* xref:3.7@persisting-mmc-data-to-mysql.adoc[MMC version 3.4.2]xref:3.6@persisting-mmc-data-to-oracle.adoc[and later]
+* xref:persisting-mmc-data-to-mysql.adoc[MMC version 3.4.1 and earlier]
+* xref:persisting-mmc-data-to-mysql.adoc[MMC version 3.4.2]xref:persisting-mmc-data-to-oracle.adoc[and later]
 
 ==== MS SQL Server
 
-* xref:3.6@persisting-mmc-data-to-ms-sql-server.adoc[MMC version 3.4.1 and earlier]
-* xref:3.6@persisting-mmc-data-to-ms-sql-server.adoc[MMC version 3.4.2]xref:3.6@persisting-mmc-data-to-oracle.adoc[and later]
+* xref:persisting-mmc-data-to-ms-sql-server.adoc[MMC version 3.4.1 and earlier]
+* xref:persisting-mmc-data-to-ms-sql-server.adoc[MMC version 3.4.2]xref:persisting-mmc-data-to-oracle.adoc[and later]
 
 === User Management
 
 There are two ways of creating and configuring MMC user accounts:
 
-* xref:3.6@setting-up-and-managing-users-in-mmc.adoc[Through the MMC interface]
-* xref:3.6@setting-up-and-managing-users-via-ldap.adoc[Through LDAP]
+* xref:setting-up-and-managing-users-in-mmc.adoc[Through the MMC interface]
+* xref:setting-up-and-managing-users-via-ldap.adoc[Through LDAP]
 
-To define user groups and assign fine-grained permissions to those groups, follow the instructions in xref:3.7@managing-mmc-users-and-roles.adoc[Managing MMC Users and Roles]. You can manage user groups and their permissions only through the MMC interface, even if you set up an LDAP server to manage user accounts.
+To define user groups and assign fine-grained permissions to those groups, follow the instructions in xref:managing-mmc-users-and-roles.adoc[Managing MMC Users and Roles]. You can manage user groups and their permissions only through the MMC interface, even if you set up an LDAP server to manage user accounts.
 
 == See Also
 
-* Read more about xref:3.7@managing-mmc-users-and-roles.adoc[Managing MMC Users and Roles].
-* Find out how to set up an xref:3.6@persisting-mmc-data-to-oracle.adoc[Oracle], xref:3.6@persisting-mmc-data-to-postgresql.adoc[PostgreSQL], xref:3.7@persisting-mmc-data-to-mysql.adoc[MySQL], or xref:3.6@persisting-mmc-data-to-ms-sql-server.adoc[MS SQL Server] database to persist your environment or transaction data.
-* Learn about the  xref:3.6@architecture-of-the-mule-management-console.adoc[technical architecture of MMC].
+* Read more about xref:managing-mmc-users-and-roles.adoc[Managing MMC Users and Roles].
+* Find out how to set up an xref:persisting-mmc-data-to-oracle.adoc[Oracle], xref:persisting-mmc-data-to-postgresql.adoc[PostgreSQL], xref:persisting-mmc-data-to-mysql.adoc[MySQL], or xref:persisting-mmc-data-to-ms-sql-server.adoc[MS SQL Server] database to persist your environment or transaction data.
+* Learn about the  xref:architecture-of-the-mule-management-console.adoc[technical architecture of MMC].

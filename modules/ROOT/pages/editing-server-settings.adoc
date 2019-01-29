@@ -5,10 +5,10 @@ endif::[]
 
 Click the Settings tab to view the settings for the selected server. The pane displays the current server settings.
 
-image::server-settings.png[]
+image::1.png[]
 
-Click the Edit Server Info button in the display pane (circled in the above figure) to open a pane through which you can change server settings. (See below.)
+Clicking the *Edit Server Info* button (highlighted in the image above) allows you to modify information and settings for the server, as shown below.
 
-image::server-edit.png[]
+image::2.png[]
 
 You can enter a new name for the server. You can also add this server to a group, by selecting a group from the pull-down list then clicking Add. You can also remove the server from a group it may already be in, by clicking the red X next to the group name. In addition, you can modify the agent URL.

@@ -5,9 +5,9 @@ endif::[]
 
 #*_Enterprise Edition_*#
 
-From the Management Console or the Console's xref:3.7@rest-api-reference.adoc[REST API] you can dynamically add or remove nodes to or from a cluster without disbanding it.
+From the Management Console or the Console's xref:rest-api-reference.adoc[REST API] you can dynamically add or remove nodes to or from a cluster without disbanding it.
 
-This page details the procedure to add or remove a node in the Management Console. For details on performing these operations using the REST API, consult the xref:3.7@clusters.adoc[REST API Clusters] documentation.
+This page details the procedure to add or remove a node in the Management Console. For details on performing these operations using the REST API, consult the xref:clusters.adoc[REST API Clusters] documentation.
 
 == Assumptions
 

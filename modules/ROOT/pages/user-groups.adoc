@@ -2,23 +2,28 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:keywords: user groups
 
-This document, as well as the rest of the documents that make up the xref:3.7@rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with https://www.mulesoft.com/resources/esb/what-mule-esb[MULE ESB], User Groups and the xref:3.7@using-the-management-console-api.adoc[REST API].
+This document, as well as the rest of the documents that make up the xref:rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with Mule Runtime, User Groups and the xref:using-the-management-console-api.adoc[REST API].
 
-[cols="20a,10a,10a,10a,10a,10a,10a,10a,10a"]
+== Assumptions
+[cols="2*"]
 |===
-|*Assumptions:* |Host |localhost |Port |8080 |Deployed app |mmc.war |User/Password |admin/admin
+|*Host* |localhost
+|*Port* |8080
+|*Deployed app* |mmc.war
+|*User/Password* |admin/admin
 |===
 
-For a detailed description of the format used in this document, consult xref:3.7@rest-api-reference.adoc[Content Organization and Conventions].
+For a detailed description of the format used in this document, consult xref:rest-api-reference.adoc[Content Organization and Conventions].
 
 */api/usergroups*
 
-*POST*
-
-
-
-CREATE
+[cols="2*",width=80%]
+|===
+|*POST*
+|CREATE
+|===
 
 
 Creates a new UserGroup.
@@ -26,12 +31,12 @@ Creates a new UserGroup.
 [.ex]
 =====
 [discrete.view]
-=== Request
+=== ->Request
 
 [discrete]
 ==== JSON
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 
 {
@@ -52,7 +57,7 @@ Creates a new UserGroup.
 [discrete]
 ==== Using CURL on Windows
 
-[source,console,linenums]
+[source,text,linenums]
 ----
 curl --basic -u admin:admin -d "{ \"name\" : \"TestUserGroup\", \"description\": \"This is a test\", \"permissions\": [\"VIEW_ACTIVITY\",\"TRACKING_DELETE\"] }" --header "Content-Type: application/json" http://localhost:8080/mmc/api/usergroups
 ----
@@ -60,18 +65,18 @@ curl --basic -u admin:admin -d "{ \"name\" : \"TestUserGroup\", \"description\":
 [discrete]
 ==== Using CURL on Linux
 
-[source,console,linenums]
+[source,text,linenums]
 ----
 curl --basic -u admin:admin -d '{ "name" : "TestUserGroup", "description": "This is a test", "permissions": ["VIEW_ACTIVITY","TRACKING_DELETE"] }' --header 'Content-Type: application/json' http://localhost:8080/mmc/api/usergroups
 ----
 
 [discrete.view]
-=== Response
+=== <-Response
 
 [discrete]
 ==== JSON
 
-[source,json,linenums]
+source
 ----
 {
   "name":"NewUserGroupName",
@@ -107,13 +112,13 @@ curl --basic -u admin:admin -d '{ "name" : "TestUserGroup", "description": "This
 |===
 |From |3.3.0
 |===
-
 =====
 
-*GET*
-
-
-LIST ALL
+[cols="2*",width=80%]
+|===
+|*GET*
+|LIST ALL
+|===
 
 
 Lists all available User Groups.
@@ -121,7 +126,7 @@ Lists all available User Groups.
 [.ex]
 =====
 [discrete.view]
-=== Request
+=== ->Request
 
 [discrete]
 ==== SYNTAX
@@ -131,7 +136,7 @@ GET http://localhost:8080/mmc/api/usergroups/
 [discrete]
 ==== Using CURL
 
-[source,console,linenums]
+[source,text,linenums]
 ----
 curl --basic -u admin:admin http://localhost:8080/mmc/api/usergroups
 ----
@@ -142,7 +147,7 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/usergroups
 [discrete]
 ==== JSON
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "total":5,
@@ -198,10 +203,11 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/usergroups
 
 */api/usergroups/\{userGroupName}*
 
-*GET*
-
-
-LIST
+[cols="2*",width=50%]
+|===
+|*GET*
+|LIST
+|===
 
 
 Lists details for a specific User Group.
@@ -225,7 +231,7 @@ GET http://localhost:8080/mmc/api/usergroups/{userGroupName}
 [discrete]
 ==== Using CURL
 
-[source,console,linenums]
+[source,text,linenums]
 ----
 curl --basic -u admin:admin http://localhost:8080/mmc/api/usergroups/Administrators
 ----
@@ -236,7 +242,7 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/usergroups/Administrat
 [discrete]
 ==== JSON
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "name":"Administrators",
@@ -280,11 +286,11 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/usergroups/Administrat
 |===
 
 =====
-
-*PUT*
-
-
-UPDATE
+[cols="2*",width=80%]
+|===
+|*PUT*
+|UPDATE
+|===
 
 Updates a specific User Group.
 
@@ -296,7 +302,7 @@ Updates a specific User Group.
 [discrete]
 ==== SYNTAX
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "name" : "NewUserGroupName",
@@ -316,7 +322,7 @@ Updates a specific User Group.
 [discrete]
 ==== Using CURL on Windows
 
-[source,console,linenums]
+[source,text,linenums]
 ----
 curl --basic -u admin:admin -X PUT -d "{ \"name\" : \"NewUserGroupName\", \"description\": \"Ability to view activity and delete events\", \"permissions\": [\"VIEW_ACTIVITY\",\"TRACKING_DELETE\"] }" --header "Content-Type: application/json" http://localhost:8080/mmc/api/usergroups/Deployers
 ----
@@ -324,7 +330,7 @@ curl --basic -u admin:admin -X PUT -d "{ \"name\" : \"NewUserGroupName\", \"desc
 [discrete]
 ==== Using CURL on Linux
 
-[source,console,linenums]
+[source,text,linenums]
 ----
 curl --basic -u admin:admin -X PUT -d { "name" : "NewUserGroupName", "description": "Ability to view activity and delete events", "permissions": ["VIEW_ACTIVITY","TRACKING_DELETE"] }" --header 'Content-Type: application/json' http://localhost:8080/mmc/api/usergroups/Deployers
 ----
@@ -335,7 +341,7 @@ curl --basic -u admin:admin -X PUT -d { "name" : "NewUserGroupName", "descriptio
 [discrete]
 ==== JSON
 
-[source.json]
+[source,text,linenums]
 ----
 {
   "name" : "NewUserGroupName",
@@ -374,10 +380,12 @@ curl --basic -u admin:admin -X PUT -d { "name" : "NewUserGroupName", "descriptio
 
 =====
 
-*DELETE*
+[cols="2*",width=50%]
+|===
+|*DELETE*
+|REMOVE
+|===
 
-
-REMOVE
 
 Removes a specific User Group.
 
@@ -431,15 +439,15 @@ curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/usergroups/M
 |===
 
 =====
-
 == User Group Permissions
 
 */api/usergroups/permissions*
 
-*GET*
-
-
-LIST ALL
+[cols="2*",width=50%]
+|===
+|*GET*
+|LIST ALL
+|===
 
 
 Lists all available permissions.
@@ -465,7 +473,7 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/usergroups/permissions
 [discrete]
 ==== JSON
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "permissions":
@@ -504,5 +512,4 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/usergroups/permissions
 |===
 |From |3.3.0
 |===
-
 =====

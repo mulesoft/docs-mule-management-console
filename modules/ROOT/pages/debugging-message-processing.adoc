@@ -18,7 +18,7 @@ This topic, geared for application developers, takes you through the general ste
 * Verifying application flow
 * Verifying message processors and message payloads
 
-To see an actual example of using the console to find a bug in the application logic, see xref:3.6@debugging-the-loan-broker-example-application.adoc[Debugging the Loan Broker Example Application].
+To see an actual example of using the console to find a bug in the application logic, see xref:debugging-the-loan-broker-example-application.adoc[Debugging the Loan Broker Example Application].
 
 == Verifying the Overall Application Flow
 

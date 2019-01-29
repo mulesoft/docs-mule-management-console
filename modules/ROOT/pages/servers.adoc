@@ -3,26 +3,25 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This document, as well as the rest of the documents that make up the xref:3.7@rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with https://www.mulesoft.com/resources/esb/what-mule-esb[MULE ESB], Mule Servers and the xref:3.7@using-the-management-console-api.adoc[REST API].
+;keywords: servers
+This document, as well as the rest of the documents that make up the xref:rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with https://www.mulesoft.com/resources/esb/what-mule-esb[MULE ESB], Mule Servers and the xref:using-the-management-console-api.adoc[REST API].
 
-[%header,cols="1s,1"]
+[cols="2*"]
 |===
-2+|Assumptions:
-|Host |localhost
-|Port |8080
-|Deployed app |mmc.war
-|User/Password |admin/admin
+|*Host* |localhost
+|*Port* |8080
+|*Deployed app* |mmc.war
+|*User/Password* |admin/admin
 |===
 
-For a detailed description of the format used in this document, consult xref:3.7@using-the-management-console-api.adoc[Content Organization and Conventions].
+For a detailed description of the format used in this document, consult xref:using-the-management-console-api.adoc[Content Organization and Conventions].
 
-#*/api/servers*#
+*/api/servers*
 
-[cols="3*a"]
+[cols="2*a"]
 |===
-|#*POST*#
-|*PAIR/REGISTER*
-|
+|*POST*
+|PAIR/REGISTER
 |===
 
 Pairs a new Server.
@@ -76,7 +75,7 @@ Pairs a new Server.
 
 Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file.
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "name":"Test",
@@ -160,11 +159,10 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-[cols="3*a"]
+[cols="2*a",width=50%]
 |===
 |*GET*
-|*LIST ALL*
-|
+|LIST ALL
 |===
 
 Lists all available Servers.
@@ -205,7 +203,7 @@ GET http://localhost:8080/mmc-console-3.4.0/api/servers[?group={serverGroupId}]
 
 Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file.
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "total":1,
@@ -294,16 +292,15 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-#*/api/server/\{serverId}*#
+*/api/server/\{serverId}*
 
-[cols="3*a"]
+[cols="2*a",width=50%]
 |===
 |
 *GET*
 |
-[discrete]
-===== LIST
-|
+LIST
+
 |===
 
 Lists details for a specific Server.
@@ -349,7 +346,7 @@ GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}
 [discrete]
 ==== JSON
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "name":"Test",
@@ -431,14 +428,12 @@ GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}
 
 =====
 
-[cols="3*a"]
+[cols="2*a",width=50%]
 |===
 |
-#*DELETE*#
+*DELETE*
 |
-[discrete]
-===== UNPAIR/UNREGISTER
-|
+UNPAIR/UNREGISTER
 |===
 
 Unpairs/unregister a specific Server.
@@ -511,11 +506,10 @@ DELETE http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}
 
 */api/servers/\{serverId}*
 
-[cols="3*a"]
+[cols="2*a",width=50%]
 |===
-|#*PUT*#
+|*PUT*
 |*UPDATE*
-|
 |===
 
 Updates a specific Server.
@@ -570,7 +564,7 @@ Updates a specific Server.
 
 Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file.
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "name":"New Server Name",
@@ -653,13 +647,12 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-#*/api/servers/\{serverId}/applications*#
+*/api/servers/\{serverId}/applications*
 
-[cols="3*a"]
+[cols="2*a",width=50%]
 |===
-|#*GET*#
-|*LIST APPLICATIONS*
-|
+|*GET*
+|LIST APPLICATIONS
 |===
 
 Lists all available deployed applications on a specific Server.
@@ -785,13 +778,12 @@ GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/applications
 
 =====
 
-#*/api/servers/\{serverId}/restart*#
+*/api/servers/\{serverId}/restart*
 
-[cols="3*a"]
+[cols="2*a",width=50%]
 |===
 |*POST*
-|*PERFORM RESTART*
-|
+|PERFORM RESTART
 |===
 
 Restarts a Server.
@@ -857,12 +849,12 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-#*/api/servers/\{serverId}/stop*#
+*/api/servers/\{serverId}/stop*
 
-[cols="3*a"]
+[cols="2*a",width=50%]
 |===
 |*POST*
-|*PERFORM STOP*
+|PERFORM STOP
 |
 |===
 
@@ -933,13 +925,12 @@ POST http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/stop
 
 == Server Files
 
-#*/api/server/\{serverId}/files*#
+*/api/server/\{serverId}/files*
 
-[cols="3*a"]
+[cols="2*a",width=50%]
 |===
 |*GET*
-|*LIST FILES*
-|
+|LIST FILES
 |===
 
 Lists files on a specific Server.
@@ -1056,13 +1047,12 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-#*/api/server/\{serverId}/files/\{relative path to file}*#
+*/api/server/\{serverId}/files/\{relative path to file}*
 
-[cols="3*a"]
+[cols="2*a",width=80%]
 |===
-|#*GET*#
-|*LIST FILE*
-|
+|*GET*
+|LIST FILE
 |===
 
 Get a specific file from a specific Server.
@@ -1163,13 +1153,12 @@ Metadata=true:
 
 =====
 
-#*/api/server/\{serverId}/files/\{relative path to file to be created}*#
+*/api/server/\{serverId}/files/\{relative path to file to be created}*
 
-[cols="3*a"]
+[cols="2*a",width=50%]
 |===
 |*POST*
-|*CREATE REMOTE FILE*
-|
+|CREATE REMOTE FILE
 |===
 
 Creates a new file in the specified server and folder.
@@ -1241,11 +1230,10 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 |===
 =====
 
-[cols="3*a"]
+[cols="3*a",width=50%]
 |===
 |*PUT*
-|*UPDATE/REPLACE REMOTE FILE*
-|
+|UPDATE/REPLACE REMOTE FILE
 |===
 
 Replaces a target file with the provided source file (or inline content) on the specified server and folder.
@@ -1320,10 +1308,10 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-[cols="3*a"]
+[cols="2*a",width=50%]
 |===
 |*DELETE*
-|*DELETE REMOTE FILE*
+|DELETE REMOTE FILE
 |
 |===
 
@@ -1394,13 +1382,12 @@ curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc-console-3.4.0/a
 
 == Server Flows
 
-#*/api/server/\{serverId}/flows*#
+*/api/server/\{serverId}/flows*
 
-[cols="3*a"]
+[cols="2*a",width=50%]
 |===
-|#*GET*#
-|*LIST FLOWS*
-|
+|*GET*
+|LIST FLOWS
 |===
 
 Lists available flows on a specific Server.
@@ -1535,12 +1522,12 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-#*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/start*#
+*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/start*
 
-[cols="3*a"]
+[cols="2*",width=50%]
 |===
-|#*POST*#
-|*PERFORM FLOW START*
+|*POST*
+|PERFORM FLOW START
 |
 |===
 
@@ -1614,15 +1601,13 @@ If flow is already started, the following message is returned:
 |===
 =====
 
-#*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/stop*#
+*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/stop*
 
-[cols="3*a"]
+[cols="2*a",width=50%]
 |===
 |
-#*POST*#
-|
-[discrete]
-===== PERFORM FLOW STOP
+*POST*
+|PERFORM FLOW STOP
 |
 |===
 
@@ -1700,16 +1685,14 @@ If flow is already stopped the following message is returned:
 
 == Server Flows Endpoints
 
-#*/api/server/\{serverId}/\{flowName}/\{applicationName}/endpoints*#
+*/api/server/\{serverId}/\{flowName}/\{applicationName}/endpoints*
 
-[cols="3*a"]
+[cols="2*a",width=80%]
 |===
 |
-#*GET*#
+*GET*
 |
-[discrete]
-===== LIST FLOWS ENDPOINTS
-|
+LIST FLOWS ENDPOINTS
 |===
 
 Lists available endpoints belonging to specific flows.
@@ -1838,16 +1821,14 @@ If flow name contain spaces, replace them by "%20" when typing the URL to locate
 
 =====
 
-#*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/start*#
+*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/start*
 
-[cols="3*a"]
+[cols="2*a",width=50%]
 |===
 |
-#*POST*#
+*POST*
 |
-[discrete]
-===== PERFORM FLOW ENDPOINT START
-|
+PERFORM FLOW ENDPOINT START
 |===
 
 Starts a specific endpoint.
@@ -1920,15 +1901,14 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-#*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/stop*#
+*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/stop*
 
-[cols="3*a"]
+[cols="2*a"]
 |===
 |
 *POST*
 |
-[discrete]
-===== PERFORM FLOW ENDPOINT STOP
+PERFORM FLOW ENDPOINT STOP
 |
 |===
 

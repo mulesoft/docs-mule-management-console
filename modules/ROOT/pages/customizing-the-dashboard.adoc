@@ -3,9 +3,9 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-* xref:3.6@customizing-the-dashboard.adoc[Customizable Dashboard]
-* xref:3.6@customizing-the-dashboard.adoc[Viewing the Custom Dashboard]
-* xref:3.6@customizing-the-dashboard.adoc[Customizing the Dashboard Display]
+* xref:customizing-the-dashboard.adoc[Customizable Dashboard]
+* xref:customizing-the-dashboard.adoc[Viewing the Custom Dashboard]
+* xref:customizing-the-dashboard.adoc[Customizing the Dashboard Display]
 
 == Customizable Dashboard
 
@@ -47,7 +47,7 @@ The table below shows the portlets that you can display on the dashboard, plus t
 |Cluster Application Status |Server Group
 |===
 
-Note that you can have more than one version of the same portlet displayed on the dashboard. For example, you might want two Server Metrics portlets to appear and have each portlet display a different metric chart. (See xref:3.6@customizing-server-metrics-dashboard.adoc[Customizing the Server Metrics Dashboard] for more information on the server dashboard metrics charts and customizing them.)
+Note that you can have more than one version of the same portlet displayed on the dashboard. For example, you might want two Server Metrics portlets to appear and have each portlet display a different metric chart. (See xref:customizing-server-metrics-dashboard.adoc[Customizing the Server Metrics Dashboard] for more information on the server dashboard metrics charts and customizing them.)
 
 Click the customize icon (marked in the figure above) in the portlet title bar to customize that particular portlet. A dialog appears in the portlet, and you have options such as entering a new name for the portlet title bar, selecting the groups (of servers) for the display data, changing metric charts, and so forth. To keep your changes, click Save.
 

@@ -1,11 +1,11 @@
-= Upgrading to MMC 3.5.0 with LDAP
+= Upgrading to MMC 3.6.0 with LDAP
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-*_*MMC Version 3.5.0*_*
+*_MMC Version 3.6.0_*
 
-If you are upgrading to MMC 3.5.0, and your current MMC installation is configured to xref:3.4@setting-up-and-managing-users-via-ldap.adoc[manage users via LDAP], you will need to migrate your existing LDAP configuration to your new MMC 3.5.0 installation.
+If you are upgrading to MMC 3.6.0, and your current MMC installation is configured to xref:3.4@setting-up-and-managing-users-via-ldap.adoc[manage users via LDAP], you will need to migrate your existing LDAP configuration to your new MMC 3.6.0 installation.
 
 == Migrating LDAP Configuration
 
@@ -13,14 +13,18 @@ MMC stores its LDAP configuration settings in the file `<MMC_HOME>/WEB-INF/class
 
 To migrate your LDAP configuration, follow these steps:
 
-. Expand the MMC 3.5.0 .war file (for example, by copying it to the `webapps` directory of your Tomcat installation), but do not run MMC 3.5.0.
-. From your old MMC installation, copy the file `<OLD_MMC_HOME>/WEB-INF/classes/mmc-ldap.properties` to `<NEW_MMC_HOME>/WEB-INF/classes/META-INF`. For example, if your new installation resides at `/var/lib/tomcat6/mmc-console-3.5.0`, copy the file to `/var/lib/tomcat6/mmc-console-3.5.0/WEB-INF/classes/META-INF`.
+. Expand the MMC 3.6.0 .war file (for example, by copying it to the `webapps` directory of your Tomcat installation), but do not run MMC 3.6.0.
+. From your old MMC installation, copy the file `<OLD_MMC_HOME>/WEB-INF/classes/mmc-ldap.properties` to `<NEW_MMC_HOME>/WEB-INF/classes/META-INF`. For example, if your new installation resides at `/var/lib/tomcat6/mmc-console-3.6.0`, copy the file to `/var/lib/tomcat6/mmc-console-3.6.0/WEB-INF/classes/META-INF`.
 +
+
 [NOTE]
+====
 If your old MMC installation is configured for LDAP, but does not contain the `mmc-ldap.properties` file, then you have LDAP configured via the `ldap.xml` file (this should not be the case, as this XML file should not be edited). In this case, see the <<Troubleshooting>> section below for details on how to proceed.
+====
 
 . In your new MMC installation, open the file `<MMC_HOME>/WEB-INF/web.xml`, and locate the following section:
 +
+
 [source,xml,linenums]
 ----
 <param-name>spring.profiles.active</param-name>
@@ -29,6 +33,7 @@ If your old MMC installation is configured for LDAP, but does not contain the `m
 
 . Modify the second line to read:
 +
+
 [source,xml,linenums]
 ----
 <param-value>tracking-h2,ldap</param-value>
@@ -36,7 +41,7 @@ If your old MMC installation is configured for LDAP, but does not contain the `m
 
 . Save and close the file.
 
-You have now migrated your LDAP configuration, and may start MMC 3.5.0.
+You have now migrated your LDAP configuration, and may start MMC 3.6.0.
 
 === Troubleshooting
 
@@ -47,6 +52,7 @@ To migrate your LDAP settings, perform the following steps:
 . In your old MMC installation, open the file `<OLD_MMC_HOME>/WEB-INF/classes/META-INF/ldap.xml`.
 . In `ldap.xml`, locate the bean `propertiesLDAP`. Within this bean, locate the following section:
 +
+
 [source,xml,linenums]
 ----
 <property name="properties">
@@ -66,13 +72,16 @@ To migrate your LDAP settings, perform the following steps:
         </property>
 ----
 +
+
 As you can see, this section contains the settings for connecting to and searching within the LDAP server.
 . If desired, copy the settings listed in the previous step to a convenient location such as a new text file, since you will adapt these settings to a new config file in the next steps.
-. In your MMC 3.5.0 installation, locate the file `<MMC_HOME>/WEB-INF/classes/META-INF/mmc-ldap.properties`, then open it for editing.
-. The `mmc-ldap.properties` file contains all required settings with default values. Replace the default values with the values of your installation. (You can see the default `mmc-ldap.properties` file that ships with MMC 3.5.0 in the expandable section below.)
+. In your MMC 3.6.0 installation, locate the file `<MMC_HOME>/WEB-INF/classes/META-INF/mmc-ldap.properties`, then open it for editing.
+. The `mmc-ldap.properties` file contains all required settings with default values. Replace the default values with the values of your installation. (You can see the default `mmc-ldap.properties` file that ships with MMC 3.6.0 in the expandable section below.)
 +
- *Default mmc-ldap.properties file*
+
+*Default mmc-ldap.properties file:*
 +
+
 [source,text,linenums]
 ----
 ################ LDAP CONNECTION ########################
@@ -123,9 +132,11 @@ groupSearchFilter=(member={0})
 usernameAttribute=uid
 ----
 
+
 . Save the file `mmc-ldap.properties`.
 . In your new MMC installation, open the file `<MMC_HOME>/WEB-INF/web.xml`, and locate the following section:
 +
+
 [source,xml,linenums]
 ----
 <param-name>spring.profiles.active</param-name>
@@ -134,6 +145,7 @@ usernameAttribute=uid
 
 . Modify the second line to read:
 +
+
 [source,xml,linenums]
 ----
 <param-value>tracking-h2,ldap</param-value>
@@ -141,9 +153,9 @@ usernameAttribute=uid
 
 . Save and close the file.
 
-You have now migrated your LDAP configuration, and may start MMC 3.5.0.
+You have now migrated your LDAP configuration, and may start MMC 3.6.0.
 
 == See Also
 
 * Read an overview of xref:configuring-mmc-for-external-databases-quick-reference.adoc[configuring MMC for external databases], which includes links to detailed instructions for each supported database server.
-* Learn how to xref:upgrading-to-mmc-3.5.0-with-an-external-database.adoc[upgrade to MMC 3.5.0 with an external database].
+* Learn how to xref:upgrading-to-mmc-3.6.0-with-an-external-database.adoc[upgrade to MMC 3.6.0 with an external database].
