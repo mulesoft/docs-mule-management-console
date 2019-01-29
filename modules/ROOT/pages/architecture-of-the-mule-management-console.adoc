@@ -2,6 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:keywords: mmc, architecture, big picture, fundamentals
 
 This diagram below summarizes the architecture of the Mule Management Console.
 
@@ -9,23 +10,29 @@ image::mmc-architecture.png[MMC-architecture]
 
 *KEY*
 
-[cols="10,85a"]
+[cols="1,99a"]
 |===
-|image:mmc-1.png[MMC-1] | The Mule ESB instances monitored by MMC. These can be standalone or embedded instances, or clusters.
-|image:mmc-2.png[MMC-2] |The MMC agent contained in the Mule instance, which is responsible for:
+
+|*1* |The Mule ESB instances monitored by MMC. These can be standalone or embedded instances, or clusters.
+
+|*2* |The MMC agent contained in the Mule instance, which is responsible for:
 
 * facilitating data transfer between the Mule instance and the MMC
-	* applying changes (i.e. thread pools, and configuration file changes) to the Mule applications
+* applying changes (i.e. thread pools, and configuration file changes) to the Mule applications
 
-|image:mmc-3.png[MMC-3] |The MMC instance, the Web-based interface that interacts with Mule through:
+|*3* |The MMC instance, the Web-based interface that interacts with Mule through:
 
 * the MMC agent
 * JMX functionality exposed by Mule. (For more information on JMX management, see the https://docs.mulesoft.com/mule-user-guide/v/3.6/jmx-management[JMX Management] page)
 
 The MMC instance is a Web application packaged as a WAR file that executes from within your Web servlet container (i.e. Tomcat, JBoss, etc.).
-|image:mmc-4.png[MMC-4] |The transactional database, that stores business event transactional data collected by the MMC agent within the Mule instance. This database by default is an H2 database, but you can configure MMC to use other relational databases. For an official list of tested and supported databases, see xref:setting-up-mmc.adoc[Data Persistence]. Follow the links there for instructions on how to configure transactional data persistence to one of the supported databases.
-|image:mmc-5.png[MMC-5] |The environment database, that stores state information about the various Mule instances and applications managed by MMC, including alerts, deployments, configurations, etc. The database is by default Apache Jackrabbit, but you can configure MMC to use other relational databases. For an official list of tested and supported databases, see xref:setting-up-mmc.adoc[Data Persistence]. Follow the links there for instructions on how to configure environment data persistence to one of the supported databases.
-|image:mmc-6.png[MMC-6] |MMC's REST interface, which exposes MMC functionality through a REST API. MMC users can invoke this API to programmatically Mule instances paired with MMC. For more details about MMC's REST API, see . xref:rest-api-reference.adoc[MMC REST API].
+
+|*4* |The transactional database, that stores business event transactional data collected by the MMC agent within the Mule instance. This database by default is an H2 database, but you can configure MMC to use other relational databases. For an official list of tested and supported databases, see xref:3.7@setting-up-mmc.adoc[Data Persistence]. Follow the links there for instructions on how to configure transactional data persistence to one of the supported databases.
+
+|*5* |The environment database, that stores state information about the various Mule instances and applications managed by MMC, including alerts, deployments, configurations, etc. The database is by default Apache Jackrabbit, but you can configure MMC to use other relational databases. For an official list of tested and supported databases, see xref:3.7@setting-up-mmc.adoc[Data Persistence]. Follow the links there for instructions on how to configure environment data persistence to one of the supported databases.
+
+|*6* |MMC's REST interface, which exposes MMC functionality through a REST API. MMC users can invoke this API to programmatically Mule instances paired with MMC. For more details about MMC's REST API, see xref:3.7@setting-up-mmc.adoc[MMC REST API].
+
 |===
 
 == Registration of MMC with Mule Instances
@@ -42,7 +49,7 @@ You can unregister Mule instances from MMC with via the *Servers* tab in MMC. Af
 
 == See Also
 
-* xref:installing-mmc.adoc[Install] MMC.
-* Learn more about xref:setting-up-mmc.adoc[how to set up] MMC.
-* Get oriented to the xref:orientation-to-the-console.adoc[console].
-* Get familiar with the xref:rest-api-reference.adoc[MMC REST API].
+* xref:3.7@installing-mmc.adoc[Install] MMC.
+* Learn more about xref:3.7@setting-up-mmc.adoc[how to set up] MMC.
+* Get oriented to the xref:3.7@orientation-to-the-console.adoc[console].
+* Get familiar with the xref:3.6@mmc-rest-api.adoc[MMC REST API].

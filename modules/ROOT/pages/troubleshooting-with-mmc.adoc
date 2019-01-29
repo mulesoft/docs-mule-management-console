@@ -1,0 +1,18 @@
+= Troubleshooting with MMC
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+:keywords: mmc, debug, install, troubleshoot
+
+The following set of documentation offers solutions to common issues that may arise when using the Mule Management Console.
+
+* xref:using-the-management-console-for-performance-tuning.adoc[Troubleshooting Tips]
+
+* xref:using-the-management-console-for-performance-tuning.adoc[Monitoring and Debugging Applications]
+
+* xref:using-the-management-console-for-performance-tuning.adoc[Using the Management Console for Performance Tuning]
+
+== See Also
+
+*  xref:monitoring-with-mmc.adoc[Monitoring with MMC]
+*  xref:using-the-management-console-api.adoc[Using the Management Console API]

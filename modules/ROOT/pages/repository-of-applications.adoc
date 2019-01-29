@@ -3,38 +3,29 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-== About This Document
+This document, as well as the rest of the documents that make up the xref:3.7@rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with https://www.mulesoft.com/resources/esb/what-mule-esb[MULE ESB], the Application Repository and the xref:3.7@rest-api-reference.adoc[REST API].
 
-This document, as well as the rest of the documents that make up the xref:rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with https://www.mulesoft.com/resources/esb/what-mule-esb[MULE ESB], the Application Repository and the xref:rest-api-reference.adoc[REST API].
-
- Index of operations
-
-
-*Assumptions:*
-[%header%autowidth.spread]
+[%header,cols="1s,1"]
 |===
-|host |localhost | |port |8080 | |Deployed |app
-mmc.war ||*User/Password* |admin/admin
+2+|Assumptions:
+|Host |localhost
+|Port |8080
+|Deployed app |mmc.war
+|User/Password |admin/admin
 |===
 
-For a detailed description of the format used in this document, consult xref:rest-api-reference.adoc[Content Organization and Conventions].
+For a detailed description of the format used in this document, consult xref:3.7@rest-api-reference.adoc[Content Organization and Conventions].
 
-====
 */api/repository*
-====
 
-[cols="34,33,33"]
+[cols="3*a"]
 |===
-a|
-*POST*
-
- a|
-
+|
+#*POST*#
+|
 [discrete]
-===== UPLOAD
-
- a|
-
+==== UPLOAD
+|
 |===
 
 Uploads a new Mule Application into the repository.
@@ -67,6 +58,7 @@ Uploads a new Mule Application into the repository.
 [discrete]
 ==== Using CURL on Windows
 
+[source,text,linenums]
 ----
  curl --basic -u admin:admin -F file=@my-zipped-app.zip -F name=test-app -F version=2.0 --header "Content-Type: multipart/form-data" http://localhost:8080/mmc/api/repository
 ----
@@ -74,6 +66,7 @@ Uploads a new Mule Application into the repository.
 [discrete]
 ==== Using CURL on Linux
 
+[source,text,linenums]
 ----
  curl --basic -u admin:admin -F file=@my-zipped-app.zip -F name=test-app -F version=2.0 --header 'Content-Type: multipart/form-data' http://localhost:8080/mmc/api/repository
 ----
@@ -100,9 +93,9 @@ Uploads a new Mule Application into the repository.
 |===
 
 [discrete.view]
-=== Common Return Codes
+=== Common Return codes
 
-[cols="2*"]
+[cols="2*a"]
 |===
 |*200* |The operation was successful
 |*400* |Unauthorized user
@@ -116,20 +109,17 @@ Uploads a new Mule Application into the repository.
 [discrete.view]
 === MMC version
 
-[cols="2*"]
+[cols="2*a"]
 |===
 |From |3.2.2
 |===
 =====
 
-[cols="34,33,33"]
+[cols="3*a"]
 |===
-a|
-*GET*
-a|
-[discrete]
-===== LIST ALL
-a|
+|*GET*
+|*LIST ALL*
+|
 |===
 
 Lists available applications persisted by MMC.
@@ -142,11 +132,12 @@ Lists available applications persisted by MMC.
 [discrete]
 ==== SYNTAX
 
-GET `http://localhost:8080/mmc/api/repository`
+`GET http://localhost:8080/mmc/api/repository`
 
 [discrete]
 ==== Using CURL
 
+[source,text,linenums]
 ----
  curl --basic -u admin:admin http://localhost:8080/mmc/api/repository
 ----
@@ -210,7 +201,7 @@ GET `http://localhost:8080/mmc/api/repository`
 [discrete.view]
 === Common Return codes
 
-[cols="2*"]
+[cols="2*a"]
 |===
 |*200* |The operation was successful
 |*500* |Error while retrieving applications info/ Wrong user and password/ Unauthorized user
@@ -218,24 +209,22 @@ GET `http://localhost:8080/mmc/api/repository`
 |===
 
 [discrete.view]
-=== MMC Version
+=== MMC version
 
-[cols="2*"]
+[cols="2*a"]
 |===
 |From |3.2.2
 |===
 =====
 
-====
-*/api/repository/\{applicationId}*
-====
+#*/api/repository/\{applicationId}*#
 
-[cols="34,33,33"]
+[cols="3*a"]
 |===
-a|
-*GET*
-a|===== LIST
-a|
+|
+#*GET*#
+|*LIST*
+|
 |===
 
 Lists all application versions with the same specified application ID.
@@ -248,7 +237,7 @@ Lists all application versions with the same specified application ID.
 [discrete]
 ==== SYNTAX
 
-GET `http://localhost:8080/mmc/api/repository/{applicationId}`
+`GET http://localhost:8080/mmc/api/repository/{applicationId}`
 
 [%header,cols="4*"]
 |===
@@ -259,15 +248,17 @@ GET `http://localhost:8080/mmc/api/repository/{applicationId}`
 [discrete]
 ==== Using CURL on Windows
 
+[source,text,linenums]
 ----
-curl --basic -u admin:admin http://localhost:8080/mmc/api/repository/local$43d80f90-b30b-4988-a83b-8172b649b11c
+ curl --basic -u admin:admin http://localhost:8080/mmc/api/repository/local$43d80f90-b30b-4988-a83b-8172b649b11c
 ----
 
 [discrete]
 ==== Using CURL on Linux
 
+[source,text,linenums]
 ----
-curl --basic -u admin:admin 'http://localhost:8080/mmc/api/repository/local$43d80f90-b30b-4988-a83b-8172b649b11c'
+ curl --basic -u admin:admin 'http://localhost:8080/mmc/api/repository/local$43d80f90-b30b-4988-a83b-8172b649b11c'
 ----
 
 [discrete.view]
@@ -296,6 +287,7 @@ curl --basic -u admin:admin 'http://localhost:8080/mmc/api/repository/local$43d8
 }
 ----
 
+
 [%header,cols="4*"]
 |===
 |Key |Type |Summary |Child of
@@ -309,7 +301,7 @@ curl --basic -u admin:admin 'http://localhost:8080/mmc/api/repository/local$43d8
 [discrete.view]
 === Common Return codes
 
-[cols="2*"]
+[cols="2*a"]
 |===
 |*200* |The operation was successful
 |*500* |Error while retrieving applications info/ Wrong user and password/ Unauthorized user
@@ -320,18 +312,20 @@ curl --basic -u admin:admin 'http://localhost:8080/mmc/api/repository/local$43d8
 [discrete.view]
 === MMC version
 
-[cols="2*"]
+[cols="2*a"]
 |===
 |From |3.2.2
 |===
+
 =====
 
-[cols="34,33,33"]
+[cols="3*a"]
 |===
-a|
-*DELETE*
-a|===== REMOVE
-a|
+|#*DELETE*#
+|
+[discrete]
+==== REMOVE
+|
 |===
 
 Removes an application and all its corresponding versions from the repository.
@@ -344,17 +338,18 @@ Removes an application and all its corresponding versions from the repository.
 [discrete]
 ==== SYNTAX
 
-DELETE `http://localhost:8080/mmc/api/repository/{versionId}``
+`DELETE http://localhost:8080/mmc/api/repository/{versionId}`
 
 [%header,cols="4*"]
 |===
 |Key |Type |Summary |Child of
-|versionId |String |Id of the application version. Invoke <<LIST ALL>> to obtain it. |—
+|versionId |String |Id of the application version. Invoke LIST ALL to obtain it. |—
 |===
 
 [discrete]
 ==== Using CURL on Windows
 
+[source,text,linenums]
 ----
  curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/repository/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469
 ----
@@ -362,8 +357,9 @@ DELETE `http://localhost:8080/mmc/api/repository/{versionId}``
 [discrete]
 ==== Using CURL on Linux
 
+[source,text,linenums]
 ----
-curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc/api/repository/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469'
+ curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc/api/repository/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469'
 ----
 
 [discrete.view]
@@ -377,7 +373,7 @@ curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc/api/repository/
 [discrete.view]
 === Common Return codes
 
-[cols="2*"]
+[cols="2*a"]
 |===
 |*200* |The operation was successful
 |*500* |Error while removing the repository application
@@ -388,7 +384,7 @@ curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc/api/repository/
 [discrete.view]
 === MMC version
 
-[cols="2*"]
+[cols="2*a"]
 |===
 |From |3.2.2
 |===

@@ -2,17 +2,18 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:keywords: mmc, clusters, server groups, debug, monitoring
 
 This page describes how to:
 
 * Restart or stop a Mule server or cluster in MMC
 * Organize servers or clusters into groups
 
-To learn how to register or unregister a server, see xref:setting-up-mmc-mule-esb-communications.adoc[Setting Up MMC-Mule ESB Communications]. To learn how to monitor servers, including viewing operational and performance details of individual servers, see the relevant pages in the left navigation bar. To learn how to create or disband clusters of Mule servers, see xref:creating-or-disbanding-a-cluster.adoc[Creating or Disbanding a Cluster].
+To learn how to register or unregister a server, see xref:3.7@setting-up-mmc-mule-esb-communications.adoc[Setting Up MMC-Mule ESB Communications]. To learn how to monitor servers, including viewing operational and performance details of individual servers, see the relevant pages in xref:3.6@managing-with-mmc.adoc[Managing with MMC]. To learn how to create or disband clusters of Mule servers, see xref:3.4@creating-or-disbanding-a-cluster.adoc[Creating or Disbanding a Cluster].
 
 == Assumptions
 
-This document assumes that you are familiar with the basic xref:architecture-of-the-mule-management-console.adoc[Architecture of the Mule Management Console], and that you have installed the xref:installing-the-production-version-of-mmc.adoc[production] version of MMC. Also, ideally there should be at least one active Mule instance that you can control from your installed MMC.
+This document assumes that you are familiar with the basic xref:3.6@architecture-of-the-mule-management-console.adoc[Architecture of the Mule Management Console], and that you have installed the xref:3.6@installing-the-production-version-of-mmc.adoc[production] version of MMC. Also, ideally there should be at least one active Mule instance that you can control from your installed MMC.
 
 == The Servers Tab
 
@@ -23,7 +24,7 @@ The *Servers* tab allows you to manage Mule server or cluster instances, includi
 * Grouping or ungrouping servers or clusters
 * Viewing and editing properties for servers or clusters
 
-The *Servers* tab includes a left-hand navigation pane that lists <<Server Groups>>. Clicking on a group will cause the servers and clusters in that group to be displayed on the *Servers* tab. To display all servers or clusters, irrespective of the group they belong to, click **All.**
+The *Servers* tab includes a left-hand navigation pane that lists <<Server Groups>>. Clicking on a group will cause the servers and clusters in that group to be displayed on the *Servers* tab. To display all servers or clusters, irrespective of the group they belong to, click *All.*
 
 image::new-group.png[new_group]
 
@@ -48,7 +49,7 @@ To see details about a server or cluster, click on the server or cluster name. M
 
 image::server-details.png[]
 
-For an explanation of the *Server Details* pane, see the relevant pages under xref:monitoring-a-server.adoc[Monitoring a Server].
+For an explanation of the *Server Details* pane, see the relevant pages under xref:3.7@monitoring-a-server.adoc[Monitoring a Server].
 
 == Restarting or Stopping a Server
 
@@ -114,6 +115,6 @@ Removing a cluster or server from a group does not delete the cluster or server.
 
 == See Also
 
-* Learn how to create and manage xref:creating-or-disbanding-a-cluster.adoc[High Availability (HA) clusters] of Mule servers.
-* Learn how to xref:deploying-applications.adoc[deploy applications] to Mule servers.
-* Learn how to xref:monitoring-a-server.adoc[monitoring an individual server] with MMC.
+* Learn how to create and manage xref:3.7@creating-or-disbanding-a-cluster.adoc[High Availability (HA) clusters] of Mule servers.
+* Learn how to xref:3.6@deploying-applications.adoc[deploy applications] to Mule servers.
+* Learn how to xref:3.7@monitoring-a-server.adoc[monitoring an individual server] with MMC.

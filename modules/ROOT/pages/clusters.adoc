@@ -2,10 +2,9 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:keywords: mmc, rest api, raml, rest, api, clusters
 
-== About This Document
-
-This document, as well as the rest of the documents that make up the xref:rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with xref:3.4@mule-runtime::index.adoc[MULE ESB], Clusters and the xref:using-the-management-console-api.adoc[REST API].
+This document, as well as the rest of the documents that make up the xref:3.7@rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with https://docs.mulesoft.com/mule-user-guide/v/3.6[MULE ESB], Clusters and the xref:3.7@using-the-management-console-api.adoc[REST API].
 
 *Assumptions:*
 
@@ -22,95 +21,41 @@ This document, as well as the rest of the documents that make up the xref:rest-a
 
 |===
 
-For a detailed description of the format used in this document, consult xref:rest-api-reference.adoc[Content Organization and Conventions].
+For a detailed description of the format used in this document, consult xref:3.7@rest-api-reference.adoc[Content Organization and Conventions].
 
 */api/clusters*
 
-[cols="34,33,33"]
-|===
-a|
 *POST*
 
- a|
-
-[discrete]
-===== CREATE
-
- |
-|===
+== CREATE
 
 Creates a new Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== JSON
-
-[source,text,linenums]
-----
-{
-  "name":"My Cluster",
-  "version":"3.4.0",
-  "nodes":
-    [
-      "local$68eded4b-efda-4703-b292-62c6aee30a8b",
-      "local$97226216-c3bf-4bed-a544-878a9e64b74f"
-    ]
-}
-----
+=== JSON
 
 [%header,cols="4*"]
 |===
 |Key |Type |Summary |Child of
 |name |String |Name of the cluster to be created |—
-|version |String |Version of the cluster to be created. This must correspond exactly to the version of the cluster nodes |—
+|version |String |Version of the cluster to be created. This must correspond exactly with the version of the cluster nodes |—
 |nodes |Array |List of server IDs that will be assigned to the new cluster. It is required that at least one valid Server ID is supplied |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+=== Using CURL on Windows
 
+[source,text,linenums]
 ----
  curl --basic -u admin:admin -d "{\"name\":\"My Cluster\",\"version\":\"3.4.0\", \"nodes\":[\"local$194cdc5b-2253-4f35-b663-b311e4f28956\", \"local$ef85a37f-a3c1-4d1f-b8e6-8fac85d2fca7\"]}" --header "Content-Type: application/json" http://localhost:8080/mmc/api/clusters
 ----
 
-[discrete]
-==== Using CURL on Linux
+=== Using CURL on Linux
 
+[source,text,linenums]
 ----
  curl --basic -u admin:admin -d '{"name":"My Cluster","version":"3.4.0", "nodes":["local$194cdc5b-2253-4f35-b663-b311e4f28956", "local$ef85a37f-a3c1-4d1f-b8e6-8fac85d2fca7"]}' --header 'Content-Type: application/json' http://localhost:8080/mmc/api/clusters
 ----
 
-[discrete.view]
-=== Response
-
-[discrete]
-==== Json
-
-[source,text,linenums]
-----
-{
-  "name":"My Cluster",
-  "location":"N/A",
-  "id":"cf1fc78b-23a1-491e-93d1-6cc2819c4724",
-  "version":"3.4.0",
-  "status":"0 of 2 nodes online",
-  "pausedServices":-1,
-  "stoppedServices":-1,
-  "nodeServerIds":
-    ["local$194cdc5b-2253-4f35-b663-b311e4f28956","local$ef85a37f-a3c1-4d1f-b8e6-8fac85d2fca7"],
-  "deployments":[],
-  "clusterStatus":"WAITING_FOR_RESTART",
-  "nodesUpCount":0,
-  "lastRestarted":1346957925451,
-  "runningServices":-1,
-  "totalServices":-1,
-  "groupIds":[]
-}
-----
+=== Json
 
 [%header,cols="4*"]
 |===
@@ -132,35 +77,30 @@ Creates a new Cluster.
 |groupIds |List |List group IDs that this Cluster belongs to |—
 |===
 
-[discrete.view]
-=== Common Return codes
-
 [cols="2*"]
 |===
 |*201* |The Cluster was created successfully
 |*400* |At least one node is not responding/ Malformed Url exception/ Cluster Node Exception/ Some nodes weren't found/ Access Exception/ +
-Policies do not allow adding that cluster/ Nodes to add must be supplied/ A cluster version must be supplied/ A cluster name must be supplied
+ Policies do not allow adding that cluster/ Nodes to add must be supplied/ A cluster version must be supplied/ A cluster name must be supplied
 |*409* |A cluster with that name already exists
 |===
-
-[discrete.view]
-=== MMC version
 
 [%header,cols="1*"]
 |===
 |From 3.2.2
 |===
 
-=====
+ +
 
 [cols="34,33,33"]
 |===
 a|
 *GET*
-a|
+
+ a|
 
 [discrete]
-===== LIST ALL
+=== LIST ALL
 
  a|
 
@@ -168,55 +108,16 @@ a|
 
 Lists all managed Clusters.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
+=== SYNTAX
 
-[discrete]
-==== SYNTAX
+=== Using CURL
 
-GET http://localhost:8080/mmc/api/clusters
-
-[discrete]
-==== Using CURL
-
+[source,text,linenums]
 ----
  curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters
 ----
 
-[discrete.view]
-=== Response
-
-[discrete]
-==== JSON
-
-[source,text,linenums]
-----
-{
-  "total":1,
-  "data":
-    [
-      {
-        "name":"My Cluster",
-        "location":"N/A",
-        "id":"cf1fc78b-23a1-491e-93d1-6cc2819c4724",
-        "version":"3.4.0","status":"2 of 2 nodes online",
-        "pausedServices":0,
-        "stoppedServices":0,
-        "nodeServerIds":
-          ["local$194cdc5b-2253-4f35-b663-b311e4f28956","local$ef85a37f-a3c1-4d1f-b8e6-8fac85d2fca7"],
-        "deployments":[],
-        "clusterStatus":"OK",
-        "nodesUpCount":2,
-        "lastRestarted":1346957925451,
-        "runningServices":0,
-        "totalServices":0,
-        "groupIds":[]
-      }
-    ]
-}
-----
+=== JSON
 
 [%header,cols="4*"]
 |===
@@ -240,25 +141,16 @@ GET http://localhost:8080/mmc/api/clusters
 |groupIds |List |List of group IDs that this Cluster belongs to |data
 |===
 
-[discrete.view]
-=== Common Return codes
-
-
 [cols="2*"]
 |===
 |*200* |The operation was successful
 |*400* |Unauthorized user/ Server Down
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 */api/clusters/\{clusterId}*
 
@@ -270,7 +162,7 @@ a|
  a|
 
 [discrete]
-===== LIST
+=== LIST
 
  a|
 
@@ -278,15 +170,7 @@ a|
 
 Lists details for specific Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-GET http://localhost:8080/mmc/api/cluster/{clusterId}
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -294,38 +178,15 @@ GET http://localhost:8080/mmc/api/cluster/{clusterId}
 |clusterId |String |ID of a cluster |—
 |===
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,text,linenums]
 ----
 curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724
 ----
 
-[discrete.view]
-=== Response
 
 H5. JSON
-
-[source,text,linenums]
-----
-{
-        "name":"My Cluster",
-        "location":"N/A",
-        "id":"cf1fc78b-23a1-491e-93d1-6cc2819c4724",
-        "version":"3.4.0","status":"2 of 2 nodes online",
-        "pausedServices":0,
-        "stoppedServices":0,
-        "nodeServerIds":
-          ["local$194cdc5b-2253-4f35-b663-b311e4f28956","local$ef85a37f-a3c1-4d1f-b8e6-8fac85d2fca7"],
-        "deployments":[],
-        "clusterStatus":"OK",
-        "nodesUpCount":2,
-        "lastRestarted":1346957925451,
-        "runningServices":0,
-        "totalServices":0,
-        "groupIds":[]
-      }
-----
 
 [%header,cols="4*"]
 |===
@@ -347,9 +208,6 @@ H5. JSON
 |groupIds |List |List of group IDs that this Cluster belongs to |—
 |===
 
-[discrete.view]
-=== Common Return codes
-
 [cols="2*"]
 |===
 |*200* |The operation was successful
@@ -358,15 +216,10 @@ H5. JSON
 |*500* |Cluster is down/ Error while listing details for the Cluster
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 */api/clusters/\{clusterId}/status*
 
@@ -378,7 +231,7 @@ a|
  a|
 
 [discrete]
-===== STATUS
+=== STATUS
 
  a|
 
@@ -386,15 +239,7 @@ a|
 
 Lists node status for specific Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-GET http://localhost:8080/mmc/api/cluster/{clusterId}/status
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -402,38 +247,25 @@ GET http://localhost:8080/mmc/api/cluster/{clusterId}/status
 |clusterId |String |ID of a cluster |—
 |===
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,text,linenums]
 ----
  curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/status
 ----
 
-[discrete.view]
-=== Response
 
-[source,text,linenums]
-----
-2 of 2 nodes online
-----
-
-[discrete.view]
-=== Common Return codes
+=== JSON
 
 [cols="2*"]
 |===
 |*200* |The operation was successful
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 [cols="34,33,33"]
 |===
@@ -443,7 +275,7 @@ a|
  a|
 
 [discrete]
-===== DISBAND
+=== DISBAND
 
  a|
 
@@ -451,15 +283,7 @@ a|
 
 Disbands a specific Server.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-DELETE http://localhost:8080/mmc/api/clusters/{clusterId}
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -467,28 +291,17 @@ DELETE http://localhost:8080/mmc/api/clusters/{clusterId}
 |clusterId |String |Id of the cluster to be disbanded. Invoke <<LIST ALL>> to obtain it. |—
 |===
 
-[WARNING]
+[NOTE]
 After disbanding all nodes return to standalone mode. See server API.
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,text,linenums]
 ----
- curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724
-----
-
-[discrete.view]
-=== Response
-
-----
-200 ok
+curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724
 ----
 
-[discrete.view]
-=== Common Return codes
-
-[discrete]
-==== JSON
+=== JSON
 
 [cols="2*"]
 |===
@@ -496,15 +309,10 @@ After disbanding all nodes return to standalone mode. See server API.
 |*500* |Access Exception/ Some nodes weren't found/ Cluster node exception
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 */api/clusters/\{clusterId}/restart*
 
@@ -516,7 +324,7 @@ a|
  a|
 
 [discrete]
-===== PERFORM RESTART
+=== PERFORM RESTART
 
  a|
 
@@ -524,15 +332,7 @@ a|
 
 Restarts a Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/restart
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -540,25 +340,15 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/restart
 |clusterId |String |ID of a managed cluster |—
 |===
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/restart
-----
-
-[discrete.view]
-=== Response
-
-[discrete]
-==== JSON
-
-----
-200
+curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/restart
 ----
 
-[discrete.view]
-=== Common Return codes
+
+=== JSON
 
 [cols="2*"]
 |===
@@ -568,15 +358,10 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/restart
 |*500* |Error while restarting the Cluster
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 */api/clusters/\{clusterId}/stop*
 
@@ -588,7 +373,7 @@ a|
  a|
 
 [discrete]
-===== PERFORM STOP
+=== PERFORM STOP
 
  a|
 
@@ -596,15 +381,7 @@ a|
 
 Stops a Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/stop
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -612,25 +389,15 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/stop
 |clusterId |String |ID of a managed cluster |—
 |===
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/stop
-----
-
-[discrete.view]
-=== Response
-
-[discrete]
-==== JSON
-
-----
-200
+curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/stop
 ----
 
-[discrete.view]
-=== Common Return codes
+
+=== JSON
 
 [cols="2*"]
 |===
@@ -640,15 +407,10 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/stop
 |*500* |Error while stopping the Cluster
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 */api/clusters/\{clusterId}/addnodes*
 
@@ -660,7 +422,7 @@ a|
  a|
 
 [discrete]
-===== ADD NODES
+=== ADD NODES
 
  a|
 
@@ -668,24 +430,7 @@ a|
 
 Adds a node to a cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== JSON
-
-[source,text,linenums]
-----
-{
-  "nodes":
-    [
-       "local$30018f69-2772-428f-b13d-5a0644a7ca51",
-       "local$473e6e0f-0151-445f-81a0-4065297620b6"
-    ]
-}
-----
+=== JSON
 
 [%header,cols="4*"]
 |===
@@ -693,25 +438,15 @@ Adds a node to a cluster.
 |nodes |array |IDs of the nodes to add |—
 |===
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,text,linenums]
 ----
  curl --basic -u admin:admin -d '{"nodes":"local$30018f69-2772-428f-b13d-5a0644a7ca51", "local$473e6e0f-0151-445f-81a0-4065297620b6"}' --header 'Content-Type: application/json' http://localhost:8080/api/clusters/0662f078-6b9b-461d-bce1-48996a59a5d8/addnodes
 ----
 
-[discrete.view]
-=== Response
 
-[discrete]
-==== JSON
-
-----
-200 OK
-----
-
-[discrete.view]
-=== Common Return codes
+=== JSON
 
 [cols="2*"]
 |===
@@ -720,15 +455,10 @@ Adds a node to a cluster.
 |*500* |Internal error while adding the node
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.4
 |===
-
-=====
 
 */api/clusters/\{clusterId}/removenodes*
 
@@ -740,7 +470,7 @@ a|
  a|
 
 [discrete]
-===== REMOVE NODES
+=== REMOVE NODES
 
  a|
 
@@ -748,24 +478,7 @@ a|
 
 Removes a node from a cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== JSON
-
-[source,text,linenums]
-----
-{
-  "nodes":
-    [
-       "local$30018f69-2772-428f-b13d-5a0644a7ca51",
-       "local$473e6e0f-0151-445f-81a0-4065297620b6"
-    ]
-}
-----
+=== JSON
 
 [%header,cols="4*"]
 |===
@@ -773,25 +486,15 @@ Removes a node from a cluster.
 |nodes |array |IDs of the nodes to remove |—
 |===
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,text,linenums]
 ----
- curl --basic -u admin:admin -d '{"nodes":"local$30018f69-2772-428f-b13d-5a0644a7ca51", "local$473e6e0f-0151-445f-81a0-4065297620b6"}' --header 'Content-Type: application/json' http://localhost:8080/api/clusters/0662f078-6b9b-461d-bce1-48996a59a5d8/removenodes
-----
-
-[discrete.view]
-=== Response
-
-[discrete]
-==== JSON
-
-----
-200 ok
+curl --basic -u admin:admin -d '{"nodes":"local$30018f69-2772-428f-b13d-5a0644a7ca51", "local$473e6e0f-0151-445f-81a0-4065297620b6"}' --header 'Content-Type: application/json' http://localhost:8080/api/clusters/0662f078-6b9b-461d-bce1-48996a59a5d8/removenodes
 ----
 
-[discrete.view]
-=== Common Return codes
+
+=== JSON
 
 [cols="2*"]
 |===
@@ -800,15 +503,10 @@ Removes a node from a cluster.
 |*500* |Internal error while removing the node
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.4
 |===
-
-=====
 
 == Mule Applications
 
@@ -822,7 +520,7 @@ a|
  a|
 
 [discrete]
-===== LIST ALL MULE APPS
+=== LIST ALL MULE APPS
 
  a|
 
@@ -830,15 +528,7 @@ a|
 
 Lists all Mule applications currently deployed successfully on a Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-GET http://localhost:8080/mmc/api/cluster/{clusterId}/applications
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -846,33 +536,15 @@ GET http://localhost:8080/mmc/api/cluster/{clusterId}/applications
 |clusterId |String |ID of a cluster |—
 |===
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,text,linenums]
 ----
  curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications
 ----
 
-[discrete.view]
-=== Response
 
-[discrete]
-==== JSON
-
-[source,text,linenums]
-----
-{
-  "total":1,
-  "data":
-    [
-      {
-        "name":"mule-example-hello",
-        "status":"STARTED",
-        "nodesRunning":"[Mule@172.16.20.41:7777,Mule@172.16.20.42:7777]"
-      }
-    ]
-}
-----
+=== JSON
 
 [%header,cols="4*"]
 |===
@@ -883,23 +555,15 @@ GET http://localhost:8080/mmc/api/cluster/{clusterId}/applications
 |status |String |Status of the application (i.e. INITIALISED, STARTED, STOPPED or DISPOSED) |data
 |===
 
-[discrete.view]
-=== Common Return codes
-
 [cols="2*"]
 |===
 |*200* |The operation was successful
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 */api/clusters/\{clusterId}/applications/\{applicationName}/start*
 
@@ -911,7 +575,7 @@ a|
  a|
 
 [discrete]
-===== PERFORM START MULE APP
+=== PERFORM START MULE APP
 
  a|
 
@@ -919,15 +583,7 @@ a|
 
 Starts an application from a Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/applications/{applicationName}/start
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -936,39 +592,35 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/applications/{applicatio
 |applicationName |String |Name of the application to be started |—
 |===
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,console]
 ----
-curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications/mule-example-hello/start
-----
-
-[discrete.view]
-=== Response
-
-[discrete]
-==== JSON
-
-[source,text,linenums]
-----
-{
-  "total":1,
-  "data":
-    [
-      "mule-example-hello"
-    ]
-}
+ curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications/mule-example-hello/start
 ----
 
-[cols="2*"]
-|===
-|Key |Type |Summary |Child of
-|total |Integer |Number of started applications |
-|data |List |List of started applications |
-|===
 
-[discrete.view]
-=== Common Return codes
+=== JSON
+
+Key
+
+Type
+
+Summary
+
+Child of
+
+total
+
+Integer
+
+Number of started applications
+
+data
+
+List
+
+List of started applications
 
 [cols="2*"]
 |===
@@ -976,15 +628,10 @@ curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc
 |*400* |At least one application name must be supplied
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 */api/clusters/\{clusterId}/applications/\{applicationName}/restart*
 
@@ -996,7 +643,7 @@ a|
  a|
 
 [discrete]
-===== PERFORM RESTART MULE APP
+=== PERFORM RESTART MULE APP
 
  a|
 
@@ -1004,15 +651,7 @@ a|
 
 Restarts an application from a Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/applications/{applicationName}/restart
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -1021,40 +660,35 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/applications/{applicatio
 |applicationName |String |Name of the application to be started |—
 |===
 
-[discrete]
-==== Using CURL
-
-----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications/mule-example-hello/restart
-----
-
-[discrete.view]
-=== Response
-
-[discrete]
-==== JSON
+=== Using CURL
 
 [source,text,linenums]
 ----
-{
-  "total":1,
-  "data":
-    [
-      "mule-example-hello"
-    ]
-}
+curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications/mule-example-hello/restart
 ----
 
 
-[%header%autowidth.spread]
-|===
-|Key |Type |Summary |Child of
-|total |Integer |Number of started applications |
-|data |List |List of started applications |
-|===
+=== JSON
 
-[discrete.view]
-=== Common Return codes
+Key
+
+Type
+
+Summary
+
+Child of
+
+total
+
+Integer
+
+Number of started applications
+
+data
+
+List
+
+List of restarted applications
 
 [cols="2*"]
 |===
@@ -1062,15 +696,10 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/applications/{applicatio
 |*400* |At least one application name must be supplied
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 */api/clusters/\{clusterId}/applications/\{applicationName}/stop*
 
@@ -1082,7 +711,7 @@ a|
  a|
 
 [discrete]
-===== PERFORM STOP MULE APP
+=== PERFORM STOP MULE APP
 
  a|
 
@@ -1090,15 +719,7 @@ a|
 
 Stops an application from a Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/applications/{applicationName}/stop
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -1107,39 +728,35 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/applications/{applicatio
 |applicationName |String |Name of the application to be started |—
 |===
 
-[discrete]
-==== Using CURL
-
-----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications/mule-example-hello/stop
-----
-
-[discrete.view]
-=== Response
-
-[discrete]
-==== JSON
+=== Using CURL
 
 [source,text,linenums]
 ----
-{
-  "total":1,
-  "data":
-    [
-      "mule-example-hello"
-    ]
-}
+curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications/mule-example-hello/stop
 ----
 
-[%header%autowidth.spread]
-|===
-|Key |Type |Summary |Child of
-|total |Integer |Number of started applications |
-|data |List |List of started applications |
-|===
 
-[discrete.view]
-=== Common Return codes
+=== JSON
+
+Key
+
+Type
+
+Summary
+
+Child of
+
+total
+
+Integer
+
+Number of started applications
+
+data
+
+List
+
+List of stopped applications
 
 [cols="2*"]
 |===
@@ -1147,15 +764,10 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/applications/{applicatio
 |*400* |At least one application name must be supplied
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 == Cluster Flows
 
@@ -1169,7 +781,7 @@ a|
  a|
 
 [discrete]
-===== LIST ALL FLOWS
+=== LIST ALL FLOWS
 
  a|
 
@@ -1177,17 +789,7 @@ a|
 
 Lists all available flows belonging to Mule applications currently deployed successfully on a Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-----
-GET http://localhost:8080/mmc/api/clusters/{clusterId}/flows[/?refreshStats=TRUE|FALSE]
-----
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -1196,56 +798,15 @@ GET http://localhost:8080/mmc/api/clusters/{clusterId}/flows[/?refreshStats=TRUE
 |refreshStats |Boolean |(Optional) Forces refresh of cluster stats |—
 |===
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,text,linenums]
 ----
 curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows
 ----
 
-[discrete.view]
-=== Response
 
-[discrete]
-==== JSON
-
-[source,text,linenums]
-----
-{
-  "total":4,
-  "data":
-    [
-      {
-        "id":"cf1fc78b-23a1-491e-93d1-6cc2819c4724/ChitChat",
-        "type":"flow",
-        "status":"STOPPED",
-        "asyncEventsReceived":0,
-        "executionErrors":0,
-        "fatalErrors":0,
-        "inboundEndpoints":["vm://chitchatter"],
-        "syncEventsReceived":0,
-        "totalEventsReceived":0,
-        "serverId":"cf1fc78b-23a1-491e-93d1-6cc2819c4724",
-        "auditStatus":"DISABLED",
-        "flowId":
-          {
-            "name":"ChitChat",
-            "fullName":"ChitChat [mule-example-hello]",
-            "application":"mule-example-hello",
-            "definedInApplication":true
-          },
-        "favorite":false,
-        "processedEvents":0,
-        "totalProcessingTime":0,
-        "maxProcessingTime":0,
-        "minProcessingTime":0,
-        "averageProcessingTime":-1
-      },
-      {...
-      }
-    ]
-}
-----
+=== JSON
 
 [%header,cols="4*"]
 |===
@@ -1276,9 +837,6 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1
 |averageProcessingTime |Integer |The average amount of time in seconds that the flow takes to process a message |data
 |===
 
-[discrete.view]
-=== Common Return codes
-
 [cols="2*"]
 |===
 |*200* |The operation was successful
@@ -1286,15 +844,10 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1
 |*500* |Error while listing flows
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 */api/clusters/\{clusterId}/\{flowName}/\{applicationName}/start*
 
@@ -1306,7 +859,7 @@ a|
  a|
 
 [discrete]
-===== PERFORM FLOW START
+=== PERFORM FLOW START
 
  a|
 
@@ -1314,15 +867,7 @@ a|
 
 Restarts a flow of an application on a Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applicationName}/start
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -1332,23 +877,14 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applic
 |applicationName |String |Name of the application to which the flow belongs to |—
 |===
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,text,linenums]
 ----
  curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/start
 ----
 
-[discrete.view]
-=== Response
-
-[source,text,linenums]
-----
-The flow started successfully
-----
-
-[discrete.view]
-=== Common Return codes
+=== JSON
 
 [cols="2*"]
 |===
@@ -1356,15 +892,10 @@ The flow started successfully
 |*500* |Error while starting the flow
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 */api/clusters/\{clusterId}/\{flowName}/\{applicationName}/pause*
 
@@ -1376,7 +907,7 @@ a|
  a|
 
 [discrete]
-===== PERFORM FLOW PAUSE
+=== PERFORM FLOW PAUSE
 
  a|
 
@@ -1384,15 +915,7 @@ a|
 
 Pauses a flow of an application on a Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applicationName}/pause
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -1402,25 +925,15 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applic
 |applicationName |String |Name of the application to which the flow belongs to |—
 |===
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,text,linenums]
 ----
  curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/pause
 ----
 
-[discrete.view]
-=== Response
 
-[discrete]
-==== JSON
-
-----
-The flow paused successfully
-----
-
-[discrete.view]
-=== Common Return codes
+=== JSON
 
 [cols="2*"]
 |===
@@ -1428,15 +941,10 @@ The flow paused successfully
 |*500* |Error while pausing the flow
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 */api/clusters/\{clusterId}/\{flowName}/\{applicationName}/stop*
 
@@ -1448,7 +956,7 @@ a|
  a|
 
 [discrete]
-===== PERFORM FLOW STOP
+=== PERFORM FLOW STOP
 
  a|
 
@@ -1456,15 +964,7 @@ a|
 
 Stops a flow of an application on a Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applicationName}/stop
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -1474,25 +974,15 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applic
 |applicationName |String |Name of the application to which the flow belongs to |—
 |===
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,text,linenums]
 ----
  curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/stop
 ----
 
-[discrete.view]
-=== Response
 
-[discrete]
-==== JSON
-
-----
-The flow stopped successfully
-----
-
-[discrete.view]
-=== Common Return codes
+=== JSON
 
 [cols="2*"]
 |===
@@ -1500,15 +990,10 @@ The flow stopped successfully
 |*500* |Error while stopping the flow
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 == Cluster Flow Endpoints
 
@@ -1522,7 +1007,7 @@ a|
  a|
 
 [discrete]
-===== LIST ALL FLOW ENDPOINTS
+=== LIST ALL FLOW ENDPOINTS
 
  a|
 
@@ -1530,15 +1015,7 @@ a|
 
 Lists all Flow Endpoints from a Mule application on a Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-GET http://localhost:8080/mmc/api/cluster/{clusterId}/flows/{flowName}/{applicationName}/endpoints
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -1548,39 +1025,15 @@ GET http://localhost:8080/mmc/api/cluster/{clusterId}/flows/{flowName}/{applicat
 |applicationName |String |Name of the application |—
 |===
 
-[discrete]
-==== Using CURL
-
-----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/endpoints
-----
-
-[discrete.view]
-=== Response
-
-[discrete]
-==== JSON
+=== Using CURL
 
 [source,text,linenums]
 ----
-{
-  "total":1,
-  "data":
-    [
-      {
-        "address":"chitchatter",
-        "id":"endpoint.vm.chitchatter",
-        "type":"VM",
-        "status":"started",
-        "connector":"connector.VM.mule.default",
-        "routedMessages":0,
-        "synchronous":true,
-        "filtered":false,
-        "tx":false
-      }
-    ]
-}
+curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/endpoints
 ----
+
+
+=== JSON
 
 [%header,cols="4*"]
 |===
@@ -1598,9 +1051,6 @@ GET http://localhost:8080/mmc/api/cluster/{clusterId}/flows/{flowName}/{applicat
 |tx |Boolean |True if the endpoint handles transactions |data
 |===
 
-[discrete.view]
-=== Common Return codes
-
 [cols="2*"]
 |===
 |*200* |The operation was successful
@@ -1608,15 +1058,10 @@ GET http://localhost:8080/mmc/api/cluster/{clusterId}/flows/{flowName}/{applicat
 |*500* |Error while getting endpoints
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 */api/clusters/\{clusterId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/start*
 
@@ -1628,7 +1073,7 @@ a|
  a|
 
 [discrete]
-===== PERFORM FLOW ENDPOINT START
+=== PERFORM FLOW ENDPOINT START
 
  a|
 
@@ -1636,15 +1081,7 @@ a|
 
 Starts a flow endpoint belonging to an application on a Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/start
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -1655,28 +1092,14 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applic
 |endpointId |String |ID of the endpoint |—
 |===
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,text,linenums]
 ----
  curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/endpoints/endpoint.vm.chitchatter/start
 ----
 
-[discrete.view]
-=== Response
-
-[discrete]
-==== JSON
-
-[source,text,linenums]
-----
-[
-  "endpoint.vm.chitchatter"
-]
-----
-
-[discrete.view]
-=== Common Return codes
+=== JSON
 
 [cols="2*"]
 |===
@@ -1685,15 +1108,10 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applic
 |*500* |Error while starting the endpoint
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====
 
 */api/clusters/\{clusterId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/stop*
 
@@ -1705,7 +1123,7 @@ a|
  a|
 
 [discrete]
-===== PERFORM FLOW ENDPOINT STOP
+=== PERFORM FLOW ENDPOINT STOP
 
  a|
 
@@ -1713,15 +1131,7 @@ a|
 
 Stops a flow endpoint belonging to an application on a Cluster.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/stop
+=== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -1732,28 +1142,14 @@ POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applic
 |endpointId |String |ID of the endpoint |—
 |===
 
-[discrete]
-==== Using CURL
+=== Using CURL
 
+[source,text,linenums]
 ----
 curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/endpoints/endpoint.vm.chitchatter/stop
 ----
 
-[discrete.view]
-=== Response
-
-[discrete]
-==== JSON
-
-[source,text,linenums]
-----
-[
-  "endpoint.vm.chitchatter"
-]
-----
-
-[discrete.view]
-=== Common Return codes
+=== JSON
 
 [cols="2*"]
 |===
@@ -1762,12 +1158,7 @@ curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc
 |*500* |Error while starting the endpoint
 |===
 
-[discrete.view]
-=== MMC version
-
 [cols="2*"]
 |===
 |From |3.2.2
 |===
-
-=====

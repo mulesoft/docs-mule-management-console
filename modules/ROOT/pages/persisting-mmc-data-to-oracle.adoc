@@ -3,30 +3,33 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This document will cover how to persist environment and transaction data to Oracle databases. Follow the instructions to install the Oracle database, then follow the specific instructions for <<Persisting Environment Data>> or transaction data persistence to set up your user, create your database, and configure your MMC instance to persist your data.
+*_MMC Version 3.4.2 and Later_*
+
+This document describes how to persist environment and transaction data to Oracle databases. Follow the instructions to [install the Oracle database], then follow the specific instructions for [environment data] or [transaction data] persistence to set up your user, create your database, and configure your MMC instance to persist your data.
 
 [WARNING]
 Remember that *environment data and transaction data must exist in two separate schemas* (regardless of whether they are on the same server or use the same platform).
 
-*Jump to:*
-
-* *<<Persisting Environment Data>>*
-* *Persisting Transaction Data to Oracle*
-
 == Assumptions
 
-This document assumes that you have an understanding of the basic xref:architecture-of-the-mule-management-console.adoc[Architecture of the Mule Management Console].
+This document assumes that you have an understanding of the basic [Architecture of the Mule Management Console].
 
 It also assumes that you have installed:
 
-* **Mule Enterprise 3.4.1 or later**. Download it from the http://www.mulesoft.com/support-login[customer portal] if you need to upgrade to this version.
-* **MMC Version 3.4.1**. Download it from the http://www.mulesoft.com/support-login[customer portal] if you need to upgrade to this version.
-* *a* **Web application server such as Tcat, Tomcat, or JBoss**. Please refer to the xref:3.4@mule-runtime::hardware-and-software-requirements.adoc[Hardware and Software Requirements] for the latest information about hardware requirements and supported application servers, Java Runtime Environments, and browsers.
+* *MMC Version 3.5.0*. Download it from the [customer portal] if you need to upgrade to this version.
 
-For practical purposes, this document mentions Tomcat as the servlet container; however, the instructions contained here apply also to Tcat or JBoss. If using Tcat or JBoss, make sure to unpack the Management Console .war file in the appropriate directory. For additional information, see xref:installing-the-production-version-of-mmc.adoc[Installing the Production Version of MMC].
+* *a Web application server such as Tcat, Tomcat, or JBoss*. Please refer to the [Hardware and Software Requirements] for the latest information about hardware requirements and supported application servers, Java Runtime Environments, and browsers.
+
+For practical purposes, this document mentions Tomcat as the servlet container; however, the instructions contained here apply also to Tcat or JBoss. If using Tcat or JBoss, make sure to unpack the Management Console .war file in the appropriate directory. For additional information, see [Installing the Production Version of MMC].
 
 [NOTE]
-In this document, `<MMC_HOME>` refers to the directory where MMC is installed. If using the trial version, this is `<Mule install path>/mmc/webapps/mmc`, for example `/opt/mule/mule-enterprise-3.4.1/mmc/webapps/mmc`. If using an application server such as Tomcat, this should be similar to `<Tomcat root>/webapps/mmc-console-3.4.1`, for example `/var/lib/tomcat6/webapps/mmc-console-3.4.1`.
+====
+In this document, `<MMC_HOME>` refers to the directory where MMC is installed.
+
+If you are using the trial version, this directory is inside the root of the embedded Tomcat server from which MMC runs. Depending on where you placed the bundled installation, the path will be similar to `<installation_root>/mmc-distribution-mule-console-bundle-3.5.0/mmc-3.5.0/apache-tomcat-7.0.52/webapps/mmc-3.5.0`.
+
+If you are using a production installation in an application server such as Tomcat, the path should be similar to `<Tomcat root>/webapps/mmc-console-3.5.0`. For example `/var/lib/tomcat6/webapps/mmc-console-3.5.0`.
+====
 
 == Installing the Oracle Database
 
@@ -34,39 +37,41 @@ The following example uses Oracle Database Express Edition 11.*. The installatio
 
 === Tools
 
-* SQL Developer 3.0.04: +
+* SQL Developer 3.0.04:
 ** http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html[Download the latest version]
 ** Consult the http://docs.oracle.com/cd/E25259_01/doc.31/e26419/toc.htm[installation guides for Linux and Windows]
-* Oracle Database Express Edition 11.x: +
+* Oracle Database Expression Edition 11.x:
 ** http://www.oracle.com/technetwork/products/express-edition/downloads/index.html[Download the latest version]
 ** Consult the http://docs.oracle.com/cd/E17781_01/index.htm[installation guides for Linux and Windows]
 ** Refer to the http://www.oracle.com/pls/db112/homepage[full documentation library]
 
 [IMPORTANT]
-*Important!* +
- +
+====
+*Important!*
+
 Do not attempt to run SQL Developer with JDK 1.7. Even though the SQL installation guide lists “JDK 1.6.11 or later” as suitable for installation, attempting to run SQL Developer with JDK 1.7. results in a warning message and malformed SQL code from SQL Developer.
+====
 
 === Installing SQL Developer
 
-Follow the simple instructions provided by the documentation listed <<Tools>> to decompress the installer and run the executable for SQL Developer.
+Follow the simple instructions provided by the documentation listed <<tools,above>> to decompress the installer and run the executable for SQL Developer.
 
 === Installing Oracle Express
 
-Oracle Express provides a straightforward graphical installer for Windows and an `.rpm` package for Linux. Simply follow the instructions provided by the documentation listed <<Tools>>.
+Oracle Express provides a straightforward graphical installer for Windows and an `.rpm` package for Linux. Simply follow the instructions provided by the documentation listed <<tools,above>>.
 
 [NOTE]
-Both Windows and Linux require you to have administrator privileges in order to install Oracle Express.
+Both Windows and Linux require you to have administrator privileges in order to install the Oracle Express.
 
 === Configuration Files
 
-The files `listener.ora` and `tnsnames.ora` are automatically generated during installation.
+The files `listner.ora` and `tnsnames.ora` are automatically generated during installation.
 
-For Linux, these files typically reside at: `/u01/app/oracle/product/11.2.0/xe/network/admin`.
+For Linux, these files typically resides at `/u01/app/oracle/product/11.2.0/xe/network/admin`.
 
-On Windows, `listener.ora` and `tnsnames.ora` typically reside at: `C:\oraclexe\app\oracle\product\11.2.0\server\network\admin`.
+On Windows, `listner.ora` and `tnsnames.ora` typically reside at: `C:\oracleexe\app\oracle\product\11.2.0\server\network\admin`.
 
-.listener.ora listing
+*listener.ora listing*
 
 [source,text,linenums]
 ----
@@ -99,9 +104,7 @@ LISTENER =
 
 DEFAULT_SERVICE_LISTENER = (XE)
 ----
-
-.listing of tnsnames.ora
-
+*listing of tnsnames.ora*
 
 [source,text,linenums]
 ----
@@ -141,116 +144,122 @@ ORACLR_CONNECTION_DATA =
 
 
 [NOTE]
-For the `HOST` value, MuleSoft recommends a static IP address (for example, `192.168.1.10`), or the `0.0.0.0` address. MuleSoft further recommends against using `localhost` or a hostname for `HOST`.
+For the `HOST` value, MuleSoft recommends a static IP address (for example, `192.168.1.10`), or the `0.0.0` address. MuleSoft further recommends against using `localhost` or a hostname for `HOST`.
 
 [IMPORTANT]
-Be aware that, if the file `slqnet.ora` exists (usually in `/app/oracle/product/11.2.0/xe/network/admin`), it may contain some options which have been known to cause problems. For example, unless you are fine-tuning the database, you should disable NFS security integration by including the following parameter: `SQLNET.AUTHENTICATION_SERVICES = (NONE)`.
+Be aware that, if the file `slqnet.ora` exists (usually in `/app/oracle/product/11.2.0/xe/network.admin`), it may contain some options which have been known to cause problems. For example, unless you are fine-tuning the database, you should disable NFS security integration by including the following parameter: `SQLNET.AUTHENTICATION_SERVICES = (NONE)`.
 
 == Persisting Environment Data
 
 To set up an Oracle database to persist your MMC environment data, you need to complete three steps:
 
-. Create the database user and connection
-. Set up the database tables
-. Set up MMC
+. [Create the database user and connection]
+. [Set up the database tables]
+. [Set up MMC]
 
 [NOTE]
 ====
 The embedded database files for the Mule Management Console reside at:
 
 `<MMC installation path>/.mule/mmc/mmc-data/db`
-
-After you configure MMC to use an external database to store its persistent data, do not delete the `mmc-data` folder. The `db` subfolder will not be used anymore, but the `repository`, `version` and `workspaces` subfolders will be in use by Java Content Repository (JCR) internal settings.
 ====
 
 === Creating the Database User and Connection
 
-To use the SQL Developer GUI to create the database user, complete the following steps:
+. Launch the SQL Developer:
 
-. Launch SQL Developer: +
 .. Navigate to `<sqldeveloper install>/sqldeveloper`
 .. Launch SQL Developer according to your operating system:
-+
 
 ** On Linux and Mac OS X, run the `sqldeveloper.sh` shell script
-** On Windows, launch `sqldeveloper.exe`
+** One Windows, launch `sqldeveloper.exe`
 +
-If SQL developer asks for the full Java path, enter the full path. Typical Java paths are: +
-** Linux: `/usr/java/jdk1.6.0_31/bin`
-** Windows: `C:\Program Files\Java\jdk1.6.0_31\bin`
-. In SQL Developer, create a new database connection: +
-.. Display the **New/Select Database connection** dialog box. To do so, follow these steps:  +
-... Click the *Connections* tab in the left-hand pane.
-... Right-click *Connections*.
-... Select *New Connec* *tion*.
-.. In the connection *Name* field, enter: `mmc_persistency_status`.
-.. In the *Username* field, enter: `SYSTEM`.
-.. In the *Password* field, enter the SYSTEM password that you issued during the Oracle Express installation process.
-.. In the *Hostname* field, ensure that the hostname is correct (it will be `localhost`, if Oracle is installed on the local machine).
-.. In the *SID* field, enter `xe`.
-. Verify the connection by clicking *Test*. After testing, verify that the message `Status: Success` appears near the bottom of the dialog box.
-. Click *Save* to save the connection settings you have specified.
-. Click *Connect*, then expand the connection elements menu by clicking the plus sign next to the name of your connection on the *Connections* tab.
-. Create a new database user by following these steps: +
-.. Right-click **Other Users,** then select *Create User* to display the **Create/Edit User** dialog box.
-.. Complete the fields with the required information. The following provide sample guidance:
+If SQL developer asks for full Java path, enter the full path. Typically Java paths are
 
-** User Name: `MMC_STATUS`
-** New Password: `mmc123`
-** Default Tablespace: `USERS`
-** Temporary Tablespace: `TEMP`
-** Roles tab: `RESOURCE`, `CONNECT`
-** System Privileges tab: `CREATE TRIGGER`, `CREATE TABLE`, `CREATE SEQUENCE`
+*** Linux: `/usr/java/jdk1.6.0_31/bin`
+*** Windows: `C:\Program Files\Java\jdk1.6.0_31\bin`
+
+. In SQL Developer, create a new database connection:
+
+.. Display the *New/Select Database connection* dialog box. To do so, follow these steps:
+
+... Click the *Connections* tab in the left-hand pane.
+... Right-click *Connections*
+... Select *New Connection*
+
+.. In the connection *Name* field, enter `mmc_persistency_status`.
+.. In the *Username* field, enter `SYSTEM`.
+.. In the *Password* field, enter the `SYSTEM` password that you issued during the Oracle Express installation process.
+.. In the *Hostname* field ensure that the hostname is correct (it will be `localhost`, if Oracle is installed on the lost machine).
+.. In the *SID* field, enter `xe`.
+
+. Verify the connection by clicking *Test*. After testing, verify that the message `Status: Success` appears near the bottom of the dialog box.
+
+. Click *Save* to save the connection settings you have specified.
+
+. Click *Connect*, then expand the connection elements menu by clicking the plus sign next to the name of your connection on the *Connections* tab.
+
+. Create a new database user by following these steps:
+.. Right-click *Other Users*, then select *Create User* to display the *Create/Edit User* dialog box.
+.. Complete the fields with the required information. The following provides sample guidance:
+
+*** Username: `MMC_STATUS`
+*** New Password: `mmc123`
+*** Default Tablespace: `USERS`
+*** Temporary Tablespace: `TEMP`
+*** Roles tab: `CONNECT`
+*** System Privileges tab: `TRIGGER, CREATE TABLE, CREATE SEQUENCE`
 +
-This setup was tested using an unlimited quota on the USERS tablespace.
+[NOTE]
+This setup was tested using an unlimited quota on the USERS tablespace
 
 . Click *Apply*, then click *Close*.
 
 === Setting Up the Database Tables
 
-On the first run, JCR automatically creates all the tables needed to store persistent MMC information. However, you must manually create tables that store Quartz job information; otherwise an error similar to the following will occur:
+On this first run, JCR automatically creates all tables needed to store persistent MMC information However, you must manually create tables that store Quartz job information; otherwise an error similar to the following will occur:
 
 [source,text,linenums]
 ----
 ERROR: relation “qrtz_locks” does not exist.
 ----
 
-To create and insert the tables, follow these steps:
+To create the   and insert tables, follow these steps:
 
-. Navigate to `<MMC_HOME>/WEB-INF/classes/quartz.`
-. Locate the SQL script `tables_oracle.sql`.
-. Execute `tables_oracle.sql` on the target database as user `MMC_STATUS`.
-. How to use the sqlplus utility to execute tables_oracle.sql:
-.. Run `tables_oracle.sql` using the `sqlplus` utility, and complete one of the following steps depending on your operating system: +
-* *Windows:* From the Windows Start menu: Select *Programs* (or All Programs) > *Oracle Database Express 11g Edition* > *Run SQL Command Line*. This opens the `sqlplus` command prompt.
-* *In Linux:* Open the appropriate menu (for example *Applications* in Gnome, or the *K* menu in KDE), then select *Oracle Database 11g Express Edition*, then *Run SQL Command Line*.
-.. After the `sqlplus` command prompt opens, type: `connect MMC_STATUS/mmc123@XE`
-.. Run the `tables_oracle.sql` script by entering the following: +
+. Navigate to: `<MMC_HOME>/WEB-INF/classes/quartz`.
+. Locate the SQL script: `tables_oracle.sql`.
+. Execute `tables_oracle.sql` on the target database as `USER MMC_STATUS`
++
+
+*`sqlplus` utility to execute `tables_oracle.sql`.*
+
+.. To run `tables_oracle.sql` using the sqlplus utility, complete one of the following steps depending on your operating system:
+*** *Windows*: From the Windows Start menu: Select *Programs* (or All Programs) > *Oracle Database Express 11g Edition* > *Run SQL Command Line*. This will open the `sqlplus` command prompt.
+*** *In Linux*: Open the appropriate menu (for example *Applications* in Gnome, or the *K* menu in KDE), then select *Oracle Database 11g Express Edition*, then *Run SQL Command Line*.
+
+.. After the `sqlplus` command prompt opens, type: connect `MMC_STATUS/mmc123@XE`
+.. Run the `tables_oracle.sql` script by entering the following:
 +
 [source,text,linenums]
 ----
 start <path to script>/tables_oracle.sql
 ----
-+
-.. To exit `sqlplus`, type: `exit`
-+
-For detailed information about the `sqlplus` command, consult the http://docs.oracle.com/cd/E11882_01/server.112/e16604/qstart.htm#SQPUG002[SQL*Plus Reference Guide].
 
+.. To exit `sqlplus` type: `exit`.
++
+[NOTE]
+For detailed information about the `sqlplus` command, consult the *SQL*Plus Reference Guide*.
 
 At this point, the Oracle database is completely defined.
 
+
 === Setting Up MMC to Use Oracle for Persisting Environment Data
 
-. First, install the appropriate database driver.
+. First, install the appropriate [database driver].
 . Then, follow the instructions below for editing the following configuration files:
 
-* <<configuration-file-code-mmc-properties-code,mmc.properties>>
-*
-<<configuration-file-code-applicationcontext-xml-code,applicationContext.xml>>
-* link:/mule-management-console/v/3.4/persisting-mmc-data-to-oracle#configuration-file-code-jackrabbit-repo-xml-code
-[jackrabbit-repo.xml]
-* link:/mule-management-console/v/3.4/persisting-mmc-data-to-oracle#configuration-file-code-scheduler-properties-code
-[scheduler.properties.xml]
+** [web.xml]
+** [quartz-oracle-1.8.5.jar]
 
 ==== Drivers
 
@@ -258,234 +267,83 @@ Obtain the appropriate drivers using the links below:
 
 * http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html[ojdbc5.jar]
 * http://repo1.maven.org/maven2/org/quartz-scheduler/quartz-oracle/1.8.5/quartz-oracle-1.8.5.jar[quartz-oracle-1.8.5.jar]
-
++
 [WARNING]
-The quartz Oracle jar must match the library version provided for quartz (i.e., `quartz-1.8.5.jar` )
+The quartz Oracle jar must match the library version provided for quartz (i.e., `quartz-1.8.5.jar`)
 
-Copy the Oracle drivers to the following directory: `<MMC_HOME>/`WEB-INF/lib.
+Copy the Oracle drivers to the following directory `<MMC_HOME>/WEB-INF/lib`.
 
 ==== General Setup
 
-This example uses the parameters employed for setting up the Oracle database earlier in this document.
+This example uses the parameters employed for settings up the Oracle database earlier in this document.
 
 * Oracle is listening on `localhost`, port `1521`, with SID: `XE`
 * User: `MMC_STATUS`
 * Password: `mmc123`
 
-===== Configuration File: `mmc.properties`
+==== MMC Configuration
 
-(Directory: `<MMC_HOME>/WEB-INF/classes/META-INF`.)
+Configure MMC to store data on a Oracle database involves two basic tasks:
 
-. In the directory listed above, locate the file called `mmc.properties`.
-. Edit the file as per the following.
+* Modifying the file `web.xml` to tell MMC to use Oracle instead of its default database
+* Modifying the file `mmc-oracle.properties` to set the parameters for connecting to the Oracle database
 
-[source,text,linenums]
-----
-script=oracle
-datasource.username=MMC_STATUS
-datasource.password=mmc123
-datasource.url=jdbc\:oracle\:thin\:MMC_STATUS/mmc123@localhost\:1521\:xe
-datasource.driver=oracle.jdbc.driver.OracleDriver
-# Existing entries
-plugin.directory=WEB-INF/plugins
-console.inactivityTimeout=60
-mmc.data=./mmc-data
-----
+==== Modify `web.xml`
 
-[WARNING]
-The colons (":") on the connection string should always be escaped, i.e. preceded by a backslash ("\")
-
-[IMPORTANT]
-====
-Make sure that the following line does not appear:
-
-[source,text,linenums]
-----
-datasource.dbName=${galaxy.data}/db from mmc.properties
-----
-
-This line would conflict with the parameters for accessing the correct database, resulting in a connection error. If the line is present in the `mmc.properties` file, delete it.
-====
-
-===== Configuration File: `applicationContext.xml`
-
-(Directory: Same as previous file `(<MMC_HOME>/WEB-INF/classes/META-INF).)`
-
-. Locate the file called `applicationContext.xml`.
-. Open the file for editing, and look for the bean called `internalDataSource`.
-. Edit the bean as per the following.
-
+. In the directory `<MMC_HOME>/WEB-INF`, locate the file `web.xml`, then open it for editing.
+. Locate the `spring.profiles.active` section, shown below.
++
 [source,xml,linenums]
 ----
-<bean name="internalDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-        <property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:MMC_STATUS/mmc123@localhost:1521:xe"/>
-    </bean>
+<context-param>
+<param-name>spring.profiles.active</param-name>
+<param-value>tracking-h2,env-derby</param-value>
+</context-param>
 ----
 
-===== Configuration File: `jackrabbit-repo.xml`
-
-(Directory: Same as previous file (`<MMC_HOME>/`WEB-INF/classes/META-INF).)
-
-[IMPORTANT]
-====
-For safety, make sure to delete the following files (if listed) before editing `jackrabbit-repo.xml`:
-
-* `jackrabbit-repo-default.xml`
-* `jackrabbit-repo-test.xml`
-====
-
-. Locate the file `jackrabbit-repo.xml`, then open it for editing.
-. Replace the appropiate parameters to use Oracle instead of the default Derby database. A full listing of the modified file is provided below.
-
-Use the following parameters for the database connection:
-
-** Role: `MMC_STATUS`
-** Password: `mmc123`
-** Schema: `oracle`
-
-[WARNING]
-The schema should always be `Oracle`. It defines the database, not the actual schema to be used for storing persistent data. The *Persistence Manager* used is `org.apache.jackrabbit.core.persistence.pool.OraclePersistenceManager.` The *File System* used is `org.apache.jackrabbit.core.fs.db.OracleFileSystem`.
-
-[WARNING]
-====
-*Important!*
-
-When configuring the default workspace and the workspace name itself, ensure that you comply with _one_ of the following conditions:
-
-* assign the same _new_ name to both workspaces (for example `myOracleWorkspace`) +
- +
-_or_
-* delete all subfolders in `mmc-data/workspaces`, specifically the `default` subfolder. You will find the `mmc-data` folder on the root folder of your Web application server installation (for example, `/var/lib/tomcat6/mmc-data`).
-
-If neither of the above conditions are met, all binary data will be persisted locally instead of on the external database.
-====
-
-.Example of jackrabbit-repo.xml
-
+. Delete the string `env-derby`, then replace it with `env-oracle`, as shown below.
++
 [source,xml,linenums]
 ----
-<?xml version="1.0"?>
-<!DOCTYPE Repository PUBLIC "-//The Apache Software Foundation//DTD Jackrabbit
-     1.2 //EN"  "http://jackrabbit.apache.org/dtd/repository-1.2.dtd">
-<Repository>
-  <FileSystem class="org.apache.jackrabbit.core.fs.db.OracleFileSystem">
-    <param name="schemaObjectPrefix" value="repo_"/>
-    <param name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-    <param name="url" value="jdbc:oracle:thin:MMC_STATUS/mmc123@localhost:1521:xe"/>
-    <param name="user" value="MMC_STATUS"/>
-    <param name="password" value="mmc123"/>
-    <param name="schema" value="oracle"/>
-    <param name="schemaCheckEnabled" value="true"/>
-
-  </FileSystem>
-  <Security appName="Jackrabbit">
-    <AccessManager class="org.apache.jackrabbit.core.security.SimpleAccessManager"/>
-    <LoginModule class="org.apache.jackrabbit.core.security.SimpleLoginModule">
-      <param value="anonymous" name="anonymousId"/>
-    </LoginModule>
-  </Security>
-  <Workspaces rootPath="${rep.home}/workspaces" defaultWorkspace="default"/>
-  <Workspace name="default">
-    <FileSystem class="org.apache.jackrabbit.core.fs.db.OracleFileSystem">
-      <param name="schemaObjectPrefix" value="workspace_"/>
-      <param name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-      <param name="url" value="jdbc:oracle:thin:MMC_STATUS/mmc123@localhost:1521:xe"/>
-      <param name="user" value="MMC_STATUS"/>
-      <param name="password" value="mmc123"/>
-      <param name="schema" value="oracle"/>
-      <param name="schemaCheckEnabled" value="true"/>
-
-    </FileSystem>
-    <PersistenceManager class="org.apache.jackrabbit.core.persistence.pool.OraclePersistenceManager">
-      <param name="schemaObjectPrefix" value="Jackrabbit Core_" />
-      <param name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-      <param name="url" value="jdbc:oracle:thin:MMC_STATUS/mmc123@localhost:1521:xe"/>
-      <param name="user" value="MMC_STATUS"/>
-      <param name="password" value="mmc123"/>
-      <param name="schema" value="oracle"/>
-      <param name="externalBLOBs" value="false"/>
-      <param name="schemaCheckEnabled" value="true"/>
-
-    </PersistenceManager>
-    <SearchIndex class="org.apache.jackrabbit.core.query.lucene.SearchIndex">
-      <param value="${wsp.home}/index" name="path"/>
-      <param value="org.apache.jackrabbit.core.query.lucene.TextPlainTextFilter,
-          org.apache.jackrabbit.extractor.MsExcelTextExtractor,
-          org.apache.jackrabbit.extractor.MsPowerPointTextExtractor,
-          org.apache.jackrabbit.extractor.MsWordTextExtractor,
-          org.apache.jackrabbit.extractor.PdfTextExtractor,
-          org.apache.jackrabbit.extractor.HTMLTextExtractor,
-          org.apache.jackrabbit.extractor.XMLTextExtractor,
-          org.apache.jackrabbit.extractor.RTFTextExtractor,
-          org.apache.jackrabbit.extractor.OpenOfficeTextExtractor"
-          name="textFilterClasses"/>
-      <FileSystem class="org.apache.jackrabbit.core.fs.db.OracleFileSystem">
-        <param name="schemaObjectPrefix" value="search_index_w_"/>
-        <param name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-        <param name="url" value="jdbc:oracle:thin:MMC_STATUS/mmc123@localhost:1521:xe"/>
-        <param name="user" value="MMC_STATUS"/>
-        <param name="password" value="mmc123"/>
-        <param name="schema" value="oracle"/>
-        <param name="schemaCheckEnabled" value="true"/>
-
-      </FileSystem>
-    </SearchIndex>
-  </Workspace>
-  <Versioning rootPath="${rep.home}/version">
-    <FileSystem class="org.apache.jackrabbit.core.fs.db.OracleFileSystem">
-      <param name="schemaObjectPrefix" value="filesystem_version_"/>
-      <param name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-      <param name="url" value="jdbc:oracle:thin:MMC_STATUS/mmc123@localhost:1521:xe"/>
-      <param name="user" value="MMC_STATUS"/>
-      <param name="password" value="mmc123"/>
-      <param name="schema" value="oracle"/>
-      <param name="schemaCheckEnabled" value="true"/>
-
-    </FileSystem>
-    <PersistenceManager class="org.apache.jackrabbit.core.persistence.pool.OraclePersistenceManager">
-      <param name="schemaObjectPrefix" value="version_"/>
-      <param name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-      <param name="url" value="jdbc:oracle:thin:MMC_STATUS/mmc123@localhost:1521:xe"/>
-      <param name="user" value="MMC_STATUS"/>
-      <param name="password" value="mmc123"/>
-      <param name="schema" value="oracle"/>
-      <param name="externalBLOBs" value="false"/>
-      <param name="schemaCheckEnabled" value="true"/>
-
-    </PersistenceManager>
-  </Versioning>
-  <SearchIndex class="org.apache.jackrabbit.core.query.lucene.SearchIndex">
-    <param value="${rep.home}/repository/index" name="path"/>
-    <FileSystem class="org.apache.jackrabbit.core.fs.db.OracleFileSystem">
-      <param name="schemaObjectPrefix" value="search_index_"/>
-      <param name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-      <param name="url" value="jdbc:oracle:thin:MMC_STATUS/mmc123@localhost:1521:xe"/>
-      <param name="user" value="MMC_STATUS"/>
-      <param name="password" value="mmc123"/>
-      <param name="schema" value="oracle"/>
-      <param name="schemaCheckEnabled" value="true"/>
-
-    </FileSystem>
-  </SearchIndex>
-</Repository>
+<context-param>
+<param-name>spring.profiles.active</param-name>
+<param-value>tracking-h2,env-oracle</param-value>
+</context-param>
 ----
 
+. If you are also planning to [persist transaction data] to Oracle, delete the string `tracking-h2` and replace it with `tracking-oracle`.
++
+[TIP]
+The `spring.profiles.active` section in the `web.xml` configuration file allows you to define what external databases are used for storing environment and/or tracking data. For a quick instructions for all supported database servers, see [Configuring MMC for External Databases - Quick Reference].
 
-===== Configuration file: `scheduler.properties`
+==== Modifying `mmc-oracle.properties`
 
-(Directory: Same as previous files (`<MMC_HOME>/WEB-INF/classes/META-INF`).)
+In the directory `<MMC_HOME>/WEB-INF/classes/META-INF/databases`, locate the file `mmc-oracle.properties`, then open it for editing.
 
-. Locate the file called `scheduler.properties`.
-. Edit it as per the following.
+The table below lists the settings contained in the file. Modify the values as needed. In general, the only values that you should need to modify are `env.username`, `env.password`, `env.host`, `env.port` and `env.dbschema`.
 
-[source,text,linenums]
-----
-org.quartz.jobStore.isClustered=false
-    org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.oracle.OracleDelegate
-    org.quartz.jobStore.useProperties=true
-    org.quartz.scheduler.instanceId=AUTO
-----
+[%header%autowidth.spread]
+|===
+|Parameter |Description |Default
+|`env.driver` |Driver to use for connecting to the database. |`oracle.jdbc.driver.OracleDriver`
+|`env.script` |Script to use for creating the tables in the target database. |`oracle`
+|`env.username` |Database user |`mmc123`
+|`env.host` |Hostname or IP address where the database server is listening. |`localhost`
+|`env.port` |Port where the database server is listening. |`1521`
+|`env.url` |URL for connecting to the database. |`jdbc:oracle:thin:${env.username}/${env.password}@${env.host}:${env.port}/${env.servicename}`
+|`env.servicename` |Service name for connecting to the external database. |`XEXDB`
+|===
+
+=== Removing Local Database Files
+
+For the configuration changes to take effect, before launching MMC you need to delete the local database files that MMC uses by default.
+
+In the root directory of your Web application server, locate the `mmc-data` directory (for example, `/var/lib/tomcat6/mmc-data`), then delete the `mmc-data` directory.
+
+[NOTE]
+Before you delete `mmc-data`, make a backup copy of this directory and store it in a safe location. If anything goes wrong with your new database configuration, you can use `mmc-data` to restore the old database configuration while you troubleshoot your new database config in a test environment.
+
+At this point, MMC, is so configured to store environment data on the external Oracle database that you specified.
 
 === Disaster Recovery of Environment Data
 
@@ -498,19 +356,19 @@ One possible solution is to backup the database to a single file, which can then
 When you restore MMC to a previous state, be aware of the following:
 
 * You are restoring MMC state data, which is not related to the persistence of Business Events, which use a completely different mechanism to store data.
-* Registered servers at the time of the backup are restored, which means that one of the following situations may arise: +
+* Registered servers at the time of the backup are restored, which means that one of the following situations may arise:
 ** A server is paired to another Mule instance. In this case, “unpair” the server through MMC, then re-pair it. This can affect deployments and server groups.
 ** A server does not exist anymore. Unpair the server.
-** Another server is using the same IP and port as the original server. Try to identify the original server’s current IP and port, then re-pair.
+Another server is using the same IP and port as the original server. Try to identify the original server’s current IP and port, then re-pair.
 ** A server is correctly connected, but after the backup, deployed and/or undeployed apps are not shown or are shown incorrectly. Undeploy/Redeploy as needed to eliminate the unreconciled state.
 ====
 
 This scenario assumes the following conditions:
 
 * Oracle Xpress 11.x
-* The database has already been created, including the following data tables: +
+* The database has already been created, including the following data tables:
 ** User: `MMC_STATUS`
-** Permissions: +
+** Permissions:
 *** `EXP_FULL_DATABASE`
 *** `IMP_FULL_DATABASE`
 *** `DBA`
@@ -522,7 +380,7 @@ This scenario assumes the following conditions:
 ==== Database Backup Procedure
 
 [WARNING]
-Tables on the database contain Binary Large Objects (BLOBs). A regular database export using SQL Developer does not export BLOB contents, so when restoring the database those fields are marked as `NULL` .
+Tables on the database contain Binary Large Objects (BLOBs). A regular database export using SQL Developer does not export BLOB contents, so when restoring the database those fields are marked as `NULL`.
 
 To backup the database, open a terminal and issue the following command:
 
@@ -544,7 +402,6 @@ exp help=yes
 
 Open a terminal and run the following command:
 
-[source,text,linenums]
 ----
 imp MMC_STATUS/mmc123 file=OracleMMCDB.dmp full=yes
 ----
@@ -559,7 +416,7 @@ For help on `imp` command parameters run:
 imp help=yes
 ----
 
-.listing of imp output
+*listing of `imp` output*:
 
 [source,text,linenums]
 ----
@@ -602,9 +459,7 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table "WS1_FSENTRY" 1 rows imported
 Import terminated successfully without warnings.
 ----
-
-
-.listener.ora listing
+*`listner.ora` listing*:
 
 [source,text,linenums]
 ----
@@ -649,25 +504,26 @@ import server uses AL32UTF8 character set (possible charset conversion)
 Import terminated successfully without warnings.
 ----
 
+
 == Persisting Transaction Data
 
 To set up Oracle to persist your MMC transaction data, you need to complete three steps:
 
-. Create the database user and connection
-. Determine the database quota
-. Set up MMC
+. [Create the database user and connection]
+. [Determine the database quota]
+. [Set up MMC]
 
 === Creating the Database User and Connection
 
-You can create the database user and connection using the SQL Developer GUI. The procedure is described in this document, in the <<Creating the Database User and Connection>> section. There you will find detailed instructions for launching SQL Developer and using it to create the database user and connection.
+You can create the database user and connection using the SQL Developer GUI. The procedure is described in this document, in the [Persisting Environment Data] section. There you will find detailed instructions for launching SQL Developer and using it to create the database user and connection.
 
-Using those instructions as reference, open the **New/Select Database** *connection* dialog box, then create a new database user and connection with the following parameters:
+Using those instructions as reference, open the *New/Select Database connection* dialog box, then create a new database user and connection with the following parameters:
 
-* **Connection name:** `mmc_persistency_tracking`
-* **Username:** `SYSTEM`
-* **Password:** The password that you issued during the Oracle Express Installation Process
-* **Hostname:** Hostname of the machine where the Oracle server is installed
-* **SID:** `xe`
+* *Connection name*: `mmc_persistency_tracking`
+* *Username*: `SYSTEM`
+* *Password*: The password that you issued during the Oracle Express Installation Process
+* *Hostname*: Hostname of the machine where the Oracle server is installed
+* *SID*: `xe`
 
 ==== Verify and Save the Connection
 
@@ -677,41 +533,44 @@ Using those instructions as reference, open the **New/Select Database** *connect
 ==== Configure the Connection
 
 . Click *Connect*, then expand the connection elements menu by clicking the plus sign next to the name of your connection on the *Connections* tab.
-. Right-click **Other Users,** then select *Create User* to display the **Create/Edit User** dialog box.
-. Complete the fields with the required information. The following provide sample guidance: +
+. Right-click *Other Users*, then select *Create User* to display the *Create/Edit User* dialog box.
+. Complete the fields with the required information. The following provide sample guidance:
 
-* User Name: `TRACKER`
-* New Password: `tracker`
-* Default Tablespace: `USERS`
-* Temporary Tablespace: `TEMP`
-* Roles tab: `RESOURCE`, `CONNECT`
-* System Privileges tab: `CREATE ANY CONTEXT`, `CREATE ANY TABLE`, `CREATE ANY SEQUENCE`
+** User Name: `TRACKER`
+** New Password: `tracker`
+** Default Tablespace: `USERS`
+** Temporary Tablespace: `TEMP`
+** Roles tab: RESOURCE, `CONNECT`
+** System Privileges tab: `CREATE ANY TABLE, CREATE ANY SEQUENCE`
+
 . Click *Apply*, then click *Close*.
 
 === Determining Database Quota
 
 Database size will, of course, vary greatly depending on usage, and the database quota should be determined while taking into account the actual usage on the environment. One way to do this is by performing load tests and extrapolating the results to actual usage over a period of time.
 
-To determine the actual size of the database, launch Oracle's `sqlplus` utility (see more details below]) and run the following command:
+To determine the actual size of the database, launch Oracle's `sqlplus` utility (see below) and run the following command:
 
+[source,text,linenums]
 ----
 select sum(bytes) from user_segments;
 ----
 
-.details on using the sqlplus utility to run commands
+*details on using the sqlplus utility to run commands*:
 
-. Access the Oracle Express menu by completing one of the following steps, depending on your operating system: +
-* On Windows: From the Windows Start menu: To open the *sqlplus* command prompt, select *Programs* (or All Programs) > *Oracle Database Express 11g Edition* > *Run SQL Command Line*.
-* On Linux: Open the appropriate menu (for example, *Applications* in Gnome, or the *K* menu in KDE), select *Oracle Database 11g Express Edition*, then select *Run SQL Command Line*.
+. Access the Oracle Express menu by completing one of the following steps, depending on your operating system:
+** On Windows: From the Windows Start menu: To open the *`sqlplus`* command prompt, select *Programs (or All Programs) > Oracle Database Express 11g Edition > Run SQL Command Line*.
+** On Linux: Open the appropriate menu (for example, *Applications* in Gnome, or the *K* menu in KDE), select *Oracle Database 11g Express Edition*, then select *Run SQL Command Line*.
 . After the `sqlplus` command prompt opens, type: `connect TRACKER/tracker@XE` (in this example, `TRACKER` is the user and `tracker` is the password)
-. Run the command `select sum(bytes) from user segments;`
+. Run the command select `sum(bytes) from user segments`;
 . To exit `sqlplus`, type: `exit`
 +
 [NOTE]
-For detailed information about the `sqlplus` command, consult the http://docs.oracle.com/cd/E11882_01/server.112/e16604/qstart.htm#SQPUG002[SQL*Plus Reference Guide].
+For detailed information about the `sqlplus` command, consult the [SQL*Plus Reference Guide].
 
 
-Output should be similar to the following.
+
+Output should similar to the following.
 
 [source,text,linenums]
 ----
@@ -726,100 +585,94 @@ SUM(BYTES)
 SQL>
 ----
 
-This indicates that the current database size is 5.83 MB.
+This indicates that the current database size is 5.83MB.
 
 === Setting Up MMC to Use Oracle for Persisting Transaction Data
 
 ==== Installing the Database Driver
 
-The driver is `ojdbc5.jar`. http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html[Download] the driver, then copy the `ojdbc5.jar` file to the directory `<MMC_HOME>/WEB-INF/lib/.`
+The driver is `ojdbc5.jar`. [Download] the driver, then copy the `ojdbc5.jar` file to the directory `<MMC_HOME>/WEB-INF/lib/`.
 
-==== Database-Specific Configuration
+==== MMC Configuration
 
-===== Configuration File: `persistence.xml`
+Configuring MMC to store Business Events data on a Oracle database involves two basic tasks:
 
-(Directory: `<MMC_HOME>/WEB-INF/classes/META-INF/`.)
+* Modifying the file `web.xml` to tell MMC to use Oracle instead of its default database
+* Modifying the file `tracking-persistence-oracle.properties` to set the parameters for connecting to the Oracle database
 
-. In the directory listed above, locate the file `persistence.xml`.
-. Open the file for editing, and find the following line:
+==== Modifying web.xml
 
-[source,xml]
-----
-<property name= "openjpa.jdbc.DBDictionary" value= "batchLimit=-1" />
-----
-
-Replace the line with the following:
-
-[source,xml]
-----
-<property name= "openjpa.jdbc.DBDictionary" value= "oracle(DriverVendor=oracle)}" />
-----
-
-===== Configuration File: `applicationContext-tracking.xml`
-
-(Directory: `<MMC_HOME>/WEB-INF/classes/META-INF/`.)
-
-. In the directory listed above, locate the file `applicationContext-tracking.xml`, then open it for editing.
-. Redefine the beans `dataSource`, `jpavendorAdapter` and `entityManagerFactory`, as listed below:
-
+. In the directory `<MMC_HOME>/WEB-INF`, locate the file `web.xml`, then open it for editing.
+. Locate the `spring.profiles.active` section, shown below.
++
 [source,xml,linenums]
 ----
-<bean id= "dataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource" >
-     <property name= "driverClassName" value= "oracle.jdbc.driver.OracleDriver" />
-     <property name= "url" value= "jdbc:oracle:thin:@127.0.0.1:1521:xe" />
-     <property name= "username" value= "TRACKER" />
-     <property name= "password" value= "tracker" />
-</bean>
-
-<tx:annotation-driven transaction-manager= "transactionManager" />
-
-<bean id= "transactionManager" class = "org.springframework.orm.jpa.JpaTransactionManager" >
-     <property name= "entityManagerFactory" ref= "entityManagerFactory" />
-</bean>
-
-<bean id= "entityManagerFactory" class = "org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" >
-     <property name= "dataSource" ref= "dataSource" />
-     <property name= "persistenceUnitName" value= "tracking-persistence-unit" />
-
-     <property name= "jpaVendorAdapter" >
-         <bean id= "jpaAdapter" class = "org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter" >
-             <property name= "database" value= "ORACLE" />
-             <property name= "showSql" value= "true" />
-         </bean>
-     </property>
-
-     <property name= "loadTimeWeaver" >
-         <bean  class = "com.mulesoft.mmc.tracking.repository.jpa.OpenJPALoadTimeWeaver" />
-     </property>
-</bean>
+<context-param>
+<param-name>spring.profiles.active</param-name>
+<param-value>tracking-h2,env-derby</param-value>
+</context-param>
 ----
 
-In the output above, notice that the configuration specifies a database listening on `localhost` (IP 127.0.0.1), on the default port for Oracle (1521). This is defined in the line:
-
-[source,xml]
+. Delete the string `tracking-h2`, then replace it with `tracking-oracle`, as shown below.
++
+[source,xml,linenums]
 ----
-<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
-----
-
-The `value` parameter takes the form `<database driver specification>@<database server listening host>:<port>:<SID>`. The SID, in this case `xe`, and the password (defined in the `password` property, in this example `tracker`) must correspond to the values you specified when creating the database connection and user.
-
-==== Known Limitations
-
-On `persistence.xml` the following property is set:
-
-[source,xml]
-----
-<property name= "openjpa.jdbc.SynchronizeMappings" value= "buildSchema(SchemaAction=add)" />
+<context-param>
+<param-name>spring.profiles.active</param-name>
+<param-value>tracking-oracle,env-derby</param-value>
+</context-param>
 ----
 
-This specifies that new tables will be added as needed, but that if an essential change is performed, the older tables will not be removed, which may be cause for conflicts.
+. If you are also planning to [persist environment data] to Oracle, delete the string `env-derby` and replace it with `env-oracle`.
 
-Using `SchemaAction=refresh` instead of `SchemaAction=add` in the above line will solve this problem, but will produce `ORA-01031 Not enough privileges` exceptions. This is caused by the system trying to drop everything that it does not directly use, including sequences on the `XDB` and `SYS` schemas, which are reserved by Oracle.
+[TIP]
+The `spring.profiles.active` section in the web.xml configuration file allows you to define what external databases are used for storing environment and/or tracking data. For a quick instructions for all supported database servers, see [Configuring MMC for External Databases - Quick Reference].
 
-==== Troubleshooting Tips
+==== Modifying tracking-persistence-oracle.properties
+
+In the directory `<MMC_HOME>/WEB-INF/classes/META-INF/databases`, locate the file `tracking-persistence-oracle.properties`, then open it for editing.
+
+Modify the included settings as needed, according to the table below. In general, the only values that you should need to modify are `mmc.tracking.db.username`, `mmc.tracking.db.password`, `mmc.tracking.db.host`, `mmc.tracking.db.port` and `mmc.tracking.db.servicename`.
+
+[%header%autowidth.spread]
+|===
+|Parameter |Description |Default
+|`mmc.tracking.db.platform` |Type of database server to connect to |`oracle(DriverVendor=oracle)`
+|`mmc.tracking.db.driver` |Driver to use for connecting to the database |`oracle.jdbc.driver.OracleDriver`
+|`mmc.tracking.db.host` |Hostname or IP address where the database server is listening |`localhost`
+|`mmc.tracking.db.port` |Port where the database server is listening |`1521`
+|`mmc.tracking.db.url` |URL for connecting to the database a|
+
+[source,text,linenums]
+----
+jdbc:oracle:thin:@${mmc.tracking.db.host}:
+${mmc.tracking.db.port}
+/${mmc.tracking.db.servicename}
+----
+|`mmc.tracking.db.username` |Database user |`mmc_tracking`
+|`mmc.tracking.db.password` |Password for the database user |`mmc123`
+|`mmc.tracking.db.servicename` |Service name for connecting to the external database |`XEXB`
+|`mmc.max.events.exception.details.length` |Number of characters from a Business Events exception that will be stored in the tracking database. The maximum allowed is 261120. |`8000`
+|===
+
+Save the file with your modifications, if any.
+
+== Removing Local Database Files
+
+For the configuration changes to take effect, before launching MMC you need to delete the local database files that MMC uses by default.
+
+In the root directory of your Web application server, locate the `mmc-data` directory (for example, `/var/lib/tomcat6/mmc-data`), then delete the `mmc-data` directory.
+
+[NOTE]
+Before you delete mmc-data, make a backup copy of this directory and store it in a safe location. If anything goes wrong with your new database configuration, you can use `mmc-data` to restore the old database configuration while you troubleshoot your new database config in a test environment.
+
+At this point, MMC, is configured to store tracking data on the external Oracle database that you specified.
+
+=== Troubleshooting Tips
 
 Error message:
 
+[source,text,linenums]
 ----
 ORA-12519, TNS:no appropriate service handler found
 ----
@@ -828,11 +681,12 @@ If you get this error message, you will need to run the SQL command provided bel
 
 As user SYS, run:
 
+[source,text,linenums]
 ----
 ALTER SYSTEM SET PROCESSES= 150 SCOPE=SPFILE;
 ----
 
-To run the SQL command, you can use the `sqlplus` utility, as explained above.
+To run the SQL command, you can use the `sqlplus` utility, as explained [above].
 
 To restart your TNS listener:
 
@@ -845,15 +699,16 @@ On Windows:
 
 On Unix/Linux:
 
-. Log in to the `oracle` system user, for example by running the command `su - oracle`.
-. Set the appropriate environment variables by performing these steps: +
-.. Navigate to the `bin` directory of the Oracle installation (typically, `/u01/app/oracle/product/11.2.0/xe/bin`).
+. Log in to the oracle system user, for example by running the command su - oracle.
+. Set the appropriate environment variables by performing these steps:
+.. Navigate to the bin directory of the Oracle installation (typically, `/u01/app/oracle/product/11.2.0/xe/bin`).
 .. Run the command `source oracle_env.sh`.
-. After setting environment variables, check the TNS listener status by running `lsnrctl status`
+. After setting environment variables, check the TNS listener status by running `lsnrctl` status
 . To stop the TNS listener, run `lsnrctl stop`
 . To start the TNS listener, run `lsnrctl start`
 
+
 == See Also
 
-* Read more about xref:setting-up-mmc.adoc[MMC setup].
-* Review the xref:architecture-of-the-mule-management-console.adoc[Architecture of the Mule Management Console].
+* Read more about [MMC setup].
+* Review the [Architecture of the Mule Management Console].

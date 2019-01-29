@@ -3,9 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+#*_MMC Version 3.4.2 and Later_*#
+
 This document will cover how to persist environment and transaction data to MySQL databases. Follow the instructions to <<MySQL Installation>>, then follow the specific instructions for <<Persisting Environment Data>> or <<Persisting Transaction Data>> persistence to set up your user, create your database, and configure your MMC instance to persist your data.
 
-[WARNING]
+[NOTE]
 Remember that *environment data and transaction data must exist in two separate databases* (regardless of whether they are on the same server or use the same platform).
 
 *Jump to:*
@@ -15,16 +17,21 @@ Remember that *environment data and transaction data must exist in two separate 
 
 == Assumptions
 
-This document assumes that you have an understanding of the xref:3.7@setting-up-mmc.adoc[data persistence options] for environment and transaction data and that you are familiar with the basic xref:architecture-of-the-mule-management-console.adoc[Architecture of the Mule Management Console]. It also assumes that you have installed:
+This document assumes that you have an understanding of the xref:setting-up-mmc.adoc[data persistence options] for environment and transaction data and that you are familiar with the basic xref:architecture-of-the-mule-management-console.adoc[Architecture of the Mule Management Console]. It also assumes that you have installed:
 
-* **Mule Enterprise 3.4.1**. Download it from the http://www.mulesoft.com/support-login[customer portal] if you need to upgrade to this version.
-* **MMC Version 3.4.1**. Download it from the http://www.mulesoft.com/support-login[customer portal] if you need to upgrade to this version.
-* *a* **Web application server such as Tcat, Tomcat, or JBoss**. Please refer to the xref:3.4@mule-runtime::hardware-and-software-requirements.adoc[Hardware and Software Requirements] for the latest information about hardware requirements and supported application servers, Java Runtime Environments, and browsers.
+* *MMC Version 3.5.0*. Download it from the http://www.mulesoft.com/support-login[customer portal] if you need to upgrade to this version.
+* *a Web application server such as Tcat, Tomcat, or JBoss*. Please refer to the https://docs.mulesoft.com/mule-user-guide/v/3.5/hardware-and-software-requirements[Hardware and Software Requirements] for the latest information about hardware requirements and supported application servers, Java Runtime Environments, and browsers.
 
 For practical purposes, this document mentions Tomcat as the servlet container; however, the instructions contained here apply also to Tcat or JBoss. If you are using Tcat or JBoss, make sure to unpack the Management Console .war file in the appropriate directory. For additional information, see xref:installing-the-production-version-of-mmc.adoc[Installing the Production Version of MMC].
 
 [NOTE]
-In this document, `<MMC_HOME>` refers to the directory where MMC is installed. If using the trial version, this is `<Mule install path>/mmc/webapps/mmc`, for example `/opt/mule/mule-enterprise-3.4.1/mmc/webapps/mmc`. If using an application server such as Tomcat, this should be similar to `<Tomcat root>/webapps/mmc-console-3.4.1`, for example `/var/lib/tomcat6/webapps/mmc-console-3.4.1`.
+====
+In this document, `<MMC_HOME>` refers to the directory where MMC is installed.
+
+If you are using the trial version, this directory is inside the root of the embedded Tomcat server from which MMC runs. Depending on where you placed the bundled installation, the path will be similar to `<installation_root>/mmc-distribution-mule-console-bundle-3.5.0/mmc-3.5.0/apache-tomcat-7.0.52/webapps/mmc-3.5.0`.
+
+If you are using a production installation in an application server such as Tomcat, the path should be similar to `<Tomcat root>/webapps/mmc-console-3.50.` For example `/var/lib/tomcat6/webapps/mmc-console-3.5.0`.
+====
 
 == MySQL Installation
 
@@ -64,160 +71,46 @@ After you configure MMC to use an external database to store its persistent data
 
 Create a new database with the following parameters:
 
-* **Database name:** `mmc_persistency_status`
-* **Database owner:** `MMC_STATUS`
+* *Database name:* `mmc_persistency_status`
+* *Database owner:* `MMC_STATUS`
 
 === Creating the Database User
 
 Create a new database user with default permissions and the following parameters:
 
-* **Username:** `MMC_STATUS`
-* **Password:** `mmc123`
+* *Username:* `MMC_STATUS`
+* *Password:* `mmc123`
 
 === Creating the Tables
 
 Navigate to the following directory: `<MMC_HOME>/WEB-INF/classes/quartz`. In this directory you will find two scripts for MySQL:
 
-* `tables_mysql.sql` for MySQL server versions earlier than 4.1
-* `tables_mysql_version_4_1_and_above.sql`  for MySQL server versions 4.1 and above
+* `tables_mysql.sql` for MySQL server versions newer than 4.1
+* `tables_mysql_version_4_1_and_older.sql`  for MySQL server versions 4.1 and older
 
 Depending on your MySQL server version, execute the appropriate script in the target database,  `mmc_persistency_status`.
 
-[TIP]
+
+[NOTE]
 ====
-*Creating the database, user and tables with the mysql utility*
+Creating the database, user and tables with the mysql utility
 
 . Open a terminal and run the `mysql` utility with the following command.
-+
-
-[source,text,linenums]
-----
-mysql -u root -D mysql -p
-----
-
 . `mysql` prompts you for root's user password. Enter the password, and you should see the following `mysql` prompt.
-+
-
-[source,text,linenums]
-----
-mysql>
-----
-
 . Enter the following commands in the order in which they appear below. Each command is terminated by a semicolon (;). When you press Enter after each semicolon, the terminal displays a message that begins with  `Query OK` , which indicates successful completion of the command.
-+
-
-[source,text,linenums]
-----
-CREATE DATABASE mmc_persistency_status;
-CREATE USER 'MMC_STATUS'@'localhost' IDENTIFIED BY 'mmc123';
-GRANT ALL PRIVILEGES ON mmc_persistency_status.* TO 'MMC_STATUS'@'localhost';
-exit
-----
-
-. After you exit  `mysql` , locate the relevant script for MySQL provided with the Management Console (by default at `$MMC_HOME/webapps/mmc/WEB-INF/classes/quartz` ). In your terminal, change to the directory containing the script by running the  `cd` command. An example command follows.
-+
-
-[source,text,linenums]
-----
-cd /opt/mule/mule-ee-3.4.1/apps/mmc/webapps/mmc/WEB-INF/classes/quartz
-----
-
+. After you exit  `mysql` , locate the relevant script for MySQL provided with the Management Console (by default at `<MMC_HOME>/WEB-INF/classes/quartz` ). In your terminal, change to the directory containing the script by running the `cd` command. An example command follows.
 . From this directory, run  `mysql` again, this time with the parameters shown below.
-+
-
-[source,text,linenums]
-----
-mysql -u MMC_STATUS -D mmc_persistency_status -p
-----
-
 . After you enter the password, you are logged in to database  `mmc_persistency_status` as user  `MMC_STATUS` .  +
-
-. Run the MySQLscript by issuing the following command.
-+
-
-[source,text,linenums]
-----
-source <script name>
-----
-
+. Run the MySQL script by issuing the following command.
 . Depending on your MySQL server version, the script name will be  `tables_mysql.sql` or  `tables_mysql_versions_4_1_and_above.sql` . When you run the script, `mysql` will display a long list of status messages as per the following.
-+
-
-[source,text,linenums]
-----
-Query OK, 0 rows affected, 1 warning (0.00 sec)
-Query OK, 0 rows affected, 1 warning (0.00 sec)
-Query OK, 0 rows affected, 1 warning (0.00 sec)
-Query OK, 0 rows affected, 1 warning (0.00 sec)
-...
-----
-
 . The status messages listed above indicate that the tables have been successfully created. To verify, issue the following command (below, top), which yields the following output (below, bottom).
-+
-
-[source,text,linenums]
-----
-SHOW TABLES IN mmc_persistency_status;
-----
-
-+
-
-[source,text,linenums]
-----
-+----------------------------------+
-| Tables_in_mmc_persistency_status |
-+----------------------------------+
-| QRTZ_BLOB_TRIGGERS               |
-| QRTZ_CALENDARS                   |
-| QRTZ_CRON_TRIGGERS               |
-| QRTZ_FIRED_TRIGGERS              |
-| QRTZ_JOB_DETAILS                 |
-| QRTZ_JOB_LISTENERS               |
-| QRTZ_LOCKS                       |
-| QRTZ_PAUSED_TRIGGER_GRPS         |
-| QRTZ_SCHEDULER_STATE             |
-| QRTZ_SIMPLE_TRIGGERS             |
-| QRTZ_TRIGGERS                    |
-| QRTZ_TRIGGER_LISTENERS           |
-+----------------------------------+
-12 rows in set (0.00 sec)
-----
-
-. To see the contents of a particular table, run the following command.
-+
-
-[source,text,linenums]
-----
-DESCRIBE <table name>;
-----
-
+.To see the contents of a particular table, run the following command.
 The example below includes the command output for table `QRTZ_BLOB_TRIGGERS`:
-
-[source,text,linenums]
-----
-mysql> DESCRIBE QRTZ_BLOB_TRIGGERS;
-+---------------+-------------+------+-----+---------+-------+
-| Field         | Type        | Null | Key | Default | Extra |
-+---------------+-------------+------+-----+---------+-------+
-| TRIGGER_NAME  | varchar(80) | NO   | PRI | NULL    |       |
-| TRIGGER_GROUP | varchar(80) | NO   | PRI | NULL    |       |
-| BLOB_DATA     | blob        | YES  |     | NULL    |       |
-+---------------+-------------+------+-----+---------+-------+
-3 rows in set (0.00 sec)
-----
-
 At this point, you've finished configuring MySQL. You can proceed to set up the Management Console to use the database you've just created.
 ====
 
+
 === Setting Up MMC to use MySQL for Persisting Environment Data
-
-. First, install the appropriate <<Obtaining MySQL Drivers>>.
-. Then, follow the instructions below for editing the following configuration files:
-
-* <<Configuration file: mmc.properties>>
-* <<Configuration file: applicationContext.xml>>
-* <<Configuration file: jackrabbit-repo.xml>>
-* <<Configuration file: scheduler.properties>>
 
 This example uses the parameters employed <<Persisting Environment Data>> when creating the MySQL database.
 
@@ -233,458 +126,79 @@ This example uses the parameters employed <<Persisting Environment Data>> when c
 
 ===== Driver for MMC run as Mule app
 
-Copy the MySQL jdbc driver, `mysql-connector-java-<version>-bin.jar`, to the following directory: `<Mule install path>/apps/mmc/webapps/mmc/WEB-INF/lib`.
+Copy the MySQL JDBC driver, `mysql-connector-java-<version>-bin.jar`, to the following directory: `<Mule install path>/apps/mmc/webapps/mmc/WEB-INF/lib`.
 
 Alternatively, make the driver generally available by copying it to: `<Mule install path>/lib/user`.
 
 ===== Driver for MMC run as a Web app
 
-Copy the MySQL jdbc driver, `mysql-connector-java-<version>-bin.jar`, to the following directory: `<MMC_HOME>/WEB-INF/lib.`
+Copy the MySQL JDBC driver, `mysql-connector-java-<version>-bin.jar`, to the following directory: `<MMC_HOME>/` WEB-INF/lib.
 
-==== Configuration file: `mmc.properties`
+==== MMC Configuration
 
-(Directory: `<MMC_HOME>/WEB-INF/classes/META-INF.)`
+Configuring MMC to store data on a MySQL database involves two basic tasks:
 
-. In the directory listed above, locate the file `mmc.properties`.
-. Open the file for editing, then edit it as per the following.  ++
+* Modifying the file `web.xml` to tell MMC to use MySQL instead of its default database
+* Modifying the file `mmc-mysql.properties` to set the parameters for connecting to the MySQL database
 
-[source,text,linenums]
-----
-datasource.driver=com.mysql.jdbc.Driver
-datasource.username=MMC_STATUS
-datasource.password=mmc123
-datasource.url=jdbc:mysql://localhost/mmc_persistency_status
-script=mysql
-mmc.data=./mmc-data
-plugin.directory=WEB-INF/plugins
-console.inactivityTimeout=60
-----
+===== Modifying `web.xml`
 
-[NOTE]
-In the above example and in all configuration files in this section, the database URL assumes the default port for MySQL server, 3306. If your MySQL server is listening on a different port, include the port number in the URL, with the following format: `jdbc:mysql://<host>:<port>/<database name>`.
-
-
-[IMPORTANT]
-====
-Make sure that the following line does not appear:
-
-[source,text,linenums]
-----
-datasource.dbName=${galaxy.data}/db from mmc.properties
-----
-
-This line would conflict with the parameters for accessing the correct database, resulting in a connection error. If the line is present in the `mmc.properties` file, delete it.
-====
-
-==== Configuration file: `applicationContext.xml`
-
-(Directory: Same as previous file (`<MMC_HOME>/WEB-INF/classes/META-INF).)`
-
-. In the directory listed above, locate the file named `applicationContext.xml` and open it for editing.
-. Look for the bean named `internalDataSource`, then edit it as per the following.
-
+. In the directory `<MMC_HOME>/WEB-INF`, locate the file `web.xml`, then open it for editing.
+. Locate the `spring.profiles.active` section, shown below.
++
 [source,xml,linenums]
 ----
-<bean name="internalDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-   <!-- TODO: change this via the configurator -->
-   <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-   <property name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-   <property name="username" value="MMC_STATUS"/>
-   <property name="password" value="mmc123"/>
-</bean>
+<context-param>
+<param-name>spring.profiles.active</param-name>
+<param-value>tracking-h2,env-derby</param-value>
+</context-param>
 ----
-
-==== Configuration file: `jackrabbit-repo.xml`
-
-[IMPORTANT]
-====
-Before editing this file, delete the following files (if listed):
-
-* `jackrabbit-repo-default.xml`
-* `jackrabbit-repo-test.xml`
-====
-
-(Directory: Same as previous file (`<MMC_HOME>/WEB-INF/classes/META-INF).)`
-
-. In the directory listed above, locate the file `jackrabbit-repo.xml` and open it for editing.
-. Replace the appropriate parameters to use MySQL instead of the default Derby database. Use the following parameters for the database connection:  +
-* User: `MMC_STATUS`
-* Password: `mmc123`
-* URL:   `jdbc:mysql://localhost/mmc_persistency_status`
-* Schema: `mysql`
-* Driver: `com.mysql.jdbc.Driver`
-* IP: `localhost`
-* Port: `3306` (default at installation)
-. Replace the parameters in the appropriate sections, which are displayed in the code snippets below.
-
-[WARNING]
-The schema should be always `mysql`. It defines the database, not the actual schema to be used for storing persistent data.
-
++
+. Delete the string `env-derby`, then replace it with `env-mysql`, as shown below.
++
 [source,xml,linenums]
 ----
-...
-<Repository>
-    <!--
-        virtual file system where the repository stores global state
-        (e.g. registered namespaces, custom node types, etc.)
-    -->
-    <FileSystem class="org.apache.jackrabbit.core.fs.db.DbFileSystem">
-        <param name="driver" value="com.mysql.jdbc.Driver"/>
-        <param name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-        <param name="schema" value="mysql"/>
-        <param name="schemaObjectPrefix" value="rep_"/>
-        <param name="user" value="MMC_STATUS"/>
-        <param name="password" value="mmc123"/>
-    </FileSystem>
-...
+<context-param>
+<param-name>spring.profiles.active</param-name>
+<param-value>tracking-h2,env-mysql</param-value>
+</context-param>
 ----
-
-[source,xml,linenums]
-----
-...
-<!--
-        workspace configuration template:
-        used to create the initial workspace if there's no workspace yet
-    -->
-    <Workspace name="Jackrabbit Core">
-        <!--
-            virtual file system of the workspace:
-            class: FQN of class implementing the FileSystem interface
-        -->
-        <FileSystem class="org.apache.jackrabbit.core.fs.db.DbFileSystem">
-            <param name="driver" value="com.mysql.jdbc.Driver"/>
-            <param name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-            <param name="schema" value="mysql"/>
-            <param name="schemaObjectPrefix" value="rep_"/>
-            <param name="user" value="MMC_STATUS"/>
-            <param name="password" value="mmc123"/>
-        </FileSystem>
-...
-----
-
-[WARNING]
-====
-When configuring the default workspace and the workspace name itself, ensure that you comply with _one_ of the following conditions:
-
-* assign the same _new_ name to both workspaces (for example `mySQL workspace`) +
- +
-OR
-
-* delete all subfolders in `mmc-data/workspaces`, specifically the `default` subfolder. You will find the `mmc-data` folder on the root folder of your Web application server installation (for example, `/var/lib/tomcat6/mmc-data`).
-
-If neither of the above conditions are met, all binary data persists locally instead of on the external database.
-====
-
-[source,xml,linenums]
-----
-...
-<!--
-            persistence manager of the workspace:
-            class: FQN of class implementing the PersistenceManager interface
-        -->
-        <PersistenceManager class="org.apache.jackrabbit.core.persistence.pool.MySqlPersistenceManager">
-          <param name="schemaObjectPrefix" value="Jackrabbit Core_"/>
-          <param name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-          <param name="externalBLOBs" value="true"/>
-          <param name="schemaCheckEnabled" value="true"/>
-          <param name="user" value="MMC_STATUS"/>
-          <param name="password" value="mmc123"/>
-        </PersistenceManager>
-...
-----
++
+. If you are also planning to <<Persisting Transaction Data>> to MySQL, delete the string `tracking-h2` and replace it with `tracking-mysql`.
 
 [TIP]
-====
-*PersistenceManager parameters*
+The `spring.profiles.active` section in the `web.xml` configuration file allows you to define what external databases are used for storing environment and/or tracking data.
 
-The `externalBLOBs` boolean parameter defines whether to store binary data (the apps deployed via the Management Console) on the database, or on the filesystem. The default value, `true,` indicates that this data is stored on the filesystem. Set the value to `false` to store the data on the database.
+===== Modifying mmc-mysql.properties
 
-The `schemaCheckEnabled` parameter specifies whether to create additional necessary database tables on Management Console launch. It must always be set to `true`.
-====
-
-[source,xml,linenums]
-----
-...
-<!--
-            Search index and the file system it uses.
-            class: FQN of class implementing the QueryHandler interface
-        -->
-        <SearchIndex class="org.apache.jackrabbit.core.query.lucene.SearchIndex">
-            <param name="path" value="${wsp.home}/index"/>
-            <param name="textFilterClasses"
-                value="org.apache.jackrabbit.extractor.PlainTextExtractor,
-                       org.apache.jackrabbit.extractor.MsExcelTextExtractor,
-                       org.apache.jackrabbit.extractor.MsPowerPointTextExtractor,
-                       org.apache.jackrabbit.extractor.MsWordTextExtractor,
-                       org.apache.jackrabbit.extractor.PdfTextExtractor,
-                       org.apache.jackrabbit.extractor.HTMLTextExtractor,
-                       org.apache.jackrabbit.extractor.XMLTextExtractor,
-                       org.apache.jackrabbit.extractor.RTFTextExtractor,
-                       org.apache.jackrabbit.extractor.OpenOfficeTextExtractor" />
-            <FileSystem class="org.apache.jackrabbit.core.fs.db.DbFileSystem">
-                <param name="driver" value="com.mysql.jdbc.Driver"/>
-                <param name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-                <param name="schema" value="mysql"/>
-                <param name="schemaObjectPrefix" value="rep_"/>
-                <param name="user" value="MMC_STATUS"/>
-                <param name="password" value="mmc123"/>
-            </FileSystem>
-        </SearchIndex>
-...
-----
-
-[source,xml,linenums]
-----
-...
-<Versioning rootPath="${rep.home}/version">
-        <!--
-            Configures the filesystem to use for versioning for the respective
-            persistence manager
-        -->
-        <FileSystem class="org.apache.jackrabbit.core.fs.db.DbFileSystem">
-            <param name="driver" value="com.mysql.jdbc.Driver"/>
-            <param name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-            <param name="schema" value="mysql"/>
-            <param name="schemaObjectPrefix" value="rep_"/>
-            <param name="user" value="MMC_STATUS"/>
-            <param name="password" value="mmc123"/>
-        </FileSystem>
-...
-----
-
-[source,xml,linenums]
-----
-...
-<!--
-            Configures the persistence manager to be used for persisting version state.
-            Please note that the current versioning implementation is based on
-            a 'normal' persistence manager, but this could change in future
-            implementations.
-        -->
-        <PersistenceManager class="org.apache.jackrabbit.core.persistence.pool.MySqlPersistenceManager">
-        <param name="schemaCheckEnabled" value="true"/>
-          <param name="schemaObjectPrefix" value="version_"/>
-          <param name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-          <param name="externalBLOBs" value="true"/>
-          <param name="user" value="MMC_STATUS"/>
-          <param name="password" value="mmc123"/>
-        </PersistenceManager>
-    </Versioning>
-...
-----
-
-[source,xml,linenums]
-----
-...
-<!--
-        Search index for content that is shared repository wide
-        (/jcr:system tree, contains mainly versions)
-
-        -->
-    <SearchIndex class="org.apache.jackrabbit.core.query.lucene.SearchIndex">
-        <param name="path" value="${rep.home}/repository/index"/>
-        <FileSystem class="org.apache.jackrabbit.core.fs.db.DbFileSystem">
-            <param name="driver" value="com.mysql.jdbc.Driver"/>
-            <param name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-            <param name="schema" value="mysql"/>
-            <param name="schemaObjectPrefix" value="rep_"/>
-            <param name="user" value="MMC_STATUS"/>
-            <param name="password" value="mmc123"/>
-        </FileSystem>
-    </SearchIndex>
-</Repository>
-----
-
-.Example of jackrabbit-repo.xml
-
-[source,xml,linenums]
-----
-<?xml version="1.0"?>
-<!--
-   Licensed to the Apache Software Foundation (ASF) under one or more
-   contributor license agreements.  See the NOTICE file distributed with
-   this work for additional information regarding copyright ownership.
-   The ASF licenses this file to You under the Apache License, Version 2.0
-   (the "License"); you may not use this file except in compliance with
-   the License.  You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
--->
-<!DOCTYPE Repository PUBLIC "-//The Apache Software Foundation//DTD Jackrabbit 1.2//EN"
-                            "http://jackrabbit.apache.org/dtd/repository-1.2.dtd">
-<Repository>
-    <!--
-        virtual file system where the repository stores global state
-        (e.g. registered namespaces, custom node types, etc.)
-    -->
-    <FileSystem class="org.apache.jackrabbit.core.fs.db.DbFileSystem">
-        <param name="driver" value="com.mysql.jdbc.Driver"/>
-        <param name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-        <param name="schema" value="mysql"/>
-        <param name="schemaObjectPrefix" value="rep_"/>
-        <param name="user" value="MMC_STATUS"/>
-        <param name="password" value="mmc123"/>
-    </FileSystem>
-
-    <!--
-        security configuration
-    -->
-    <Security appName="Jackrabbit">
-        <!--
-            access manager:
-            class: FQN of class implementing the AccessManager interface
-        -->
-        <AccessManager class="org.apache.jackrabbit.core.security.SimpleAccessManager">
-            <!-- <param name="config" value="${rep.home}/access.xml"/> -->
-        </AccessManager>
-
-        <LoginModule class="org.apache.jackrabbit.core.security.SimpleLoginModule">
-           <!-- anonymous user name ('anonymous' is the default value) -->
-           <param name="anonymousId" value="anonymous"/>
-           <!--
-              default user name to be used instead of the anonymous user
-              when no login credentials are provided (unset by default)
-           -->
-           <!-- <param name="defaultUserId" value="superuser"/> -->
-        </LoginModule>
-    </Security>
-
-    <!--
-        location of workspaces root directory and name of default workspace
-    -->
-    <Workspaces rootPath="${rep.home}/workspaces" defaultWorkspace="default"/>
-    <!--
-        workspace configuration template:
-        used to create the initial workspace if there's no workspace yet
-    -->
-    <Workspace name="Jackrabbit Core">
-        <!--
-            virtual file system of the workspace:
-            class: FQN of class implementing the FileSystem interface
-        -->
-        <FileSystem class="org.apache.jackrabbit.core.fs.db.DbFileSystem">
-            <param name="driver" value="com.mysql.jdbc.Driver"/>
-            <param name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-            <param name="schema" value="mysql"/>
-            <param name="schemaObjectPrefix" value="rep_"/>
-            <param name="user" value="MMC_STATUS"/>
-            <param name="password" value="mmc123"/>
-        </FileSystem>
-        <!--
-            persistence manager of the workspace:
-            class: FQN of class implementing the PersistenceManager interface
-        -->
-        <PersistenceManager class="org.apache.jackrabbit.core.persistence.pool.MySqlPersistenceManager">
-          <param name="schemaObjectPrefix" value="Jackrabbit Core_"/>
-          <param name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-          <param name="externalBLOBs" value="true"/>
-          <param name="schemaCheckEnabled" value="true"/>
-          <param name="user" value="MMC_STATUS"/>
-          <param name="password" value="mmc123"/>
-        </PersistenceManager>
-        <!--
-            Search index and the file system it uses.
-            class: FQN of class implementing the QueryHandler interface
-        -->
-        <SearchIndex class="org.apache.jackrabbit.core.query.lucene.SearchIndex">
-            <param name="path" value="${wsp.home}/index"/>
-            <param name="textFilterClasses"
-                value="org.apache.jackrabbit.extractor.PlainTextExtractor,
-                       org.apache.jackrabbit.extractor.MsExcelTextExtractor,
-                       org.apache.jackrabbit.extractor.MsPowerPointTextExtractor,
-                       org.apache.jackrabbit.extractor.MsWordTextExtractor,
-                       org.apache.jackrabbit.extractor.PdfTextExtractor,
-                       org.apache.jackrabbit.extractor.HTMLTextExtractor,
-                       org.apache.jackrabbit.extractor.XMLTextExtractor,
-                       org.apache.jackrabbit.extractor.RTFTextExtractor,
-                       org.apache.jackrabbit.extractor.OpenOfficeTextExtractor" />
-            <FileSystem class="org.apache.jackrabbit.core.fs.db.DbFileSystem">
-                <param name="driver" value="com.mysql.jdbc.Driver"/>
-                <param name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-                <param name="schema" value="mysql"/>
-                <param name="schemaObjectPrefix" value="rep_"/>
-                <param name="user" value="MMC_STATUS"/>
-                <param name="password" value="mmc123"/>
-            </FileSystem>
-        </SearchIndex>
-    </Workspace>
-
-    <!--
-        Configures the versioning
-    -->
-    <Versioning rootPath="${rep.home}/version">
-        <!--
-            Configures the filesystem to use for versioning for the respective
-            persistence manager
-        -->
-        <FileSystem class="org.apache.jackrabbit.core.fs.db.DbFileSystem">
-            <param name="driver" value="com.mysql.jdbc.Driver"/>
-            <param name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-            <param name="schema" value="mysql"/>
-            <param name="schemaObjectPrefix" value="rep_"/>
-            <param name="user" value="MMC_STATUS"/>
-            <param name="password" value="mmc123"/>
-        </FileSystem>
-
-        <!--
-            Configures the persistence manager to be used for persisting version state.
-            Please note that the current versioning implementation is based on
-            a 'normal' persistence manager, but this could change in future
-            implementations.
-        -->
-        <PersistenceManager class="org.apache.jackrabbit.core.persistence.pool.MySqlPersistenceManager">
-        <param name="schemaCheckEnabled" value="true"/>
-          <param name="schemaObjectPrefix" value="version_"/>
-          <param name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-          <param name="externalBLOBs" value="true"/>
-          <param name="user" value="MMC_STATUS"/>
-          <param name="password" value="mmc123"/>
-        </PersistenceManager>
-    </Versioning>
-
-    <!--
-        Search index for content that is shared repository wide
-        (/jcr:system tree, contains mainly versions)
-
-        -->
-    <SearchIndex class="org.apache.jackrabbit.core.query.lucene.SearchIndex">
-        <param name="path" value="${rep.home}/repository/index"/>
-        <FileSystem class="org.apache.jackrabbit.core.fs.db.DbFileSystem">
-            <param name="driver" value="com.mysql.jdbc.Driver"/>
-            <param name="url" value="jdbc:mysql://localhost/mmc_persistency_status"/>
-            <param name="schema" value="mysql"/>
-            <param name="schemaObjectPrefix" value="rep_"/>
-            <param name="user" value="MMC_STATUS"/>
-            <param name="password" value="mmc123"/>
-        </FileSystem>
-    </SearchIndex>
-</Repository>
-----
-
-
-==== Configuration file: `scheduler.properties`
-
-(Directory: Same as previous files (`<MMC_HOME>/`WEB-INF/classes/META-INF).)
-
-. In the directory listed above, locate the file called `scheduler.properties`, then open it for editing.
-. Edit the file as per the following.
+. In the directory `<MMC_HOME>/WEB-INF/classes/META-INF/databases`, locate the file `mmc-mysql.properties`, then open it for editing.
+. The table below lists the settings contained in the file. Modify the values as needed. In general, the only values that you should need to modify are `env.username`, `env.password`, `env.host`, `env.port` and `env.dbschema`.
 +
+[%header,cols="33a,33,33a"]
+|===
+|Parameter |Description |Default
+|`env.driver` |Driver to use for connecting to the database |`com.mysql.jdbc.Driver`
+|`env.script` |Script to use for creating the tables in the target database |`mysql`
+|`env.username` |Database user |`MMC_STATUS`
+|`env.password` |Password for the database user |`mmc123`
+|`env.host` |Hostname or IP address where the database server is listening |`localhost`
+|`env.port` |Port where the database server is listening |`3306`
+|`env.url` |URL for connecting to the database |`jdbc:mysql://${env.host}:${env.port}/${env.dbschema}`
+|`env.dbschema` |Database to connect to |`mmc_persistency_status`
+|===
++
+. Save the file with your modifications, if any.
 
-[source,text,linenums]
-----
-org.quartz.jobStore.isClustered=false
-org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.StdJDBCDelegate
-org.quartz.jobStore.useProperties=true
-org.quartz.scheduler.instanceId=AUTO
-----
+=== Removing Local Database Files
 
-. The Management Console is now configured to store its persistent data in the specified MySQL database. Start the Management Console and login normally.
+For the configuration changes to take effect, before launching MMC you need to delete the local database files that MMC uses by default.
+
+In the root directory of your Web application server, locate the `mmc-data` directory (for example, `/var/lib/tomcat6/mmc-data`), then delete the `mmc-data` directory.
+
+[NOTE]
+Before you delete `mmc-data`, make a backup copy of this directory and store it in a safe location. If anything goes wrong with your new database configuration, you can use `mmc-data` to restore the old database configuration while you troubleshoot your new database config in a test environment.
+
+At this point, MMC, is configured to store environment data on the external MySQL database that you specified.
 
 === Connecting to a Remote MySQL Server
 
@@ -699,9 +213,7 @@ Both actions are described in the following two sections.
 
 . To check that the MySQL server allows remote database connections, locate the MySQL server configuration file, for example `/etc/mysql/my.cnf`.
 . Search for the following line.
-+
 
-[source,text,linenums]
 ----
 bind-address        = 127.0.0.1
 ----
@@ -710,9 +222,7 @@ bind-address        = 127.0.0.1
 
 .. Stop the MySQL server.
 .. Open the configuration file for editing, then comment out the line with a number sign (#), as shown below.
-+
 
-[source,text,linenums]
 ----
 # bind-address      = 127.0.0.1
 ----
@@ -722,24 +232,19 @@ bind-address        = 127.0.0.1
 ==== Remote Access Privileges
 
 . To grant remote database access to your database user, login to MySQL as the MySQL server root user, using the following command.
-+
 
-[source,text,linenums]
 ----
 mysql -u root -D mysql -p
 ----
 
 . Enter the password for root.
 . Obtain the 41-digit hexadecimal representation of the database user's password (in this case, the password for user MMC_STATUS) by running the following command.
-+
 
-[source,text,linenums]
 ----
 SELECT * FROM user WHERE User = '<user>';
 ----
 
 . In the output from the previous command, find, then copy the 41-digit hex number, which is preceded by an asterisk. Ensure that you save this number to your clipboard or a text file, since you will use it in the next step. A snippet of example output is shown below.
-+
 
 [source,text,linenums]
 ----
@@ -751,7 +256,6 @@ mysql> SELECT * FROM user WHERE User = 'MMC_STATUS';
 ----
 
 . Grant the privileges with the following command. For the `<password>` parameter, paste the 41-digit hex number you copied in the previous step.
-+
 
 [source,text,linenums]
 ----
@@ -759,33 +263,20 @@ GRANT ALL PRIVILEGES ON <database>.* TO '<user>'@'<host|net>' IDENTIFIED BY PASS
 ----
 
 . Tell the MySQL server to reload the grant tables, with the following command.
-+
 
-[source,text,linenums]
 ----
 FLUSH PRIVILEGES;
 ----
 
-[TIP]
+[NOTE]
 ====
-*Details and usage example for the GRANT ALL PRIVILEGES command*
+Details and usage example for the GRANT ALL PRIVILEGES command
 
 The value of `<host|net>` can either be a host or network specification. Wildcards are allowed, such as `'MMC_STATUS'@'172.16.0.%'`.
 
 The value of `<password>` is the 41-digit hexadecimal number representing the password. To obtain your user's password, run the following command from the `mysql` prompt.
 
-[source,text,linenums]
-----
-SELECT * FROM user WHERE User = '<user>';
-----
-
 A complete command example follows.
-
-[source,text,linenums]
-----
-mysql> GRANT ALL PRIVILEGES ON mmc_persistency_status.* TO 'MMC_STATUS'@'192.168.56.1' IDENTIFIED BY PASSWORD '*14695FC49478AC013A63030250DD44DE579D54E1' WITH GRANT OPTION;
-Query OK, 0 rows affected (0.01 sec)
-----
 ====
 
 [NOTE]
@@ -796,38 +287,9 @@ If you are unsure of the MySQL server configuration, _but are certain that you h
 
 If the MySQL server is not accepting remote connections, trying to telnet to the MySQL host and port results in a "Connection refused error," even if the server is indeed listening on the specified host and port.
 
-[source,text,linenums]
-----
-~> telnet xubuntu 3306
-Trying 192.168.56.2...
-telnet: connect to address 192.168.56.2: Connection refused
-telnet: Unable to connect to remote host
-~>
-----
-
 If the MySQL server is accepting remote connections, but there is no user allowed to connect remotely, the output appears similar to the following. In this example, the connection succeeds but is closed by the remote host.
 
-[source,text,linenums]
-----
-~> telnet xubuntu 3306
-Trying 192.168.56.2...
-Connected to xubuntu    .
-Escape character is '^]'.
-<Host 'mac' is not allowed to connect to this MySQL serverConnection closed by foreign host.
-~>
-----
-
 If connectivity to the MySQL server is fully working, and the server is granting user access, the output appears similar to the following.
-
-[source,text,linenums]
-----
-~>
-Trying 192.168.56.2...
-Connected to xubuntu.
-Escape character is '^]'.
-[
-5.5.32-0ubuntu0.12.04.1.1asB.^p�h"kx9Pf1]ecBmysql_native_password
-----
 
 If you obtain this output, but cannot successfully connect the Management Console to the remote MySQL server, then something is likely wrong with the Management Console configuration. Check the logs in Mule or your Web app server for details.
 ====
@@ -839,87 +301,106 @@ To set up MySQL to persist your MMC transaction data, you need to complete these
 . Create the database.
 . Create the database user.
 . Set up MMC.
-. <<Modifying the Cleanup Script For MySQL>>.
+. <<Modifying the Cleanup Script for MySQL>>.
 
 === Creating the Database
 
 Create a new database with the following parameters:
 
-* **Database name:** `event_tracker`
-* **Database owner:** `MMC_EVENTS`
+* *Database name:* `event_tracker`
+* *Database owner:* `MMC_EVENTS`
 
 === Creating the Database User
 
 Create a new database user with default permissions and the following parameters:
 
-* **Username:** `MMC_EVENTS`
-* **Password:** `mmc123`
+* *Username:* `MMC_EVENTS`
+* *Password:* `mmc123`
 
 === Setting Up MMC to use MySQL for Persisting Transaction Data
 
 ==== Obtaining MySQL Drivers
 
 . http://dev.mysql.com/downloads/connector/j/5.0.html[Download] the latest MySQL driver. (You need a free Oracle account to download.) The driver is called `mysql-connector-java-<version>`, such as `mysql-connector-java-5.1.26`. You can download the driver as a zip or  tar.gz file.
-. Extract the zip or tar.gz installation file. In the resulting directory structure, locate the file called `mysql-connector-java-<version>-bin.jar`. This is the jbdc driver itself, that you will copy to the Management Console directory structure.
+. Extract the zip or tar.gz installation file. In the resulting directory structure, locate the file called `mysql-connector-java-<version>-bin.jar`. This is the JDBC driver itself, that you will copy to the Management Console directory structure.
 
 ===== Installing the Driver
 
-Copy the MySQL jdbc driver, `mysql-connector-java-<version>-bin.jar`, to the following directory: `<MMC_HOME>/WEB-INF/lib.`
+Copy the MySQL JDBC driver, `mysql-connector-java-<version>-bin.jar`, to the following directory: `<MMC_HOME>/WEB-INF/lib`.
 
-==== Database-Specific Configuration
+==== MMC Configuration
 
-===== Configuration File: `persistence.xml`
+Configuring MMC to store Business Events data on a MySQL database involves two basic tasks:
 
-(Directory: `<MMC_HOME>/`WEB-INF/classes/META-INF.)`
+* Modifying the file `web.xml` to tell MMC to use MySQL instead of its default database
+* Modifying the file `tracking-persistence-mysql.properties` to set the parameters for connecting to the MySQL database
 
-. In the directory listed above, locate the file `persistence.xml`.
-. Open the file for editing, then find the line listed below.
+===== Modifying web.xml
+
+. In the directory `<MMC_HOME>/WEB-INF`, locate the file `web.xml`, then open it for editing.
+. Locate the `spring.profiles.active` section, shown below.
 +
-
 [source,xml,linenums]
 ----
-<property name="openjpa.jdbc.DBDictionary" value="org.apache.openjpa.jdbc.sql.H2Dictionary(batchLimit=-1)" />
+<context-param>
+<param-name>spring.profiles.active</param-name>
+<param-value>tracking-h2,env-derby</param-value>
+</context-param>
 ----
-
-. Edit the line as per below.
 +
-
+. Delete the string `tracking-h2`, then replace it with `tracking-mysql`, as shown below.
++
 [source,xml,linenums]
 ----
-<property name="openjpa.jdbc.DBDictionary" value="mysql" />
+<context-param>
+<param-name>spring.profiles.active</param-name>
+<param-value>tracking-mysql,env-mysql</param-value>
+</context-param>
 ----
++
+. If you are also planning to <<Persisting Environment Data>> to MySQL, delete the string `env-derby` and replace it with `env-mysql`.
 
-===== Configuration File: `applicationContext-tracking.xml`
+[TIP]
+The `spring.profiles.active` section in the `web.xml` configuration file allows you to define what external databases are used for storing environment and/or tracking data.
 
-(Directory: Same as previous file (`<MMC_HOME>/`WEB-INF/classes/META-INF).)`
+==== Modifying tracking-persistence-mysql.properties
 
-. In the directory listed above, locate the file `applicationContext-tracking.xml`.
-. Open the file for editing.
-. Find the beans `dataSource` and `jpaAdapter` as per the listing below.
+. In the directory `<MMC_HOME>/WEB-INF/classes/META-INF/databases`, locate the file `tracking-persistence-mysql.properties`, then open it for editing.
+. Modify the included settings as needed, according to the table below. In general, the only values that you should need to modify are `mmc.tracking.db.username`, `mmc.tracking.db.password`, `mmc.tracking.db.host`, `mmc.tracking.db.port` and `mmc.tracking.db.dbname`.
++
+[%header,cols="33a,33,33a"]
+|===
+|Parameter |Description |Default
+|`mmc.tracking.db.events.query.propKeys` |*Do not change this value.* This is a DB-engine-specific query to retrieve event keys. |`SELECT DISTINCT t1.KEY0 FROM EVENT_PROPERTIES t1`
+|`mmc.tracking.db.platform` |Type of database server to connect to |`mysql`
+|`mmc.tracking.db.driver` |Driver to use for connecting to the database |`com.mysql.jdbc.Driver`
+|`mmc.tracking.db.host` |Hostname or IP address where the database server is listening |`localhost`
+|`mmc.tracking.db.port` |Port where the database server is listening |`3306`
+|`mmc.tracking.db.url` |URL for connecting to the database |`jdbc:mysql://${mmc.tracking.db.host}:${mmc.tracking.db.port}/${mmc.tracking.db.dbname}`
+|`mmc.tracking.db.username` |Database user |`MMC_EVENTS`
+|`mmc.tracking.db.password` |Password for the database user |`mmc123`
+|`mmc.tracking.db.dbname` |Database to connect to |`event_tracker`
+|`mmc.max.events.exception.details.length` |Number of characters from a Business Events exception that will be stored in the tracking database. The maximum allowed is 261120. |`8000`
+|===
++
+. Save the file with your modifications, if any.
 
-[source,xml,linenums]
-----
-<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://<db_host>:3306/event_tracker" />
-        <property name="username" value="MMC_EVENTS" />
-        <property name="password" value="mmc123" />
-    </bean>
+=== Removing Local Database Files
 
-[...]
+For the configuration changes to take effect, before launching MMC you need to delete the local database files that MMC uses by default.
 
-    <bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter">
-        <property name="databasePlatform" value="mysql" />
-    </bean>
-----
+In the root directory of your Web application server, locate the `mmc-data` directory (for example, `/var/lib/tomcat6/mmc-data`), then delete the `mmc-data` directory.
 
-=== Modifying the Cleanup Script For MySQL
+[NOTE]
+Before you delete `mmc-data`, make a backup copy of this directory and store it in a safe location. If anything goes wrong with your new database configuration, you can use `mmc-data` to restore the old database configuration while you troubleshoot your new database config in a test environment.
+
+At this point, MMC, is configured to store environment data on the external MySQL database that you specified.
+
+== Modifying the Cleanup Script for MySQL
 
 MMC includes a script to perform a routine cleanup of the MMC database, which by default takes place every day at midnight. The current script for MySQL contains a bug which causes MySQL to throw an SQL exception. To avoid this issue, replace the original script with the one provided below, by completing the following steps.
 
-==== New Cleanup Script
-
-.the new cleanup script
+[[newscript]]
 
 [source,java,linenums]
 ----
@@ -979,27 +460,23 @@ finally {
 }
 ----
 
-
-==== Replacing the Old Script
+=== Replacing the Old Script
 
 . Log in to MMC.
-. Go to the *Administration* tab, then *Admin Shell*. You should see the following screen. +
-
+. Go to the Administration tab, then Admin Shell. You should see the following screen.
 +
 image::admin-shell.png[admin_shell]
 +
-
-. Click *Cleanup Tracking DB* in the column to the right. This displays the contents of the script in the editor box, as shown below. +
-
+. Click Cleanup Tracking DB in the column to the right. This displays the contents of the script in the editor box, as shown below.
 +
 image::admin-shell2.png[admin_shell2]
 +
-
 . Now you can edit the script as desired. Delete all of the contents of the script, leaving the editor blank.
-. Copy-paste the <<New Cleanup Script>> into the editor.
-. Click *Save*. This causes the new script to overwrite the old one.
+. Copy-paste the new script into the editor.
+. Click *Save As* under the editor.
+. In the input field next to *Save As*, type `Cleanup Tracking DB` (case sensitive), then click Save. This causes the <<newscript,new script>> to overwrite the old one.
 
 == See Also
 
-* Read more about xref:setting-up-mmc.adoc[MMC setup].
-* Review the xref:architecture-of-the-mule-management-console.adoc[Architecture of the Mule Management Console].
+* Read more about xref:3.7@setting-up-mmc.adoc[MMC setup].
+* Review the xref:3.6@architecture-of-the-mule-management-console.adoc[Architecture of the Mule Management Console].

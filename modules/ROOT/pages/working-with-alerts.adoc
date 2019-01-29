@@ -21,18 +21,50 @@ There are a number of different types of alerts that you can set up. You indicat
 
 Select the alert type according to the problem for which you want visibility. The table below shows the different alert types.
 
-[%header%autowidth.spread]
+[%header,cols="34,33,33"]
 |===
-|Alert Type |Description
-|Custom Expression |Raises an alert depending on the evaluation of a target object custom expression
-|Exception |Raises an alert when an exception of a specified type occurs for an application
-|JMX Attribute |Raises an alert based on the evaluation of a JMX attribute value in an MBean
-|Low Memory |Raises an alert when a specified memory pool reaches a specified memory threshold level
-|Log Regex |Raises an alert based on a specified regular expression in specified log files
-|Server Down |Raises an alert when a specified server or server group is down. Also raises an alert when a node in a cluster is down
-|Server Up |Raises an alert when a specified server or server group comes up. Also raises an alert when a node in a cluster comes up
-|Thread Pool |Raises an alert when a specified thread pool reaches a specified threshold ratio
-|URL Health |Raises an alert when a specified URL location returns a particular status code
+|Alert Type |Description |Works in
+|Custom Expression |Raises an alert depending on the evaluation of a target object custom expression a|
+* Servers
+* Groups
+
+|Exception |Raises an alert when an exception of a specified type occurs for an application a|
+* Servers
+* Groups
+
+|JMX Attribute |Raises an alert based on the evaluation of a JMX attribute value in an MBean a|
+* Servers
+* Groups
+* Clusters
+
+|Low Memory |Raises an alert when a specified memory pool reaches a specified memory threshold level a|
+* Servers
+* Groups
+
+|Log Regex |Raises an alert based on a specified regular expression in specified log files a|
+* Servers
+* Groups
+* Clusters
+
+|Server Down |Raises an alert when a specified server or server group is down. Also raises an alert when a node in a cluster is down a|
+* Servers
+* Groups
+* Clusters
+
+|Server Up |Raises an alert when a specified server or server group comes up. Also raises an alert when a node in a cluster comes up a|
+* Servers
+* Groups
+* Clusters
+
+|Thread Pool |Raises an alert when a specified thread pool reaches a specified threshold ratio a|
+* Servers
+* Groups
+
+|URL Health |Raises an alert when a specified URL location returns a particular status code a|
+* Servers
+* Groups
+* Clusters
+
 |===
 
 == When an Alert is Raised
@@ -83,7 +115,7 @@ Briefly, the icons indicate the following:
 * Up arrow on yellow background: Major alert
 * Fire icon on red background: Fatal alert
 
-When a plus image:add.png[] sign appears to the left of an alert, it indicates there are more details about the triggered alert. Click this plus sign to see further details about the alert. In the above figure, you can see details about two of the alerts.
+When a plus image:add.png[(plus)] sign appears to the left of an alert, it indicates there are more details about the triggered alert. Click this plus sign to see further details about the alert. In the above figure, you can see details about two of the alerts.
 
 For alerts that have been triggered, the details portion displays information relevant to the type of the alert. For example, it might show data such as the following:
 
@@ -94,13 +126,13 @@ For alerts that have been triggered, the details portion displays information re
 * URL address: For URL Health alerts
 * Message: The error message, if a URL Health alert
 
-You may have these details displayed for multiple alerts simultaneously. Click the minus image:forbidden.png[] sign to close these additional details for an alert.
+You may have these details displayed for multiple alerts simultaneously. Click the minus sign to close these additional details for an alert.
 
 === New Alerts Notification
 
 The Alerts screen displays a message in red at the top notifying you of the number of alerts that have not yet been read. This notification about unread alerts appears at the top of all console panes. In addition, when an alert is triggered, a pop-up appears briefly indicating the alert that was triggered. You see this pop-up regardless of the console pane you are currently viewing. The new alert also increments the unread alerts counter, assuming you haven't yet looked at that alert. In addition to incrementing the counter, a note appears indicating the number of new alerts just added.
 
-Click the notification of unread alerts, circled in red in the figure below, to open the pane to view alerts.
+Click the notification of unread alerts, circled in red in the figure below, to open the pane to view alerts. +
 
 image::alerts-unread-notice.png[]
 

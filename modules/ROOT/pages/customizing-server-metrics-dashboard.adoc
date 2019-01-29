@@ -3,6 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+* xref:3.6@customizing-server-metrics-dashboard.adoc[Chart Configuration Options]
+
 Click the configure icon to the right of the Servers Metrics heading (in the figure below) to customize this portion of the servers details pane. You can select the particular metrics you want displayed in the chart.
 
 The customize screen (in the figure below) shows the active metrics, which are those currently appearing in the pane. Click the red X next to a metric to remove it from the display. For example, click the X to the right of OS Swap Usage to remove it from the chart.
@@ -31,4 +33,7 @@ You can add the following server metrics charts. For each type of chart, the tab
 |OS Memory Usage |Maximum memory
 |OS Swap Usage |Maximum memory
 |Thread Pool Size |Select the thread pool
+|Service Execution Time |Select the server and service
+|Service Queue |Select the service and the queue
+|Service Queue Time |Select the server and service
 |===

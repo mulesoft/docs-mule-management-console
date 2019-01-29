@@ -3,43 +3,32 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-*_MMC Version 3.4.1_*
+#*_MMC Version 3.4.2 and Later_*#
 
 This page describes how to set up and configure the Mule Management Console to persist environment and transaction data to http://technet.microsoft.com/en-us/sqlserver/default[Microsoft SQL Server].
 
-*Notes:*
-
-* In MMC 3.4.1, persisting Management Console data on MS SQL Server is not fully supported. This page describes a configuration that has been tested and is known to work.
-+
-The instructions on this page are valid _only_  for MMC 3.4.1. MMC 3.4.2 and later versions use a simpler configuration in which data persistence on MS SQL server is fully supported. If persisting data on MS SQL Server, it is recommended to use MMC 3.4.2 or later. For details, see the latest version of this document, xref:3.6@persisting-mmc-data-to-ms-sql-server.adoc[Persisting Data on MS SQL Server].
-+
-* This document lays out the instructions for deploying the Management Console on a production-ready environment using Apache Tomcat. All of the instructions should work with other xref:3.4@mule-runtime::hardware-and-software-requirements.adoc[supported application servers] as well, but this has not been tested.
+[WARNING]
+This document lays out the instructions for deploying the Management Console on a production-ready environment using Apache Tomcat. All of the instructions should work with other https://docs.mulesoft.com/mule-user-guide/v/3.7/hardware-and-software-requirements[supported application servers] as well, but this has not been tested.
 
 == Assumptions
 
 This document assumes that you have installed:
 
-* **Mule Enterprise 3.4.1**. Download it from the http://www.mulesoft.com/support-login[customer portal] if you need to upgrade to this version.
-* **MMC Version 3.4.1**. Download it from the http://www.mulesoft.com/support-login[customer portal] if you need to upgrade to this version.
-* *a* **Web application server such as Tcat, Tomcat, or JBoss**. Please refer to the xref:3.4@mule-runtime::hardware-and-software-requirements.adoc[Hardware and Software Requirements] for the latest information about hardware requirements and supported application servers, Java Runtime Environments, and browsers.
+* *MMC Version 3.5.0*. Download it from the http://www.mulesoft.com/support-login[customer portal] if you need to upgrade to this version.
+* *a Web application server such as Tcat, Tomcat, or JBoss*. Please refer to the https://docs.mulesoft.com/mule-user-guide/v/3.7/hardware-and-software-requirements[Hardware and Software Requirements] for the latest information about hardware requirements and supported application servers, Java Runtime Environments, and browsers.
 
-For practical purposes, this document mentions Tomcat as the servlet container; however, the instructions contained here apply also to Tcat or JBoss. If using Tcat or JBoss, make sure to unpack the Management Console .war file in the appropriate directory. For additional information, see xref:installing-the-production-version-of-mmc.adoc[Installing the Production Version of MMC].
+For practical purposes, this document mentions Tomcat as the servlet container; however, the instructions contained here apply also to Tcat or JBoss. If using Tcat or JBoss, make sure to unpack the Management Console .war file in the appropriate directory. For additional information, see xref:3.6@installing-the-production-version-of-mmc.adoc[Installing the Production Version of MMC].
 
-*Note:* Known Issue with MS SQL and Java 6, Update 29:
+[WARNING]
+====
+*Known Issue with MS SQL and Java 6, Update 29*
 
 There is a http://bugs.java.com/bugdatabase/view_bug.do?bug_id=7105007[known issue] with Java 6, Update 29, regarding an SSL configuration which causes connection attempts to the database to hang indefinetely, with no timeout, thus preventing MMC startup. MS SQL cannot be used with this Java version. Please upgrade to a later JVM.
-
+====
 
 == Prerequisites
 
-Prior to configuring the Management Console to persist data to the MS SQL Server, you will need to:
-
-. Install a patch for your Management Console installation.
-. Ensure that the MS SQL Server and logins are properly configured and available.
-
-=== Patch
-
-In order to use the Management Console with MS SQL Server, you will need to apply a patch to your Management Console .war file. To obtain the patch, open a support case via the http://www.mulesoft.com/support-login[MuleSoft Customer Portal].
+Prior to configuring the Management Console to persist data to the MS SQL Server, you need to ensure that the MS SQL Server and logins are properly configured and available.
 
 === MS SQL Server Configuration
 
@@ -47,78 +36,74 @@ This article assumes the following MS SQL Server configuration:
 
 ==== For Environment Data
 
-[%header,cols="2*"]
+[%header,cols="2*a"]
 |===
 |Item |Description
-|Database for environment data a|
+|Database for environment data |
 * Name: `MMC_STATUS`
 * Owner: `MMC_USER`
-|Login for environment data database a|
+
+|Login for environment data database |
 * Name: `MMC_USER`
 * Default database: `MMC_STATUS`
 * Password expiration: No
 * Password policy: Not set
 * Password: Any
+
 |===
 
 ==== For Tracking Data
 
-[%header,cols="2*"]
+[%header,cols="2*a"]
 |===
 |Item |Description
-|Database for tracking data a|
+|Database for tracking data |
 * Name: `MMC_PERSISTENCY`
 * Owner: `MMC_TRACKER`
-|Login for tracking data database a|
+
+|Login for tracking data database |
 * Name: `MMC_TRACKER`
 * Default database: `MMC_PERSISTENCY`
 * Password expiration: No
 * Password policy: Not set
 * Password: Any
+
 |===
 
-==== Database Connectivity
+=== Database Connectivity
 
 MS SQL Server must be configured to allow logging with a user name and password instead of only with integrated authentication (i.e. the security options need to specify SQL Server and Windows Authentication Mode).
 
 The database must be accessible from the host where the Management Console resides. When in doubt, confirm that the connection is available using a standard client from the Management Console host.
 
-*Tip:* Connection testing using the telnet command:
+
+[NOTE]
+====
+ Connection testing using the telnet command
 
 If connection using a standard client fails due to a connectivity issue (not an authentication issue), confirm connectivity using the `telnet` command, if available on your system.
 
 From the Management Console host, run:
 
-----
-telnet <database_host> <database_port>
-----
-
 If the connection succeeds, you should output similar to the following:
-
-[source,text,linenums]
-----
-telnet 192.168.56.2 1433
-Trying 192.168.56.2...
-Connected to 192.168.56.2.
-Escape character is '^]'.
-----
 
 The above output indicates that the connection was successful. A "connection refused" error usually indicates that nothing is listening on the specified host and port. Any other output, or lack of output, indicates a connectivity problem, such as a routing issue or firewall blocking requests between the Management Console host and the database host.
 
 The telnet command only tests network connectivity, not authentication to the database.
+====
 
-
-=== Setting Up Database Tables for Environment Data
+=== Setting Up Database Tables for Persistent Data
 
 On the first run, JCR automatically creates all the tables needed to store persistent MMC information. However, if you are planning to persist environment data to an external database, you must manually create tables that store Quartz job information, or an error similar to the following will occur:
 
+[source,text,linenums]
 ----
-ERROR: relation “qrtz_locks” does not exist.
+ERROR: relation "qrtz_locks" does not exist.
 ----
 
 To create and insert the tables, follow these steps:
 
-. Navigate to `<MMC_HOME>/` WEB-INF/classes/quartz.
+. Navigate to ` <MMC_HOME>/`WEB-INF/classes/quartz.
 . Locate the SQL script `tables_sqlServer.sql`.
 . Execute `tables_sqlServer.sql` on the target database ( `MMC_STATUS` ) as the database owner.
 
@@ -131,7 +116,7 @@ Configuring the Management Console to use MS SQL Server requires that you copy f
 It is recommended that you extract the contents of the console .war file to the `webapps` directory of your Tomcat installation and apply configuration to the extracted contents. The complete sequence of steps is:
 
 . Ensure that the Tomcat servlet container is not running.
-. Extract the Management Console .war file to the `webapps` directory under the Tomcat root directory. After extraction, the contents of the .war file should reside in `<TOMCAT_HOME>/webapps/mmc-3.4.1`. For example, if the Tomcat root directory is `/var/lib/tomcat6`, the Management Console's root directory should be `/var/lib/tomcat6/webapps/mmc-3.4.1`.
+. Extract the Management Console .war file to the `webapps` directory under the Tomcat root directory. After extraction, the contents of the .war file should reside in `<TOMCAT_HOME>/webapps/mmc-3.5.0`. For example, if the Tomcat root directory is `/var/lib/tomcat6`, the Management Console's root directory should be `/var/lib/tomcat6/webapps/mmc-3.5.0`.
 . Perform the modifications described in this page: copying the `sqljdbc4.jar` file and modifying the appropriate configuration files.
 . Ensure that there is no directory named `mmc-data` anywhere in the Tomcat directory tree.
 . Start Tomcat, starting your customized Management Console for the first time.
@@ -146,327 +131,176 @@ Download the library from the http://www.microsoft.com/en-us/download/details.as
 
 If using Windows:
 
-* find and run the `qljdbc_<version>_enu.exe` file, then follow the installation wizard
+* find and run the `sqljdbc_<version>_enu.exe` file, then follow the installation wizard
 
 If using a Unix or Unix-based system:
 
-* uncompress and unpack the file `qljdbc_<version>_enu.tar.gz` file
+* uncompress and unpack the file `sqljdbc_<version>_enu.tar.gz` file
 * in the newly-created directory tree, locate the `sqljdbc4.jar` file
 
 On both types of operating systems:
 
-Copy the file `sqljdbc4.jar` to the following directory:` <MMC_HOME>/WEB-INF/lib`. For example, `/var/lib/tomcat6/webapps/mmc-console-3.4.1/WEB-INF/lib`.
+Copy the file `sqljdbc4.jar` to the following directory:` <MMC_HOME>/WEB-INF/lib`. For example, `/var/lib/tomcat6/webapps/mmc-console-3.5.0/WEB-INF/lib`.
 
-*Tip:* Unpacking gzipped tar files:
+[TIP]
+====
+  Unpacking gzipped tar files
 
 To uncompress and unpack the .tar.gz file, open a terminal and use the `cd` command to navigate to the directory containing the file. Then, run the following commands:
 
-----
-gunzip <file>
-----
-
-This  uncompresses the file, whose filename extension then changes from `.tar.gz` to `.tar`. Unpack the file with the `tar` command, as shown below.
-
-----
-tar xvf <file>
-----
+This will uncompress the file, whose filename extension will change from `.tar.gz` to `.tar`. Unpack the file with the `tar` command, as shown below.
 
 For example:
-
-[source,text,linenums]
-----
-cd Downloads
-gunzip sqljdbc_4.0.2206.100_enu.tar.gz
-tar xvf sqljdbc_4.0.2206.100_enu.tar
-----
 
 Some versions of the `tar` utility allow you to uncompress and unpack the file with a single command, as shown below.
 
-----
-tar zxvf <file>
-----
-
 For example:
 
-[source,text,linenums]
-----
-cd Downloads
-tar zxvf sqljdbc_4.0.2206.100_enu.tar.gz
-----
+This will uncompress and unpack the contents of the file in the current directory.
+====
 
-This uncompresses and unpacks the contents of the file in the current directory.
+[NOTE]
+====
+*If MMC is deployed to Websphere*
 
+If you have deployed MMC to Websphere, you can copy either `sqljdbc4.jar` as detailed above, **_or_** `sqlserver.jar`, which is the ConnectJDBC type 4 driver provided by IBM. You do not need to copy both files.
+
+For further information, see the IBM documentation for http://www-01.ibm.com/support/knowledgecenter/SS7JFU_7.0.0/com.ibm.websphere.express.doc/info/exp/ae/rdat_minreqmssql.html[data source minimum required settings for Microsoft SQL Server].
+====
 
 === Configuration for Environment Data
 
-To store environment data on MS SQL Server, you need to modify the following files:
+Configuring MMC to store data on a MS-SQL Server database involves two basic tasks:
 
-* <<configuration-file-code-mmc-properties-code,mmc.properties>>
-* <<configuration-file-code-applicationcontext-xml-code,applicationContext.xml>>
-* <<configuration-file-code-jackrabbit-repo-xml-code,jackrabbit-repo.xml>>
-* <<configuration-file-code-scheduler-properties-code,scheduler.properties>>
+* Modifying the file `web.xml` to tell MMC to use MS-SQL Server instead of its default database
+* Modifying the file `mmc-mssql.properties` to set the parameters for connecting to the MS-SQL Server database
 
-All these files reside in `<TOMCAT_ROOT>/webapps/mmc-console-3.4.1/WEB-INF/classes/META-INF`.
+==== Modifying `web.xml`
 
-When modifying the files as described here, make sure to replace `<MMC_USER_password>` with the real password configured in MS SQL Server, as well as any other values you may have modified such as database host and port.
+. In the directory `<MMC_HOME>/WEB-INF`, locate the file `web.xml`, then open it for editing.
+. Locate the `spring.profiles.active` section, shown below.
 
-If the MS SQL Server instance to be used is not the default, append `instanceName=<SQLServerInstanceName>` after the `databaseName` in the URL specified in the configuration files, as shown in the example below.
-
-[source,text,linenums]
+[source,xml,linenums]
 ----
-...
-datasource.url=jdbc\:sqlserver\://172.16.0.12\:1433;databaseName=MMC_STATUS;instanceName=SQLEXPRESS
-...
+<context-param>
+<param-name>spring.profiles.active</param-name>
+<param-value>tracking-h2,env-derby</param-value>
+</context-param>
 ----
 
-==== Configuration File: `mmc.properties`
+. Delete the string `env-derby`, then replace it with `env-mssql`, as shown below.
 
-Open the file for editing, then edit it as shown below.
+[source,xml,linenums]
+----
+<context-param>
+<param-name>spring.profiles.active</param-name>
+<param-value>tracking-h2,env-mssql</param-value>
+</context-param>
+----
 
-[source,text,linenums]
-----
-datasource.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
-datasource.url=jdbc\:sqlserver\://<db_host_ip>\:1433;databaseName=MMC_STATUS
-datasource.username=MMC_USER
-datasource.password=<MMC_USER_password>
-script=sqlServer
-mmc.data=./mmc-data
-plugin.directory=WEB-INF/plugins
-console.inactivityTimeout=60
-----
+. If you are also planning to <<Configuration for Transaction Data>> to MS-SQL Server, delete the string `tracking-h2` and replace it with `tracking-mssql`.
+
+[TIP]
+The `spring.profiles.active` section in the `web.xml` configuration file allows you to define what external databases are used for storing environment and/or tracking data. For a quick instructions for all supported database servers, see xref:3.7@configuring-mmc-for-external-databases-quick-reference.adoc[Configuring MMC for External Databases - Quick Reference].
+
+==== Modifying `mmc-mssql.properties`
+
+. In the directory `<MMC_HOME>/WEB-INF/classes/META-INF/databases`, locate the file `mmc-mssql.properties`, then open it for editing.
+. The table below lists the settings contained in the file. Modify the values as needed. In general, the only values that you should need to modify are `env.username`, `env.password`, `env.host`, `env.port` and `env.dbschema`.
+
+[%header,cols="33a,33,33a"]
+|===
+|Parameter |Description |Default
+|`env.driver` |Driver to use for connecting to the database |`com.microsoft.sqlserver.jdbc.SQLServerDriver`
+|`env.script` |Script to use for creating the tables in the target database |`sqlServer`
+|`env.username` |Database user |`MMC_STATUS`
+|`env.password` |Password for the database user |`mmc123`
+|`env.host` |Hostname or IP address where the database server is listening |`localhost`
+|`env.port` |Port where the database server is listening |`1433`
+|`env.url` |URL for connecting to the database |`jdbc\:sqlserver\://${env.host}\:${env.port};databaseName=${env.dbschema}`
+|`env.dbschema` |Database to connect to |`mmc_persistency_status`
+|===
+. Save the file with your modifications, if any.
+
+=== Removing Local Database Files
+
+For the configuration changes to take effect, before launching MMC you need to delete the local database files that MMC uses by default.
+
+In the root directory of your Web application server, locate the `mmc-data` directory (for example, `/var/lib/tomcat6/mmc-data`), then delete the `mmc-data` directory.
 
 [NOTE]
-This file requires that you escape colons with a backslash.
+Before you delete `mmc-data`, make a backup copy of this directory and store it in a safe location. If anything goes wrong with your new database configuration, you can use `mmc-data` to restore the old database configuration while you troubleshoot your new database config in a test environment.
 
-==== Configuration File: `applicationContext.xml`
+At this point, MMC, is configured to store environment data on the external MS-SQL Server database that you specified.
 
-Open the file for editing, then look for the bean called `internalDataSource`. Edit it as shown below.
+=== Configuration for Transaction Data
 
-[source,xml,linenums]
-----
-...
-<bean name="internalDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-        <property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-        <property name="url" value="jdbc:sqlserver://<db_host_ip>:1433;databaseName=MMC_STATUS"/>
-       <property name="username" value="MMC_USER"/>
-       <property name="password" value="<MMC_USER_password>"/>
-</bean>
-...
-----
+Configuring MMC to store Business Events data on an MS-SQL Server database involves two basic tasks:
 
-==== Configuration File: `jackrabbit.repo.xml`
+* Modifying the file `web.xml` to tell MMC to use MS-SQL Server instead of its default database
+* Modifying the file `tracking-persistence-mssql.properties` to set the parameters for connecting to the MS-SQL Server database
 
-Open the file for editing, then find the `Workspaces` configuration. Ensure that the workspace name coincides with what is indicated by the `defaultWorkspace` attribute. In the the example below, the workspace name is `default`.
+==== Modifying `web.xml`
+
+. In the directory `<MMC_HOME>/WEB-INF`, locate the file `web.xml`, then open it for editing.
+. Locate the `spring.profiles.active` section, shown below.
 
 [source,xml,linenums]
 ----
-...
-<!--        location of workspaces root directory and name of default workspace    -->
-    <Workspaces rootPath="${rep.home}/workspaces" defaultWorkspace="default"/>
-    <!--        workspace configuration template:
-        used to create the initial workspace if there's no workspace yet    -->
-    <Workspace name="default">
-...
+<context-param>
+<param-name>spring.profiles.active</param-name>
+<param-value>tracking-h2,env-derby</param-value>
+</context-param>
 ----
 
-Additionally, edit the sections listed below.
-
-*Notes:
-
-*Explanation of snippets displayed below*
-
-The snippets listed for file `jackrabbit.repo.xml` define configuration for `FileSystem` and `PersistenceManager`, as described below.
-
-For `FileSystem`, all references should:
-
-* `use org.apache.jackrabbit.core.fs.db.MSSqlFileSystem`
-* do not use the `shutdownOnClose` parameter
-* use values for `driver`, `url`, `databaseName`, `user` and `password` that correctly point to the `MMC_STATUS` database
-* set the schema as `mssql` and `schemaCheckEnabled` to `true`
-
-For `PersistenceManager`, all references should:
-
-* use `org.apache.jackrabbit.core.persistence.pool.MSSqlPersistenceManager`, instead of `org.apache.jackrabbit.core.persistence.pool.DerbyPersistenceManager`
-* do not use the `shutdownOnClose` parameter
-* use values for `driver`, `url`, `databaseName`, `user` and `password` that correctly point to the `MMC_STATUS` database
-* set the schema as `mssql`, `schemaCheckEnabled` to `true`, and `externalBLOBs` to `false`
-
-
+. Delete the string `tracking-h2`, then replace it with `tracking-mssql`, as shown below.
 
 [source,xml,linenums]
 ----
-...
-<FileSystem class="org.apache.jackrabbit.core.fs.db.MSSqlFileSystem">
-             <param name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-              <param name="url" value="jdbc:sqlserver://<db_host_ip>:1433;databaseName=MMC_STATUS"/>
-              <param name="schemaObjectPrefix" value="repo_"/>
-              <param name="user" value="MMC_USER"/>
-              <param name="password" value="<MMC_USER_password>"/>
-              <param name="schema" value="mssql"/>
-              <param name="schemaCheckEnabled" value="true"/>
-<FileSystem>
-...
+<context-param>
+<param-name>spring.profiles.active</param-name>
+<param-value>tracking-mssql,env-derby</param-value>
+</context-param>
 ----
 
-[source,xml,linenums]
-----
-...
-<FileSystem class="org.apache.jackrabbit.core.fs.db.MSSqlFileSystem">
-              <param name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-              <param name="url" value="jdbc:sqlserver://<db_host_ip>:1433;databaseName=MMC_STATUS"/>
-              <param name="schemaObjectPrefix" value="workspace_"/>
-              <param name="user" value="MMC_USER"/>
-              <param name="password" value="<MMC_USER_password>"/>
-              <param name="schema" value="mssql"/>
-              <param name="schemaCheckEnabled" value="true"/>
+. If you are also planning to <<Configuration for Environment Data>> to MS-SQL Server, delete the string `env-derby` and replace it with `env-mssql`.
 
-</FileSystem>
-...
-----
+[NOTE]
+The `spring.profiles.active` section in the `web.xml` configuration file allows you to define what external databases are used for storing environment and/or tracking data. For a quick instructions for all supported database servers, see xref:3.7@configuring-mmc-for-external-databases-quick-reference.adoc[Configuring MMC for External Databases - Quick Reference].
 
-[source,xml,linenums]
-----
-...
-<PersistenceManager class="org.apache.jackrabbit.core.persistence.pool.MSSqlPersistenceManager">
-             <param name="schemaObjectPrefix" value="Jackrabbit Core_"/>
-              <param name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-              <param name="url" value="jdbc:sqlserver://<db_host_ip>:1433;databaseName=MMC_STATUS"/>
-              <param name="externalBLOBs" value="false"/>
-              <param name="schemaCheckEnabled" value="true"/>
-              <param name="user" value="MMC_USER"/>
-              <param name="password" value="<MMC_USER_password>"/>
-              <param name="schema" value="mssql"/>
-</PersistenceManager>
-...
-----
+==== Modifying `tracking-persistence-mssql.properties`
 
-[source,xml,linenums]
-----
-...
-<FileSystem class="org.apache.jackrabbit.core.fs.db.MSSqlFileSystem">
-               <param name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-               <param name="url" value="jdbc:sqlserver://<db_host_ip>;databaseName=MMC_STATUS_NEW"/>
-               <param name="schemaObjectPrefix" value="search_index_w_"/>
-               <param name="user" value="MMC_USER"/>
-               <param name="password" value="<MMC_USER_password>"/>
-               <param name="schema" value="mssql"/>
-               <param name="schemaCheckEnabled" value="true"/>
-</FileSystem>
-...
-----
+. In the directory `<MMC_HOME>/WEB-INF/classes/META-INF/databases`, locate the file `tracking-persistence-mssql.properties`, then open it for editing.
+. Modify the included settings as needed, according to the table below. In general, the only values that you should need to modify are `mmc.tracking.db.username`, `mmc.tracking.db.password`, `mmc.tracking.db.host`, `mmc.tracking.db.port` and `mmc.tracking.db.dbname`.
 
-[source,xml,linenums]
-----
-...
-<FileSystem class="org.apache.jackrabbit.core.fs.db.MSSqlFileSystem">
-             <param name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-             <param name="url" value="jdbc:sqlserver://<db_host_ip>:1433;databaseName=MMC_STATUS"/>
-             <param name="schemaObjectPrefix" value="filesystem_version_"/>
-             <param name="user" value="MMC_USER"/>
-             <param name="password" value="<MMC_USER_password>"/>
-             <param name="schema" value="mssql"/>
-             <param name="schemaCheckEnabled" value="true"/>
-</FileSystem>
-...
-----
+[%header,cols="33a,33,33a"]
+|===
+|Parameter |Description |Default
+|`mmc.tracking.db.events.query.deleteOlderThan` |*Do not change this value.* This is the cleanup script query for the MS-SQL database. |`DELETE p FROM EVENT_PROPERTIES p where p.id in (select e.id from EVENTS e where e.transaction_id in (select t.id from TRANSACTION_SUMMARIES t where t.timestamp < ?1))`
+|`mmc.tracking.db.platform` |Type of database server to connect to |`org.apache.openjpa.jdbc.sql.SQLServerDictionary`
+|`mmc.tracking.db.driver` |Driver to use for connecting to the database |`com.microsoft.sqlserver.jdbc.SQLServerDriver`
+|`mmc.tracking.db.host` |Hostname or IP address where the database server is listening |`localhost`
+|`mmc.tracking.db.port` |Port where the database server is listening |`1433`
+|`mmc.tracking.db.url` |URL for connecting to the database |`jdbc:sqlserver://${mmc.tracking.db.host}:${mmc.tracking.db.port};databaseName=${mmc.tracking.db.dbname}`
+|`mmc.tracking.db.username` |Database user |`mmc_tracking`
+|`mmc.tracking.db.password` |Password for the database user |`mmc123`
+|`mmc.tracking.db.dbname` |Database to connect to |`persistency`
+|`mmc.max.events.exception.details.length` |Number of characters from a Business Events exception that will be stored in the tracking database. The maximum allowed is 261120. |`8000`
+|===
+. Save the file with your modifications, if any.
 
-[source,xml,linenums]
-----
-...
-<PersistenceManager class="org.apache.jackrabbit.core.persistence.pool.MSSqlPersistenceManager">
- <param name="schemaObjectPrefix" value="version_"/>
+=== Removing Local Database Files
 
- <param name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
- <param name="url" value="jdbc:sqlserver://<db_host_ip>:1433;databaseName=MMC_STATUS"/>
- <param name="schemaCheckEnabled" value="true"/>
+For the configuration changes to take effect, before launching MMC you need to delete the local database files that MMC uses by default.
 
- <param name="user" value="MMC_USER"/>
+In the root directory of your Web application server, locate the `mmc-data` directory (for example, `/var/lib/tomcat6/mmc-data`), then delete the `mmc-data` directory.
 
- <param name="password" value="<MMC_USER_password>"/>
- <param name="schema" value="mssql"/>
- <param name="externalBLOBs" value="false"/>
-</PersistenceManager>
-...
-----
+[NOTE]
+Before you delete `mmc-data`, make a backup copy of this directory and store it in a safe location. If anything goes wrong with your new database configuration, you can use `mmc-data` to restore the old database configuration while you troubleshoot your new database config in a test environment.
 
-[source,xml,linenums]
-----
-...
-<FileSystem class="org.apache.jackrabbit.core.fs.db.MSSqlFileSystem">
-              <param name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-              <param name="url" value="jdbc:sqlserver://<db_host_ip>:1433;databaseName=MMC_STATUS_NEW"/>
-              <param name="schemaObjectPrefix" value="search_index_"/>
-              <param name="user" value="MMC_USER"/>
-              <param name="password" value="<MMC_USER_password>"/>
-              <param name="schema" value="mssql"/>
-              <param name="schemaCheckEnabled" value="true"/>
-</FileSystem>
-...
-----
-
-==== Configuration File: `scheduler.properties`
-
-Open the file for editing, and modify it as shown below.
-
-[source,text,linenums]
-----
-org.quartz.jobStore.isClustered=false
-org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.MSSQLDelegate
-org.quartz.jobStore.useProperties=true
-org.quartz.scheduler.instanceId=AUTO
-----
-
-=== Configuration For Tracking Data
-
-To store tracking data on MS SQL Server, you will need to modify the following files:
-
-* `persistence.xml`
-* `applicationContextTracking.xml`
-
-Both files reside in `<TOMCAT_ROOT>/webapps/mmc-console-3.4.1/WEB-INF/classes/META-INF`.
-
-==== Configuration File: `persistence.xml`
-
-Open the file for editing, and locate the following parameters:
-
-* `openjpa.jdbc.SynchronizeMappings`
-* `openjpa.jdbc.DBDictionary`
-
-Modify the parameters as shown below.
-
-[source,xml,linenums]
-----
-...
-<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction='refresh')" />
-<property name="openjpa.jdbc.DBDictionary" value="org.apache.openjpa.jdbc.sql.SQLServerDictionary" />
-...
-----
-
-==== Configuration File: `applicationContext-tracking.xml`
-
-Open the file for editing, and locate the `jpaAdapter` and `dataSource` beans. Modify them as shown in the excerpts below.
-
-[source,xml,linenums]
-----
-...
-<bean id="jpaAdapter" class="org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter">
-        <property name="databasePlatform" value="org.apache.openjpa.jdbc.sql.SQLServerDictionary" />
-</bean>
-...
-----
-
-[source,xml,linenums]
-----
-...
-<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-        <property name="url" value="jdbc:sqlserver://<db_host_ip>:1433;databaseName=MMC_PERSISTENCY" />
-        <property name="username" value="MMC_TRACKER" />
-        <property name="password" value="<MMC_TRACKER_password>" />
-...
-----
+At this point, MMC, is configured to store tracking data on the external MS-SQL Server database that you specified.
 
 == See Also
 
-* Read more about xref:setting-up-mmc.adoc[MMC setup].
-* Review the xref:architecture-of-the-mule-management-console.adoc[Architecture of the Mule Management Console].
+* Read more about xref:3.7@setting-up-mmc.adoc[MMC setup].
+* Review the xref:3.6@architecture-of-the-mule-management-console.adoc[Architecture of the Mule Management Console].

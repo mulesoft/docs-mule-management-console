@@ -13,11 +13,11 @@ This document assumes that you are an administrator account holder in MMC.
 
 *Users* are individuals who can log in to the console. For more information about adding and managing users, refer to xref:setting-up-and-managing-users-in-mmc.adoc[Setting Up and Managing Users in MMC] or xref:setting-up-and-managing-users-via-ldap.adoc[Setting Up and Managing Users via LDAP].
 
-*User Groups* allow you to assign permissions collectively to a group of users, effectively defining user roles. See Managing Groups for more information.
+*User Groups* allow you to assign permissions collectively to a group of users, effectively defining user roles. See <<Managing User Groups>> for more information.
 
-*Server Group Permissions* specify which actions members of a user group may perform on a specified set of servers or server groups. These actions include viewing and deleting files, controlling servers, killing threads, and creating and disbanding clusters. For more information about server group permissions, see Server Group Permissions Reference.
+*Server Permissions* specify which actions members of a user group may perform on a specified set of servers or server groups. These actions include viewing and deleting files, controlling servers, killing threads, and creating and disbanding clusters. For more information about server permissions, see <<Server Permissions Reference>>.
 
-*Global Permissions* specify which tasks members of a user group may perform in the Management Console, such as viewing deployments, controlling flows, and managing users. For more information about global permissions, see <<Global Permissions Reference >>.
+*Global Permissions* specify which tasks members of a user group may perform in  the Management Console, such as viewing deployments, controlling flows, and managing users. For more information about global permissions, see <<Global Permissions Reference >>.
 
 == Choosing a User Management System
 
@@ -45,22 +45,21 @@ The global permissions define the permissions that this group has regarding depl
 
 === Adding a User Group
 
-. In the *Administration* tab, click *User Groups* in the left navigation panel to see the existing user groups. Click *New* to create a new group.
+. In the *Administration* tab, click *User Groups* in the left navigation panel to see the existing user groups. Click *New* to create a new group. +
 +
 image::mmc-usergroups.png[MMC-usergroups]
 
-. Enter the *Name* of the new group, and optionally, a *Description*.
+. Enter the *Name* of the new group, and optionally, a *Description*.  +
 +
 image::mmc-addgroup1.png[]
 
 . Select the *Global Permissions* from the list in the left column. Use the *Select All* button at the bottom of the list to give this user group all global permissions. Or, check only those permissions you want the user group to have.
-
-. To set *Server Group Permissions*,** **first select one or more of the server groups from the pull-down list that this user group can act on. (You can select *All*, or select individual server groups one at a time and check the permissions boxes for each one.) Then, use the check boxes to set the server group permissions from the list in the right column. Use the *Select All* button at the bottom of the list to give this user group all server permissions for the designated server groups. Or, check only those permissions you want the user group to have.
+. To set *Server Group Permissions*,** **first select one or more of the server groups from the pull-down list that this user group can act on. (You can select *All*, or select individual server groups one at a time and check the permissions boxes for each one.) Then, use the check boxes to set the server group permissions from the list in the right column. Use the *Select All* button at the bottom of the list to give this user group all server permissions for the designated server groups. Or, check only those permissions you want the user group to have. +
 +
 image::mmc-addgroup2.png[]
 
 . Click *Save*.
-+†
+
 [NOTE]
 Note that two cluster-related permissions are also listed in the server group permissions: **Clusters - Create** and **Cluster - Disband**.
 
@@ -77,14 +76,9 @@ Assigning individual users to user groups, equivalent to assigning them a role, 
 
 Whether you are modifying the permissions for the default user groups or setting up your own user groups, you need to consider the "actors" who will be in each user group and the use cases that these actors will be performing. In conjunction with these use cases, you can further fine-tune these permissions via server groups. By grouping servers into logical categories (Testing, Production, Development, Staging and so forth), you can give some groups more permissions for development and testing, but keep staging and production server environments more restrictive and thus more secure.
 
-For example, you may want to define a user group for application developers. This group of users will need to test and debug their code before their applications are ready for production. Thus, you will need to give this group permissions for tasks related to deployment, endpoint and flow control. But at the same time, you may feel it desirable to restrict the operations that this group can perform on existing deployments – for example, deny them the ability to delete deployments, on any server. You can also use server permissions to allow this group to perform certain operations only on specific servers. For example, you can give the group the ability to view or kill threads only on your designated test servers. To do this, you need to:
+For example, you may want to define a user group for application developers. Application developers, of course, put together the application code itself, but they also need to test and debug the code before the application is ready for a production environment. To properly test an application, developers need to deploy their applications to a test system and potentially debug the message flows. Thus, you might want to give developers permissions for all tasks related to deployment, endpoint and flow control, and monitoring abilities on test- and development-specific servers.
 
-. Create the group of test servers and assign specific server(s) to it.
-. Assign the desired group(s) the desired permissions for the specific server group.
-
-(Bear in mind that the permissions you can apply per server are currently limited. For details, see Server Permissions Reference below.)
-
-If you create a test environment, you might want to use it to set up and verify specific deployment scenarios prior to using them in a production environment. You might want to allow special permissions for these servers for only certain user groups. For example, you can assign the ability to restart these servers only to specific user groups.
+You might want to use the staged server environment to set up and verify specific deployment scenarios prior to using them in a production environment. You might want to allow access to these servers for only certain deployment-related user groups. You might even decide that you need two levels of deployment specialists. At the same time, you may want to restrict developer access to the staged server environment so no unintended changes are made prior to release to a production environment.
 
 You might also want a category of support technicians to have capabilities similar to developers, but on staging and production servers. You might have a support group handling sensitive accounts to which you give virtually all permissions.
 
@@ -95,8 +89,7 @@ You might have other user groups whose responsibilities rest more on system admi
 Permissions give specific user groups the ability to carry out certain sets of tasks. Tasks can be server-related, such as registering or unregistering a server, or they may pertain to applications, such as deployment and flow control functions, or specific users, and so forth. Since permissions granted (or not granted) represent the security on your system, you should be particularly careful when assigning permissions to new user groups or modifying the permissions of existing groups.
 
 * Global permissions give all users in a group the ability to perform certain tasks, ranging from viewing deployments, to controlling flows and managing users.
-* Server permissions range from viewing and deleting files, controlling servers, and killing threads. A user group's server permissions may apply to all servers or to only a specified server group. The server permissions also apply to the following two activities:
-
+* Server permissions range from viewing and deleting files, controlling servers, and killing threads. A user group's server permissions may apply to all servers or to only a specified server group. The server permissions also apply to the following two activities: +
 ** creating a cluster
 ** disbanding a cluster
 
@@ -114,6 +107,7 @@ Global permissions encompass the following areas and may be given as noted below
 
 * Applications: A user group may be given the ability to only view applications and/or to control (start, stop, restart) applications
 * Audit flows: A user group can have the ability to audit flows via the Flow Analyzer tab
+* Audit flows - Admin functions: A user group can have the ability to stop any running flow analysis
 * Deployments: A user group may be given one or more deployment-related permissions: create, delete, deploy, modify, or view deployments
 * Endpoints: A user group may be given the ability to start and stop endpoints
 * Execute scripts: A user group may be given the ability execute scripts
@@ -133,10 +127,10 @@ Global permissions encompass the following areas and may be given as noted below
 
 Server permissions include the following and apply to the specified server group or all servers:
 
-* Clusters: A user group may be given the ability to create or disband a cluster
-* Files: A user group may be given the ability to manage delete, modify, and/or view files
-* Servers: A user group may be given the ability to modify, register, restart, unregister, and/or view servers
-* Threads: A user group may be given the ability to view and/or kill threads
+* Clusters: A user group may be given the ability to create or disband a cluster.
+* Files: A user group may be given the ability to manage delete, modify, and/or view files.
+* Servers: A user group may be given the ability to modify, register, restart, unregister, and/or view servers.
+* Threads: A user group may be given the ability to view and/or kill threads.
 
 == See Also
 

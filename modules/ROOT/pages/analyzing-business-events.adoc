@@ -59,6 +59,6 @@ You can set up queries to select and view subsets of business transactions handl
 
 == See Also
 
-* See xref:3.5@tracking-and-querying-business-events.adoc[Tracking and Querying Business Events] for details on how to use the transaction and event querying and filtering features.
-* See xref:3.5@business-events-use-cases.adoc[Business Events Use Cases] for detailed examples that illustrate the use of the Business Events tab in a business-oriented setting.
+* See xref:tracking-and-querying-business-events.adoc[Tracking and Querying Business Events] for details on how to use the transaction and event querying and filtering features.
+* See xref:business-events-use-cases.adoc[Business Events Use Cases] for detailed examples that illustrate the use of the Business Events tab in a business-oriented setting.
 * See https://docs.mulesoft.com/mule-user-guide/v/3.5/business-events[Business Events] to learn about setting up business events in your Mule applications.

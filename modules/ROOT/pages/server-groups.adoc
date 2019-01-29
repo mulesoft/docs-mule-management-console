@@ -3,28 +3,26 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-== About This Document
+This document, as well as the rest of the documents that make up the xref:3.7@rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with https://www.mulesoft.com/resources/esb/what-mule-esb[MULE ESB], Server Groups and the xref:3.7@using-the-management-console-api.adoc[REST API].
 
-This document, as well as the rest of the documents that make up the xref:rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases, or scenarios. To understand this document, you should be familiar with Mule Runtime, Server Groups, and the xref:using-the-management-console-api.adoc[REST API]
-
-
-
-[%autowidth.spread]
+[%header,cols="1s,1"]
 |===
-|*Assumptions:* |*Host* |localhost | |*Port* |8080 | |*Deployed app* |mmc.war | |*User/Password* |admin/admin
+2+|Assumptions:
+|Host |localhost
+|Port |8080
+|Deployed app |mmc.war
+|User/Password |admin/admin
 |===
 
-For a detailed description of the format used in this document, consult xref:rest-api-reference.adoc[Content Organization and Conventions].
+For a detailed description of the format used in this document, consult xref:3.7@rest-api-reference.adoc[Content Organization and Conventions].
 
-[source,text,linenums]
-----
-/api/serverGroups
-----
+#*/api/serverGroups*#
 
-[%autowidth.spread]
+[cols="3*a"]
 |===
-|*POST* | |*CREATE*
-| | |
+|#*POST*#
+|*CREATE*
+|
 |===
 
 Creates a new Server Group.
@@ -32,43 +30,42 @@ Creates a new Server Group.
 [.ex]
 =====
 [discrete.view]
-=== -> Request
+=== STUDIO Visual Editor
 
 [discrete]
 ==== JSON
 
 [source,text,linenums]
 ----
-
 {
   "name": "NewGroupName"
 }
 ----
 
-[%header%autowidth.spread]
+[%header,cols="4*"]
 |===
 |Key |Type |Summary |Child of
-|name |string |Name of the Server Group to be created |--
+|name |String |Name of the Server Group to be created |—
 |===
 
 [discrete]
-===== Using CURL on Windows
+==== Using CURL on Windows
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin -d "{ \"name\" : \"NewGroupName\" }" --header "Content-Type: application/json" http://localhost:8080/mmc/api/serverGroups
+ curl --basic -u admin:admin -d "{ \"name\" : \"NewGroupName\" }" --header "Content-Type: application/json" http://localhost:8080/mmc/api/serverGroups
 ----
 
 [discrete]
-===== Using CURL on Linux
+==== Using CURL on Linux
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin -d '{ "name" : "NewGroupName" }" --header 'Content-Type: application/json' http://localhost:8080/mmc/api/serverGroups
+ curl --basic -u admin:admin -d '{ "name" : "NewGroupName" }" --header 'Content-Type: application/json' http://localhost:8080/mmc/api/serverGroups
 ----
 
 [discrete.view]
-===  <- Response
+=== Response
 
 [discrete]
 ==== JSON
@@ -83,21 +80,21 @@ curl --basic -u admin:admin -d '{ "name" : "NewGroupName" }" --header 'Content-T
 }
 ----
 
-[%header%autowidth.spread]
+[%header,cols="4*"]
 |===
 |Key |Type |Summary |Child of
-|name |String |Name of the created Server Group |--
-|id |String |MMC ID for the Server Group |--
-|serverCount |String |Number of servers assigned to the Server Group |--
-|href |String |Full link to the Server Group resource on which you can perform an operation |--
+|name |String |Name of the created Server Group |—
+|id |String |MMC ID for the Server Group. |—
+|serverCount |String |Number of servers assigned to the Server Group |—
+|href |String |Full link to the Server Group resource on which you can perform an operation |—
 |===
 
 [discrete.view]
-=== ⬇️ Common Return codes
+=== Common Return codes
 
-[%autowidth.spread]
+[cols="2*a"]
 |===
-|*201* |The request has been fulfilled and resulted in a new Server Group being created.
+|*201* |The request has been fulfilled and resulted in a new Server Group being created
 |*409* |A server group with that name already exists
 |*500* |Error while creating a Server Group
 |===
@@ -105,35 +102,37 @@ curl --basic -u admin:admin -d '{ "name" : "NewGroupName" }" --header 'Content-T
 [discrete.view]
 === MMC version
 
-[%autowidth.spread]
+[cols="2*a"]
 |===
-|*From* |3.2.2
+|From |3.2.2
 |===
+
 =====
 
-[%autowidth.spread]
+[cols="3*a"]
 |===
-|*GET* | |*LIST ALL*
-| | |
+|#*GET*#
+|*LIST ALL*
+|
 |===
 
-List all available Server Groups.
+Lists all available Server Groups.
 
 [.ex]
 =====
 [discrete.view]
-=== -> Request
+=== STUDIO Visual Editor
 
 [discrete]
 ==== Using CURL
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin http://localhost:8080/mmc/api/serverGroups
+ curl --basic -u admin:admin http://localhost:8080/mmc/api/serverGroups
 ----
 
 [discrete.view]
-===  <- Response
+=== Response
 
 [discrete]
 ==== JSON
@@ -153,11 +152,11 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/serverGroups
 }
 ----
 
-[%header%autowidth.spread]
+[%header,cols="4*"]
 |===
 |Key |Type |Summary |Child of
-|total |Integer |The total number of Server Groups |--
-|data |Array |An array of server group types |--
+|total |Integer |The total number of Server Groups |—
+|data |Array |An array of server group types |—
 |name |String |The identifying name of the server group |data
 |id |String |The server group identifier |data
 |serverCount |Integer |The number of servers in the server group |data
@@ -165,9 +164,9 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/serverGroups
 |===
 
 [discrete.view]
-=== ⬇️ Common Return codes
+=== Common Return codes
 
-[%autowidth.spread]
+[cols="2*a"]
 |===
 |*200* |The operation was successful
 |===
@@ -175,42 +174,38 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/serverGroups
 [discrete.view]
 === MMC version
 
-[%autowidth.spread]
+[cols="2*a"]
 |===
-|*From* |3.2.2
+|From |3.2.2
 |===
+
 =====
 
-[source,text,linenums]
-----
-/api/serverGroups/{serverGroupId}
-----
+#*/api/serverGroups/\{serverGroupId}*#
 
-[%autowidth.spread]
+[cols="3*a"]
 |===
-|*GET* | |*LIST*
-| | |
+|#*GET*#
+|*LIST*
+|
 |===
 
-List details for specific Server Group.
+Lists details for a specific Server Group.
 
 [.ex]
 =====
 [discrete.view]
-=== -> Request
+=== Request
 
 [discrete]
 ==== SYNTAX
 
-[source,text,linenums]
-----
 GET http://localhost:8080/mmc/api/serverGroups/{serverGroupId}
-----
 
-[%header%autowidth.spread]
+[%header,cols="4*"]
 |===
 |Key |Type |Summary |Child of
-|serverGroupdId |String |ID of the server group to be listed. Invoke xref:server-groups.adoc[LIST ALL] to obtain it |--
+|serverGroupdId |String |ID of the server group to be listed. Invoke LIST ALL to obtain it |—
 |===
 
 [discrete]
@@ -218,11 +213,11 @@ GET http://localhost:8080/mmc/api/serverGroups/{serverGroupId}
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin http://localhost:8080/mmc/api/serverGroups/37f6cd27-98b3-44b1-97e6-50b75e47f8c1
+ curl --basic -u admin:admin http://localhost:8080/mmc/api/serverGroups/37f6cd27-98b3-44b1-97e6-50b75e47f8c1
 ----
 
 [discrete.view]
-===  <- Response
+=== Response
 
 [discrete]
 ==== JSON
@@ -237,19 +232,19 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/serverGroups/37f6cd27-
 }
 ----
 
-[%header%autowidth.spread]
+[%header,cols="4*"]
 |===
 |Key |Type |Summary |Child of
-|name |String | |--
-|id |String |Id of the Server Group |--
-|serverCount |Number of servers belonging to the Server Group | |--
-|href |String |Full link to the Server Group resource |--
+|name |String |  |—
+|id |String |Id of the Server Group |—
+|serverCount |Number of servers belonging to the Server Group |  |—
+|href |String |Full link to the Server Group resource |—
 |===
 
 [discrete.view]
-=== ⬇️ Common Return codes
+=== Common Return codes
 
-[%autowidth.spread]
+[cols="2*a"]
 |===
 |*200* |The operation was successful
 |*404* |A server with that ID was not found
@@ -258,16 +253,17 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/serverGroups/37f6cd27-
 [discrete.view]
 === MMC version
 
-[%autowidth.spread]
+[cols="2*a"]
 |===
-|*From* |3.2.2
+|From |3.2.2
 |===
 =====
 
-[%autowidth.spread]
+[cols="3*a"]
 |===
-|*PUT* | |*RENAME*
-| | |
+|#*PUT*#
+|*RENAME*
+|
 |===
 
 Renames a specific Server Group.
@@ -275,7 +271,7 @@ Renames a specific Server Group.
 [.ex]
 =====
 [discrete.view]
-=== -> Request
+=== Request
 
 [discrete]
 ==== JSON
@@ -290,25 +286,25 @@ Renames a specific Server Group.
 }
 ----
 
-[%header%autowidth.spread]
+[%header,cols="4*"]
 |===
 |Key |Type |Summary |Child of
-|name |String |Name of the Server Group to be created |--
-|id |String |MMC ID of the Server Group |--
-|serverCount |String |Number of servers assigned to the Server Group |--
-|href |String |Full link to the Server Group resource on which you can perform an operation |--
+|name |String |Name of the created Server Group |—
+|id |String |MMC ID of the Server Group |—
+|serverCount |String |Number of servers assigned to the Server Group |—
+|href |String |Full link to the Server Group resource on which you can perform an operation |—
 |===
 
 [discrete]
-===== Using CURL on Windows
+==== Using CURL on Windows
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin -X PUT -d "{\"name\":\"NewName\",\"id\":\"330d9139-4462-4e36-b76c-569776cc3da9\",\"href\": \"http://localhost:8080/mmc/api/serverGroups/330d9139-4462-4e36-b76c-569776cc3da9\",\"serverCount\":0}" --header "Content-Type:application/json" http://localhost:8080/mmc/api/serverGroups/330d9139-4462-4e36-b76c-569776cc3da9
+ curl --basic -u admin:admin -X PUT -d "{\"name\":\"NewName\",\"id\":\"330d9139-4462-4e36-b76c-569776cc3da9\",\"href\": \"http://localhost:8080/mmc/api/serverGroups/330d9139-4462-4e36-b76c-569776cc3da9\",\"serverCount\":0}" --header "Content-Type:application/json" http://localhost:8080/mmc/api/serverGroups/330d9139-4462-4e36-b76c-569776cc3da9
 ----
 
 [discrete]
-===== Using CURL on Linux
+==== Using CURL on Linux
 
 [source,text,linenums]
 ----
@@ -316,7 +312,7 @@ curl --basic -u admin:admin -X PUT -d '{"name":"NewName","id":"330d9139-4462-4e3
 ----
 
 [discrete.view]
-===  <- Response
+=== Response
 
 [discrete]
 ==== JSON
@@ -331,19 +327,19 @@ curl --basic -u admin:admin -X PUT -d '{"name":"NewName","id":"330d9139-4462-4e3
 }
 ----
 
-[%header%autowidth.spread]
+[%header,cols="4*"]
 |===
 |Key |Type |Summary |Child of
-|name |String |Name of the Server Group to be created |--
-|id |String |MMC ID of the Server Group |--
-|serverCount |String |Number of servers assigned to the Server Group |--
-|href |String |Full link to the Server Group resource on which you can perform an operation |--
+|name |String |Name of the created Server Group |—
+|id |String |MMC ID of the Server Group |—
+|serverCount |String |Number of servers assigned to the Server Group |—
+|href |String |Full link to the Server Group resource to which you can perform an operation |—
 |===
 
 [discrete.view]
-=== ⬇️ Common Return codes
+=== Common Return codes
 
-[%header%autowidth.spread]
+[cols="2*a"]
 |===
 |*200* |The operation was successful
 |*500* |Error while renaming a Server Group
@@ -352,37 +348,36 @@ curl --basic -u admin:admin -X PUT -d '{"name":"NewName","id":"330d9139-4462-4e3
 [discrete.view]
 === MMC version
 
-[%autowidth.spread]
+[cols="2*a"]
 |===
-|*From* |3.2.2
+|From |3.2.2
 |===
+
 =====
 
-[%autowidth.spread]
+[cols="3*a"]
 |===
-|*DELETE* | |*REMOVE*
-| | |
+|#*DELETE*#
+|*REMOVE*
+|
 |===
 
-Removes a specific server group
+Removes a specific Server Group.
 
 [.ex]
 =====
 [discrete.view]
-=== -> Request
+=== Request
 
 [discrete]
 ==== SYNTAX
 
-[source,text,linenums]
-----
 DELETE http://localhost:8080/mmc/api/serverGroups/{serverGroupId}
-----
 
-[%header%autowidth.spread]
+[%header,cols="4*"]
 |===
 |Key |Type |Summary |Child of
-|serverGroupdId |String |ID of the server group to be listed. Invoke xref:server-groups.adoc[LIST ALL] to obtain it |--
+|serverGroupdId |String |ID of the server group to be removed. Invoke LIST ALL to obtain it |—
 |===
 
 [discrete]
@@ -390,24 +385,21 @@ DELETE http://localhost:8080/mmc/api/serverGroups/{serverGroupId}
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/serverGroups/37f6cd27-98b3-44b1-97e6-50b75e47f8c1
+ curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/serverGroups/37f6cd27-98b3-44b1-97e6-50b75e47f8c1
 ----
 
 [discrete.view]
-===  <- Response
+=== Response
 
 [discrete]
 ==== JSON
 
-[source,text,linenums]
-----
-200 OK
-----
+`200 OK`
 
 [discrete.view]
-=== ⬇️ Common Return codes
+=== Common Return codes
 
-[%autowidth.spread]
+[cols="2*a"]
 |===
 |*200* |The operation was successful
 |===
@@ -415,8 +407,8 @@ curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/serverGroups
 [discrete.view]
 === MMC version
 
-[%autowidth.spread]
+[cols="2*a"]
 |===
-|*From* |3.2.2
+|From |3.2.2
 |===
 =====

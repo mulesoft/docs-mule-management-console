@@ -3,14 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-xref:installing-the-production-version-of-mmc.adoc[Install the production version] if you are planning to use the Mule Management Console in production.
+*xref:installing-the-production-version-of-mmc.adoc[Install the production version] if you are planning to use the Mule Management Console in production.*
 
 * You need a valid enterprise license to launch the production version of MMC.
-
-* You need to have Mule Enterprise 3.4.X already installed.
-
-* The production version of MMC is packaged as a .war file designed to run in an application server or container, such as  Tcat Server,  Apache Tomcat, or JBoss.
-
+* You need to have the current version of Mule Enterprise already installed.
+* The production version of MMC is packaged as a .war file designed to run in an application server or container, such as xref:installing-the-production-version-of-mmc.adoc[Tcat Server], xref:installing-the-production-version-of-mmc.adoc[Apache Tomcat], or xref:installing-the-production-version-of-mmc.adoc[JBoss].
 
 == See Also
 
