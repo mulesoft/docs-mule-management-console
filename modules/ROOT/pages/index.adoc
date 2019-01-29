@@ -1,0 +1,117 @@
+= Mule Management Console Documentation (v3.2 Archives)
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+The management console for Mule ESB provides a centralized way to manage all of your Mule enterprise edition deployments, both standalone and those embedded in an application server.
+
+Ready to jump right in? If so, go right to the xref:quick-start-guide-to-mule-esb-server-and-the-management-console.adoc[Quick Start Guide].
+
+[cols="2*"]
+|===
+a|
+* https://docs.mulesoft.com/release-notes/mule-esb-3.2.0-release-notes[Mule ESB 3.2.0 Release Notes]
+* Previous: https://docs.mulesoft.com/release-notes/mule-esb-3.1.0-ee-release-notes[Mule ESB 3.1.0 EE Release Notes]
+
+[discrete]
+== Read Me First
+
+* xref:architecture-of-the-management-console.adoc[Architecture of the Management Console]
+* xref:installing-the-management-console.adoc[Installing the Management Console]
+* xref:how-to-run-the-management-console.adoc[How to Run the Management Console]
+* xref:how-to-use-the-management-console.adoc[How to Use the Management Console]
+* xref:troubleshooting-tips.adoc[Troubleshooting Tips]
+
+[discrete]
+== xref:common-tasks.adoc[Common Tasks]
+
+[discrete]
+== Getting Started
+
+* xref:quick-start-guide-to-mule-esb-server-and-the-management-console.adoc[Quick Start Guide to Mule ESB Server and the Management Console]
+* xref:adding-and-managing-alerts-and-slas.adoc[Adding and Managing Alerts and SLAs]
+* xref:monitoring-and-debugging-applications.adoc[Monitoring and Debugging Applications]
+** xref:tracking-flows.adoc[Tracking Flows]
+** xref:analyzing-message-flows.adoc[Analyzing Message Flows]
+** xref:debugging-message-processing.adoc[Debugging Message Processing]
+** xref:debugging-the-loan-broker-example-application.adoc[Debugging the Loan Broker Example Application]
+* xref:setting-up-users.adoc[Setting Up Users]
+
+[discrete]
+== Managing and Monitoring Mule Servers
+
+* xref:working-with-mule-server-instances.adoc[Working with Mule Server Instances]
+* xref:accessing-server-logs.adoc[Accessing Server Logs]
+* xref:monitoring-a-server.adoc[Monitoring a Server]
+** xref:monitoring-applications.adoc[Monitoring Applications]
+** xref:viewing-server-alerts.adoc[Viewing Server Alerts]
+** xref:viewing-system-memory.adoc[Viewing System Memory]
+** xref:viewing-threads.adoc[Viewing Threads]
+** xref:viewing-server-pools.adoc[Viewing Server Pools]
+** xref:working-with-the-server-configuration-files.adoc[Working with the Server Configuration Files]
+** xref:viewing-server-properties.adoc[Viewing Server Properties]
+** xref:viewing-server-os-resources.adoc[Viewing Server OS Resources]
+** xref:viewing-jmx-information.adoc[Viewing JMX Information]
+** xref:editing-server-settings.adoc[Editing Server Settings]
+** xref:customizing-server-metrics-dashboard.adoc[Customizing Server Metrics Dashboard]
+
+[discrete]
+== *[mmc:Mule 3.2]* Managing and Using Mule High Availability (HA) Clusters
+
+* xref:mule-high-availability-ha-clusters.adoc[Mule High Availability (HA) Clusters]
+* xref:managing-mule-high-availability-ha-clusters.adoc[Managing Mule High Availability (HA) Clusters]
+** xref:creating-or-disbanding-a-cluster.adoc[Creating or Disbanding a Cluster]
+** xref:deploying-redeploying-or-undeploying-an-application-to-or-from-a-cluster.adoc[Deploying, Redeploying, or Undeploying an Application To or From a Cluster]
+** xref:monitoring-a-cluster.adoc[Monitoring a Cluster]
+* xref:3.2@mule-runtime::reliability-patterns.adoc[Reliability Patterns]
+
+ a|
+
+[discrete]
+== Managing Mule Applications
+
+* xref:deploying-applications.adoc[Deploying Applications]
+* xref:maintaining-the-server-application-repository.adoc[Maintaining the Server Application Repository]
+
+[discrete]
+== Controlling and Analyzing Flows
+
+* xref:working-with-flows.adoc[Working with Flows]
+* xref:analyzing-flow-processing-and-payloads.adoc[Analyzing Flow Processing and Payloads]
+
+[discrete]
+== Tracking and Analyzing Business Events
+
+* xref:analyzing-business-events.adoc[Analyzing Business Events]
+* xref:tracking-and-querying-business-events.adoc[Tracking and Querying Business Events]
+* xref:business-events-use-cases.adoc[Business Events Use Cases]
+* xref:configuring-a-database-for-business-event-data-persistence.adoc[Configuring a Database for Business Event Data Persistence]
+
+[discrete]
+== Monitoring SLAs with Alerts
+
+* xref:working-with-alerts.adoc[Working With Alerts]
+* xref:defining-slas-and-alerts.adoc[Defining SLAs and Alerts]
+* xref:setting-up-alert-destinations-and-notifications.adoc[Setting Up Alert Destinations and Notifications]
+
+[discrete]
+== Administering the Management Console
+
+* xref:managing-users-and-roles.adoc[Managing Users and Roles]
+* xref:validating-the-license.adoc[Validating the License]
+* xref:enabling-authentication-through-ldap.adoc[Enabling Authentication Through LDAP]
+* xref:customizing-the-dashboard.adoc[Customizing the Dashboard]
+* xref:working-with-logs.adoc[Working with Logs]
+
+[discrete]
+== Extending the Management Console
+
+* xref:automating-tasks-using-scripts.adoc[Automating Tasks Using Scripts]
+* xref:scripting-examples.adoc[Scripting Examples]
+* xref:using-the-management-console-api.adoc[Using the Management Console APIs]
+
+[discrete]
+== Management Console Use Case Scenarios
+
+* xref:using-the-management-console-for-performance-tuning.adoc[Using the Management Console for Performance Tuning]
+|===

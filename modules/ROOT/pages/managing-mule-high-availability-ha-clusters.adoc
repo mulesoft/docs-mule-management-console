@@ -1,0 +1,24 @@
+= Managing Mule High Availability HA Clusters
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+The management console gives you the ability to manage server clusters. A cluster is a group of linked servers that work closely together. Once servers are added to a cluster, they function in many ways as if they were a single server.
+
+[NOTE]
+For an overview of clusters, including benefits and best practices, see xref:mule-high-availability-ha-clusters.adoc[Mule High Availability (HA) Clusters].
+
+You can perform the following cluster-related tasks with the console:
+
+* xref:creating-or-disbanding-a-cluster.adoc[Create a cluster]
+* xref:deploying-redeploying-or-undeploying-an-application-to-or-from-a-cluster.adoc[Deploy, redeploy, or undeploy an application to or from a cluster]
+* xref:monitoring-a-cluster.adoc[Monitor a cluster, including determine its status]
+* xref:creating-or-disbanding-a-cluster.adoc["Disband" or delete a cluster]
+
+You can also create and manage a cluster programmatically using REST APIs. See xref:managing-clusters-using-rest-apis.adoc[Managing Clusters Using REST APIs].
+
+Because clusters represent linked servers, you use functions available through the Servers tab to create and manage clusters. You also use functions available via the Applications tab to deploy applications to a cluster, in much the same way that you deploy applications to individual servers.
+
+xref:mule-high-availability-ha-clusters.adoc[<< Previous: *Mule High Availability (HA) Clusters*]
+
+xref:creating-or-disbanding-a-cluster.adoc[Next: *Creating or Disbanding a Cluster* >>]

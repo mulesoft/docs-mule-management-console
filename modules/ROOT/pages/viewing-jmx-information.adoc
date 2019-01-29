@@ -1,0 +1,12 @@
+= Viewing JMX Information
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Click the JMX tab to open a pane through which you can see all Mule-relevant JMX information. The pane displays the categories of JMX information (in a hierarchical tree format), such as JM implementation, Mule default, specific applications, and so forth. Click the arrow to the left of each category to expand the tree. See the figure below.
+
+image::jmx.png[]
+
+xref:viewing-server-os-resources.adoc[<< Previous: *Viewing Server OS Resources*]
+
+xref:editing-server-settings.adoc[Next: *Editing Server Settings* >>]
