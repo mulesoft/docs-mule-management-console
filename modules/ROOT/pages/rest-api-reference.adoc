@@ -3,17 +3,17 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The *Mule Management Console* provides http://en.wikipedia.org/wiki/Representational_state_transfer[*REST APIs*] that you can use to programmatically access much of the console's functionality.
+The *Mule Management Console* provides http://en.wikipedia.org/wiki/Representational_state_transfer[REST APIs] that you can use to programmatically access much of the console's functionality.
 
 For details on the management console API, consult xref:using-the-management-console-api.adoc[Using the Management Console API].
 
 == Intended Audience
 
-This document, and the child pages of the REST API Reference Guide, are a technical reference. They are intended for users with solid knowledge of the Mule Management Console, and with some working knowledge of REST. They do not contain instructions or contextual information. For information on installing, configuring and running Mule ESB, consult the https://www.mulesoft.com/resources/esb/what-mule-esb[Mule 3 User Guide].
+This document, and the child pages of the REST API Reference Guide, are a technical reference. They are intended for users with solid knowledge of the Mule Management Console, and with some working knowledge of REST. They do not contain instructions or contextual information. For information on installing, configuring and running Mule ESB, consult the https://docs.mulesoft.com/mule-user-guide/v/3.7/index[Mule Runtime documentation].
 
 == REST API Reference
 
-This guide comprises a total of six documents, which cover the following topics:
+This guide comprises the following six documents:
 
 * xref:clusters.adoc[Clusters]
 * xref:deployments.adoc[Deployments]
@@ -28,19 +28,19 @@ These documents are a technical reference only, and do not contain instructions 
 
 All of the documents in this guide follow the same organization and conventions. Each document consists of the following sections:
 
-* Index of operations
-* Page title
-* Assumptions
-* REST resource name
-* HTTP Method and operation name
-* Operation
+* <<indexofoperations,Index of operations>>
+* <<assumptions,Assumptions>>
+* <<restresourcename,REST resource name>>
+* <<operation,Operation>>
 
+[[indexofoperations]]
 === Section: Index of Operations
 
 The first section of each document. The index is expandable; it lists the REST operations described in the document. For example, from the *Deployments* page:
 
 image::index-of-operations.png[index.of.operations]
 
+[[assumptions]]
 === Section: Assumptions
 
 This section lists assumed parameters for all operations detailed in the document. The parameters are:
@@ -51,6 +51,7 @@ This section lists assumed parameters for all operations detailed in the documen
 ** The name of the `.war` file determines the resources path. For the sake of brevity, the documents assume that the downloaded MMC Web Application has been renamed to `mmc.war`. You may use any name that is more convenient for your site, provided that you update the resource path accordingly.
 * MMC user name and password
 
+[[restresourcename]]
 === Section: REST Resource Name
 
 The title of this section is the http://en.wikipedia.org/wiki/Uniform_Resource_Identifier[URI] of the REST resource documented in the section. For example, the first section in the xref:deployments.adoc[Deployments] page is:
@@ -70,54 +71,28 @@ In all documents, variable content that must be provided by the user is enclosed
 Variable content that is optional is enclosed in [brackets]. For example: `api/deployments[?server={serverId}]`.
 ====
 
+[[operation]]
 === Section: Operation
 
 This section describes the operations that you can perform via the REST API. All Operation sections have the same heading:
 
-___________________
-[cols="3*a"]
-|===
-|
-*_HTTP METHOD_*
-|
-_OPERATION NAME_
-|
-|===
+image::mmc-rest-http-method.png[]
 
 _Short description of the operation._
-___________________
+
 
 For example, in the Deployments page, the following heading marks the section that describes the `CREATE` operation:
 
-_________________
-[cols="3*a"]
-|===
-|
-*_POST_*
-|
-_CREATE_
-|
-|===
+image::mmc-rest-post-create.png[]
 
 _Creates a new Deployment._
-_________________
+
 
 In the example above, `POST` is the http://en.wikipedia.org/wiki/Http[HTTP method] used to perform a `CREATE` operation.
 
 For improved readability, all documents identify HTTP methods by their own distinctive color:
 
-[cols="5*"]
-|===
-|
-*POST*
-|
-*GET*
-|
-*PUT*
-|
-*DELETE*
-|
-|===
+image::mmc-rest-post-get-put-delete.png[]
 
 Each Operation section contains a table with clickable tabs. This table holds the actual contents of the section. Each table is divided into four tabs (highlighted in the image below):
 
@@ -129,7 +104,7 @@ image::clicking-req-and-result-3.png[clicking_req_and_RESULT-3]
 
 === Tabs Reference
 
-* *Request*(see image above): Provides details of the request to the REST API. This tab includes:
+* *Request* (see image above): Provides details of the request to the REST API. This tab includes:
 ** An example of an issued request (in the image above, a JSON file)
 ** A table listing all parameters necessary to issue the request
 ** An info box with additional information, if appropriate

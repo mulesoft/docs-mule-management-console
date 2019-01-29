@@ -9,11 +9,11 @@ This page describes how to:
 * Restart or stop a Mule server or cluster in MMC
 * Organize servers or clusters into groups
 
-To learn how to register or unregister a server, see xref:setting-up-mmc-mule-esb-communications.adoc[Setting Up MMC-Mule Communications]. To learn how to monitor servers, including viewing operational and performance details of individual servers, see the relevant pages in xref:managing-with-mmc.adoc[Managing with MMC]. To learn how to create or disband clusters of Mule servers, see xref:3.4@creating-or-disbanding-a-cluster.adoc[Creating or Disbanding a Cluster].
+To learn how to register or unregister a server, see xref:setting-up-mmc-mule-esb-communications.adoc[Setting Up MMC-Mule ESB Communications]. To learn how to monitor servers, including viewing operational and performance details of individual servers, see the relevant pages in xref:managing-with-mmc.adoc[Managing with MMC]. To learn how to create or disband clusters of Mule servers, see xref:creating-or-disbanding-a-cluster.adoc[Creating or Disbanding a Cluster].
 
 == Assumptions
 
-This document assumes that you are familiar with MMC and there should be at least one active Mule instance that you can control from your installed MMC.
+This document assumes that you are familiar with the basic xref:architecture-of-the-mule-management-console.adoc[Architecture of the Mule Management Console], and that you have installed the xref:installing-the-production-version-of-mmc.adoc[production] version of MMC. Also, ideally there should be at least one active Mule instance that you can control from your installed MMC.
 
 == The Servers Tab
 

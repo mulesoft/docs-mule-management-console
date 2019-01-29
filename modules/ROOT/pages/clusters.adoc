@@ -42,17 +42,18 @@ Creates a new Cluster.
 |===
 
 === Using CURL on Windows
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -d "{\"name\":\"My Cluster\",\"version\":\"3.4.0\", \"nodes\":[\"local$194cdc5b-2253-4f35-b663-b311e4f28956\", \"local$ef85a37f-a3c1-4d1f-b8e6-8fac85d2fca7\"]}" --header "Content-Type: application/json" http://localhost:8080/mmc/api/clusters
+ curl --basic -u admin:admin -d "{\"name\":\"My Cluster\",\"version\":\"3.4.0\", \"nodes\":[\"local$194cdc5b-2253-4f35-b663-b311e4f28956\", \"local$ef85a37f-a3c1-4d1f-b8e6-8fac85d2fca7\"]}" --header "Content-Type: application/json" http://localhost:8585/mmc-console-3.7.3/api/clusters
 ----
 
 === Using CURL on Linux
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -d '{"name":"My Cluster","version":"3.4.0", "nodes":["local$194cdc5b-2253-4f35-b663-b311e4f28956", "local$ef85a37f-a3c1-4d1f-b8e6-8fac85d2fca7"]}' --header 'Content-Type: application/json' http://localhost:8080/mmc/api/clusters
+ curl --basic -u admin:admin -d '{"name":"My Cluster","version":"3.4.0", "nodes":["local$194cdc5b-2253-4f35-b663-b311e4f28956", "local$ef85a37f-a3c1-4d1f-b8e6-8fac85d2fca7"]}' --header 'Content-Type: application/json' http://localhost:8585/mmc-console-3.7.3/api/clusters
 ----
 
 === Json
@@ -111,10 +112,11 @@ Lists all managed Clusters.
 === SYNTAX
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters
+ curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/clusters
 ----
 
 === JSON
@@ -179,10 +181,11 @@ Lists details for specific Cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724
+curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724
 ----
 
 
@@ -248,10 +251,11 @@ Lists node status for specific Cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/status
+ curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/status
 ----
 
 
@@ -295,10 +299,11 @@ Disbands a specific Server.
 After disbanding all nodes return to standalone mode. See server API.
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724
+curl --basic -u admin:admin -X DELETE http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724
 ----
 
 === JSON
@@ -341,10 +346,11 @@ Restarts a Cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/restart
+curl --basic -u admin:admin -X POST http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/restart
 ----
 
 
@@ -390,10 +396,11 @@ Stops a Cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/stop
+curl --basic -u admin:admin -X POST http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/stop
 ----
 
 
@@ -439,10 +446,11 @@ Adds a node to a cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -d '{"nodes":"local$30018f69-2772-428f-b13d-5a0644a7ca51", "local$473e6e0f-0151-445f-81a0-4065297620b6"}' --header 'Content-Type: application/json' http://localhost:8080/api/clusters/0662f078-6b9b-461d-bce1-48996a59a5d8/addnodes
+ curl --basic -u admin:admin -d '{"nodes":"local$30018f69-2772-428f-b13d-5a0644a7ca51", "local$473e6e0f-0151-445f-81a0-4065297620b6"}' --header 'Content-Type: application/json' http://localhost:8585/mmc-console-3.7.3/api/clusters/0662f078-6b9b-461d-bce1-48996a59a5d8/addnodes
 ----
 
 
@@ -487,10 +495,11 @@ Removes a node from a cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin -d '{"nodes":"local$30018f69-2772-428f-b13d-5a0644a7ca51", "local$473e6e0f-0151-445f-81a0-4065297620b6"}' --header 'Content-Type: application/json' http://localhost:8080/api/clusters/0662f078-6b9b-461d-bce1-48996a59a5d8/removenodes
+curl --basic -u admin:admin -d '{"nodes":"local$30018f69-2772-428f-b13d-5a0644a7ca51", "local$473e6e0f-0151-445f-81a0-4065297620b6"}' --header 'Content-Type: application/json' http://localhost:8585/mmc-console-3.7.3/api/clusters/0662f078-6b9b-461d-bce1-48996a59a5d8/removenodes
 ----
 
 
@@ -537,10 +546,11 @@ Lists all Mule applications currently deployed successfully on a Cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications
+ curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications
 ----
 
 
@@ -593,10 +603,11 @@ Starts an application from a Cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,console]
 ----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications/mule-example-hello/start
+ curl --basic -u admin:admin -X POST http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications/mule-example-hello/start
 ----
 
 
@@ -661,10 +672,11 @@ Restarts an application from a Cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications/mule-example-hello/restart
+curl --basic -u admin:admin -X POST http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications/mule-example-hello/restart
 ----
 
 
@@ -729,10 +741,11 @@ Stops an application from a Cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications/mule-example-hello/stop
+curl --basic -u admin:admin -X POST http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications/mule-example-hello/stop
 ----
 
 
@@ -799,10 +812,11 @@ Lists all available flows belonging to Mule applications currently deployed succ
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows
+curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows
 ----
 
 
@@ -878,10 +892,11 @@ Restarts a flow of an application on a Cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/start
+ curl --basic -u admin:admin -X POST http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/start
 ----
 
 === JSON
@@ -926,10 +941,11 @@ Pauses a flow of an application on a Cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/pause
+ curl --basic -u admin:admin -X POST http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/pause
 ----
 
 
@@ -975,10 +991,11 @@ Stops a flow of an application on a Cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/stop
+ curl --basic -u admin:admin -X POST http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/stop
 ----
 
 
@@ -1026,10 +1043,11 @@ Lists all Flow Endpoints from a Mule application on a Cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/endpoints
+curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/endpoints
 ----
 
 
@@ -1040,7 +1058,7 @@ curl --basic -u admin:admin http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1
 |Key |Type |Summary |Child of
 |total |Integer |Number of endpoints detected |—
 |data |List |List of endpoints details |—
-|address |String |Address of the endpoint (e.g. "system.out", `+http://localhost:8888+`, etc) |data
+|address |String |Address of the endpoint (e.g. "system.out", `+http://localhost:8888+1, etc) |data
 |id |String |Endpoint ID |data
 |type |String |Endpoint type (e.g. VM) |data
 |status |String |Status of the endpoint (e.g. started, stopped) |data
@@ -1093,10 +1111,11 @@ Starts a flow endpoint belonging to an application on a Cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/endpoints/endpoint.vm.chitchatter/start
+ curl --basic -u admin:admin -X POST http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/endpoints/endpoint.vm.chitchatter/start
 ----
 
 === JSON
@@ -1143,10 +1162,11 @@ Stops a flow endpoint belonging to an application on a Cluster.
 |===
 
 === Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/endpoints/endpoint.vm.chitchatter/stop
+curl --basic -u admin:admin -X POST http://localhost:8585/mmc-console-3.7.3/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/endpoints/endpoint.vm.chitchatter/stop
 ----
 
 === JSON

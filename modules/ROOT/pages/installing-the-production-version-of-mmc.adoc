@@ -7,19 +7,14 @@ The Mule Management Console is a Web app designed to run in an application serve
 
 This document describes where to download the required files and how to install or deploy these files for different application servers. You can https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[contact the MuleSoft Support team] with any questions about downloading and deploying Mule Management Console.
 
-[WARNING]
-*Trial Version vs Production Version*
-
-Please note that if you have downloaded *MuleSoft's bundled runtime download* – Mule with Mule Management Console (MMC) – it **is appropriate for use only as an evaluation tool and is not considered production-ready**.
-
 
 == Assumptions
 
-This document assumes that you are have the current version of Mule Enterprise already installed. Download it from the http://www.mulesoft.com/support-login[customer portal] if you need to upgrade to this version. If you are using an older version of Mule Enterprise, you can xref:3.3@installing-the-management-console.adoc[switch] to an older version of this documentation.
+This document assumes that you are have the current version of Mule Enterprise already installed. Download it from the http://www.mulesoft.com/support-login[customer portal] if you need to upgrade to this version. If you are using an older version of Mule Enterprise, please xref:installing-the-production-version-of-mmc.adoc[switch] to that version of this documentation.
 
-This document assumes that your enterprise license is current. See https://docs.mulesoft.com/mule-user-guide/v/3.6/installing-an-enterprise-license[Installing an Enterprise License] for information on obtaining and installing an enterprise license.
+This document assumes that your enterprise license is current. Please see https://docs.mulesoft.com/mule-user-guide/v/3.7/installing-an-enterprise-license[Installing an Enterprise License] for information on obtaining and installing an enterprise license.
 
-This document also assumes that you have a Web application server such as Tomcat or JBoss installed. Refer to the https://docs.mulesoft.com/mule-user-guide/v/3.6/hardware-and-software-requirements[Hardware and Software Requirements] for the latest information about hardware requirements and supported application servers, Java Runtime Environments, and browsers.
+This document also assumes that you have a Web application server such as Tomcat or JBoss installed. Refer to the https://docs.mulesoft.com/mule-user-guide/v/3.7/hardware-and-software-requirements[Hardware and Software Requirements] for the latest information about hardware requirements and supported application servers, Java Runtime Environments, and browsers.
 
 == Installation and Deployment Checklist
 
@@ -33,10 +28,10 @@ To install the management console:
 *Why?*
 
 The name of the WAR file varies depending on the version that you download, following the format `<console_name>-<version>.war`. Once you have downloaded this file from the customer portal, change the name to *`mmc.war.`*
-All instructions below assume that your WAR file has been renamed mmc.war. If your file is named differently, note that the URL that you use to access the console changes accordingly. For example, if your war file is named `mmc-foobar.war`, you would need to use `http://localhost:8080:mmc-foobar` to access the console.
+All instructions below assume that your WAR file has been renamed as mmc.war. If your file is named differently, note that the URL that you use to access the console changes accordingly. For example, if your war file is named `mmc-foobar.war`, you would need to use `  http://localhost:8080:mmc-foobar` to access the console.
 ====
 +
-. If your https://docs.mulesoft.com/mule-user-guide/v/3.6/deployment-scenarios[Mule instance is packaged as a Web app] (not recommended), open a support case at: https://support.mulesoft.com[https://support.mulesoft.com] for special instructions.
+. If your https://docs.mulesoft.com/mule-user-guide/v/3.7/deployment-scenarios[Mule ESB instance is packaged as a Web app] (not recommended), please open a support case at: https://support.mulesoft.com[https://support.mulesoft.com] for special instructions.
 . Adjust the configuration on your web application server so that it gives precedence to MMC's classloader, instead of your Web application server's own native classloader.
 . Deploy your `mmc.war` file to your application server. See specific instructions for each supported app server in the following section.
 
@@ -55,31 +50,31 @@ For Windows:
 
 . Create a file named `setenv.bat` in the `$TOMCAT_HOME\bin` directory.
 . Copy the following string into the file:
- `setenv JAVA_OPTS=-Xmx1024m -XX:MaxPermSize=512m`
+ `set JAVA_OPTS=-Xmx1024m -XX:MaxPermSize=512m`
 . Save the file.
 
 For MacOS/Linux:
 
 . Create a file named `setenv.sh` in the `$TOMCAT_HOME/bin` directory.
 . Copy the following lines into the file:
-
++
 [source,text,linenums]
 ----
 #!/bin/sh
 JAVA_OPTS="-Xmx1024m -XX:MaxPermSize=512m"
 ----
-
++
 . Save the file.
 . Make it executable, for example with the command `chmod u+x setenv.sh`.
-
-We recommend running on an IP v4 stack. Tomcat runs by default with IPv6, so in order to specify IPv4 instead, modify the `JAVA_OPTS` in the `$TOMCAT_HOME/bin/setenv.sh` file, as shown below.
-
++
+We recommend running on an IP v4 stack. Tomcat runs by default with IPv6, so to specify IPv4 instead, modify the `JAVA_OPTS` in the `$TOMCAT_HOME/bin/setenv.sh` file, as shown below.
++
 [source,text,linenums]
 ----
 #!/bin/sh
 JAVA_OPTS="-Xmx1024m -XX:MaxPermSize=512m -Djava.net.preferIPv4Stack=true"
 ----
-
++
 The line above adds the `-Djava.net.preferIPVv4Stack=true` option to `JAVA_OPTS`.
 
 Be sure not to run programs on your system that try to bind to the same port using different versions of the IP protocol.
@@ -123,10 +118,9 @@ The detailed, step-by-step instructions for installing and deploying MMC to WebS
 
 Note that if you want to configure MMC to persist data on external databases, you should follow the instructions for the specific database, as described here:
 
-* MMC version 3.4.X prior to 3.4.2: xref:3.5@persisting-mmc-data-on-external-databases.adoc[Persisting MMC Data On External Databases]
-* MMC version 3.4.2 and above: Persisting MMC Data On External Databases in MMC 3.4.2
+* MMC version 3.4.X prior to 3.4.2:  xref:3.4@persisting-mmc-data-on-external-databases-in-mmc-3.4.2.adoc[Persisting MMC Data On External Databases in MMC 3.4.2]
 
-But the locations of the files to modify differs from those instructions (which are based on an example Tomcat installation.)
+The locations of the files to modify differs from those instructions (which are based on an example Tomcat installation.)
 
 For an example, see xref:installing-and-deploying-mmc-to-websphere.adoc[Installing and Deploying MMC to WebSphere].
 

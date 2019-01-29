@@ -143,4 +143,4 @@ However, if your application processes SOAP requests using streams for CXF conne
 * xref:analyzing-message-flows.adoc[Analyzing Message Flows] takes you through using the Flow Analyzer panes in detail.
 * xref:debugging-message-processing.adoc[Debugging Message Processing] illustrates the general steps for debugging an application's message processing.
 * xref:debugging-the-loan-broker-example-application.adoc[Debugging the Loan Broker Example Application] shows how to use the console Flow Analyzer screen to find an application logic bug.
-* https://docs.mulesoft.com/mule-user-guide/v/3.6/routers[Using Message Processors to Control Message Flow] provides reference information for the available Mule message processors or routers.
+* https://docs.mulesoft.com/mule-user-guide/v/3.7/routers[Using Message Processors to Control Message Flow] provides reference information for the available Mule message processors or routers.

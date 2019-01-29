@@ -2,26 +2,27 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:keywords: server groups, curl, rest
 
 This document, as well as the rest of the documents that make up the xref:rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with https://www.mulesoft.com/resources/esb/what-mule-esb[MULE ESB], Server Groups and the xref:using-the-management-console-api.adoc[REST API].
 
-[cols="2*"]
+[%header,cols="1s,1"]
 |===
-|*Host* |localhost
-|*Port* |8080
-|*Deployed app* |mmc.war
-|*User/Password* |admin/admin
+2+|Assumptions:
+|Host |localhost
+|Port |8080
+|Deployed app |mmc.war
+|User/Password |admin/admin
 |===
 
 For a detailed description of the format used in this document, consult xref:rest-api-reference.adoc[Content Organization and Conventions].
 
-*/api/serverGroups*
+#*/api/serverGroups*#
 
-[cols="2*a"]
+[cols="3*a"]
 |===
-|*POST*
-|CREATE
+|#*POST*#
+|*CREATE*
+|
 |===
 
 Creates a new Server Group.
@@ -49,10 +50,11 @@ Creates a new Server Group.
 
 [discrete]
 ==== Using CURL on Windows
+Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -d "{ \"name\" : \"NewGroupName\" }" --header "Content-Type: application/json" http://localhost:8080/mmc/api/serverGroups
+ curl --basic -u admin:admin -d "{ \"name\" : \"NewGroupName\" }" --header "Content-Type: application/json" http://localhost:8080/mmc-console-3.7.3/api/serverGroups
 ----
 
 [discrete]
@@ -60,7 +62,7 @@ Creates a new Server Group.
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -d '{ "name" : "NewGroupName" }" --header 'Content-Type: application/json' http://localhost:8080/mmc/api/serverGroups
+ curl --basic -u admin:admin -d '{ "name" : "NewGroupName" }" --header 'Content-Type: application/json' http://localhost:8080/mmc-console-3.7.3/api/serverGroups
 ----
 
 [discrete.view]
@@ -68,14 +70,15 @@ Creates a new Server Group.
 
 [discrete]
 ==== JSON
+Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "name": "NewGroupName",
   "id": "73d89173-290e-4cb3-a61c-e11deb74767d",
   "serverCount": 0,
-  "href": "http://localhost:8080/mmc/api/serverGroups/73d89173-290e-4cb3-a61c-e11deb74767d"
+  "href": "http://localhost:8080/mmc-console-3.7.3/api/serverGroups/73d89173-290e-4cb3-a61c-e11deb74767d"
 }
 ----
 
@@ -108,10 +111,10 @@ Creates a new Server Group.
 
 =====
 
-[cols="2*a"]
+[cols="3*a"]
 |===
-|*GET*
-|LIST ALL
+|#*GET*#
+|*LIST ALL*
 |
 |===
 
@@ -124,10 +127,11 @@ Lists all available Server Groups.
 
 [discrete]
 ==== Using CURL
+Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/serverGroups
+ curl --basic -u admin:admin http://localhost:8080/mmc-console-3.7.3/api/serverGroups
 ----
 
 [discrete.view]
@@ -135,8 +139,9 @@ Lists all available Server Groups.
 
 [discrete]
 ==== JSON
+Note that this syntax is an example. Be sure to find your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the mmc .war file).
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "total": 1,
@@ -145,7 +150,7 @@ Lists all available Server Groups.
       "name": "NewGroupName",
       "id": "73d89173-290e-4cb3-a61c-e11deb74767d",
       "serverCount": 0,
-      "href": "http://localhost:8080/mmc/api/serverGroups/73d89173-290e-4cb3-a61c-e11deb74767d"
+      "href": "http://localhost:8080/mmc-console-3.7.3/api/serverGroups/73d89173-290e-4cb3-a61c-e11deb74767d"
     }
   ]
 }
@@ -180,12 +185,12 @@ Lists all available Server Groups.
 
 =====
 
-*/api/serverGroups/\{serverGroupId}*
+#*/api/serverGroups/\{serverGroupId}*#
 
 [cols="3*a"]
 |===
-|*GET*
-|LIST
+|#*GET*#
+|*LIST*
 |
 |===
 
@@ -198,8 +203,9 @@ Lists details for a specific Server Group.
 
 [discrete]
 ==== SYNTAX
+Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-GET http://localhost:8080/mmc/api/serverGroups/{serverGroupId}
+GET +http://localhost:8080/mmc-console-3.7.3/api/serverGroups/{serverGroupId}+
 
 [%header,cols="4*"]
 |===
@@ -209,10 +215,11 @@ GET http://localhost:8080/mmc/api/serverGroups/{serverGroupId}
 
 [discrete]
 ==== Using CURL
+Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/serverGroups/37f6cd27-98b3-44b1-97e6-50b75e47f8c1
+ curl --basic -u admin:admin http://localhost:8080/mmc-console-3.7.3/api/serverGroups/37f6cd27-98b3-44b1-97e6-50b75e47f8c1
 ----
 
 [discrete.view]
@@ -220,14 +227,15 @@ GET http://localhost:8080/mmc/api/serverGroups/{serverGroupId}
 
 [discrete]
 ==== JSON
+Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "name": "NewGroupName",
   "id": "73d89173-290e-4cb3-a61c-e11deb74767d",
   "serverCount": 0,
-  "href": "http://localhost:8080/mmc/api/serverGroups/73d89173-290e-4cb3-a61c-e11deb74767d"
+  "href": "http://localhost:8080/mmc-console-3.7.3/api/serverGroups/73d89173-290e-4cb3-a61c-e11deb74767d"
 }
 ----
 
@@ -258,10 +266,10 @@ GET http://localhost:8080/mmc/api/serverGroups/{serverGroupId}
 |===
 =====
 
-[cols="2*a"]
+[cols="3*a"]
 |===
-|*PUT*
-|RENAME
+|#*PUT*#
+|*RENAME*
 |
 |===
 
@@ -274,40 +282,45 @@ Renames a specific Server Group.
 
 [discrete]
 ==== JSON
+Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "name": "NewGroupName",
   "id": "73d89173-290e-4cb3-a61c-e11deb74767d",
   "serverCount": 0,
-  "href": "http://localhost:8080/mmc/api/serverGroups/73d89173-290e-4cb3-a61c-e11deb74767d"
+  "href": "http://localhost:8080/mmc-console-3.7.3/api/serverGroups/73d89173-290e-4cb3-a61c-e11deb74767d"
 }
 ----
 
-[%header,cols="4*"]
+[%header,cols="15,10,40,5,5"]
 |===
-|Key |Type |Summary |Child of
-|name |String |Name of the created Server Group |—
-|id |String |MMC ID of the Server Group |—
-|serverCount |String |Number of servers assigned to the Server Group |—
-|href |String |Full link to the Server Group resource on which you can perform an operation |—
+|Key |Type |Summary |Child of |Required
+|name |String |Name of the created Server Group |— |Yes
+|id |String |MMC ID of the Server Group |— |No
+|serverCount |String |Number of servers assigned to the Server Group |— |No
+|href |String |Full link to the Server Group resource on which you can perform an operation |— |No
 |===
+
+Note that the "name" attribute is the only required attribute. The other attributes are include to match the JSON response from an /api/ServerGroups or /api/serverGroups/{serverGroupId} GET request.
 
 [discrete]
 ==== Using CURL on Windows
+Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the mmc .war file).
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X PUT -d "{\"name\":\"NewName\",\"id\":\"330d9139-4462-4e36-b76c-569776cc3da9\",\"href\": \"http://localhost:8080/mmc/api/serverGroups/330d9139-4462-4e36-b76c-569776cc3da9\",\"serverCount\":0}" --header "Content-Type:application/json" http://localhost:8080/mmc/api/serverGroups/330d9139-4462-4e36-b76c-569776cc3da9
+ curl --basic -u admin:admin -X PUT -d "{\"name\":\"NewName\",\"id\":\"330d9139-4462-4e36-b76c-569776cc3da9\",\"href\": \"http://localhost:8080/mmc-console-3.7.3/api/serverGroups/330d9139-4462-4e36-b76c-569776cc3da9\",\"serverCount\":0}" --header "Content-Type:application/json" http://localhost:8080/mmc-console-3.7.3/api/serverGroups/330d9139-4462-4e36-b76c-569776cc3da9
 ----
 
 [discrete]
 ==== Using CURL on Linux
+Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin -X PUT -d '{"name":"NewName","id":"330d9139-4462-4e36-b76c-569776cc3da9","href": "http://localhost:8080/mmc/api/serverGroups/330d9139-4462-4e36-b76c-569776cc3da9","serverCount":0}' --header 'Content-Type:application/json' http://localhost:8080/mmc/api/serverGroups/330d9139-4462-4e36-b76c-569776cc3da9
+curl --basic -u admin:admin -X PUT -d '{"name":"NewName","id":"330d9139-4462-4e36-b76c-569776cc3da9","href": "http://localhost:8080/mmc-console-3.7.3/api/serverGroups/330d9139-4462-4e36-b76c-569776cc3da9","serverCount":0}' --header 'Content-Type:application/json' http://localhost:8080/mmc-console-3.7.3/api/serverGroups/330d9139-4462-4e36-b76c-569776cc3da9
 ----
 
 [discrete.view]
@@ -315,14 +328,15 @@ curl --basic -u admin:admin -X PUT -d '{"name":"NewName","id":"330d9139-4462-4e3
 
 [discrete]
 ==== JSON
+Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "name": "NewGroupName",
   "id": "73d89173-290e-4cb3-a61c-e11deb74767d",
   "serverCount": 0,
-  "href": "http://localhost:8080/mmc/api/serverGroups/73d89173-290e-4cb3-a61c-e11deb74767d"
+  "href": "http://localhost:8080/mmc-console-3.7.3/api/serverGroups/73d89173-290e-4cb3-a61c-e11deb74767d"
 }
 ----
 
@@ -356,8 +370,8 @@ curl --basic -u admin:admin -X PUT -d '{"name":"NewName","id":"330d9139-4462-4e3
 
 [cols="3*a"]
 |===
-|*DELETE*
-|REMOVE
+|#*DELETE*#
+|*REMOVE*
 |
 |===
 
@@ -370,8 +384,9 @@ Removes a specific Server Group.
 
 [discrete]
 ==== SYNTAX
+Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-DELETE http://localhost:8080/mmc/api/serverGroups/{serverGroupId}
+DELETE +http://localhost:8080/mmc-console-3.7.3/api/serverGroups/{serverGroupId}+
 
 [%header,cols="4*"]
 |===
@@ -381,10 +396,11 @@ DELETE http://localhost:8080/mmc/api/serverGroups/{serverGroupId}
 
 [discrete]
 ==== Using CURL
+Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/serverGroups/37f6cd27-98b3-44b1-97e6-50b75e47f8c1
+ curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc-console-3.7.3/api/serverGroups/37f6cd27-98b3-44b1-97e6-50b75e47f8c1
 ----
 
 [discrete.view]

@@ -6,13 +6,18 @@ endif::[]
 
 The following set of documentation offers solutions to common issues that may arise when using the Mule Management Console.
 
-* xref:using-the-management-console-for-performance-tuning.adoc[image:icon-checkmark-blue-big.png[]Troubleshooting Tips]
+[cols="10a,90a"]
+|===
+|image:icon-checkmark-blue-big.png[]
+|xref:troubleshooting-tips.adoc[Troubleshooting Tips]
 
-* xref:using-the-management-console-for-performance-tuning.adoc[image:icon-clipboard-blue-big.png[]Monitoring and Debugging Applications]
+|image:icon-clipboard-blue-big.png[] |xref:monitoring-and-debugging-applications.adoc[Monitoring and Debugging Applications]
 
-* xref:using-the-management-console-for-performance-tuning.adoc[image:icon-stopwatch-blue-big.png[]Using the Management Console for Performance Tuning]
+|image:icon-stopwatch-blue-big.png[] |xref:using-the-management-console-for-performance-tuning.adoc[Using the Management Console for Performance Tuning]
+|===
 
 == See Also
 
 *  xref:monitoring-with-mmc.adoc[Monitoring with MMC]
 *  xref:using-the-management-console-api.adoc[Using the Management Console API]
+* https://support.mulesoft.com[Contact MuleSoft Support]

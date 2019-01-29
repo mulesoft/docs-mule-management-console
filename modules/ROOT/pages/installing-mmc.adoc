@@ -3,7 +3,9 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-xref:installing-the-production-version-of-mmc.adoc[Install the production version] if you are planning to use the Mule Management Console in production.*
+xref:installing-the-production-version-of-mmc.adoc[image:mmc-prod.png[MMC-prod]]
+
+*xref:installing-the-production-version-of-mmc.adoc[Install the production version] if you are planning to use the Mule Management Console in production.*
 
 * You need a valid enterprise license to launch the production version of MMC.
 * You need to have the current version of Mule Enterprise already installed.

@@ -3,25 +3,26 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-;keywords: servers
 This document, as well as the rest of the documents that make up the xref:rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with https://www.mulesoft.com/resources/esb/what-mule-esb[MULE ESB], Mule Servers and the xref:using-the-management-console-api.adoc[REST API].
 
-[cols="2*"]
+[%header,cols="1s,1"]
 |===
-|*Host* |localhost
-|*Port* |8080
-|*Deployed app* |mmc.war
-|*User/Password* |admin/admin
+2+|Assumptions:
+|Host |localhost
+|Port |8585
+|Deployed app |mmc.war
+|User/Password |admin/admin
 |===
 
 For a detailed description of the format used in this document, consult xref:using-the-management-console-api.adoc[Content Organization and Conventions].
 
-*/api/servers*
+#*/api/servers*#
 
-[cols="2*a"]
+[cols="3*a"]
 |===
-|*POST*
-|PAIR/REGISTER
+|#*POST*#
+|*PAIR/REGISTER*
+|
 |===
 
 Pairs a new Server.
@@ -54,17 +55,21 @@ Pairs a new Server.
 [discrete]
 ==== Using CURL on Windows
 
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -d "{ \"name\" : \"Test\", \"agentUrl\" : \"http://localhost:7777/mmc-support\", \"groupIds\":[\"0bc8932b-8463-46cd-9a1f-77060756c5c0\"] }" --header "Content-Type: application/json" http://localhost:8080/mmc/api/servers
+ curl --basic -u admin:admin -d "{ \"name\" : \"Test\", \"agentUrl\" : \"http://localhost:7777/mmc-support\", \"groupIds\":[\"0bc8932b-8463-46cd-9a1f-77060756c5c0\"] }" --header "Content-Type: application/json" http://localhost:8585/mmc-console-3.7.3/api/servers
 ----
 
 [discrete]
 ==== Using CURL on Linux
 
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -d '{ "name" : "Test", "agentUrl" : "http://localhost:7777/mmc-support", "groupIds":["0bc8932b-8463-46cd-9a1f-77060756c5c0"] }' --header 'Content-Type: application/json' http://localhost:8080/mmc/api/servers
+ curl --basic -u admin:admin -d '{ "name" : "Test", "agentUrl" : "http://localhost:7777/mmc-support", "groupIds":["0bc8932b-8463-46cd-9a1f-77060756c5c0"] }' --header 'Content-Type: application/json' http://localhost:8585/mmc-console-3.7.3/api/servers
 ----
 
 [discrete.view]
@@ -73,7 +78,7 @@ Pairs a new Server.
 [discrete]
 ==== JSON
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
@@ -85,11 +90,11 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
     [
       {
         "name":"Production",
-        "href":"http://localhost:8080/mmc/api/serverGroups/0bc8932b-8463-46cd-9a1f-77060756c5c0"
+        "href":"http://localhost:8585/mmc-console-3.7.3/api/serverGroups/0bc8932b-8463-46cd-9a1f-77060756c5c0"
       }
     ],
   "status":"OK",
-  "href":"http://localhost:8080/mmc-console-3.4.0/api/servers/local$f151c1cb-634a-4da5-baba-806ee4a09464",
+  "href":"http://localhost:8585/mmc-console-3.7.3/api/servers/local$f151c1cb-634a-4da5-baba-806ee4a09464",
   "runningServices":-1,
   "hostIp":"172.16.20.131",
   "agentUrl":"https://localhost:7777/mmc-support",
@@ -159,10 +164,11 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-[cols="2*a",width=50%]
+[cols="3*a"]
 |===
 |*GET*
-|LIST ALL
+|*LIST ALL*
+|
 |===
 
 Lists all available Servers.
@@ -175,11 +181,12 @@ Lists all available Servers.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+
 
 [source,text,linenums]
 ----
-GET http://localhost:8080/mmc-console-3.4.0/api/servers[?group={serverGroupId}]
+GET http://localhost:8585/mmc-console-3.7.3/api/servers[?group={serverGroupId}]
 ----
 
 [%header,cols="4*"]
@@ -192,7 +199,7 @@ GET http://localhost:8080/mmc-console-3.4.0/api/servers[?group={serverGroupId}]
 ==== Using CURL
 
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc-console-3.4.0/api/servers
+ curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/servers
 ----
 
 [discrete.view]
@@ -201,7 +208,8 @@ GET http://localhost:8080/mmc-console-3.4.0/api/servers[?group={serverGroupId}]
 [discrete]
 ==== JSON
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+
 
 [source,text,linenums]
 ----
@@ -217,11 +225,11 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
           [
             {
               "name":"Production",
-              "href":"http://localhost:8080/mmc-console-3.4.0/api/serverGroups/0bc8932b-8463-46cd-9a1f-77060756c5c0"
+              "href":"http://localhost:8585/mmc-console-3.7.3/api/serverGroups/0bc8932b-8463-46cd-9a1f-77060756c5c0"
             }
           ],
         "status":"OK",
-        "href":"http://localhost:8080/mmc-console-3.4.0/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469",
+        "href":"http://localhost:8585/mmc-console-3.7.3/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469",
         "runningServices":4,"hostIp":"172.16.20.131",
         "agentUrl":"https://localhost:7777/mmc-support",
         "muleServerId":"00_mmc-agent",
@@ -292,15 +300,16 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-*/api/server/\{serverId}*
+#*/api/server/\{serverId}*#
 
-[cols="2*a",width=50%]
+[cols="3*a"]
 |===
 |
 *GET*
 |
-LIST
-
+[discrete]
+===== LIST
+|
 |===
 
 Lists details for a specific Server.
@@ -313,11 +322,12 @@ Lists details for a specific Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+
 
 [source,text,linenums]
 ----
-GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}
+GET http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}
 ----
 
 [%header,cols="4*"]
@@ -330,14 +340,14 @@ GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}
 ==== Using CURL on Windows
 
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc-console-3.4.0/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36
+ curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36
 ----
 
 [discrete]
 ==== Using CURL on Linux
 
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36'
+ curl --basic -u admin:admin 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36'
 ----
 
 [discrete.view]
@@ -356,11 +366,11 @@ GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}
     [
       {
         "name":"Production",
-        "href":"http://localhost:8080/mmc-console-3.4.0/api/serverGroups/0bc8932b-8463-46cd-9a1f-77060756c5c0"
+        "href":"http://localhost:8585/mmc-console-3.7.3/api/serverGroups/0bc8932b-8463-46cd-9a1f-77060756c5c0"
       }
     ],
   "status":"OK",
-  "href":"http://localhost:8080/mmc-console-3.4.0/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469",
+  "href":"http://localhost:8585/mmc-console-3.7.3/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469",
   "runningServices":4,
   "hostIp":"172.16.20.131",
   "agentUrl":"https://localhost:7777/mmc-support",
@@ -428,12 +438,14 @@ GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}
 
 =====
 
-[cols="2*a",width=50%]
+[cols="3*a"]
 |===
 |
-*DELETE*
+#*DELETE*#
 |
-UNPAIR/UNREGISTER
+[discrete]
+===== UNPAIR/UNREGISTER
+|
 |===
 
 Unpairs/unregister a specific Server.
@@ -446,11 +458,12 @@ Unpairs/unregister a specific Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+
 
 [source,text,linenums]
 ----
-DELETE http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}
+DELETE http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}
 ----
 
 [%header,cols="4*"]
@@ -464,7 +477,7 @@ DELETE http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc-console-3.4.0/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469
+ curl --basic -u admin:admin -X DELETE http://localhost:8585/mmc-console-3.7.3/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469
 ----
 
 [discrete]
@@ -472,7 +485,7 @@ DELETE http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469'
+ curl --basic -u admin:admin -X DELETE 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469'
 ----
 
 [discrete.view]
@@ -506,10 +519,11 @@ DELETE http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}
 
 */api/servers/\{serverId}*
 
-[cols="2*a",width=50%]
+[cols="3*a"]
 |===
-|*PUT*
+|#*PUT*#
 |*UPDATE*
+|
 |===
 
 Updates a specific Server.
@@ -543,17 +557,21 @@ Updates a specific Server.
 [discrete]
 ==== Using CURL on Windows
 
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X PUT -d "{ \"name\" : \"New Server Name\", \"groups\":[{\"href\":\"0bc8932b-8463-46cd-9a1f-77060756c5c0\"}]}" --header "Content-Type: application/json" http://localhost:8080/mmc-console-3.4.0/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469
+ curl --basic -u admin:admin -X PUT -d "{ \"name\" : \"New Server Name\", \"groups\":[{\"href\":\"0bc8932b-8463-46cd-9a1f-77060756c5c0\"}]}" --header "Content-Type: application/json" http://localhost:8585/mmc-console-3.7.3/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469
 ----
 
 [discrete]
 ==== Using CURL on Linux
 
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X PUT -d '{"name" : "New Server Name", "groups":[{"href":"0bc8932b-8463-46cd-9a1f-77060756c5c0"}]}' --header 'Content-Type: application/json' 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469'
+ curl --basic -u admin:admin -X PUT -d '{"name" : "New Server Name", "groups":[{"href":"0bc8932b-8463-46cd-9a1f-77060756c5c0"}]}' --header 'Content-Type: application/json' 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469'
 ----
 
 [discrete.view]
@@ -561,8 +579,6 @@ Updates a specific Server.
 
 [discrete]
 ==== JSON
-
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file.
 
 [source,text,linenums]
 ----
@@ -574,11 +590,11 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
     [
       {
         "name":"Production",
-        "href":"http://localhost:8080/mmc-console-3.4.0/api/serverGroups/0bc8932b-8463-46cd-9a1f-77060756c5c0"
+        "href":"http://localhost:8585/mmc-console-3.7.3/api/serverGroups/0bc8932b-8463-46cd-9a1f-77060756c5c0"
       }
     ],
   "status":"OK",
-  "href":"http://localhost:8080/mmc-console-3.4.0/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469",
+  "href":"http://localhost:8585/mmc-console-3.7.3/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469",
   "runningServices":4,
   "hostIp":"172.16.20.131",
   "agentUrl":"https://localhost:7777/mmc-support",
@@ -647,12 +663,13 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-*/api/servers/\{serverId}/applications*
+#*/api/servers/\{serverId}/applications*#
 
-[cols="2*a",width=50%]
+[cols="3*a"]
 |===
-|*GET*
-|LIST APPLICATIONS
+|#*GET*#
+|*LIST APPLICATIONS*
+|
 |===
 
 Lists all available deployed applications on a specific Server.
@@ -665,11 +682,11 @@ Lists all available deployed applications on a specific Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
-GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/applications
+GET http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/applications
 ----
 
 [%header,cols="4*"]
@@ -683,7 +700,7 @@ GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/applications
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc-console-3.4.0/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/applications
+ curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/applications
 ----
 
 [discrete]
@@ -691,7 +708,7 @@ GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/applications
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/applications'
+ curl --basic -u admin:admin 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/applications'
 ----
 
 [discrete.view]
@@ -778,12 +795,13 @@ GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/applications
 
 =====
 
-*/api/servers/\{serverId}/restart*
+#*/api/servers/\{serverId}/restart*#
 
-[cols="2*a",width=50%]
+[cols="3*a"]
 |===
 |*POST*
-|PERFORM RESTART
+|*PERFORM RESTART*
+|
 |===
 
 Restarts a Server.
@@ -796,9 +814,9 @@ Restarts a Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`POST http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/restart`
+`POST http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/restart`
 
 [%header,cols="4*"]
 |===
@@ -811,7 +829,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc-console-3.4.0/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/restart
+ curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/restart
 ----
 
 [discrete]
@@ -819,7 +837,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/restart'
+ curl --basic -u admin:admin 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/restart'
 ----
 
 [discrete.view]
@@ -849,12 +867,12 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-*/api/servers/\{serverId}/stop*
+#*/api/servers/\{serverId}/stop*#
 
-[cols="2*a",width=50%]
+[cols="3*a"]
 |===
 |*POST*
-|PERFORM STOP
+|*PERFORM STOP*
 |
 |===
 
@@ -868,11 +886,11 @@ Stops a Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
-POST http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/stop
+POST http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/stop
 ----
 
 [%header,cols="4*"]
@@ -886,7 +904,7 @@ POST http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/stop
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc-console-3.4.0/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/stop
+ curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/stop
 ----
 
 [discrete]
@@ -894,7 +912,7 @@ POST http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/stop
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/stop'
+ curl --basic -u admin:admin 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/stop'
 ----
 
 [discrete.view]
@@ -925,12 +943,13 @@ POST http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/stop
 
 == Server Files
 
-*/api/server/\{serverId}/files*
+#*/api/server/\{serverId}/files*#
 
-[cols="2*a",width=50%]
+[cols="3*a"]
 |===
 |*GET*
-|LIST FILES
+|*LIST FILES*
+|
 |===
 
 Lists files on a specific Server.
@@ -943,9 +962,9 @@ Lists files on a specific Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/files`
+`GET http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/files`
 
 [%header,cols="4*"]
 |===
@@ -958,7 +977,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc-console-3.4.0/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/files
+ curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/files
 ----
 
 [discrete]
@@ -966,7 +985,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/files'
+ curl --basic -u admin:admin 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/files'
 ----
 
 [discrete.view]
@@ -1047,12 +1066,13 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-*/api/server/\{serverId}/files/\{relative path to file}*
+#*/api/server/\{serverId}/files/\{relative path to file}*#
 
-[cols="2*a",width=80%]
+[cols="3*a"]
 |===
-|*GET*
-|LIST FILE
+|#*GET*#
+|*LIST FILE*
+|
 |===
 
 Get a specific file from a specific Server.
@@ -1065,9 +1085,9 @@ Get a specific file from a specific Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/files/{relativePathToFile}[?metadata=true]`
+`GET http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/files/{relativePathToFile}[?metadata=true]`
 
 [%header,cols="4*"]
 |===
@@ -1082,7 +1102,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/bin/mule
+ curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/bin/mule
 ----
 
 [discrete]
@@ -1090,7 +1110,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/bin/mule'
+ curl --basic -u admin:admin 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/bin/mule'
 ----
 
 [discrete.view]
@@ -1153,12 +1173,13 @@ Metadata=true:
 
 =====
 
-*/api/server/\{serverId}/files/\{relative path to file to be created}*
+#*/api/server/\{serverId}/files/\{relative path to file to be created}*#
 
-[cols="2*a",width=50%]
+[cols="3*a"]
 |===
 |*POST*
-|CREATE REMOTE FILE
+|*CREATE REMOTE FILE*
+|
 |===
 
 Creates a new file in the specified server and folder.
@@ -1173,9 +1194,9 @@ EOL from the source is converted to the native representation of the platform wh
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`POST http://localhost:8080/mmc-console-3.4.0/api/server/{serverId}/files/{relative path to file to be created}`
+`POST http://localhost:8585/mmc-console-3.7.3/api/server/{serverId}/files/{relative path to file to be created}`
 
 [%header,cols="4*"]
 |===
@@ -1189,7 +1210,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -v --header "Content-Type:application/octet-stream" --data-binary "@test.xml" http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt
+ curl --basic -u admin:admin -v --header "Content-Type:application/octet-stream" --data-binary "@test.xml" http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt
 ----
 
 [discrete]
@@ -1197,7 +1218,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
-- curl --basic -u admin:admin -v --header 'Content-Type:application/octet-stream' --data-binary '@test.xml' 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt'
+- curl --basic -u admin:admin -v --header 'Content-Type:application/octet-stream' --data-binary '@test.xml' 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt'
 ----
 
 * "test.xml" is the source file in the example. You can provide full path or file name. In the last case, the file should be placed at the same folder than the one containing the curl executable.
@@ -1230,10 +1251,11 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 |===
 =====
 
-[cols="3*a",width=50%]
+[cols="3*a"]
 |===
 |*PUT*
-|UPDATE/REPLACE REMOTE FILE
+|*UPDATE/REPLACE REMOTE FILE*
+|
 |===
 
 Replaces a target file with the provided source file (or inline content) on the specified server and folder.
@@ -1248,9 +1270,9 @@ EOL from source is converted to a native representation of the platform where th
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`PUT http://localhost:8080/mmc-console-3.4.0/api/server/{serverId}/files/{relative path to file to be replaced}`
+`PUT http://localhost:8585/mmc-console-3.7.3/api/server/{serverId}/files/{relative path to file to be replaced}`
 
 [%header,cols="4*"]
 |===
@@ -1264,7 +1286,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X PUT --header "Content-Type:application/octet-stream" --data-binary "@test.xml" http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt
+ curl --basic -u admin:admin -X PUT --header "Content-Type:application/octet-stream" --data-binary "@test.xml" http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt
 ----
 
 [discrete]
@@ -1272,7 +1294,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X PUT --header 'Content-Type:application/octet-stream' --data-binary '@test.xml' 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt'
+ curl --basic -u admin:admin -X PUT --header 'Content-Type:application/octet-stream' --data-binary '@test.xml' 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt'
 ----
 
 * "test.xml" is the source file in the example. You can provide full path or file name. In the last case, the file should be placed at the same folder than the one containing the curl executable.
@@ -1308,10 +1330,10 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-[cols="2*a",width=50%]
+[cols="3*a"]
 |===
 |*DELETE*
-|DELETE REMOTE FILE
+|*DELETE REMOTE FILE*
 |
 |===
 
@@ -1325,9 +1347,9 @@ Deletes a target file on the specified server and folder.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`DELETE http://localhost:8080/mmc-console-3.4.0/api/server/{serverId}/files/{relative path to file to be deleted}`
+`DELETE http://localhost:8585/mmc-console-3.7.3/api/server/{serverId}/files/{relative path to file to be deleted}`
 
 [%header,cols="4*"]
 |===
@@ -1341,7 +1363,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt
+ curl --basic -u admin:admin -X DELETE http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt
 ----
 
 [discrete]
@@ -1349,7 +1371,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt'
+curl --basic -u admin:admin -X DELETE 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt'
 ----
 
 * "fileOnLogsFolder.txt" in the example is the file to be deleted on the specified folder.
@@ -1382,12 +1404,13 @@ curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc-console-3.4.0/a
 
 == Server Flows
 
-*/api/server/\{serverId}/flows*
+#*/api/server/\{serverId}/flows*#
 
-[cols="2*a",width=50%]
+[cols="3*a"]
 |===
-|*GET*
-|LIST FLOWS
+|#*GET*#
+|*LIST FLOWS*
+|
 |===
 
 Lists available flows on a specific Server.
@@ -1400,9 +1423,9 @@ Lists available flows on a specific Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/flows[?refreshStats=TRUE|FALSE]`
+`GET http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/flows[?refreshStats=TRUE|FALSE]`
 
 [%header,cols="4*"]
 |===
@@ -1416,7 +1439,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc-console-3.4.0/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/flows
+ curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/flows
 ----
 
 [discrete]
@@ -1424,7 +1447,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/flows'
+ curl --basic -u admin:admin 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/flows'
 ----
 
 [discrete.view]
@@ -1522,12 +1545,12 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/start*
+#*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/start*#
 
-[cols="2*",width=50%]
+[cols="3*a"]
 |===
-|*POST*
-|PERFORM FLOW START
+|#*POST*#
+|*PERFORM FLOW START*
 |
 |===
 
@@ -1541,9 +1564,9 @@ Starts a specific flow.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`POST http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/flows/{flowName}/{applicationName}/start`
+`POST http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/flows/{flowName}/{applicationName}/start`
 
 [%header,cols="4*"]
 |===
@@ -1557,14 +1580,14 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 ==== Using CURL on Windows
 
 ----
-curl --basic -u admin:admin -X POST http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/start
+curl --basic -u admin:admin -X POST http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/start
 ----
 
 [discrete]
 ==== Using CURL on Linux
 
 ----
- curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/start'
+ curl --basic -u admin:admin -X POST 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/start'
 ----
 
 [discrete.view]
@@ -1601,13 +1624,15 @@ If flow is already started, the following message is returned:
 |===
 =====
 
-*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/stop*
+#*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/stop*#
 
-[cols="2*a",width=50%]
+[cols="3*a"]
 |===
 |
-*POST*
-|PERFORM FLOW STOP
+#*POST*#
+|
+[discrete]
+===== PERFORM FLOW STOP
 |
 |===
 
@@ -1621,9 +1646,9 @@ Stops a specific flow.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`POST http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/flows/{flowName}/{applicationName}/stop`
+`POST http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/flows/{flowName}/{applicationName}/stop`
 
 [%header,cols="4*"]
 |===
@@ -1638,7 +1663,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
-curl --basic -u admin:admin -X POST http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/stop
+curl --basic -u admin:admin -X POST http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/stop
 ----
 
 [discrete]
@@ -1646,7 +1671,7 @@ curl --basic -u admin:admin -X POST http://localhost:8080/mmc-console-3.4.0/api/
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/stop'
+ curl --basic -u admin:admin -X POST 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/stop'
 ----
 
 [discrete.view]
@@ -1685,14 +1710,16 @@ If flow is already stopped the following message is returned:
 
 == Server Flows Endpoints
 
-*/api/server/\{serverId}/\{flowName}/\{applicationName}/endpoints*
+#*/api/server/\{serverId}/\{flowName}/\{applicationName}/endpoints*#
 
-[cols="2*a",width=80%]
+[cols="3*a"]
 |===
 |
-*GET*
+#*GET*#
 |
-LIST FLOWS ENDPOINTS
+[discrete]
+===== LIST FLOWS ENDPOINTS
+|
 |===
 
 Lists available endpoints belonging to specific flows.
@@ -1705,9 +1732,9 @@ Lists available endpoints belonging to specific flows.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`GET http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints`
+`GET http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints`
 
 [%header,cols="4*"]
 |===
@@ -1722,7 +1749,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints
+ curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints
 ----
 
 [discrete]
@@ -1730,7 +1757,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints'
+ curl --basic -u admin:admin 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints'
 ----
 
 [NOTE]
@@ -1821,14 +1848,16 @@ If flow name contain spaces, replace them by "%20" when typing the URL to locate
 
 =====
 
-*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/start*
+#*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/start*#
 
-[cols="2*a",width=50%]
+[cols="3*a"]
 |===
 |
-*POST*
+#*POST*#
 |
-PERFORM FLOW ENDPOINT START
+[discrete]
+===== PERFORM FLOW ENDPOINT START
+|
 |===
 
 Starts a specific endpoint.
@@ -1841,9 +1870,9 @@ Starts a specific endpoint.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`POST http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/start`
+`POST http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/start`
 
 [%header,cols="4*"]
 |===
@@ -1859,7 +1888,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/start
+ curl --basic -u admin:admin -X POST http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/start
 ----
 
 [discrete]
@@ -1867,7 +1896,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/start'
+ curl --basic -u admin:admin -X POST 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/start'
 ----
 
 [discrete.view]
@@ -1901,14 +1930,15 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 =====
 
-*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/stop*
+#*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/stop*#
 
-[cols="2*a"]
+[cols="3*a"]
 |===
 |
 *POST*
 |
-PERFORM FLOW ENDPOINT STOP
+[discrete]
+===== PERFORM FLOW ENDPOINT STOP
 |
 |===
 
@@ -1922,9 +1952,9 @@ Stops a specific endpoint.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`POST http://localhost:8080/mmc-console-3.4.0/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/stop`
+`POST http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/stop`
 
 [%header,cols="4*"]
 |===
@@ -1940,7 +1970,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/stop
+ curl --basic -u admin:admin -X POST http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/stop
 ----
 
 [discrete]
@@ -1948,7 +1978,7 @@ Note that this syntax is an example. Be sure to find your own setting for mmc-co
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc-console-3.4.0/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/stop'
+ curl --basic -u admin:admin -X POST 'http://localhost:8585/mmc-console-3.7.3/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/stop'
 ----
 
 [discrete.view]

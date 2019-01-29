@@ -3,12 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This document describes how to deploy the production version of Mule Management Console to Oracle WebLogic Server. Note that you can also deploy MMC to a variety of other application servers or containers, such as Tomcat or JBoss. See xref:installing-the-production-version-of-mmc.adoc[Installing the Production Version of MMC] for full details.
+This document describes how to deploy the production version of Mule Management Console to Oracle WebLogic Server. Note that you can also deploy MMC to a variety of other application servers or containers, such as Tomcat or JBoss.
+See xref:installing-the-production-version-of-mmc.adoc[Installing the Production Version of MMC] for full details.
 
-https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[Contact the MuleSoft Support team] for questions about downloading and deploying Mule Management Console.
+Please https://www.mulesoft.com/support-and-services/mule-esb-support-license-subscription[contact the MuleSoft Support team] with any questions about downloading and deploying Mule Management Console.
 
-Note:
-If you have downloaded MuleSoft's bundled runtime download – Mule Runtime with Mule Management Console (MMC) – it's appropriate for use only as an evaluation tool and is not considered production-ready.
+[WARNING]
+If you have downloaded *MuleSoft's bundled runtime download* – ESB with Mule Management Console (MMC) – *it's appropriate for use only as an evaluation tool and is not considered production-ready*.
 
 To deploy MMC to Weblogic, complete the following steps.
 
@@ -49,14 +50,14 @@ image::5.png[]
 image::7.png[]
 +
 Verify that the values are correct, then click *Next*.
-
++
 . Select the servers where you want to deploy Mule Management Console, then click *Finish*.
 +
 image::8.png[]
 
 == See Also
 
-* Get familiar with the xref:orientation-to-the-console.adoc[MMC console].
+* Get familiar with the xref:orientation-to-the-console.adoc[Orientation to the Console].
 * Learn the basics of using MMC with the xref:mmc-walkthrough.adoc[MMC Walkthrough].
-* Learn more about how to xref:setting-up-mmc.adoc[set up MMC] to meet your needs.
-* Access the xref:troubleshooting-with-mmc.adoc[troubleshooting] guide.
+* Learn more about xref:setting-up-mmc.adoc[Setting Up MMC] to meet your needs.
+* Access the xref:troubleshooting-with-mmc.adoc[Troubleshooting with MMC].

@@ -7,16 +7,14 @@ This page introduces the Mule Management Console's user interface. It covers bas
 
 == Assumptions
 
-This document assumes that you have  the  *Mule Management Console*.
+This document assumes that you have xref:installing-mmc.adoc[downloaded and installed] the production version of the  *Mule Management Console*.
 
 [TIP]
 ====
-Fire up Mule and enter `+http://localhost:8585/mmc-<version>+` in your browser to log in. For example, for version 3.6.1 the URL is `+http://localhost:8585/mmc-3.6.1+`. The default login is `admin` and the default password is also `admin`.
-
-If you have downloaded the xref:installing-the-production-version-of-mmc.adoc[production version], enter the URL for the MMC application as served by your application server. For example, in Tomcat this usually is `+http://localhost:8080/mmc-console-<version+`. The default login is  `admin`  and the default password is also  `admin` . Note that you will need to register your Mule  servers before most console features discussed in this document will be available to you.
+If you have downloaded the xref:installing-the-production-version-of-mmc.adoc[production version], enter the URL for the MMC application as served by your application server. For example, in Tomcat this usually is `http://localhost:8080/mmc-console-<version`>. The default login is  `admin`  and the default password is also  `admin` . Note that you will need to register your Mule ESB servers before most console features discussed in this document will be available to you.
 ====
 
-This document also assumes that you are familiar with  https://docs.mulesoft.com/mule-user-guide/v/3.6/mule-concepts[Mule applications and Mule flows] .
+This document also assumes that you are familiar with  https://docs.mulesoft.com/mule-user-guide/v/3.7/mule-concepts[Mule applications and Mule flows] .
 
 == The Quick Start Panel
 
@@ -26,7 +24,7 @@ image::mmc-quickstartpanel.png[MMC-quickstartpanel]
 
 The icons on the left side provide quick links to screens for registering servers, deploying applications, creating alerts, and managing users and permissions. If you hover your mouse over the individual tabs, pop-up tips display.
 
-Keep in mind that if you have just installed a Mule  server, the server must be registered with the console and you may need to connect the console to that server before using any of the other console features. To register servers, click the icon to the left of *Register Servers* or the *Servers* tab at the top.
+Keep in mind that if you have just installed a Mule ESB server, the server must be registered with the console and you may need to connect the console to that server before using any of the other console features. To register servers, click the icon to the left of *Register Servers* or the *Servers* tab at the top.
 
 Click the *X* at the top right of the Quick Start panel to dismiss the panel and view the dashboard.
 

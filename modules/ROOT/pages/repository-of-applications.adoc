@@ -5,46 +5,36 @@ endif::[]
 
 This document, as well as the rest of the documents that make up the xref:rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with https://www.mulesoft.com/resources/esb/what-mule-esb[MULE ESB], the Application Repository and the xref:rest-api-reference.adoc[REST API].
 
-== Assumptions
-[cols="2*"]
+[%header,cols="1s,1"]
 |===
-|*Host* |localhost
-|*Port* |8080
-|*Deployed app* |mmc.war
-|*User/Password* |admin/admin
+2+|Assumptions:
+|Host |localhost
+|Port |8585
+|Deployed app |mmc.war
+|User/Password |admin/admin
 |===
 
 For a detailed description of the format used in this document, consult xref:rest-api-reference.adoc[Content Organization and Conventions].
 
 */api/repository*
 
-[cols="2*a",width=80%]
+[cols="34,33,33"]
 |===
-|
+a|
 *POST*
-|
-UPLOAD
-|
+
+ a|
+
+[discrete]
+==== UPLOAD
+
+ a|
+
 |===
 
 Uploads a new Mule Application into the repository.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== MULTIPART_FORM_DATA
-
-[source,text,linenums]
-----
-{
-  "name" : "test-app",
-  "file" : "my-zipped-app.zip",
-  "version" : "2.0"
-}
-----
+== MULTIPART_FORM_DATA
 
 [%header,cols="4*"]
 |===
@@ -54,35 +44,20 @@ Uploads a new Mule Application into the repository.
 |version |Array |(Optional) Application version. If not provided, MMC will set a timestamp with the following format will: yyyyMMdd-HH:mm |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+== Using CURL on Windows
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-[source,text,linenums]
 ----
- curl --basic -u admin:admin -F file=@my-zipped-app.zip -F name=test-app -F version=2.0 --header "Content-Type: multipart/form-data" http://localhost:8080/mmc/api/repository
-----
-
-[discrete]
-==== Using CURL on Linux
-
-[source,text,linenums]
-----
- curl --basic -u admin:admin -F file=@my-zipped-app.zip -F name=test-app -F version=2.0 --header 'Content-Type: multipart/form-data' http://localhost:8080/mmc/api/repository
+ curl --basic -u admin:admin -F file=@my-zipped-app.zip -F name=test-app -F version=2.0 --header "Content-Type: multipart/form-data" http://localhost:8585/mmc-console-3.7.3/api/repository
 ----
 
-[discrete.view]
-=== Response
+== Using CURL on Linux
 
-[discrete]
-==== JSON
+----
+ curl --basic -u admin:admin -F file=@my-zipped-app.zip -F name=test-app -F version=2.0 --header 'Content-Type: multipart/form-data' http://localhost:8585/mmc-console-3.7.3/api/repository
+----
 
-[source,text,linenums]
-----
-{
-  "versionId":"local$a1734daf-c839-4933-a9e6-6dc4f4d86e68",
-  "applicationId":"local$c46bf3aa-def7-407c-b701-67ab19e3d29b"
-}
-----
+== JSON
 
 [%header,cols="4*"]
 |===
@@ -91,97 +66,48 @@ Uploads a new Mule Application into the repository.
 |applicationId |String |The ID of the application. Several versions can have the same application ID |—
 |===
 
-[discrete.view]
-=== Common Return codes
-
-[cols="2*a"]
+[cols="2*"]
 |===
 |*200* |The operation was successful
 |*400* |Unauthorized user
 |*404* |Error registering the application: Item not found
 |*409* |Application name and version already exists
 |*500* |Specify a valid file to upload/ Error while uploading application
-|*501* |The file specified must be a zip file
+|*501* |Request contents not supported. For example: the app is not a zip file
 |*502* |Policy error while uploading application
 |===
 
-[discrete.view]
-=== MMC version
-
-[cols="2*a"]
+[cols="2*"]
 |===
 |From |3.2.2
 |===
-=====
 
-[cols="2*",width=80%]
+[cols="34,33,33"]
 |===
-|*GET*
-|LIST ALL
-|
+a|
+*GET*
+
+ a|
+
+[discrete]
+==== LIST ALL
+
+ a|
+
 |===
 
 Lists available applications persisted by MMC.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
+== SYNTAX
 
-[discrete]
-==== SYNTAX
+== Using CURL
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`GET http://localhost:8080/mmc/api/repository`
-
-[discrete]
-==== Using CURL
-
-[source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/repository
+ curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/repository
 ----
 
-[discrete.view]
-=== Response
-
-[discrete]
-==== JSON
-
-[source,text,linenums]
-----
-{
-  "total":2,
-  "data":
-    [
-      {
-        "name":"mule-example-echo",
-        "id":"local$0edb159a-5961-4384-bdf8-6ebfc5b9d6bf",
-        "href":"http://localhost:8080/mmc/api/repository/local$0edb159a-5961-4384-bdf8-6ebfc5b9d6bf",
-        "versions":
-          [
-            {
-              "name":"20120829-12:50",
-              "id":"local$b7440183-d549-438e-ac5d-1598c9f78b3d",
-              "parentPath":"/Applications/mule-example-echo"
-            }
-          ]
-        },
-        {
-          "name":"mule-example-hello",
-          "id":"local$481abb3b-5b2d-4ee4-8e4c-00e7597480d0",
-          "href":"http://localhost:8080/mmc/api/repository/local$481abb3b-5b2d-4ee4-8e4c-00e7597480d0",
-          "versions":
-            [
-              {
-                "name":"20120829-15:30",
-                "id":"local$66b3cf20-6e76-4fd9-8dc6-a50a804069a0",
-                "parentPath":"/Applications/mule-example-hello"
-              }
-            ]
-        }
-      ]
-}
-----
+== JSON
 
 [%header,cols="4*"]
 |===
@@ -197,46 +123,37 @@ Lists available applications persisted by MMC.
 |parentPath |String |Path to the generic application on the repository |versions
 |===
 
-[discrete.view]
-=== Common Return codes
-
-[cols="2*a"]
+[cols="2*"]
 |===
 |*200* |The operation was successful
 |*500* |Error while retrieving applications info/ Wrong user and password/ Unauthorized user
 |*501* |Application was not found
 |===
 
-[discrete.view]
-=== MMC version
-
-[cols="2*a"]
+[cols="2*"]
 |===
 |From |3.2.2
 |===
-=====
 
 */api/repository/\{applicationId}*
 
-[cols="3*a"]
+[cols="34,33,33"]
 |===
-|
+a|
 *GET*
-|LIST
-|
+
+ a|
+
+[discrete]
+==== LIST
+
+ a|
+
 |===
 
 Lists all application versions with the same specified application ID.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-`GET http://localhost:8080/mmc/api/repository/{applicationId}`
+== SYNTAX
 
 [%header,cols="4*"]
 |===
@@ -244,48 +161,21 @@ Lists all application versions with the same specified application ID.
 |applicationId |String |ID of the application on the repository. Do not confuse with version ID. An application can be composed of one or more versions; each version will have its own ID |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+== Using CURL on Windows
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-[source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/repository/local$43d80f90-b30b-4988-a83b-8172b649b11c
-----
-
-[discrete]
-==== Using CURL on Linux
-
-[source,text,linenums]
-----
- curl --basic -u admin:admin 'http://localhost:8080/mmc/api/repository/local$43d80f90-b30b-4988-a83b-8172b649b11c'
+ curl --basic -u admin:admin http://localhost:8585/mmc-console-3.7.3/api/repository/local$43d80f90-b30b-4988-a83b-8172b649b11c
 ----
 
-[discrete.view]
-=== Response
 
-[discrete]
-==== JSON
+== Using CURL on Linux
 
-[source,text,linenums]
 ----
-{
-  "total":2,
-  "data":
-    [
-      {
-        "name":"v3",
-        "id":"local$fb62caeb-8bd9-4ec7-ad85-cad711b00490",
-        "parentPath":"/Applications/mule-example-hello"
-      },
-      {
-        "name":"v4",
-        "id":"local$3458da13-5702-4d03-b0d1-4e7eeaea5f2f",
-        "parentPath":"/Applications/mule-example-hello"
-      }
-    ]
-}
+ curl --basic -u admin:admin 'http://localhost:8585/mmc-console-3.7.3/api/repository/local$43d80f90-b30b-4988-a83b-8172b649b11c'
 ----
 
+== JSON
 
 [%header,cols="4*"]
 |===
@@ -297,10 +187,7 @@ Lists all application versions with the same specified application ID.
 |parentPath |String |Path of the application within the repository |data
 |===
 
-[discrete.view]
-=== Common Return codes
-
-[cols="2*a"]
+[cols="2*"]
 |===
 |*200* |The operation was successful
 |*500* |Error while retrieving applications info/ Wrong user and password/ Unauthorized user
@@ -308,70 +195,53 @@ Lists all application versions with the same specified application ID.
 |*502* |Invalid Application ID. Check that the entered ID is not a version ID
 |===
 
-[discrete.view]
-=== MMC version
-
-[cols="2*a"]
+[cols="2*"]
 |===
 |From |3.2.2
 |===
 
-=====
-
-[cols="2*",width=80%]
+[cols="34,33,33"]
 |===
-|*DELETE*
-|
-REMOVE
-|
+a|
+*DELETE*
+
+ a|
+
+[discrete]
+==== REMOVE
+
+ a|
+
 |===
 
 Removes an application and all its corresponding versions from the repository.
 
-[.ex]
-=====
-[discrete.view]
-=== Request
-
-[discrete]
-==== SYNTAX
-
-`DELETE http://localhost:8080/mmc/api/repository/{versionId}`
+== SYNTAX
 
 [%header,cols="4*"]
 |===
 |Key |Type |Summary |Child of
-|versionId |String |Id of the application version. Invoke LIST ALL to obtain it. |—
+|versionId |String |Id of the application version. Invoke <<LIST ALL>> to obtain it. |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+== Using CURL on Windows
+Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-[source,text,linenums]
 ----
- curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/repository/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469
-----
-
-[discrete]
-==== Using CURL on Linux
-
-[source,text,linenums]
-----
- curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc/api/repository/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469'
+ curl --basic -u admin:admin -X DELETE http://localhost:8585/mmc-console-3.7.3/api/repository/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469
 ----
 
-[discrete.view]
-=== Response
 
-[discrete]
-==== JSON
+== Using CURL on Linux
 
-`200 OK`
+----
+ curl --basic -u admin:admin -X DELETE 'http://localhost:8585/mmc-console-3.7.3/api/repository/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469'
+----
 
-[discrete.view]
-=== Common Return codes
 
-[cols="2*a"]
+== JSON
+
+[cols="2*"]
 |===
 |*200* |The operation was successful
 |*500* |Error while removing the repository application
@@ -379,11 +249,7 @@ Removes an application and all its corresponding versions from the repository.
 |*502* |Policy error while removing application
 |===
 
-[discrete.view]
-=== MMC version
-
-[cols="2*a"]
+[cols="2*"]
 |===
 |From |3.2.2
 |===
-=====
