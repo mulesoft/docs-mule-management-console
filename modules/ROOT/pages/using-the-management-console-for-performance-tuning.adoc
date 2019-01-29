@@ -73,7 +73,7 @@ When heap usage is at the maximum, the JVM starts a garbage collection (GC) proc
 
 Dan wants to see how the server is handling all running applications. He clicks the Flows tab and the console displays all flows and flows on the Mule ESB instance. He filters the display by state so that only currently running flows appear.
 
-image::flows.png[]
+image::flows-1.png[]
 
 Examining the pane, he notices that the ratio of processed to received events indicates a high number of queued events for several flows. In fact, he deduces that 70% of the messages for these flows are queued up; that is, waiting for processing. The developer knows that while queued, messages take up memory on the JVM. Thus, the number of queued messages may be the cause of the high memory usage and explain why heap use is so high.
 

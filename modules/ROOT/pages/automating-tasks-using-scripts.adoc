@@ -133,6 +133,6 @@ Following are some examples of cron commands:
 
 == See Also
 
-* xref:3.6@working-with-logs.adoc[Working with Logs]
+* xref:working-with-logs.adoc[Working with Logs]
 
-* xref:3.6@scripting-examples.adoc[*Scripting Examples*]
+* xref:scripting-examples.adoc[*Scripting Examples*]

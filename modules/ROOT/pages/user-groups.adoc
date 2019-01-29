@@ -3,19 +3,17 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-== About This Document
+This document, as well as the rest of the documents that make up the xref:rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with Mule Runtime, User Groups, and the xref:using-the-management-console-api.adoc[REST API].
 
-This document, as well as the rest of the documents that make up the xref:3.4@rest-api-reference.adoc[Mule Management Console REST API Reference Guide], are a technical reference only. This document does not provide contextual information such as instructions, use cases or scenarios. To understand this document, you should be familiar with Mule Runtime, User Groups, and the xref:3.4@using-the-management-console-api.adoc[REST API].
+Assumptions:
 
+* Host: localhost
+* Port: 8080
+* Deployed app: mmc.war
+* User/password: admin/admin
 
-[%autowidth.spread]
-|===
-|*Assumptions*: |*Host* |localhost | |*Port* |8080 | |*Deployed app* |mmc.war | |*User/Password* |admin/admin
-|===
+For a detailed description of the format used in this document, consult xref:rest-api-reference.adoc[Content Organization and Conventions]
 
-For a detailed description of the format used in this document, consult xref:3.4@rest-api-reference.adoc[Content Organization and Conventions]
-
-[source,text,linenums]
 ----
 /api/usergroups
 ----
@@ -131,7 +129,7 @@ GET http://localhost:8080/mmc/api/usergroups/{userGroupName}
 [%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
-|userGroupName |String |Name of the server group to be listed. Invoke xref:3.4@user-groups.adoc[LIST ALL] to obtain it. |--
+|userGroupName |String |Name of the server group to be listed. Invoke xref:user-groups.adoc[LIST ALL] to obtain it. |--
 |===
 
 *Using CURL*
@@ -302,7 +300,7 @@ DELETE http://localhost:8080/mmc/api/usergroups/{userGroupName}
 [%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
-|userGroupName |String |Name of the User Group to be removed. Invoke xref:3.4@user-groups.adoc[LIST ALL] to obtain it. |--
+|userGroupName |String |Name of the User Group to be removed. Invoke xref:user-groups.adoc[LIST ALL] to obtain it. |--
 |===
 
 *Using CURL*

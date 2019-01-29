@@ -24,7 +24,7 @@ To find a particular flow or flows, start typing the name of the flow in the sea
 
 When you first open the Flows tab, a table lists all flows for the selected server or all servers. For example, the figure below shows the flows for all servers. It also highlights the buttons for stopping and starting flows and clearing statistics.
 
-image::flows-1.png[]
+image::flows.png[]
 
 The table also lists all flows for the selected cluster or all clusters.
 

@@ -3,9 +3,9 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The Mule Management Console provides REST APIs that you can use to programmatically access much of the console's functionality.
+The *Mule Management Console* provides http://en.wikipedia.org/wiki/Representational_state_transfer[*REST APIs*] that you can use to programmatically access much of the console's functionality.
 
-For details on the management console API, consult xref:3.4@using-the-management-console-api.adoc[Using the Management Console API].
+For details on the management console API, consult xref:using-the-management-console-api.adoc[Using the Management Console API].
 
 == Intended Audience
 
@@ -59,7 +59,7 @@ This section lists assumed parameters for all operations detailed in the documen
 
 === Section: REST Resource Name
 
-The title of this section is the URI of the REST resource documented in the section. For example, the first section in the Deployments - old page is:
+The title of this section is the http://en.wikipedia.org/wiki/Uniform_Resource_Identifier[URI] of the REST resource documented in the section. For example, the first section in the Deployments - old page is:
 
 ====
 *_/api/deployments_*

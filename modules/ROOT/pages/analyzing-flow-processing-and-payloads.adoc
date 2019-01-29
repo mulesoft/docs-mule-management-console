@@ -10,10 +10,10 @@ Flow analysis is not available for clusters. It is primarily a development-time 
 
 Once you understand the basics of the Flow Analyzer screen, described on this page, follow the links below to delve further into this topic:
 
-* xref:3.4@tracking-flows.adoc[Tracking Flows] - Provides more information on using the Flows tab and setting up flow tracking, a prerequisite for flow analysis.
-* xref:3.4@analyzing-message-flows.adoc[Analyzing Message Flows] - Takes you through using the Flow Analyzer panes in detail.
-* xref:3.4@debugging-message-processing.adoc[Debugging Message Processing] - Illustrates the general steps for debugging an application's message processing.
-* xref:3.4@debugging-the-loan-broker-example-application.adoc[Debugging the Loan Broker Example Application] - Shows how to use the console Flow Analyzer screen to find an application logic bug.
+* xref:tracking-flows.adoc[Tracking Flows] - Provides more information on using the Flows tab and setting up flow tracking, a prerequisite for flow analysis.
+* xref:analyzing-message-flows.adoc[Analyzing Message Flows] - Takes you through using the Flow Analyzer panes in detail.
+* xref:debugging-message-processing.adoc[Debugging Message Processing] - Illustrates the general steps for debugging an application's message processing.
+* xref:debugging-the-loan-broker-example-application.adoc[Debugging the Loan Broker Example Application] - Shows how to use the console Flow Analyzer screen to find an application logic bug.
 * xref:3.4@mule-runtime::routing-message-processors.adoc[Using Message Processors to Control Message Flow] - Provides reference information for the available Mule message processors or routers.
 
 == Select Flows for Analysis

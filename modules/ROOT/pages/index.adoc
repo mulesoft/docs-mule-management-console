@@ -1,122 +1,118 @@
-= Mule Management Console Documentation (v3.3 Archives)
+= Mule Management Console (v3.7 Archives)
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:keywords: mmc, 3.4
 
-The Mule ESB management console centralizes management for all your Mule Enterprise Edition deployments, both the standalone variety and those embedded in application servers.
+image::mmc-main.png[]
 
-If you are ready to jump right in, proceed directly to the xref:quick-start-guide-to-mule-esb-server-and-the-management-console.adoc[Quick Start Guide].
+Welcome to the Mule Management Console documentation. Explore the links below and in the sidebar to the left of the page for in-depth user guides, tutorials, and reference materials.
 
-[cols="2*a",frame=none,grid=none]
+This page provides an overview of Mule Management Console for new and prospective users. Jump to the <<Next Steps>> for links to information about installation, setup, and a walkthrough.
+
+== Overview
+
+*Mule Management Console (MMC)* centralizes management and monitoring functions for all your Mule ESB Enterprise deployments, whether they are running as standalone instances, as a cluster, or embedded in application servers.
+
+After software developer teams create Mule applications using https://docs.mulesoft.com/anypoint-studio/v/6/download-and-launch-anypoint-studio[Anypoint Studio] or another IDE, they typically pass the Mule application to another team who deploys the application in a simulated environment for more rigorous testing. Afterwards, the application is run in production with strict requirements to be constantly available, performing at a certain rate, and continually working as expected. Moreover, additional Mule instances and applications may be introduced into the infrastructure, increasing the level of complexity inherent to managing and monitoring all systems.
+
+**This is where MMC comes in.** MMC is an enterprise management and monitoring tool designed specifically for Mule ESB instances. MMC provides a comprehensive set of functionality for managing and monitoring running Mule instances, Mule clusters, applications within Mule instances, and the flows within those applications. It also provides ways of looking at specific transactions through pre-defined business events, as well as transactions in flight.
+
+MMC provides a centralized, convenient, and intuitive web-based *interface* to monitor, manage, and administer the run-time aspects of Mule ESB. With MMC, you can save time and reduce errors by quickly identifying, diagnosing, and appropriately addressing problems across development, testing, UAT and production environments, all within a single interface.
+
+== Benefits
+
+MMC provides the following benefits:
+
+* Simplified troubleshooting through quick access to the most relevant information
+* Enhanced availability, scalability, and performance through clustering
+* Improved visibility and understanding by analyzing real-time metrics that highlight significant changes
+* Increased application uptime and performance through intelligent, proactive alerting and remediation tools
+* Reduced downtime and time-to-resolution with deep diagnostics and auditing capabilities
+* Minimal impact on the runtime performance of your ESB infrastructure
+* Improved collaboration between operations and development through controlled access to runtime diagnostic information
+* Lower management cost with group-based management and control
+* Insight into key business-related events
+
+== Key Features
+
+[cols="25a,75a"]
 |===
-|
-[discrete]
-== Release Notes
+|image:icon-government-blue-100px.png[]
+|*Centralized Management and Monitoring*
 
-* Mule ESB 3.3.0 Release Notes
-* Mule ESB 3.2.0 Release Notes
-* Mule ESB 3.1.0 Release Notes
+* Check the health of ESB resources via an easy-to-navigate visual interface
+* Access intuitive charts that reveal system performance and resource consumption
+* Manage multiple runtime environments, grouped by location, business function, or other criteria
+* Define and subscribe to Mule alerts
 
-[discrete]
-== Useful Reading
+|image:icon-datamapper-blue-100px.png[]
+|*Fine-Grained ESB Control*
 
-* xref:architecture-of-the-management-console.adoc[Architecture of the Management Console]
-* xref:installing-the-management-console.adoc[Installing the Management Console]
-* xref:how-to-run-the-management-console.adoc[How to Run the Management Console]
-* xref:how-to-use-the-management-console.adoc[How to Use the Management Console]
-* xref:troubleshooting-tips.adoc[Troubleshooting Tips]
-* xref:common-tasks.adoc[Common Tasks]
+* Start, stop, and restart ESB resources
+* Remotely access, update, or replace any file or configuration on a Mule ESB server
+* View resource consumption and dynamically tune flows in real time
+* Dynamically configure thread pools
 
-[discrete]
-== Getting Started
+|image:icon-lock-blue-big-100px.png[]
+|*Enterprise-Level Security*
 
-* xref:quick-start-guide-to-mule-esb-server-and-the-management-console.adoc[Quick Start Guide to Mule ESB Server and the Management Console]
-* xref:adding-and-managing-alerts-and-slas.adoc[Adding and Managing Alerts and SLAs]
-* xref:monitoring-and-debugging-applications.adoc[Monitoring and Debugging Applications]
-** xref:tracking-flows.adoc[Tracking Flows]
-** xref:analyzing-message-flows.adoc[Analyzing Message Flows]
-** xref:debugging-message-processing.adoc[Debugging Message Processing]
-** xref:debugging-the-loan-broker-example-application.adoc[Debugging the Loan Broker Example Application]
-* xref:setting-up-users.adoc[Setting Up Users]
+* Support for enterprise authentication (LDAP)
+* Set up fine-grained role-based access control
+* Secure your runtime communications using certificates and HTTPS
 
-[discrete]
-== Server Management
+|image:icon-dashboard-blue-100px.png[]
+|*Deep Diagnostics and Auditing*
 
-* xref:working-with-mule-server-instances.adoc[Working with Mule Server Instances]
-* xref:accessing-server-logs.adoc[Accessing Server Logs]
-* xref:monitoring-a-server.adoc[Monitoring a Server]
-** xref:monitoring-applications.adoc[Monitoring Applications]
-** xref:viewing-server-alerts.adoc[Viewing Server Alerts]
-** xref:viewing-system-memory.adoc[Viewing System Memory]
-** xref:viewing-threads.adoc[Viewing Threads]
-** xref:viewing-server-pools.adoc[Viewing Server Pools]
-** xref:working-with-the-server-configuration-files.adoc[Working with the Server Configuration Files]
-** xref:viewing-server-properties.adoc[Viewing Server Properties]
-** xref:viewing-server-os-resources.adoc[Viewing Server OS Resources]
-** xref:viewing-jmx-information.adoc[Viewing JMX Information]
-** xref:editing-server-settings.adoc[Editing Server Settings]
-** xref:customizing-server-metrics-dashboard.adoc[Customizing Server Metrics Dashboard] |
-[discrete]
-== Cluster Management
+* View detailed information on memory utilization, threads, system resources, and server configuration
+* Audit message traffic and associated properties for both the inbound and outbound sides of flows
+* Turn flow level auditing on or off to capture just enough data to diagnose an issue without impacting performance
 
-* xref:3.3@mule-runtime::mule-high-availability-ha-clusters.adoc[Mule High Availability HA Clusters]
-* xref:managing-mule-high-availability-ha-clusters.adoc[Managing Mule High Availability (HA) Clusters]
-** xref:creating-or-disbanding-a-cluster.adoc[Creating or Disbanding a Cluster]
-** xref:deploying-redeploying-or-undeploying-an-application-to-or-from-a-cluster.adoc[Deploying, Redeploying, or Undeploying an Application To or From a Cluster]
-** xref:monitoring-a-cluster.adoc[Monitoring a Cluster]
-* xref:3.3@mule-runtime::reliability-patterns.adoc[Reliability Patterns]
+|image:icon-alert-blue-100px.png[]
+|*Intelligent Alerting*
 
-[discrete]
-== Application Management
+* Receive notifications when critical metrics cross thresholds
+* Monitor events at the individual server level or system level
+* Escalate alerts to administrators or an external monitoring system
+* Customize alerts using alert scripts
 
-* xref:deploying-applications.adoc[Deploying Applications]
-* xref:maintaining-the-server-application-repository.adoc[Maintaining the Server Application Repository]
+|image:icon-graph-blue-100px.png[]
+|*Flexible Cluster Management*
 
-[discrete]
-== Database Setup for Disaster Recovery
+* Create, disband, or add nodes to clusters as conditions dictate
+* Monitor cluster status – get detailed information about cluster-based flows and memory usage
+* Deploy apps to a cluster for enhanced availability, scalability, and performance
 
-* xref:persisting-transaction-data.adoc[Persisting Transaction Data]
-* xref:persisting-environment-data.adoc[Persisting Environment Data]
+|image:icon-stopwatch-blue-100px.png[]
+|*In-Depth Event Visualization*
 
-[discrete]
-== Flow Analysis
-
-* xref:working-with-flows.adoc[Working with Flows]
-* xref:analyzing-flow-processing-and-payloads.adoc[Analyzing Flow Processing and Payloads]
-
-[discrete]
-== Business Event Analysis
-
-* xref:analyzing-business-events.adoc[Analyzing Business Events]
-* xref:tracking-and-querying-business-events.adoc[Tracking and Querying Business Events]
-* xref:business-events-use-cases.adoc[Business Events Use Cases]
-* xref:persisting-transaction-data.adoc[Persisting Transaction Data]
-
-[discrete]
-== SLA Monitoring through Alerts
-
-* xref:working-with-alerts.adoc[Working With Alerts]
-* xref:defining-slas-and-alerts.adoc[Defining SLAs and Alerts]
-* xref:setting-up-alert-destinations-and-notifications.adoc[Setting Up Alert Destinations and Notifications]
-
-[discrete]
-== Administration
-
-* xref:managing-users-and-roles.adoc[Managing Users and Roles]
-* xref:enabling-ldap-authentication.adoc[Enabling LDAP Authentication]
-* xref:customizing-the-dashboard.adoc[Customizing the Dashboard]
-* xref:working-with-logs.adoc[Working with Logs]
-
-[discrete]
-== Scripting and Automation
-
-* xref:automating-tasks-using-scripts.adoc[Automating Tasks Using Scripts]
-* xref:scripting-examples.adoc[Scripting Examples]
-* xref:using-the-management-console-api.adoc[Using the Management Console APIs]
-* xref:rest-api-reference.adoc[REST API Reference]
-
-[discrete]
-== Use Case Scenarios
-
-* xref:using-the-management-console-for-performance-tuning.adoc[Using the Management Console for Performance Tuning]
+* Track key events in the flow of business transactions
+* Analyze the flow and disposition of particular messages within a business transaction
+* Drill into event data to identify failure points or bottlenecks
+* Test flows for compliance with business procedures and standards
 |===
+
+== Requirements
+
+To successfully run MMC in production, you need:
+
+* A xref:3.4@mule-runtime::downloading-and-launching-mule-esb.adoc[Mule ESB Enterprise] instance with a valid xref:3.4@mule-runtime::installing-an-enterprise-license.adoc[enterprise license]
+* The MMC console application file (mmc.war) deployed in a xref:3.4@mule-runtime::hardware-and-software-requirements.adoc[supported web application server]
+* The MMC agent .jar file, which is bundled with the Mule ESB Enterprise instance in versions 3.4.0 and later. Previous versions of Mule ESB require the agent to be installed separately.
+
+Finally, here are a few important notes to keep in mind before deploying MMC:
+
+* MMC is compatible only with Mule ESB Enterprise
+* MMC is backward compatible with previous versions of Mule ESB
+
+== Next Steps
+
+* xref:installing-mmc.adoc[Install MMC]
+* xref:orientation-to-the-console.adoc[Orient] yourself to the console
+* Get familiar with basic operations using the xref:mmc-walkthrough.adoc[MMC Walkthrough]
+
+== See Also
+
+* xref:setting-up-mmc.adoc[Set up your MMC instance] to work with other components in your enterprise
+* Learn about the xref:architecture-of-the-mule-management-console.adoc[technical architecture of MMC]
+* https://support.mulesoft.com[Contact MuleSoft Support]

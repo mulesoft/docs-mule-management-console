@@ -9,23 +9,21 @@ This document, as well as the rest of the documents that make up the xref:rest-a
 
  Index of operations
 
-[%header,cols="1s,1"]
+[%autowidth.spread,frame=none,grid=none]
 |===
-2+|Assumptions:
-|Host |localhost
-|Port |8080
-|Deployed app |mmc.war
-|User/Password |admin/admin
+|*Assumptions:* |*Host* |localhost | |*Port* |8080 | |*Deployed app* |mmc.war | |*User/Password* |admin/admin
 |===
 
 For a detailed description of the format used in this document, consult xref:using-the-management-console-api.adoc[Content Organization and Conventions].
 
-*/api/servers*
+[source,text,linenums]
+----
+/api/servers
+----
 
-[cols="3*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
-|*POST* |PAIR/REGISTER
-|
+|*POST* |  |PAIR/REGISTER
 |===
 
 Pairs a new Server.
@@ -33,21 +31,11 @@ Pairs a new Server.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== JSON
+*JSON*
 
-[source,text,linenums]
-----
-{
-  "name" : "Test",
-  "agentUrl" : "http://localhost:7777/mmc-support",
-  "groups" : ["0bc8932b-8463-46cd-9a1f-77060756c5c0"]
-}
-----
-
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |name |String |The name of the newly registered server |—
@@ -55,18 +43,16 @@ Pairs a new Server.
 |groupIds |Array |IDs of existing Server Groups that the newly registered server will belong to |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows()
 
 [source,text,linenums]
 ----
  curl --basic -u admin:admin -d "{ \"name\" : \"Test\", \"agentUrl\" : \"http://localhost:7777/mmc-support\", \"groupIds\":[\"0bc8932b-8463-46cd-9a1f-77060756c5c0\"] }" --header "Content-Type: application/json" http://localhost:8080/mmc/api/servers
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
-[source,text,linenums]
+[source,json,linenums]
 ----
  curl --basic -u admin:admin -d '{ "name" : "Test", "agentUrl" : "http://localhost:7777/mmc-support", "groupIds":["0bc8932b-8463-46cd-9a1f-77060756c5c0"] }' --header 'Content-Type: application/json' http://localhost:8080/mmc/api/servers
 ----
@@ -74,10 +60,9 @@ Pairs a new Server.
 [discrete.view]
 === Response
 
-[discrete]
-==== JSON
+*JSON*
 
-[source,json,linenums]
+[source,text,linenums]
 ----
 {
   "name":"Test",
@@ -117,7 +102,7 @@ Pairs a new Server.
 }
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |name |String |The name of the newly registered server |—
@@ -141,9 +126,9 @@ Pairs a new Server.
 |===
 
 [discrete.view]
-=== Common Return codes
+=== ⬇️ Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*201* |Server successfully paired/registered
 |*400* |Policies do not allow adding the specified server/ Invalid Agent URL/ Name must be supplied/ Server URL must be supplied/ A server with that name already exists
@@ -154,16 +139,16 @@ Pairs a new Server.
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*GET* |LIST ALL |
+|*GET* | |LIST ALL
+
 |===
 
 Lists all available Servers.
@@ -171,37 +156,29 @@ Lists all available Servers.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
-[source,text,linenums]
-----
-GET http://localhost:8080/mmc/api/servers[?group={serverGroupId}]
-----
-
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverGroupId |String |(Optional) ID of a Server Group. If specified, only servers belonging to that Server Group are displayed. If not specified, results are not filtered |—
 |===
 
-[discrete]
-==== Using CURL
+*Using CURL()
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/servers
+curl --basic -u admin:admin http://localhost:8080/mmc/api/servers
 ----
 
 [discrete.view]
 === Response
 
-[discrete]
-==== JSON
+*JSON*
 
-[source,text,linenums]
+[source,json,linenums]
 ----
 {
   "total":1,
@@ -246,7 +223,7 @@ GET http://localhost:8080/mmc/api/servers[?group={serverGroupId}]
 }
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |total |Integer |Number of available registered servers |—
@@ -273,7 +250,7 @@ GET http://localhost:8080/mmc/api/servers[?group={serverGroupId}]
 [discrete.view]
 === Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |*401* |Unauthorized user
@@ -283,18 +260,20 @@ GET http://localhost:8080/mmc/api/servers[?group={serverGroupId}]
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
-#*/api/server/\{serverId}*#
-
-[cols="3*a"]
+[source,text,linenums]
+----
+/api/server/\{serverId}
+----
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*GET* |LIST |
+|*GET* | *LIST*
+
 |===
 
 Lists details for a specific Server.
@@ -302,85 +281,36 @@ Lists details for a specific Server.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
-[source,text,linenums]
-----
-GET http://localhost:8080/mmc/api/servers[?group={serverGroupId}]
-----
-
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of the server to be listed. Invoke LIST ALL to obtain it |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
  curl --basic -u admin:admin http://localhost:8080/mmc/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36'
+curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36'
 ----
 
 [discrete.view]
 === Response
 
-[discrete]
-==== JSON
+*JSON*
 
-[source,text,linenums]
-----
-{
-  "name":"Test",
-  "id":"local$a89eb3d0-68b9-44a0-9f6b-712b0895f469",
-  "version":"3.3.0",
-  "groups":
-    [
-      {
-        "name":"Production",
-        "href":"http://localhost:8080/mmc/api/serverGroups/0bc8932b-8463-46cd-9a1f-77060756c5c0"
-      }
-    ],
-  "status":"OK",
-  "href":"http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469",
-  "runningServices":4,
-  "hostIp":"172.16.20.131",
-  "agentUrl":"https://localhost:7777/mmc-support",
-  "muleServerId":"00_mmc-agent",
-  "started":"Thu Aug 16 12:18:39 ART 2012",
-  "agents":
-    [
-      {
-        "name":"mmc-support",
-        "description":"Mule ESB Enterprise Support (0.0.0.0:7777)"
-      },
-      {
-        "name":"_muleClusterSupportAgent",
-        "description":"Clustering Agent"
-      },
-      {
-        "name":"jmx-agent",
-        "description":"JMX Agent"
-      }
-    ],
-  "pausedServices":0,
-  "stoppedServices":0
-}
-----
-
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |name |String |The name of the newly registered server |—
@@ -404,9 +334,9 @@ GET http://localhost:8080/mmc/api/servers[?group={serverGroupId}]
 |===
 
 [discrete.view]
-=== Common Return codes
+=== Common Return Codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*401* |Unauthorized user
 |*404* |A server with that ID was not found
@@ -415,16 +345,16 @@ GET http://localhost:8080/mmc/api/servers[?group={serverGroupId}]
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*DELETE* |UNPAIR/UNREGISTER |
+|*DELETE* | |UNPAIR/UNREGISTER
+
 |===
 
 Unpairs/unregister a specific Server.
@@ -432,50 +362,44 @@ Unpairs/unregister a specific Server.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
-[source,text,linenums]
-----
-DELETE http://localhost:8080/mmc/api/servers/{serverId}
-----
-
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |Id of the server to be unpaired/unregistered. Invoke LIST ALL to obtain it |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469
+curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469'
+curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469'
 ----
 
 [discrete.view]
 === Response
 
-[discrete]
-==== JSON
+*JSON*
 
-`200 OK`
+[source,text,linenums]
+----
+200 OK
+----
 
 [discrete.view]
 === Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |*401* |Unauthorized user
@@ -486,18 +410,21 @@ DELETE http://localhost:8080/mmc/api/servers/{serverId}
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
-#*/api/servers/\{serverId}*#
+[source,text,linenums]
+----
+/api/servers/\{serverId}
+----
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*PUT* |UPDATE |
+|*PUT* | |*UPDATE*
+
 |===
 
 Updates a specific Server.
@@ -505,10 +432,9 @@ Updates a specific Server.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== JSON
+*JSON*
 
 [source,text,linenums]
 ----
@@ -521,31 +447,32 @@ Updates a specific Server.
 }
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |name |String |New name for the Server |—
 |groups |Array |List of Server Groups that the Server will belong to |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X PUT -d "{ \"name\" : \"New Server Name\", \"groups\":[{\"href\":\"0bc8932b-8463-46cd-9a1f-77060756c5c0\"}]}" --header "Content-Type: application/json" http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469
+curl --basic -u admin:admin -X PUT -d "{ \"name\" : \"New Server Name\", \"groups\":[{\"href\":\"0bc8932b-8463-46cd-9a1f-77060756c5c0\"}]}" --header "Content-Type: application/json" http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469
 ----
 
-[discrete]
-==== Using CURL on Linux
 
-[source,text,linenums]
+*Using CURL on Linux*
+
+[source,json,linenums]
 ----
- curl --basic -u admin:admin -X PUT -d '{"name" : "New Server Name", "groups":[{"href":"0bc8932b-8463-46cd-9a1f-77060756c5c0"}]}' --header 'Content-Type: application/json' 'http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469'
+curl --basic -u admin:admin -X PUT -d '{"name" : "New Server Name", "groups":[{"href":"0bc8932b-8463-46cd-9a1f-77060756c5c0"}]}' --header 'Content-Type: application/json' 'http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469'
 ----
 
 [discrete.view]
 === Response
+
+*JSON*
 
 [source,text,linenums]
 ----
@@ -587,10 +514,7 @@ Updates a specific Server.
 }
 ----
 
-[discrete]
-==== JSON
-
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |name |String |The name of the newly registered server |—
@@ -615,7 +539,7 @@ Updates a specific Server.
 [discrete.view]
 === Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |*401* |Unauthorized user
@@ -626,18 +550,21 @@ Updates a specific Server.
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
-#*/api/servers/\{serverId}/applications*#
+[source,text,linenums]
+----
+/api/servers/\{serverId}/applications
+----
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*GET* |LIST APPLICATIONS |
+|*GET* | |*LIST APPLICATIONS*
+
 |===
 
 Lists all available deployed applications on a specific Server.
@@ -645,43 +572,39 @@ Lists all available deployed applications on a specific Server.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
 [source,text,linenums]
 ----
 GET http://localhost:8080/mmc/api/servers/{serverId}/applications
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of a Server |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/applications
+curl --basic -u admin:admin http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/applications
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/applications'
+curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/applications'
 ----
 
 [discrete.view]
 === Response
 
-[discrete]
-==== JSON
+*JSON*
 
 [source,text,linenums]
 ----
@@ -728,7 +651,7 @@ GET http://localhost:8080/mmc/api/servers/{serverId}/applications
 }
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |total |Integer |Number of applications currently deployed |—
@@ -746,7 +669,7 @@ GET http://localhost:8080/mmc/api/servers/{serverId}/applications
 [discrete.view]
 === Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |===
@@ -754,74 +677,94 @@ GET http://localhost:8080/mmc/api/servers/{serverId}/applications
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
-#*/api/servers/\{serverId}/restart*#
+[source,text,linenums]
+----
+/api/servers/\{serverId}/restart
+----
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*POST* |PERFORM RESTART |
+|*POST* | |*PERFORM RESTART*
+
 |===
 
 Restarts a Server.
+
+[.ex]
+=====
+[discrete.view]
+===  Request
+
+*SYNTAX*
 
 [source,text,linenums]
 ----
 POST http://localhost:8080/mmc/api/servers/{serverId}/restart
 ----
 
-#Error rendering macro 'deck' : java.lang.NullPointerException#
-
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of a registered server |—
 |===
 
-== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/restart
+curl --basic -u admin:admin http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/restart
 ----
 
-== Using CURL on Linux
-
-[source,text,linenums]
-----
- curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/restart'
-----
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
-200
+curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/restart'
 ----
 
-#Error rendering macro 'deck' : java.lang.NullPointerException#
+[discrete.view]
+=== Response
 
-[cols="2*a"]
+*JSON*
+
+[source,text,linenums]
+----
+200 OK
+----
+
+[discrete.view]
+=== Common return Codes
+
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |*500* |Internal server error
 |===
 
-[cols="2*a"]
+[discrete.view]
+=== MMC version
+
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
+=====
 
-#Error rendering macro 'deck' : java.lang.NullPointerException#
+[source,text,linenums]
+----
+/api/servers/\{serverId}/stop
+----
 
-*/api/servers/\{serverId}/stop*
-
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*POST* |PERFORM STOP |
+|*POST* | |*PERFORM STOP*
+
 |===
 
 Stops a Server.
@@ -829,53 +772,49 @@ Stops a Server.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
 [source,text,linenums]
 ----
 POST http://localhost:8080/mmc/api/servers/{serverId}/stop
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of a registered server |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/stop
+curl --basic -u admin:admin http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/stop
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/stop'
+curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469/stop'
 ----
 
 [discrete.view]
-=== Response
+=== <-Response
 
-[discrete]
-==== JSON
+*JSON*
 
 [source,text,linenums]
 ----
-200
+200 OK
 ----
 
 [discrete.view]
 === Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |*500* |Internal server error
@@ -884,20 +823,23 @@ POST http://localhost:8080/mmc/api/servers/{serverId}/stop
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
 == Server Files
 
-#*/api/server/\{serverId}/files*#
+[source,text,linenums]
+----
+/api/server/\{serverId}/files
+----
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*GET* |LIST FILES |
+|*GET* | |*LIST FILES*
+
 |===
 
 Lists files on a specific Server.
@@ -905,43 +847,39 @@ Lists files on a specific Server.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
 [source,text,linenums]
 ----
 GET http://localhost:8080/mmc/api/servers/{serverId}/files
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of the server to be listed. Invoke LIST ALL to obtain it |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/files
+curl --basic -u admin:admin http://localhost:8080/mmc/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/files
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/files'
+curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/files'
 ----
 
 [discrete.view]
 === Response
 
-[discrete]
-==== JSON
+*JSON*
 
 [source,text,linenums]
 ----
@@ -978,26 +916,26 @@ GET http://localhost:8080/mmc/api/servers/{serverId}/files
 }
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
-|total |Integer |Number of detected files and folders at root folder level |—
-|data |Array |List of files and folders detected at root folder level |—
-|name |String |Name of the file |data
-|size |Integer |Size of the file in bytes |
-|absolutePath |String |Absolute path of the file/folder |-
-|directory |Boolean |True if the entry is a directory |-
-|lastModified |Long |Last modified time since epoch |-
-|friendlySize |String |Human readable size of the file |-
-|userCanExecute |Boolean |True if User can execute the file |-
-|userCanRead |Boolean |True if User can read the file |-
-|friendlyName |String |Friendly name of the file |-
+|total |Integer |Number of applications currently deployed |—
+|data |Array |List of deployed applications |—
+|name |String |Name of the application |data
+|size |Integer |Size of the file in bytes |--
+|absolutePath |String |Absolute path of the file/folder |--
+|directory |Boolean |True if the entry is a directory |--
+|lastModifed |Long |Last modified time since epoch |--
+|friendlySize |String |Human readable size of the file |--
+|userCanExecute |Boolean |True if User can execute the file |--
+|userCanRead |Boolean |True if User can read the file |--
+|friendlyName|String |Friendly name of the file |--
 |===
 
 [discrete.view]
 === Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |200 |The operation was successful
 |404 |The location does not exist
@@ -1007,18 +945,21 @@ GET http://localhost:8080/mmc/api/servers/{serverId}/files
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
-#*/api/server/\{serverId}/files/\{relative path to file}*#
+[source,text,linenums]
+----
+/api/server/\{serverId}/files/\{relative path to file}
+----
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*GET* |LIST FILE |
+|*GET* | |*LIST FILE*
+
 |===
 
 Get a specific file from a specific Server.
@@ -1026,17 +967,16 @@ Get a specific file from a specific Server.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
 [source,text,linenums]
 ----
 GET http://localhost:8080/mmc/api/servers/{serverId}/files/{relativePathToFile}[?metadata=true]
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of the server to be listed. Invoke LIST ALL to obtain it |—
@@ -1044,27 +984,24 @@ GET http://localhost:8080/mmc/api/servers/{serverId}/files/{relativePathToFile}[
 |metadata |Boolean |(Optional) If false, file is returned, if true, high level file description is returned. Default value is false. |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/bin/mule
+curl --basic -u admin:admin http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/bin/mule
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/bin/mule'
+curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/bin/mule'
 ----
 
 [discrete.view]
 === Response
 
-[discrete]
-==== JSON
+*JSON*
 
 [source,text,linenums]
 ----
@@ -1086,7 +1023,7 @@ Metadata=true:
 }
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |name |String |Name of the file |—
@@ -1104,7 +1041,7 @@ Metadata=true:
 [discrete.view]
 === Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |*404* |The location does not exist
@@ -1113,18 +1050,21 @@ Metadata=true:
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
-#*/api/server/\{serverId}/files/\{relative path to file to be created}*#
+[source,text,linenums]
+----
+/api/server/\{serverId}/files/\{relative path to file to be created}
+----
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*POST* |CREATE REMOTE FILE |
+|*POST* | |*CREATE REMOTE FILE*
+
 |===
 
 Creates a new file in the specified server and folder. +
@@ -1134,37 +1074,34 @@ EOL from the source is converted to the native representation of the platform wh
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
 [source,text,linenums]
 ----
 POST http://localhost:8080/mmc/api/server/{serverId}/files/{relative path to file to be created}
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of a registered server |—
 |relative path to file to be created |String |Eg. myLog/myUser/myFile.txt |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -v --header "Content-Type:application/octet-stream" --data-binary "@test.xml" http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt
+curl --basic -u admin:admin -v --header "Content-Type:application/octet-stream" --data-binary "@test.xml" http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -v --header 'Content-Type:application/octet-stream' --data-binary '@test.xml' 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt'
+curl --basic -u admin:admin -v --header 'Content-Type:application/octet-stream' --data-binary '@test.xml' 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt'
 ----
 
 * "test.xml" is the source file in the example. You can provide full path or file name. In the last case, the file should be placed at the same folder than the one containing the curl executable.
@@ -1174,15 +1111,17 @@ POST http://localhost:8080/mmc/api/server/{serverId}/files/{relative path to fil
 [discrete.view]
 === Response
 
-[discrete]
-==== JSON
+*JSON*
 
-`200`
+[source,text,linenums]
+----
+200 OK
+----
 
 [discrete.view]
 === Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |*500* |Internal error
@@ -1191,16 +1130,16 @@ POST http://localhost:8080/mmc/api/server/{serverId}/files/{relative path to fil
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*PUT* |UPDATE/REPLACE REMOTE FILE |
+|*PUT* | |*UPDATE/REPLACE REMOTE FILE*
+
 |===
 
 Replaces a target file with the provided source file (or inline content) on the specified server and folder.
@@ -1210,37 +1149,34 @@ EOL from source is converted to a native representation of the platform where th
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
 [source,text,linenums]
 ----
 PUT http://localhost:8080/mmc/api/server/{serverId}/files/{relative path to file to be replaced}
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of a registered server |—
 |relative path to file to be replaced |String |Eg. myLog/myUser/myFile.txt |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X PUT --header "Content-Type:application/octet-stream" --data-binary "@test.xml" http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt
+curl --basic -u admin:admin -X PUT --header "Content-Type:application/octet-stream" --data-binary "@test.xml" http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X PUT --header 'Content-Type:application/octet-stream' --data-binary '@test.xml' 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt'
+curl --basic -u admin:admin -X PUT --header 'Content-Type:application/octet-stream' --data-binary '@test.xml' 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt'
 ----
 
 * "test.xml" is the source file in the example. You can provide full path or file name. In the last case, the file should be placed at the same folder than the one containing the curl executable.
@@ -1250,15 +1186,17 @@ PUT http://localhost:8080/mmc/api/server/{serverId}/files/{relative path to file
 [discrete.view]
 === Response
 
-[discrete]
-==== JSON
+*JSON*
 
-`200`
+[source,text,linenums]
+----
+200 OK
+----
 
 [discrete.view]
-=== Common Return codes
+=== Common Return Codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |*404* |File not found
@@ -1269,16 +1207,16 @@ PUT http://localhost:8080/mmc/api/server/{serverId}/files/{relative path to file
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*DELETE* |DELETE REMOTE FILE |
+|*DELETE* | |*DELETE REMOTE FILE*
+
 |===
 
 Deletes a target file on the specified server and folder.
@@ -1286,37 +1224,34 @@ Deletes a target file on the specified server and folder.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
 [source,text,linenums]
 ----
 DELETE http://localhost:8080/mmc/api/server/{serverId}/files/{relative path to file to be deleted}
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of a registered server |—
 |relative path to file to be deleted |String |Eg. myLog/myUser/myFile.txt |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+ *Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt
+curl --basic -u admin:admin -X DELETE http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt'
+curl --basic -u admin:admin -X DELETE 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/files/logs/fileOnLogsFolder.txt'
 ----
 
 * "fileOnLogsFolder.txt" in the example is the file to be deleted on the specified folder.
@@ -1324,15 +1259,17 @@ DELETE http://localhost:8080/mmc/api/server/{serverId}/files/{relative path to f
 [discrete.view]
 === Response
 
-[discrete]
-==== JSON
+*JSON*
 
-`200`
+[source,text,linenums]
+----
+200 OK
+----
 
 [discrete.view]
 === Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |===
@@ -1340,24 +1277,23 @@ DELETE http://localhost:8080/mmc/api/server/{serverId}/files/{relative path to f
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
 == Server Flows
 
-#*/api/server/\{serverId}/flows*#
+[source,text,linenums]
+----
+/api/server/\{serverId}/flows
+----
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|
-*GET*
-|
-LIST FLOWS
-|
+|*GET* | |*LIST FLOWS*
+
 |===
 
 Lists available flows on a specific Server.
@@ -1365,44 +1301,40 @@ Lists available flows on a specific Server.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
 [source,text,linenums]
 ----
 GET http://localhost:8080/mmc/api/servers/{serverId}/flows[?refreshStats=TRUE|FALSE]
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of the server to be listed. Invoke LIST ALL to obtain it |—
 |refreshStats |Boolean |(Optional) If true, forces stats refresh |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
  curl --basic -u admin:admin http://localhost:8080/mmc/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/flows
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/flows'
+curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$97e3c184-09ed-423e-a5a5-9b94713a9e36/flows'
 ----
 
 [discrete.view]
 === Response
 
-[discrete]
-==== JSON
+*JSON*
 
 [source,text,linenums]
 ----
@@ -1444,7 +1376,7 @@ GET http://localhost:8080/mmc/api/servers/{serverId}/flows[?refreshStats=TRUE|FA
 }
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |total |Integer |Number of available flows detected on the specified Server |—
@@ -1476,7 +1408,7 @@ GET http://localhost:8080/mmc/api/servers/{serverId}/flows[?refreshStats=TRUE|FA
 [discrete.view]
 === Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |*404* |The specified server is currently down
@@ -1486,18 +1418,21 @@ GET http://localhost:8080/mmc/api/servers/{serverId}/flows[?refreshStats=TRUE|FA
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
-#*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/start*#
+[source,text,linenums]
+----
+/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/start
+----
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*POST* |PERFORM FLOW START |
+|*POST* | |*PERFORM FLOW START*
+
 |===
 
 Starts a specific flow.
@@ -1505,17 +1440,16 @@ Starts a specific flow.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
 [source,text,linenums]
 ----
 POST http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicationName}/start
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of the server to be listed. Invoke LIST ALL to obtain it |—
@@ -1523,27 +1457,24 @@ POST http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicat
 |applicationName |String |Application Name to which the flow belongs to |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/start
+curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/start
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/start'
+curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/start'
 ----
 
 [discrete.view]
 === Response
 
-[discrete]
-==== JSON
+*JSON*
 
 [source,text,linenums]
 ----
@@ -1554,13 +1485,16 @@ The flow started successfully
 ====
 If flow is already started, the following message is returned:
 
-`{"message":"Error while starting flow"}`
+[source,text,linenums]
+----
+{"message":"Error while starting flow"}
+----
 ====
 
 [discrete.view]
 === Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |*404* |Flow doesn't exist
@@ -1570,18 +1504,21 @@ If flow is already started, the following message is returned:
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
-#*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/stop*#
+[source,text,linenums]
+----
+/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/stop
+----
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*POST* |PERFORM FLOW STOP |
+|*POST* | |*PERFORM FLOW STOP*
+
 |===
 
 Stops a specific flow.
@@ -1589,14 +1526,16 @@ Stops a specific flow.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
-`POST http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicationName}/stop`
+[source,text,linenums]
+----
+POST http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicationName}/stop
+----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of the server to be listed. Invoke LIST ALL to obtain it |—
@@ -1604,41 +1543,44 @@ Stops a specific flow.
 |applicationName |String |Application Name to which the flow belongs to |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/stop
+curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/stop
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/stop'
+curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/stop'
 ----
 
 [discrete.view]
 === Response
 
-[discrete]
-==== JSON
+*JSON*
 
-`The flow stopped successfully`
+[source,text,linenums]
+----
+The flow stopped successfully
+----
 
 [WARNING]
 ====
 If flow is already stopped the following message is returned:
 
-`{"message":"Error while starting flow"}`
+[source,text,linenums]
+----
+{"message":"Error while starting flow"}
+----
 ====
 
 [discrete.view]
-=== Common Return codes
+=== ⬇️ Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |*404* |Flow doesn't exist
@@ -1648,20 +1590,23 @@ If flow is already stopped the following message is returned:
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
 == Server Flows Endpoints
 
-#*/api/server/\{serverId}/\{flowName}/\{applicationName}/endpoints*#
+[source,text,linenums]
+----
+/api/server/\{serverId}/\{flowName}/\{applicationName}/endpoints
+----
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*GET* |LIST FLOWS ENDPOINTS |
+|*GET* | |LIST FLOWS ENDPOINTS
+
 |===
 
 Lists available endpoints belonging to specific flows.
@@ -1669,17 +1614,16 @@ Lists available endpoints belonging to specific flows.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
 [source,text,linenums]
 ----
 GET http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of the server to be listed. Invoke LIST ALL to obtain it |—
@@ -1687,20 +1631,18 @@ GET http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicati
 |applicationName |String |Application Name to which the flow belongs to |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints
+curl --basic -u admin:admin http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints'
+curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints'
 ----
 
 [TIP]
@@ -1709,8 +1651,7 @@ If flow name contain spaces, replace them by "%20" when typing the URL to locate
 [discrete.view]
 === Response
 
-[discrete]
-==== JSON
+*JSON*
 
 [source,text,linenums]
 ----
@@ -1755,7 +1696,7 @@ If flow name contain spaces, replace them by "%20" when typing the URL to locate
 }
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |total |Integer |Number of endpoint detected |—
@@ -1774,7 +1715,7 @@ If flow name contain spaces, replace them by "%20" when typing the URL to locate
 [discrete.view]
 === Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |*404* |The specified flow does not exist
@@ -1784,18 +1725,21 @@ If flow name contain spaces, replace them by "%20" when typing the URL to locate
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
-#*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/start*#
+[source,text,linenums]
+----
+/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/start
+----
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*POST* |PERFORM FLOW ENDPOINT START |
+|*POST* | |*PERFORM FLOW ENDPOINT START*
+
 |===
 
 Starts a specific endpoint.
@@ -1803,17 +1747,16 @@ Starts a specific endpoint.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
 [source,text,linenums]
 ----
 POST http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/start
 ----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of a registered server |—
@@ -1822,27 +1765,24 @@ POST http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicat
 |endpointId |String |ID of the endpoint |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/start
+curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/start
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/start'
+curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/start'
 ----
 
 [discrete.view]
-=== Response
+===  Response
 
-[discrete]
-==== JSON
+*JSON*
 
 [source,text,linenums]
 ----
@@ -1854,7 +1794,7 @@ POST http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicat
 [discrete.view]
 === Common Return codes
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |*404* |Flow doesn't exist
@@ -1865,18 +1805,21 @@ POST http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicat
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
 
-#*/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/stop*#
+[source,text,linenums]
+----
+/api/server/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/stop
+----
 
-[cols="3*a"]
+[%header%autowidth.spread,frame=none,grid=none]
 |===
-|*POST* |PERFORM FLOW ENDPOINT STOP |
+|*POST* | |*PERFORM FLOW ENDPOINT STOP*
+
 |===
 
 Stops a specific endpoint.
@@ -1884,14 +1827,16 @@ Stops a specific endpoint.
 [.ex]
 =====
 [discrete.view]
-=== Request
+===  Request
 
-[discrete]
-==== SYNTAX
+*SYNTAX*
 
-`POST http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/stop`
+[source,text,linenums]
+----
+POST http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/stop
+----
 
-[%header,cols="4*a"]
+[%header%autowidth.spread]
 |===
 |Key |Type |Summary |Child of
 |serverId |String |ID of a registered server |—
@@ -1900,24 +1845,24 @@ Stops a specific endpoint.
 |endpointId |String |ID of the endpoint |—
 |===
 
-[discrete]
-==== Using CURL on Windows
+*Using CURL on Windows*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/stop
+curl --basic -u admin:admin -X POST http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/stop
 ----
 
-[discrete]
-==== Using CURL on Linux
+*Using CURL on Linux*
 
 [source,text,linenums]
 ----
- curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/stop'
+curl --basic -u admin:admin -X POST 'http://localhost:8080/mmc/api/servers/local$24600824-af33-4394-8e39-93f9fcf4faae/flows/Hello%20World/mule-example-hello/endpoints/endpoint.http.localhost.8888/stop'
 ----
 
 [discrete.view]
 === Response
+
+*JSON*
 
 [source,text,linenums]
 ----
@@ -1929,10 +1874,7 @@ Stops a specific endpoint.
 [discrete.view]
 === Common Return codes
 
-[discrete]
-==== JSON
-
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |*200* |The operation was successful
 |*404* |Flow doesn't exist
@@ -1943,9 +1885,8 @@ Stops a specific endpoint.
 [discrete.view]
 === MMC version
 
-[cols="2*a"]
+[%autowidth.spread,frame=none,grid=none]
 |===
 |From |3.2.2
 |===
-
 =====
