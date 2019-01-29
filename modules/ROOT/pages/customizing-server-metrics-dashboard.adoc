@@ -11,7 +11,7 @@ Click the Add New Chart Type button to select other usage charts to display. Sel
 
 image::server-config.png[]
 
-Depending on the chart you select, you may be queried for more information. For example, if you select the Service Execution Time chart, you are prompted to select a service from the pull-down list. You can also customize the display name for the chart. See the figure below.
+Depending on the chart you select, you may be queried for more information. For example, if you select the Flow Execution Time chart, you are prompted to select a flow from the pull-down list. You can also customize the display name for the chart. See the figure below.
 
 image::select-chart.png[]
 
@@ -19,7 +19,7 @@ image::select-chart.png[]
 
 You can add the following server metrics charts. For each type of chart, the table shows the configuration you will need to specify. Since you may configure the display name for any chart type, this option is not shown in the table. In addition, you can add the server metrics chart to all servers.
 
-[%header,cols="2*",width=10%]
+[%header%autowidth.spread]
 |===
 |Chart Type |Configuration Options
 |Flow Errors |Select the flow
@@ -30,12 +30,5 @@ You can add the following server metrics charts. For each type of chart, the tab
 |OS CPU Usage |No additional options
 |OS Memory Usage |Maximum memory
 |OS Swap Usage |Maximum memory
-|Service Execution Time |Select the service
-|Service Queue |Select the service
-|Service Queue Time |Select the service
 |Thread Pool Size |Select the thread pool
 |===
-
-xref:editing-server-settings.adoc[<< Previous: *Editing Server Settings*]
-
-xref:mule-high-availability-ha-clusters.adoc[Next: *Mule High Availability (HA) Clusters* >>]

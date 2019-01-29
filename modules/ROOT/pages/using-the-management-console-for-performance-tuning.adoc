@@ -3,6 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+* <<Use Case Background>>
+* <<Detailed Performance Tuning Scenario>>
+* <<Debugging Process Details>>
+* <<Lessons Learned>>
+
 Performance issues can occur for any particular flow. Developers need to both find the cause of performance bottlenecks and to work out satisfactory solutions. This use case scenario shows how to use the Mule Management console to detect flow bottlenecks and tune the performance of a running Mule instance.
 
 If you notice a performance degradation in a flow, you can use the console to detect and pinpoint the bottleneck. For example, your application may start out running fast, but over time, particularly as its load increases, application throughput degrades. You can use the console tool to pin-point the cause of the bottleneck and to change the flow's configuration to increase its performance.
@@ -12,8 +17,6 @@ Often, multiple factors lead to performance bottlenecks. You can use the console
 The Management Console allows developers to monitor resource utilization in real time and to make changes to the runtime parameters (the resource allocation configuration file) of the running Mule ESB instance. You can do all this from the same web console without restarting the Mule ESB server, dramatically reducing time and complexity for performance tuning of a Mule instance. This is a significant improvement over past approaches for monitoring resource usage, which required using profilers and other external tools. When using external tools, the Mule ESB instance had to be stopped, configuration XML files manually changed, then Mule had to be restarted and the testing cycle repeated.
 
 While a flow is running, you can use the console panes (such as Pools and Memory) and their respective graphs and tables to see how resources are allocated and consumed, enabling you to quickly identify a bottleneck. When you find problems, you can use the console to change the flow's resource allocations, such as the size of the pools. The flow does not have to be stopped and restarted, and the console runtime data lets you immediately see the effect of your changes. You can make as many passes as necessary and tweak different resource allocation parameters until you eventually remove the bottleneck and achieve the desired level of performance.
-
-See the Mule ESB page xref:3.2@mule-runtime::tuning-performance.adoc[Tuning Performance] for more detailed information on performance tuning.
 
 == Use Case Background
 
@@ -33,12 +36,10 @@ In brief, Dan follows these steps to resolve the problem:
 
 == Detailed Performance Tuning Scenario
 
-[cols="1*a"]
-|===
-|
 [WARNING]
+====
 The figures that appear below do not necessarily reflect the actual data for the debugging process. They are meant merely to illustrate the console functions.
-|===
+====
 
 When Dan starts testing the flow, he immediately sees some performance problems. Although the application performance is fine when first started, as the application load increases the processing throughput rate drops significantly.
 

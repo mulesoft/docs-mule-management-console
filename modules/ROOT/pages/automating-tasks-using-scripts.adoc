@@ -2,6 +2,15 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:keywords: mmc, automation
+
+* <<Creating a Script>>
+* <<Saving a New Script>>
+* <<Installing a Script to Run on Startup>>
+* <<Modifying and Deleting a Script>>
+* <<Testing a Script>>
+* <<Scheduling a Script>>
+* <<Cron Command Syntax>>
 
 Using the Admin shell to write scripts you can easily build and install your own extensions for the management console. Once written, you can install scripts (that is, set up the scripts to run on startup) or schedule them using a cron-like scheduling mechanism. Scripts are written using the Groovy scripting language, a language similar to the Java programming language. For more information about Groovy, see http://groovy-lang.org/[groovy language reference].
 
@@ -53,19 +62,19 @@ You can use the scheduler to periodically run your script, which is useful for j
 === Create a Scheduled Job
 
 . On the Administration tab, click Utility, then *Scheduler*. You should see a pane listing all scheduled scripts.
-
++
 image::schedule1.png[]
 
 . Click *New* to open the Add Scheduled Item pane to set up a new schedule for a script.
 . Select the script to run from the Script pull-down list. (See below.)
 . Enter a unique name and description for this scheduled job.
-. Enter a mmc:cron command to specify when the script should be run.
+. Enter a <<Cron Command Syntax>> to specify when the script should be run.
 . To allow this script to be run even if the last execution of the script is still running, click *Allow Concurrent Execution*.
 . Click *Save*.
-
++
 image::schedule2.png[]
-
-[IMPORTANT]
++
+[CAUTION]
 After you click *Save* to save the scheduled job, the script will run on the specified schedule until you delete the job.
 
 === Delete a Scheduled Job
@@ -78,7 +87,7 @@ After you click *Save* to save the scheduled job, the script will run on the spe
 
 You use the following syntax when specifying the cron command:
 
-[%header,cols="4*",width=10%]
+[%header,cols="4*"]
 |===
 |Field Name |Mandatory |Allowed Values |Allowed Special Characters
 |Seconds |YES |0-59 |, - * /
@@ -92,7 +101,7 @@ You use the following syntax when specifying the cron command:
 
 Following is a description of the special characters:
 
-[%header,cols="10,90"]
+[%header%autowidth.spread]
 |===
 |Character |Description
 |, |Separates individual values, such as 0,30 in the minutes position to run the job on the hour and half hour.
@@ -107,7 +116,7 @@ Following is a description of the special characters:
 
 Following are some examples of cron commands:
 
-[%header,cols="10,90"]
+[%header%autowidth.spread]
 |===
 |Command |Description
 |0 0 12 * * ? |12pm (noon) every day. Note that no year is specified, because the year position is optional.
@@ -122,10 +131,8 @@ Following are some examples of cron commands:
 |0 15 10 ? * 6L 2010-2012 |10:15am on the last Friday of every month during the years 2010, 2011, and 2012
 |===
 
-xref:working-with-logs.adoc[<< Previous: *Working with Logs*]
-
-xref:scripting-examples.adoc[Next: *Scripting Examples* >>]
-
 == See Also
 
-* https://support.mulesoft.com[Contact MuleSoft Support]
+* xref:3.6@working-with-logs.adoc[Working with Logs]
+
+* xref:3.6@scripting-examples.adoc[*Scripting Examples*]

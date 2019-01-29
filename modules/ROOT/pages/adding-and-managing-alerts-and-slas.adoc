@@ -2,8 +2,15 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:keywords: mmc, alerts, slas
 
-This topic gets you started with working with alerts. It shows you how to add a new alert, then view and manage alerts. Since this topic takes you through only one scenario, you should also see xref:working-with-alerts.adoc[Working With Alerts] for complete information on SLAs and alerts, .
+* <<View Raised Alerts>>
+* <<View Alerts on the Dashboard>>
+* <<Manage Alerts>>
+* <<Set Up Alert Destinations>>
+* <<Set Up Alert Notifications>>
+
+This topic gets you started with working with alerts. It shows you how to add a new alert, then view and manage alerts. Since this topic takes you through only one scenario, you should also see xref:3.7@working-with-alerts.adoc[Working with Alerts] for complete information on SLAs and alerts.
 
 Alerts let you set up the console to check for potential problems on your servers, or for situations that might later lead to server problems. You define conditions (referred to as SLAs) through the Alerts pane. These conditions may later trigger the console to display alert messages that warn or advise you about problem situations.
 
@@ -12,15 +19,15 @@ Alerts let you set up the console to check for potential problems on your server
 Here are the steps to add a new alert:
 
 * First click the Alerts tab, then click Alerts Definition in the navigation bar on the left. Click the New Alert button. (These are circled in the figure below.)
-
++
 image::new-alert1.png[]
 
 * Select the type of alert you want to add from the pull-down list. For example, select URL Health as shown below.
-
++
 image::new-alert-type.png[]
 
 * Specify the parameters for this type of alert. After you specify the type of alert, the Add Alert dialog prompts you for the parameters for that type of alert. For URL Health alerts, you provide a name for the alert, a description, select a severity level, check the Active box, indicate the URL of the external site, the expected status code that would raise the alert, and the wait period (in seconds). Once all parameters are specified, click Save. In this example, the URL is http://www.google.com and the expected status code is 200.
-
++
 image::new-alert2.png[]
 
 == View Raised Alerts
@@ -65,8 +72,6 @@ Next, complete the remaining fields, as shown below. For Google mail (gmail) you
 
 image::alerts-destination-add-email-google.png[]
 
-See xref:setting-up-alert-destinations-and-notifications.adoc[Setting Up Alert Destinations] for details on setting up other email destinations.
-
 == Set Up Alert Notifications
 
 Once the destination is set up, you can set up the notification conditions.
@@ -75,9 +80,7 @@ Click Alert Notifications in the left navigation bar, then the New Notification 
 
 image::alerts-notification.png[]
 
-Enter a name to identify the notification. You can specify a filter, if desired, so that only certain alerts are sent to the destination. If you do not define a filter, all alerts are sent to the destination. Then, select a destination from the pull-down list. As you can see, the list is populated with existing destinations.
-
-Unable to render embedded object: File (alerts-notification-add.png) not found.
+Enter a name to identify the notification. You can specify a filter, if desired, so that only certain alerts are sent to the destination. If you do not define a filter, all alerts are sent to the destination. Then, select a destination from the pull-down list. The list is populated with existing destinations.
 
 Complete the rest of the notification fields:
 
@@ -101,7 +104,3 @@ image::alerts-notification-filter1.png[]
 If you change your mind and want to remove a filter, simply click the red X to the right of the filter.
 
 image::alerts-notification-filter2.png[]
-
-xref:quick-start-guide-to-mule-esb-server-and-the-management-console.adoc[<< Previous: *Quick Start Guide to Mule ESB Server and the Management Console*]
-
-xref:monitoring-and-debugging-applications.adoc[Next: *Monitoring and Debugging Applications* >>]

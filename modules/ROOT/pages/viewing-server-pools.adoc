@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The Pools tab displays information about the thread pools used by this Mule ESB instance. For information on configuring thread pools in Mule, see xref:3.2@mule-runtime::tuning-performance.adoc[Tuning Performance] in the Mule Runtime documentation.
+The Pools tab displays information about the thread pools used by this Mule ESB instance. For information on configuring thread pools in Mule, see xref:3.3@mule-runtime::tuning-performance.adoc[Tuning Performance] in the Mule Runtime documentation.
 
 The figure below shows a typical screen displayed when the Pools tab is clicked.
 
@@ -15,20 +15,16 @@ Note, too, that Wait Timeout values only appear for those pools whose Exhausted 
 
 The Pools tab displays the following columns:
 
-[%header,cols="10,90"]
+[%header%autowidth.spread]
 |===
 |Column |Description
 |Name |The name of this thread pool. This value is assigned by the application.
 |Type |The type of object using threads in this pool.
-|Exhausted Action |When the maximum pool size is reached, this value determines how to handle incoming tasks. Possible values are: WAIT (wait until a thread becomes available; don't use this value if the minimum number of threads is zero, in which case a thread may never become available), DISCARD (throw away the current request and return), DISCARD_OLDEST (throw away the oldest request and return), ABORT (throw a RuntimeException), and RUN (the default; the thread making the execute request runs the task itself, which helps guard against lockup).
+|Exhausted Action |When the maximum pool size is reached, this value determines how to handle incoming tasks. Possible values are: `WAIT` (wait until a thread becomes available; don't use this value if the minimum number of threads is zero, in which case a thread may never become available), `DISCARD` (throw away the current request and return), `DISCARD_OLDEST` (throw away the oldest request and return), `ABORT` (throw a `RuntimeException`), and `RUN` (the default; the thread making the execute request runs the task itself, which helps guard against lockup).
 |Current Size |The current number of threads in the pool.
 |Max Active |The maximum number of threads that will be used.
 |Max Idle |The maximum number of idle or inactive threads that can be in the pool before they are destroyed.
 |TTL |Determines how long an inactive thread is kept in the pool before being discarded.
-|Wait Timeout |How long to wait in milliseconds when the pool exhausted action is WAIT. If the value is negative, it will wait indefinitely.
-|Queue/Max |Shows how many requests are queued and the queue size when the pool is at maximum usage capacity and the pool exhausted action is WAIT. The queue is used as an overflow buffer.
+|Wait Timeout |How long to wait in milliseconds when the pool exhausted action is `WAIT`. If the value is negative, it will wait indefinitely.
+|Queue/Max |Shows how many requests are queued and the queue size when the pool is at maximum usage capacity and the pool exhausted action is `WAIT`. The queue is used as an overflow buffer.
 |===
-
-xref:viewing-threads.adoc[<< Previous: *Viewing Threads*]
-
-xref:working-with-the-server-configuration-files.adoc[Next: *Working with the Server Configuration Files* >>]

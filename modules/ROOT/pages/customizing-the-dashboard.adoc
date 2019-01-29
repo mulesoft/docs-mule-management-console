@@ -3,13 +3,17 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+* xref:3.6@customizing-the-dashboard.adoc[Customizable Dashboard]
+* xref:3.6@customizing-the-dashboard.adoc[Viewing the Custom Dashboard]
+* xref:3.6@customizing-the-dashboard.adoc[Customizing the Dashboard Display]
+
 == Customizable Dashboard
 
 When you close the Quick Start dashboard, which summarizes and provides links to the tasks you perform through the console, you have a completely customizable dashboard at your disposal. This dashboard provides summary views of the servers and processing you are monitoring and can be customized to meet your particular needs.
 
 This customizable dashboard displays a set of data panels (referred to as portlets) that give you a broad picture of the health of all your servers, applications, and flows.
 
-*[mmc:Mule3.2]* The dashboard also displays portlets that indicate the status of your clusters as well as the status of applications deployed to clusters.
+The dashboard also displays portlets that indicate the status of your clusters as well as the status of applications deployed to clusters.
 
 Click the Dashboard tab at any time to quickly scan the important aspects of the state of your system.
 
@@ -31,7 +35,7 @@ image::dashboard-custom-cluster.png[]
 
 The table below shows the portlets that you can display on the dashboard, plus the customizable options for each portlet. Since you can change the display name for all portlets, this option is not shown.
 
-[%header,cols="2*",width=10%]
+[%header%autowidth.spread]
 |===
 |Default Portlet Name |Options
 |Raised Alerts |Server Group
@@ -39,11 +43,11 @@ The table below shows the portlets that you can display on the dashboard, plus t
 |Server Health |Server Group
 |Application Status |Server Group
 |Server Metrics |Server Group and Chart Types
-|*[mmc:Mule 3.2]* Cluster Status |Server Group
-|*[mmc:Mule 3.2]* Cluster Application Status |Server Group
+|Cluster Status |Server Group
+|Cluster Application Status |Server Group
 |===
 
-Note that you can have more than one version of the same portlet displayed on the dashboard. For example, you might want two Server Metrics portlets to appear and have each portlet display a different metric chart. (See xref:customizing-server-metrics-dashboard.adoc[Customizing the Server Metrics Dashboard] for more information on the server dashboard metrics charts and customizing them.)
+Note that you can have more than one version of the same portlet displayed on the dashboard. For example, you might want two Server Metrics portlets to appear and have each portlet display a different metric chart. (See xref:3.6@customizing-server-metrics-dashboard.adoc[Customizing the Server Metrics Dashboard] for more information on the server dashboard metrics charts and customizing them.)
 
 Click the customize icon (marked in the figure above) in the portlet title bar to customize that particular portlet. A dialog appears in the portlet, and you have options such as entering a new name for the portlet title bar, selecting the groups (of servers) for the display data, changing metric charts, and so forth. To keep your changes, click Save.
 
@@ -57,6 +61,4 @@ The figure below is another example of a customized dashboard. In this example, 
 
 image::dashboard-changed2.png[]
 
-xref:enabling-authentication-through-ldap.adoc[<< Previous: *Enabling Authentication Through LDAP*]
-
-xref:working-with-logs.adoc[Next: *Working with Logs* >>]
+(The before and after links did not generate down here. Not sure if necessary to include)

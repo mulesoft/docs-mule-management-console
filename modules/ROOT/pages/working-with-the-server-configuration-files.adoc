@@ -3,6 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+* <<Working with the Server Configuration Files>>
+
 == Working with the Server Configuration Files
 
 The Files tab displays the files and folders on the server, listing the contents of the Mule installation directory. You can view and edit any text-based (non-binary) file right in the console. The figure below shows an example of the file listing for a server. The figure also shows that clicking the text-based README.txt file displays its contents.
@@ -33,7 +35,3 @@ After saving your changes, you can click *<home>* to view the list of files agai
 . Specify the file (you can click *Browse* to select it from your file system) and click *Upload*.
 
 To delete a file, click its name to view it, and then click *Delete*. You can also click the check box to the left of the file name in the folder listing, then click *Delete*.
-
-xref:viewing-server-pools.adoc[<< Previous: *Viewing Server Pools*]
-
-xref:viewing-server-properties.adoc[Next: *Viewing Server Properties* >>]

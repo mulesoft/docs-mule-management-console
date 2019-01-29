@@ -9,14 +9,16 @@ The management console provides REST APIs that you can use to programmatically a
 * Manage server groups.
 * Access and manage files on servers.
 
-For details on these operations, see xref:managing-servers-using-rest-apis.adoc[Managing Servers Using REST APIs].
+For full details on all operations that are possible via REST, including usage and output examples, consult the xref:3.7@rest-api-reference.adoc[REST API Reference].
 
-*[mmc:Mule 3.2]* In addition, you can use the REST APIs to:
+In addition, you can use the REST APIs to:
 
-* Create or remove a cluster and get information about a cluster, as well as start, stop, and restart applications on a cluster. For details see xref:managing-clusters-using-rest-apis.adoc[Managing Clusters Using REST APIs].
-* Find, upload, and delete applications inside the repository. For details see xref:managing-applications-using-rest-apis.adoc[Managing Applications Using REST APIs].
-* Deploy, undeploy, create, update, and delete deployments inside a server or cluster. For details see xref:managing-deployments-using-rest-apis.adoc[Managing Deployments Using REST APIs].
-* Manage flows, including finding, starting, and stopping flows as well as finding, starting, and stopping a flow's endpoints. For details about managing flows in a server see xref:managing-flows-in-a-server-using-rest-apis.adoc[Managing Flows in a Server Using REST APIs]. For details about managing flows in a cluster see xref:managing-flows-in-a-cluster-using-rest-apis.adoc[Managing Flows in a Cluster Using REST APIs].
+* Create or remove a cluster and get information about a cluster, as well as start, stop, and restart applications on a cluster
+* Find, upload, and delete applications inside the repository
+* Deploy, undeploy, create, update, and delete deployments inside a server or cluster
+* Manage flows, including finding, starting, and stopping flows as well as finding, starting, and stopping a flow's endpoints
+
+For details on these operations, consult the xref:3.7@rest-api-reference.adoc[REST API Reference].
 
 == Overview
 
@@ -31,83 +33,9 @@ In brief, here's how you use the REST APIs:
 
 You can use any HTTP client to access the APIs. Note that all management console APIs use JSON instead of XML for the data format.
 
-If you are programming in Java, it's recommended that you use the [Jersey client. Or, for JSON support, use the http://hc.apache.org/httpclient-3.x/index.html[HttpClient] with https://github.com/FasterXML/jackson[Jackson], the high-performance JSON processor.
+If you are programming in Java, it is recommended that you use the https://wikis.oracle.com/display/Jersey/Main[Jersey client]. Or, for JSON support, use the http://hc.apache.org/httpclient-3.x/index.html[HttpClient] with https://github.com/FasterXML/jackson[Jackson], the high-performance JSON processor.
 
-== An Example
-
-As an example, here is how to use a REST API to perform a console-related operation - in this case, listing all servers. The URL for this resource (method) is `/mmc/api/servers` and the HTTP method to invoke the request is GET. Here's what the request would look like if you submitted it as a command using http://curl.haxx.se/[cURL], the command line HTTP tool:
-
-----
-curl --basic -u admin:admin http://localhost:8080/mmc/api/servers
-----
-
-The response you get would be in JSON format, and look something like this:
-
-[source,json,linenums]
-----
-{
-  "name" : "Test",
-  "id" : "local$b15ecba1-9f97-4b16-8127-9b137cdbb2e1",
-  "href" : "http://localhost:8080/mmc/api/servers/local$b15ecba1-9f97-4b16-8127-9b137cdbb2e1",
-  "agentUrl" : "https://localhost:7777/mmc-support",
-  "hostIp" : "192.168.0.13",
-  "muleServerId" : "d9505d40-2c5c-11df-b832-a32a5a09ec4e",
-  "started" : "Wed Mar 10 16:51:59 CET 2010",
-  "version" : "2.2.5",
-  "agents": [
-    {
-      "name" : "mmc-support",
-      "description" : "Mule Management Console Support (0.0.0.0:7777)"
-    },
-    {
-      "name" : "jmx-agent",
-      "description" : "JMX Agent"
-     }
-   ],
-  "groups" : [
-    {
-      "name" : "Development",
-      "href" : "http://localhost:8080/mmc/api/serverGroups/73d89173-290e-4cb3-a61c-e11deb74767d"
-    }
-  ],
-  "runningServices" : 3,
-  "pausedServices" : 0,
-  "stoppedServices": 0
-}
-----
-
-
-You could then parse the response for the data you need.
-
-== Status and Error Handling Codes
-
-All console REST APIs return the same set of status codes. You can expect any call to a REST API to return one of the following status codes:
-
-[%header,cols="10,90"]
-|===
-|Status Code |Description
-|200 |The operation was successful.
-|201 |The resource (for example, a server or server group) was created. The Location header in the response contains the location of the resource.
-|404 |The resource was not found.
-|409 |When the method attempted to create a resource (such as a server or server group), the operation was unsuccessful because a resource with that name already exists.
-|500 |The operation was unsuccessful. See the HTTP body for details.
-|===
-
-For errors that generate a 500 status code, the HTTP response contains a JSON response with a specific error message. Check the JSON response in the HTTP response to determine what caused the error. For example:
-
-[source,text,linenums]
-----
-500
-Content-Type: application/json
-Server: Apache-Coyote/1.1
-Date: Sun, 08 Nov 2009 00:12:55 GMT
-
-{
-  message : "Could not connect to remote server."
-}
-----
-
-
-xref:scripting-examples.adoc[<< Previous: *Scripting Examples*]
-
-xref:managing-servers-using-rest-apis.adoc[Next: *Managing Servers Using REST APIs*] >>
+[TIP]
+====
+The xref:3.7@rest-api-reference.adoc[REST API Reference] contains full details of all operations that available on the management console's REST API, including examples of input data and results.
+====

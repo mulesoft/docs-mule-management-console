@@ -22,7 +22,3 @@ The pane shows all threads on the selected server. The columns in the table show
 Note that if you click on a thread's execution point, a window pops up and displays the current stack trace. This window is scrollable and can be moved and repositioned, if need be.
 
 image::trace-popup.png[]
-
-xref:viewing-system-memory.adoc[<< Previous: *Viewing System Memory*]
-
-xref:viewing-server-pools.adoc[Next: *Viewing Server Pools* >>]

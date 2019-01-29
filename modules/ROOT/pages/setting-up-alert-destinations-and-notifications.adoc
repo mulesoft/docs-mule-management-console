@@ -1,9 +1,9 @@
-= Setting Up Alert Definitions and Notifications
+= Setting Up Alert Destinations and Notifications
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Alert destinations are the locations, such as email addresses, to which notifications are sent when alerts are triggered. You need to set up alert destinations prior to creating any alert notifications, since notifications are associated with specific destinations. Setting up a notification is described in the mmc:section.
+Alert destinations are the locations, such as email addresses, to which notifications are sent when alerts are triggered. You need to set up alert destinations prior to creating any alert notifications, since notifications are associated with specific destinations. Setting up a notification is described in the section.
 
 == Setting Up Alert Destinations
 
@@ -15,7 +15,6 @@ Click the New Destination button to create a new destination. The Add Alert Dest
 
 image::alert-dest1.png[]
 
-
 Depending on the destination type you select, you are prompted for additional fields.
 
 == Configuring Email Destinations
@@ -23,7 +22,6 @@ Depending on the destination type you select, you are prompted for additional fi
 When adding an email-type destination, you must designate server and the recipient user information. The figure below is an example of configuring an email destination:
 
 image::alerts-destination-add-email-google.png[]
-
 
 For an email destination, you need to specify the following:
 
@@ -42,7 +40,7 @@ The following examples show how you set up email destinations for Google and Yah
 
 For Google mail (gmail), set the fields as follows:
 
-[%header,cols="40,60"]
+[%header,cols="2*",width=10%]
 |===
 |Field |Input Data
 |Name |Name of the alert destination
@@ -56,7 +54,7 @@ For Google mail (gmail), set the fields as follows:
 
 For Yahoo mail, set the fields as follows:
 
-[%header,cols="40,60"]
+[%header,cols="2*",width=10%]
 |===
 |Field |Input Data
 |Name |Name of the alert destination
@@ -74,12 +72,11 @@ SNMP-type destinations have different fields than email-type destinations. The f
 
 image::alerts-destination-add-snmp.png[]
 
-
 Specify the following for SNMP destinations:
 
 * OID: An identifying name for the destination. The OID you enter needs to conform to SNMP conventions. For example, a valid OID might be `1.3.6`.
-* Local address: The local SNMP address to which to bind the destination. The address must conform to SNMP conventions. An example of a local address might be `udp:127.0.0.1/40162`.
-* Target address: The SNMP target address to which to send the alert notification. This address also must conform to SNMP conventions. For example, you might enter an address such as `udp:127.0.0.1/40163`.
+* Local address: The local SNMP address to which to bind the destination. The address must conform to SNMP conventions. An example of a local address might be `udp:localhost`
+* Target address: The SNMP target address to which to send the alert notification. This address also must conform to SNMP conventions. For example, you might enter an address such as `udp:localhost`
 * Version: The SNMP version number. The default value is 2c.
 * Username: The SNMP user name.
 * Password: The user password.
@@ -101,7 +98,6 @@ To create a new notification, click the New Notification button. The Add Alert N
 
 image::alerts-notification-add.png[]
 
-
 Enter a name for the notification. Specifying a filter for the notification is optional and is covered in the next paragraph. Select the notification destination from the Destination pull-down list. If you have not yet defined a destination, then this list is empty and you cannot complete the notification specification.
 
 You optionally may specify one or more filters. When you click the Add button in the middle of the pane, the pane displays a table into which you specify the filter field(s) and values for these field(s). You may add as many filter fields as you like. Select each filter field from the Field pull-down menu. The Value pull-down menu displays the values that correspond to the selected field. (The figure below is an example of this.)
@@ -122,7 +118,6 @@ If the destination type you select is email, you enter the email recipient name,
 
 image::alerts-notification-destination-email.png[]
 
-
 For email destinations, you may use an expression in the subject and body fields. To use an expression and have it correctly interpreted, you must enclose the expression in curly braces and precede it with a dollar sign ($) symbol, as shown below. For example:
 
 [source,text,linenums]
@@ -134,12 +129,11 @@ You can combine the expression with some other text. For example, you might want
 
 image::alerts-notification-subject-email.png[]
 
-See mmc:below for more information on properties that you can use with these alert expressions.
+See below for more information on properties that you can use with these alert expressions.
 
 When the destination type is SNMP, you are prompted just for a value, as shown below. You must enter data for the Value field to be able to save the notification.
 
 image::alerts-notification-snmp.png[]
-
 
 For all notifications, be sure to click the Save button after you have entered all required data. Notice that the Save button is grayed out until all required fields are completed.
 
@@ -151,11 +145,11 @@ There are a number of properties whose values you can incorporate into alert des
 
 The following properties are common to all alert types. (The class `com.mulesoft.console.alert.RaisedAlert` contains the declaration of alert properties.)
 
-[%header,cols="40,60"]
+[%header,cols="2*",width=10%]
 |===
 |Property |Description
-|id |Service identifier
-|name |Service name
+|id |Flow identifier
+|name |Flow name
 |serverId |Server identifier
 |serverName |Server name
 |description |Description of the raised alert
@@ -167,7 +161,7 @@ The following properties are common to all alert types. (The class `com.mulesoft
 
 Certain alert types have other accessible properties in addition to the common properties shown above. The table below shows the alert types for which additional properties are defined and the specific properties.
 
-[%header,cols="10,10,80"]
+[%header,cols="3*",width=90%]
 |===
 |Alert Type |Property |Description
 |Exception Alert |  |
@@ -185,7 +179,3 @@ Certain alert types have other accessible properties in addition to the common p
 |  |logFile |The log file name
 |  |logLine |The line in the log file
 |===
-
-xref:defining-slas-and-alerts.adoc[<< Previous: *Defining SLAs and Alerts*]
-
-xref:managing-users-and-roles.adoc[Next: *Managing Users and Roles* >>]

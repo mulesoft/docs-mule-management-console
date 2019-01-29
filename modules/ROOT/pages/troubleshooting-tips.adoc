@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This page covers various troubleshooting topics, such as help for troubleshooting a problematic installation. Note that topics are not listed in any particular order.
+This page covers various troubleshooting topics, such as help for troubleshooting a problematic installation.
 
 == Unable to Register the Console Agent
 
@@ -13,14 +13,14 @@ When this occurs, you need to do the following to fix the problem:
 
 * Delete the truststore.jks file from the `.mule/mmc-agent-mule3-app-3.x.x` directory. The `.mule/mmc-agent-mule3-app-3.x.x` directory is located beneath the directory from which you previously started the Mule ESB server and registered that Mule instance. For example, if you started Mule ESB from the Mule installation `c:/muleinstalldir/bin` directory, the `.mule/mmc-agent-mule3-app-3.x.x` directory is located in `/bin`. It is not necessary to stop the Mule instance to delete the truststore.jks file.
 
-Tcat users should also note that the above instructions apply only for Tomcat. The location of the truststore.jks file is different for Tcat. If you are using Tcat, see release notes. That note explains that with the Early Access release, Tcat Server Console and Mule Management Console cannot be co-located on the same Tomcat instance.
+Tcat users should also note that the above instructions apply only for Tomcat. The location of the truststore.jks file is different for Tcat. If you are using Tcat, you should note that with the Early Access release, Tcat Server Console and Mule Management Console cannot be co-located on the same Tomcat instance.
 
 == Unable to Register Server
 
-Getting this exception when trying to register Mule Server using MMC
-`Could not register server <serverName>: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target`
+Getting this exception when trying to register Mule Server using MMC +
+ `Could not register server <serverName>: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target`
 
-*Solution*: Try deleting `truststore.jks` from the `.mule/.agent` folder, or delete the `.mule/.agent` folder completely. After deleting `truststore.jks` you will need to restart the Mule server.
+*Solution*: Try deleting `truststore.jks` from the` .mule/.agent` folder, or delete the `.mule/.agent` folder completely. After deleting `truststore.jks` you will need to restart the Mule server.
 
 == Using a Custom Agent Configuration
 
@@ -36,10 +36,12 @@ In addition, when you change the agent bind port to accommodate multiple Mule in
 ----
 
 You can also add this property in wrapper.conf kept under $MULE_HOME/conf/
+
 wrapper.java.additional.<n>=-Dmule.mmc.bind.port=7781
+
 replace the <n> with the appropriate sequence number.
 
-See xref:3.2@mule-runtime::running-multiple-mule-instances.adoc[Running Multiple Mule instances] for more complete information.
+See xref:3.3@mule-runtime::running-multiple-mule-instances.adoc[running multiple Mule instances] for more complete information.
 
 == Starting Multiple Mule Agent Instances
 
@@ -67,33 +69,26 @@ Note that the same two properties, the bind port and listener class, are support
 
 == Support for Mule Management Console When Used With Tcat
 
-For the management console to work with a Tcat server, you need to modify the value of the variable `PermGenSize` from 128 to 256. You should increase the size of `PermGenSize` to 256 before you deploy the `mmc.war` file to Tcat. After modifying `PermGenSize`, start Tcat and then deploy the `mmc.war` file. Both Tcat and the management console should now work together with no problems.
+For the management console to work with a Tcat server, you need to modify the value of the variable `PermGenSize` from 128 to 256. You should increase the size of `PermGenSize` to 256 before you deploy the management console WAR file to Tcat. After modifying `PermGenSize`, start Tcat and then deploy the management console WAR file. Both Tcat and the management console should now work together with no problems.
 
 If after changing `PermGenSize` and starting Tcat, you get an `OutOfMemoryError` message when deploying the console WAR file, then you need to take the following steps. These steps walk you through registering the Tcat local agent, deploying the management console WAR file, logging into the console and registering the console agent.
 
-* Install Tcat version 6.2.1.
-* Edit the batch file for starting Tcat, `catalina.bat`. You want to move the line referencing `JAVA_OPTS` at the top of the file to line 126 in the file. Then, change the setting for `PermGenSize` within that line from 126m to 256m. When you're done, line 126 should look as follows:
+* Install Tcat version 6.2.1 or greater.
+
+Edit the batch file for starting Tcat, `catalina.bat`. You want to move the line referencing `JAVA_OPTS` at the top of the file to line 126 in the file. Then, change the setting for `PermGenSize`within that line from 126m to 256m. When you're done, line 126 should look as follows:
 
 [source,text,linenums]
 ----
 set JAVA_OPTS=%JAVA_OPTS% -Dgalaxy.data="%CATALINA_BASE%\galaxy-data" -XX:MaxPermSize=256m
--XX:+HeapDumpOnOutOfMemoryError -Dcom.sun.management.jmxremote -Djava.net.preferIPv4St
+-XX:+HeapDumpOnOutOfMemoryError -Dcom.sun.management.jmxremote -Djava.net.preferIPv4Stack=true
 ----
 
 * Start Tcat.
-* Log into Tcat and register the local Tcat agent. Use this URL for the agent: `http://localhost:7777/agent`.
-* Create a new package that contains the `mmc-server-2.2.6-SNAPSHOT.war` file and the Local Tcat Agent.
+* Log into Tcat and register the local Tcat agent. Use this URL for the agent (eg. http://localhost:7777/agent).
+* Create a new package that contains the mmc war file and the Local Tcat Agent.
 * Click the Save and Deploy buttons.
 * Click the Local Tcat Agent Servers link.
 * Click the Applications tab.
 * Click the Go To link.
 * Log into the Mule management console and start a local Mule ESB instance on which the console agent has been deployed.
-* Click the New Server button in the console and register the console agent using this
-URL: `http://localhost:7777/mmc-support`.
-
-== Deploying Tcat Co-Located with Tcat Console
-
-There are known issues when deploying a Tcat server co-located with a Tcat Console. An extra configuration file is required. Plus, there are known problems with the galaxy-data folder. You also need to increase the memory heap to 256MB by using the option `-Xmx`.
-xref:index.adoc[<< Previous: *Home*]
-
-xref:index.adoc[Next: *Home* >>]
+* Click the New Server button in the console and register the console agent using its URL (eg. http://localhost:7777/mmc-support).

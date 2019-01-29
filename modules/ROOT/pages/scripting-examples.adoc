@@ -3,7 +3,15 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This page provides examples of using xref:automating-tasks-using-scripts.adoc[scripts]. You can copy and modify these example scripts for your own use. The scripts include placeholders where you must substitute your own values or parameters.
+* <<When to Use Scripts>>
+* <<Alerting Examples>>
+* <<Example Email Alerts>>
+* <<Inserting Expressions in Email Subject or Body>>
+* <<Script to Perform SNMP Escalation for an Alert>>
+* <<Script to Implement a Custom Action>>
+* <<Script to Restart a Server>>
+
+This page provides examples of using xref:3.4@automating-tasks-using-scripts.adoc[scripts]. You can copy and modify these example scripts for your own use. The scripts include placeholders where you must substitute your own values or parameters.
 
 == When to Use Scripts
 
@@ -35,6 +43,8 @@ The basic format for any custom action is as follows:
 
 The following is the code for the `AlertActionBuilder` class:
 
+The `AlertActionBuilder` methods that are invoked are as follows:
+
 [source,java,linenums]
 ----
 import com.mulesoft.console.alert.builder.AlertActionBuilder;
@@ -45,8 +55,6 @@ new AlertActionBuilder()
     .doAction(...)
     .install(applicationContext);
 ----
-
-The `AlertActionBuilder` methods that are invoked are as follows:
 
 * `name()`: The name for your alert action (required). When the `install` method is called, it uses this name to determine if there is a previously installed action with the same name. If it finds a matching action, then the `install` method uninstalls the previously installed action and then installs this new action.
 * `servers()`: An optional list of server names. If specified, actions are only taken for the specified servers.
@@ -129,6 +137,7 @@ new AlertActionBuilder()
 "Email alert successful installed"
 ----
 
+
 == Inserting Expressions in Email Subject or Body
 
 You can insert an expression in an email subject or body by placing the expression itself within curly braces, proceeded by the dollar sign ($) symbol; that is:
@@ -203,7 +212,7 @@ import org.mule.galaxy.event.annotation.Async
 import org.mule.galaxy.event.annotation.BindToEvent
 import org.mule.galaxy.event.annotation.OnEvent
 
-@BindToEvent("com.mulesoft.common.server.events.ServerHealthEvent")
+@BindToEvent(com.mulesoft.common.server.ServerHealthEvent)
 class AnnoTestListener {
 
     @Async @OnEvent
@@ -237,7 +246,3 @@ svrMgr = applicationContext.getBean("serverManager")
 svr = svrMgr.getServerByName("MyServer", false)
 foo = svrMgr.restartServerNow(svr.getId())
 ----
-
-xref:automating-tasks-using-scripts.adoc[<< Previous: *Automating Tasks Using Scripts*]
-
-xref:using-the-management-console-api.adoc[Next: *Using the Management Console API* >>]

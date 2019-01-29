@@ -3,6 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+== Overview
+
 Alerts give you visibility to events that might need your attention and allow you to notify other administrators about actions they need to take. An alert can consist of a description, the email address of the person(s) you need to notify, the priority of the action, and optionally an SNMP address and an action script to run.
 
 A Service Level Agreement (SLA) is a key concept with alerts. The SLA defines the conditions on a target object about which you want visibility. In essence, the SLA defines the high and low thresholds of the values for the target conditions. An alert is raised when the values of the target object's condition are outside of these SLA thresholds. An alert triggers a SLA policy event, and this event dynamically carries information to other parts of the system.
@@ -19,22 +21,49 @@ There are a number of different types of alerts that you can set up. You indicat
 
 Select the alert type according to the problem for which you want visibility. The table below shows the different alert types.
 
-[%header,cols="10a,90a"]
+[%header,cols="10,75a,10a"]
 |===
-|Alert Type |Description
-|Custom Expression |Raises an alert depending on the evaluation of a target object custom expression
-|Exception |Raises an alert when an exception of a specified type occurs for an application
-|JMX Attribute |Raises an alert based on the evaluation of a JMX attribute value in an MBean
-|Log Regex |Raises an alert based on a specified regular expression in specified log files
-|Low Memory |Raises an alert when a specified memory pool reaches a specified memory threshold level
-|Log Regex |Raises an alert based on a specified regular expression in specified log files
-|Server Down |Raises an alert when a specified server or server group is down
-*[mmc:Mule 3.2]* Also raises an alert when a node in a cluster is down
-|Server Up |Raises an alert when a specified server or server group comes up
-*[mmc:Mule 3.2]* Also raises an alert when a node in a cluster comes up
-|Server Down |Raises an alert when a specified server is down
-|Thread Pool |Raises an alert when a specified thread pool reaches a specified threshold ratio
-|URL Health |Raises an alert when a specified URL location returns a particular status code
+|Alert Type |Description |Works in
+|Custom Expression |Raises an alert depending on the evaluation of a target object custom expression |
+* Servers
+* Groups
+
+|Exception |Raises an alert when an exception of a specified type occurs for an application |
+* Servers
+* Groups
+
+|JMX Attribute |Raises an alert based on the evaluation of a JMX attribute value in an MBean |
+* Servers
+* Groups
+* Clusters
+
+|Low Memory |Raises an alert when a specified memory pool reaches a specified memory threshold level |
+* Servers
+* Groups
+
+|Log Regex |Raises an alert based on a specified regular expression in specified log files |
+* Servers
+* Groups
+* Clusters
+
+|Server Down |Raises an alert when a specified server or server group is down. Also raises an alert when a node in a cluster is down |
+* Servers
+* Groups
+* Clusters
+
+|Server Up |Raises an alert when a specified server or server group comes up. Also raises an alert when a node in a cluster comes up |
+* Servers
+* Groups
+* Clusters
+
+|Thread Pool |Raises an alert when a specified thread pool reaches a specified threshold ratio |
+* Servers
+* Groups
+
+|URL Health |Raises an alert when a specified URL location returns a particular status code |
+* Servers
+* Groups
+* Clusters
 |===
 
 == When an Alert is Raised
@@ -77,7 +106,7 @@ The icons to the left of each alert indicate the severity of the alert, as shown
 
 image::severity-chart.png[]
 
-Briefly, the icons indicate the following:
+ Briefly, the icons indicate the following:
 
 * The letter "i" on dark blue background: Information alert
 * Down arrow on light blue background: Minor alert
@@ -85,7 +114,7 @@ Briefly, the icons indicate the following:
 * Up arrow on yellow background: Major alert
 * Fire icon on red background: Fatal alert
 
-When a plus image:add.png[] sign appears to the left of an alert, it indicates there are more details about the triggered alert. Click this plus sign to see further details about the alert. In the above figure, you can see details about two of the alerts.
+When a plus image:add.png[(plus)] sign appears to the left of an alert, it indicates there are more details about the triggered alert. Click this plus sign to see further details about the alert. In the above figure, you can see details about two of the alerts.
 
 For alerts that have been triggered, the details portion displays information relevant to the type of the alert. For example, it might show data such as the following:
 
@@ -96,7 +125,7 @@ For alerts that have been triggered, the details portion displays information re
 * URL address: For URL Health alerts
 * Message: The error message, if a URL Health alert
 
-You may have these details displayed for multiple alerts simultaneously. Click the minus image:forbidden.png[] sign to close these additional details for an alert.
+You may have these details displayed for multiple alerts simultaneously. Click the minus sign to close these additional details for an alert.
 
 === New Alerts Notification
 
@@ -107,7 +136,3 @@ Click the notification of unread alerts, circled in red in the figure below, to 
 image::alerts-unread-notice.png[]
 
 When the pane displaying raised alerts opens, notice that any unread alerts appear in bold font at the top of the pane. Alerts that have already been read are in plain font at the bottom of the pane, and the counter of unread alerts is decremented. The number of newly added alerts is also noted. Click an alert to read it.
-
-xref:analyzing-flow-processing-and-payloads.adoc[<< Previous: *Analyzing Flow Processing and Payloads*]
-
-xref:defining-slas-and-alerts.adoc[Next: *Defining SLAs and Alerts* >>]

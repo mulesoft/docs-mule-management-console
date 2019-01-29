@@ -29,7 +29,7 @@ Next, you want to assign the appropriate global permissions to your Developers g
 
 image::roles2.png[]
 
-*[mmc:Mule 3.2]* Two cluster-related permissions are also listed in the server group permissions: Clusters - Create and Cluster- Disband, as shown below.
+Two cluster-related permissions are also listed in the server group permissions: Clusters - Create and Cluster- Disband, as shown below.
 
 image::roles2-cluster.png[]
 
@@ -48,7 +48,3 @@ image::add-user1.png[]
 Continue adding any the remaining developers that you want to be in the Developers user group.
 
 That's all there is to it.
-
-xref:debugging-the-loan-broker-example-application.adoc[<< Previous: *Debugging the Loan Broker Example Application*]
-
-xref:working-with-mule-server-instances.adoc[Next: *Working with Mule Server Instances* >>]

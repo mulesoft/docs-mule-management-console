@@ -11,7 +11,9 @@ This page steps you through a debugging session using the Flow Analyzer screen t
 As the application developer, you suspect that the program is not returning the bank providing the lowest rate quote. To track this down, you want to focus on the loan-broker-sync flow, since you know that it collects quotes from the different banks and uses some Java code to determine the bank with the lowest rate quote. You are particularly interested in the following program logic in simple loan broker:
 
 * The loan-broker-sync flow does the bulk of the work, receiving customer loan rate requests from a browser, transforming the requests, and passing the request to the appropriate message processors.
+
 * Once the customer is credit approved, the loan-broker-sync flow passes the request to the appropriate banks and collects rate quotes.
+
 * Using the `LowestQuoteProcessor` to do the rate comparison, the loan-broker-sync selects the lowest quote from the list and returns the bank and quote to the browser.
 
 You strongly suspect that the error is in the `LowestQuoteProcess.java` module. To verify your suspicions, you deploy and run the simple loan broker application and follow the processing via the Flow Analyzer.
@@ -42,21 +44,52 @@ Now that you're confident that the error occurred in `LowestQuoteProcessor`, you
 
 [source,java,linenums]
 ----
-public class LowestQuoteProcessor implements MessageProcessor{    public MuleEvent process(MuleEvent event) throws TransformerException    {        Object payload = event.getMessage().getPayload();        LoanQuote lowestQuote = null;        if (payload instanceof LoanQuote)        {            lowestQuote = (LoanQuote) payload;        }        else        {            @SuppressWarnings("unchecked")            List<LoanQuote> loanQuotes = (List<LoanQuote>) payload;            for (LoanQuote loanQuote : loanQuotes)            {                if (lowestQuote == null)                {                    lowestQuote = loanQuote;                }                else                {                    if (loanQuote.getInterestRate() > lowestQuote.getInterestRate())                    {                        lowestQuote = loanQuote;                    }                }            }        }        return new DefaultMuleEvent(new DefaultMuleMessage(lowestQuote, event.getMuleContext()), event);    }}
+public class LowestQuoteProcessor implements MessageProcessor
+{
+    public MuleEvent process(MuleEvent event) throws TransformerException
+    {
+        Object payload = event.getMessage().getPayload();
+        LoanQuote lowestQuote = null;
+        if (payload instanceof LoanQuote)
+        {
+            lowestQuote = (LoanQuote) payload;
+        }
+        else
+        {
+            @SuppressWarnings("unchecked")
+            List<LoanQuote> loanQuotes = (List<LoanQuote>) payload;
+            for (LoanQuote loanQuote : loanQuotes)
+            {
+                if (lowestQuote == null)
+                {
+                    lowestQuote = loanQuote;
+                }
+                else
+                {
+                    if (loanQuote.getInterestRate() > lowestQuote.getInterestRate())
+                    {
+                        lowestQuote = loanQuote;
+                    }
+                }
+            }
+        }
+        return new DefaultMuleEvent(new DefaultMuleMessage(lowestQuote, event.getMuleContext()), event);
+    }
+}
 ----
 
 Sure enough, you discover that you have an incorrect comparison operator (you used the greater than operator rather than the less than operator) in the following line:
 
 [source,text,linenums]
 ----
- if (loanQuote.getInterestRate() > lowestQuote.getInterestRate())
+if (loanQuote.getInterestRate() > lowestQuote.getInterestRate())
 ----
 
 You correct this line, changing the code as follows:
 
 [source,text,linenums]
 ----
- if (loanQuote.getInterestRate() < lowestQuote.getInterestRate())
+if (loanQuote.getInterestRate() < lowestQuote.getInterestRate())
 ----
 
 Now you need to verify that you have correctly made the necessary fix. You redeploy the changed simple loan broker application and submit a quote request. This time, you get a rate back from Bank 1 for 4.14.
@@ -70,7 +103,3 @@ image::loan-broker-sync5.png[]
 You have verified that the loan-sync-broker correctly returned the lower rate quote.
 
 In an environment where applications rely on numerous message processors, the ability to audit flows and get details on message processing and message payloads is invaluable for debugging. The Flow Analyzer screen can provide enormous help in this regard.
-
-xref:debugging-message-processing.adoc[<< Previous: *Debugging Message Processing*]
-
-xref:setting-up-users.adoc[Next: *Setting Up Users* >>]

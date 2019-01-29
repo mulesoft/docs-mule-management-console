@@ -3,12 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-[WARNING]
-Note to reviewers: This is a new page that will appear in the Management Console Documentation as a child page below the Analyzing Business Events topic.
-
 The Business Events tab on the management console gives you visibility into business transactions and events on your Mule servers, allowing you to track and analyze the flow and disposition of particular messages. For example, you can use the data to do root cause analysis on a failure within a business transaction or identify message processing bottlenecks.
 
 This page illustrates some examples of using the Business Events tab to meet specific needs.
+
+For more details about how to define and enable custom or default events in your Mule application, see xref:3.3@mule-runtime::business-events.adoc[Business Events].
 
 == Root Cause Analysis Example
 
@@ -29,15 +28,18 @@ Now let's suppose a customer calls ShopMuley's support department and reports th
 [source,xml,linenums]
 ----
 <flow name="Fulfillment Flow" doc:name="Fulfillment"> ❶
-<http:inbound-endpoint host="localhost" port="1080" ...
-  tracking:enable-default-events="true" doc:name="Receive Order"
-  doc:description="Process HTTP requests or responses."/> ❷
-  ...
-<tracking:transaction id="#[groovy:payload.orderId]" /> ❸
-<component doc:name="Calculate Discount"... >
-<async doc:name="Async"
-  doc:description="Asynchronous block of execution">...</async>
-</flow>
+
+   <http:inbound-endpoint host="localhost" port="1080" ...
+    tracking:enable-default-events="true" doc:name="Receive Order" doc:description="Process HTTP requests or responses."/> ❷
+        ...
+
+        <tracking:transaction id="#[groovy:payload.orderId]" /> ❸
+
+        <component doc:name="Calculate Discount"... >
+        <async doc:name="Async" doc:description="Asynchronous block of execution">
+                ...
+        </async>
+    </flow>
 ----
 
 ❶ The name that will be displayed for the flow (`Fulfillment`) is specified in the `doc:name` attribute.
@@ -63,24 +65,31 @@ In addition to doing root cause analysis, the Business Event tab is useful in ma
 [source,xml,linenums]
 ----
 <flow name="Fulfillment Flow" doc:name="Fulfillment">
-<http:inbound-endpoint host="localhost"
-port="1080" ...    tracking:enable-default-events="true"
-doc:name="Receive Order"
-doc:description="Process HTTP requests or responses."/>
-...
-<tracking:transaction id="#[groovy:payload.orderId]" />
-<tracking:custom-event event-name="Price"> ❶
-<tracking:meta-data key="price" value="#[groovy:payload.price]" />
-<tracking:meta-data key="customer-tier" value="#[groovy:payload.customer-tier]" />            </tracking:custom-event>
-<component doc:name="Calculate Discount" ... >
-<tracking:custom-event event-name="Price After Discount"> ❷
-<tracking:meta-data key="price-after-discount" value="#[groovy:payload.price]" />
-<tracking:meta-data key="customer-tier" value="#[groovy:payload.customer-tier]" />            </tracking:custom-event>
-<async doc:name="Async" doc:description="Asynchronous block of execution">           ...                    </async>
-</flow>
+
+   <http:inbound-endpoint host="localhost" port="1080" ...
+    tracking:enable-default-events="true" doc:name="Receive Order" doc:description="Process HTTP requests or responses."/>
+        ...
+        <tracking:transaction id="#[groovy:payload.orderId]" />
+
+        <tracking:custom-event event-name="Price"> ❶
+          <tracking:meta-data key="price" value="#[groovy:payload.price]" />
+          <tracking:meta-data key="customer-tier" value="#[groovy:payload.customer-tier]" />
+        </tracking:custom-event>
+
+        <component doc:name="Calculate Discount" ... >
+
+         <tracking:custom-event event-name="Price After Discount"> ❷
+          <tracking:meta-data key="price-after-discount" value="#[groovy:payload.price]" />
+          <tracking:meta-data key="customer-tier" value="#[groovy:payload.customer-tier]" />
+        </tracking:custom-event>
+
+        <async doc:name="Async" doc:description="Asynchronous block of execution">
+           ...
+        </async>
+    </flow>
 ----
 
-❶ This is the "before" custom event. It tracks the price of the item before the discount is applied, as well as the discount tier level of the customer.
+❶ This is the "before" custom event. It tracks the price of the item before the discount is applied, as well as the discount tier level of the customer.  +
 ❷ This is the "after" custom event. It tracks the price of the item after the discount is applied as well as the discount tier level of the customer.
 
 After a transaction is run, the staff can view the data for the "before" event (listed here as "Price") to see the customer's discount tier as well as the price before the discount is applied. And they can view the data for the "after" event (listed here as "Price After Discount") to see the price after the discount is applied.
@@ -88,11 +97,3 @@ After a transaction is run, the staff can view the data for the "before" event (
 image::custom-event-discount.png[]
 
 Yet another use for the Business Events tab is in bottleneck detection. In this case, you can search the displayed data for events that consistently take a long time to process.
-
-xref:tracking-and-querying-business-events.adoc[<< Previous: *Tracking and Querying Business Events*]
-
-xref:configuring-a-database-for-business-event-data-persistence.adoc[Next: *Configuring a Database for Business Event Data Persistence* >>]
-
-== See Also
-
-* https://support.mulesoft.com[Contact MuleSoft Support]

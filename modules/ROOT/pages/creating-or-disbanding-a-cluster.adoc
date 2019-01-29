@@ -3,17 +3,12 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-[WARNING]
-Note to reviewers: This is an update of the Creating or "Disbanding" (Deleting) a Cluster topic for Mule 3.2.1. It will replace the existing topic in the Mule 3 Users Guide.
-
 You can use the management console to create one or more clusters. Any cluster you create must include at least two nodes. Currently, the cluster can be configured to include a maximum of four nodes. You can also "disband" (that is, delete) the cluster.
 
 [NOTE]
-====
 When you create a cluster, all the nodes that you select for the cluster must implement the same Mule ESB version. If you need to upgrade a server so that it matches the Mule ESB version of the other cluster nodes, first unregister the server, then upgrade it to the required version of Mule. Then you can create the cluster with the upgraded server (and the other servers) as nodes.
-====
 
-You can also create and disband clusters programmatically using REST APIs. See xref:managing-clusters-using-rest-apis.adoc[Managing Clusters Using REST APIs].
+You can also create and disband clusters programmatically using REST APIs.
 
 == Creating a Cluster
 
@@ -22,17 +17,17 @@ You create a cluster by performing the following steps:
 . Register the two, three, or four servers that you want to place in a cluster, if these servers are not already registered with the console.
 . Bring up the All servers pane. Click the Servers tab, and if necessary, click "All" in the navigation pane. Clicking "All" displays the servers registered in all groups. You may need to click "All" if you're currently viewing the servers registered in a specific group such as Development or Test.
 . From the All servers pane, click the Add pull-down menu (upper-right toolbar) and select New Cluster from the menu options.
-
++
 image::add-new-cluster-menu.png[add_new_cluster_menu]
 
-. In the Create Cluster pane that appears, enter a name for the cluster in the Cluster Name box. Then, select and add two or more available nodes to the cluster. Use the right arrow to add selected nodes from the Available Nodes list to the Cluster Nodes list. (Use the left arrow to remove nodes from the cluster.) Use the Select All/Deselect All buttons in the Available Nodes and Cluster Nodes lists to select or unselect all items in the respective lists. When finished, click the Add button in the lower left corner to complete the operation, or click Cancel to cancel the cluster creation.
-
+. In the Create Cluster pane that appears, enter a name for the cluster in the Cluster Name box. Then, select and add two or more available nodes to the cluster. Use the right arrow to add selected nodes from the Available Nodes list to the Cluster Nodes list. (Use the left arrow to remove nodes from the cluster.) Use the Select All/Deselect All buttons in the Available Nodes and Cluster Nodes lists to select or unselect all items in the respective lists. When finished, click the Add button in the lower left corner to complete the operation, or click Cancel to cancel the cluster creation. +
++
 image::new-cluster-form.png[new_cluster_form]
 
 . The console then displays the All servers pane. During the cluster creation process the pane marks the new cluster with an "in-progress" icon.
-
++
 image::cluster-creation-in-progress.png[cluster_creation_in_progress]
-
++
 Although not explicitly visible to the user, the management console sends tickets to all the cluster nodes and restarts them. The in-progress indicator indicates that the console is waiting for the nodes to restart. Once the cluster nodes restart, the cluster is ready for use.
 
 Notice that the All servers pane does not list the individual nodes in a cluster. Instead, it lists the cluster as a single unit. In the example above, MuleCluster contains multiple nodes (MuleServer1 and MuleServer 2, which are not shown). MuleServer 3 and MuleServer 4 are individual, stand-alone servers.
@@ -44,7 +39,7 @@ Any alerts that are defined on a server are removed when the server is added as 
 
 == Disbanding or Deleting a Cluster
 
-You "disband" (that is, delete) a cluster from the All servers pane. To disband a cluster, select one or more clusters in the cluster list, then click Disband Cluster(s) in the Remove pull-down menu.
+You "disband" (that is, delete) a cluster from the All servers pane. To disband a cluster, select one or more clusters in the cluster list, then click Disband Cluster(s) in the Remove pull-down menu. +
 
 image::disband-cluster.png[disband_cluster]
 
@@ -60,7 +55,10 @@ The ticket file is a Java properties file, which is located at `MULE_HOME/.mule/
 
 [source,text,linenums]
 ----
-mule.clusterSize=CLUSTER_SIZEmule.clusterSchema=partitioned-sync2backupmule.clusterId=CLUSTER_IDmule.clusterNodeId=CLUSTER_NODE_ID
+mule.clusterSize=CLUSTER_SIZE
+mule.clusterSchema=partitioned-sync2backup
+mule.clusterId=CLUSTER_ID
+mule.clusterNodeId=CLUSTER_NODE_ID
 ----
 
 where:
@@ -69,7 +67,7 @@ where:
 * `partitioned-sync2backup`: The schema identification of the cluster (`mule.clusterSchema`). It must literally be specified as `partitioned-sync2backup`.
 * `CLUSTER_ID`: The ID of the cluster. It can be any alphanumeric string, and must be the same for all nodes in the cluster. If you have more than one cluster, each must have a unique `CLUSTER_ID`.
 * `CLUSTER_NODE_ID`: The ID of the node within the cluster. It can be any integer between 1 and the number of nodes in the cluster. The `CLUSTER_NODE_ID` for each node must be unique within the cluster. This means that if you have four nodes in a cluster, there must be a node with a +
-`CLUSTER_NODE_ID` of 1, and other nodes with `CLUSTER_NODE_ID`'s of 2, 3, and 4, respectively.
+ `CLUSTER_NODE_ID` of 1, and other nodes with `CLUSTER_NODE_ID`'s of 2, 3, and 4, respectively.
 
 [IMPORTANT]
 ====

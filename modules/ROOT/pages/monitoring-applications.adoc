@@ -7,8 +7,4 @@ Click the Applications tab to see information about applications on the server. 
 
 image::applications-1.png[]
 
-You can also see information about applications deployed to a cluster. See xref:monitoring-a-cluster.adoc[Monitoring a Cluster] for details.
-
-xref:monitoring-a-server.adoc[<< Previous: *Monitoring a Server*]
-
-xref:viewing-server-alerts.adoc[Next: *Viewing Server Alerts* >>]
+You can also see information about applications deployed to a cluster. See xref:3.6@monitoring-a-cluster.adoc[Monitoring a Cluster] for details.

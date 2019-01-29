@@ -7,6 +7,5 @@ Click the JMX tab to open a pane through which you can see all Mule-relevant JMX
 
 image::jmx.png[]
 
-xref:viewing-server-os-resources.adoc[<< Previous: *Viewing Server OS Resources*]
-
-xref:editing-server-settings.adoc[Next: *Editing Server Settings* >>]
+[NOTE]
+Note that the JMX data is read-only. You cannot invoke JMX operations or change attribute values via MMC.

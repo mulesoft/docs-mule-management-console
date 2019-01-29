@@ -19,18 +19,14 @@ Point your browser to the URL `+http://localhost:8585/mmc+` (if you are using th
 
 For the evaluation version, the server is automatically registered with the console.
 
-The simplest way to register a server, if you need to, is with the console's auto-discovery feature: the console automatically senses that a Mule server is running and makes it easy to register any "discovered" servers. Click the Servers tab, then click the Unregistered node in the left navigation pane. The window lists all servers that have come online and are not yet registered. Select the server to register, then click the Register button. You do not have to specify the URL for the server since the auto-discovery feature does this. (For more information, see xref:working-with-mule-server-instances.adoc[Server Auto-Discovery for New Servers].)
+The simplest way to register a server, if you need to, is with the console's auto-discovery feature: the console automatically senses that a Mule server is running and makes it easy to register any "discovered" servers. Click the Servers tab, then click the Unregistered node in the left navigation pane. The window lists all servers that have come online and are not yet registered. Select the server to register, then click the Register button. You do not have to specify the URL for the server since the auto-discovery feature does this.
 
-To manually register a server, click the Servers tab, then the New Server button. In the dialog that opens, enter a name for the server and the URL address for the server. (See xref:working-with-mule-server-instances.adoc[Registering a Server].)
+To manually register a server, click the Servers tab, then the New Server button. In the dialog that opens, enter a name for the server and the URL address for the server. (See http://docs.mulesoft.com/tcat-server/v/7.1.0/register-a-server[Registering a Server].)
 
 == Find the Example Applications
 
 [WARNING]
-====
-The sample applications are preloaded in the server repository in Mule 3.1.2 if you downloaded Mule and the management console as a bundle.
-
-*[Mule 3.2]* The sample applications are also preloaded in the server repository in Mule 3.2 if you downloaded Mule and the management console as a bundle.
-====
+The sample applications are preloaded in the server repository if you downloaded Mule and the management console as a bundle.
 
 There are a set of example applications included with the Mule server package, located beneath the Mule installation folder in the `\examples` folder. When you open the `\examples)) folder you should see a set of folders, such as {{\hello`, `\loanbroker-simple`, `\stockquote`, and so forth.
 
@@ -48,13 +44,13 @@ For complete instructions, see xref:deploying-applications.adoc[Deploying Applic
 
 Once an application is deployed to the Mule server, you can run it from any browser window. You should refer to the README.txt files in each sample application folder for specific instructions for running that application.
 
-For example, to run the hello sample application, open a new browser window or tab, and enter the URL `http://localhost:8888/?name=Simon`. (Feel free to use a name other than "Simon".)
+For example, to run the hello sample application, open a new browser window or tab, and enter the URL `+http://localhost:8888/?name=Simon+`. (Feel free to use a name other than "Simon".)
 
 The browser runs the deployed hello example application, which simply takes the name parameter and inserts it within a simple text line. The browser displays output from the application, such as: Hello Simon, how are you?
 
 == Audit the Running Application
 
-After running the application, use the Flows and Flow Analyzer tabs in the console to analyze the application's processing. Flows represent the sum of all the services and processing going on within an application, including routers, transformers, and filters. You can see high-level and detailed information about an application's flows and services, plus stop and start flows.
+After running the application, use the Flows and Flow Analyzer tabs in the console to analyze the application's processing. Flows represent the sum of all the processing going on within an application, including routers, transformers, and filters. You can see high-level and detailed information about an application's flows, plus stop and start flows.
 
 See xref:working-with-flows.adoc[Working with Flows] for more information.
 
@@ -68,7 +64,7 @@ The section xref:quick-start-guide-to-mule-esb-server-and-the-management-console
 
 Alerts enable you to check for potential problems on your servers or to monitor situations that might later lead to server problems. You define conditions (referred to as SLAs) through the Alerts pane. These conditions may later trigger the console to display alert messages that warn or advise you about problem situations.
 
-For a quick overview on working with alerts, see xref:quick-start-guide-to-mule-esb-server-and-the-management-console.adoc[Adding and Managing Alerts and SLAs]. See xref:working-with-alerts.adoc[Working With Alerts] for complete information on setting up and viewing alerts.
+For a quick overview on working with alerts, seexref:quick-start-guide-to-mule-esb-server-and-the-management-console.adoc[Adding and Managing Alerts and SLAs].
 
 == Set Up Users
 
@@ -77,7 +73,3 @@ When you first set up the server and console, you log in with the user name `adm
 Use the Administration tab in the console to manage users and roles. You define users and assign these users to roles, which are referred to as groups. You can also create groups and give them permissions to perform certain tasks.
 
 For complete information on setting up and managing users, see xref:managing-users-and-roles.adoc[Managing Users and Roles].
-
-== See Also
-
-* https://support.mulesoft.com[Contact MuleSoft Support]
