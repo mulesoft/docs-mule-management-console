@@ -117,4 +117,4 @@ Finally, here are a few important notes to keep in mind before deploying MMC:
 
 * xref:setting-up-mmc.adoc[Set up your MMC instance] to work with other components in your enterprise
 * Learn about the xref:architecture-of-the-mule-management-console.adoc[technical architecture of MMC]
-* https://support.mulesoft.com[Contact MuleSoft Support]
+* https://help.mulesoft.com[Contact MuleSoft Support]

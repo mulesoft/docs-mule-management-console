@@ -813,4 +813,4 @@ Jun  6 17:02:21 syrah slapd[1099]: conn=1007 op=2 SRCH attr=cn objectClass javaS
 == See Also
 
 * Refer to xref:managing-mmc-users-and-roles.adoc[Managing MMC Users and Roles] for information on how to define user groups, or roles, and assign permissions to those groups.
-* https://support.mulesoft.com[Contact MuleSoft Support]
+* https://help.mulesoft.com[Contact MuleSoft Support]
