@@ -236,4 +236,4 @@ The exact configuration details in your old MMC installation may vary. Before de
 
 * Read an overview of xref:configuring-mmc-for-external-databases-quick-reference.adoc[configuring MMC for external databases], which includes links to detailed instructions for each supported database server.
 * Learn how to xref:upgrading-to-mmc-with-ldap.adoc[upgrade to MMC with LDAP].
-* https://support.mulesoft.com[Contact MuleSoft Support]
+* https://help.mulesoft.com[Contact MuleSoft Support]
