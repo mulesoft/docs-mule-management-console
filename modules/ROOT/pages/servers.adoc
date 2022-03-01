@@ -1067,7 +1067,7 @@ Get a specific file from a specific Server.
 
 Note that this syntax is an example. Be sure to find your own setting for mmc-console-3.4.0 which is usually the name of the .war file. Further, serverId must reference your own server.
 
-`GET http://localhost:8080/mmc-console-3.4.0/api/servers/\{serverId}/files/{relativePathToFile}[?metadata=true]`
+`GET http://localhost:8080/mmc-console-3.4.0/api/servers/\{serverId}/files/\{relativePathToFile}[?metadata=true]`
 
 [%header,cols="4*"]
 |===
