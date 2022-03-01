@@ -73,7 +73,7 @@ curl --basic -u admin:admin -d '{ "name" : "TestUserGroup", "description": "This
 
 [discrete]
 ==== JSON
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 source
 ----
@@ -127,7 +127,7 @@ Lists all available User Groups.
 
 [discrete]
 ==== SYNTAX
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 GET http://localhost:8585/mmc-console-3.7.3/api/usergroups/
 
@@ -216,7 +216,7 @@ Lists details for a specific User Group.
 
 [discrete]
 ==== SYNTAX
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 GET http://localhost:8585/mmc-console-3.7.3/api/usergroups/{userGroupName}
 
@@ -228,7 +228,7 @@ GET http://localhost:8585/mmc-console-3.7.3/api/usergroups/{userGroupName}
 
 [discrete]
 ==== Using CURL
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 
 ----
@@ -321,7 +321,7 @@ Updates a specific User Group.
 
 [discrete]
 ==== Using CURL on Windows
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,json,linenums]
 ----
@@ -396,7 +396,7 @@ Removes a specific User Group.
 
 [discrete]
 ==== SYNTAX
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 DELETE http://localhost:8585/mmc-console-3.7.3/api/usergroups/{userGroupName}
 
@@ -458,7 +458,7 @@ Lists all available permissions.
 
 [discrete]
 ==== SYNTAX
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 GET http://localhost:8585/mmc-console-3.7.3/api/usergroups/permissions
 

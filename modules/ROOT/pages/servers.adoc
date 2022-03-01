@@ -59,7 +59,7 @@ Pairs a new Server.
 [discrete]
 ==== Using CURL on Windows
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 ----
  curl --basic -u admin:admin -d "{ \"name\" : \"Test\", \"agentUrl\" : \"http://localhost:7777/mmc-support\", \"groupIds\":[\"0bc8932b-8463-46cd-9a1f-77060756c5c0\"] }" --header "Content-Type: application/json" http://localhost:8585/mmc-console-3.7.3/api/servers
@@ -68,7 +68,7 @@ Note that this syntax is an example. Be sure to replace `+http://locahost:8585/m
 [discrete]
 ==== Using CURL on Linux
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,json,linenums]
 ----
@@ -81,7 +81,7 @@ Note that this syntax is an example. Be sure to replace `+http://locahost:8585/m
 [discrete]
 ==== JSON
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,json,linenums]
 ----
@@ -184,7 +184,7 @@ Lists all available Servers.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 
 ----
@@ -210,7 +210,7 @@ GET http://localhost:8585/mmc-console-3.7.3/api/servers[?group={serverGroupId}]
 [discrete]
 ==== JSON
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 
 [source,json,linenums]
@@ -324,7 +324,7 @@ Lists details for a specific Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 
 ----
@@ -455,7 +455,7 @@ Unpairs/unregister a specific Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 
 ----
@@ -549,14 +549,14 @@ Updates a specific Server.
 [discrete]
 ==== Using CURL on Windows
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 `+curl --basic -u admin:admin -X PUT -d "{ \"name\" : \"New Server Name\", \"groups\":[{\"href\":\"0bc8932b-8463-46cd-9a1f-77060756c5c0\"}]}" --header "Content-Type: application/json" http://localhost:8585/mmc-console-3.7.3/api/servers/local$a89eb3d0-68b9-44a0-9f6b-712b0895f469+`
 
 [discrete]
 ==== Using CURL on Linux
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,json,linenums]
 ----
@@ -671,7 +671,7 @@ Lists all available deployed applications on a specific Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 ----
 GET http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/applications
@@ -799,7 +799,7 @@ Restarts a Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 `+POST http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/restart+`
 
@@ -870,7 +870,7 @@ Stops a Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 
 ----
@@ -942,7 +942,7 @@ Lists files on a specific Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 `+GET http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/files+`
 
@@ -1063,7 +1063,7 @@ Get a specific file from a specific Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 `+GET http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/files/{relativePathToFile}[?metadata=true]+`
 
@@ -1172,7 +1172,7 @@ EOL from the source is converted to the native representation of the platform wh
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 `+POST http://localhost:8585/mmc-console-3.7.3/api/server/{serverId}/files/{relative path to file to be created}+`
 
@@ -1244,7 +1244,7 @@ EOL from source is converted to a native representation of the platform where th
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 `+PUT http://localhost:8585/mmc-console-3.7.3/api/server/{serverId}/files/{relative path to file to be replaced}+`
 
@@ -1318,7 +1318,7 @@ Deletes a target file on the specified server and folder.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 `+DELETE http://localhost:8585/mmc-console-3.7.3/api/server/{serverId}/files/{relative path to file to be deleted}+`
 
@@ -1391,7 +1391,7 @@ Lists available flows on a specific Server.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 `+GET http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/flows[?refreshStats=TRUE|FALSE]+`
 
@@ -1528,7 +1528,7 @@ Starts a specific flow.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 `+POST http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/flows/{flowName}/{applicationName}/start+`
 
@@ -1610,7 +1610,7 @@ Stops a specific flow.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 `+POST http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/flows/{flowName}/{applicationName}/stop+`
 
@@ -1696,7 +1696,7 @@ Lists available endpoints belonging to specific flows.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 `+GET http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints+`
 
@@ -1830,7 +1830,7 @@ Starts a specific endpoint.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 `+POST http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/start+`
 
@@ -1908,7 +1908,7 @@ Stops a specific endpoint.
 [discrete]
 ==== SYNTAX
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 `+POST http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/stop+`
 

@@ -88,7 +88,7 @@ Nodes that are already part of the cluster behave as follows:
 |Disbanding a cluster |After disbanding a cluster with configured alerts, the newly-independent nodes will have no configured alerts inherited from the cluster, but only their specific alerts configuration, if any.
 |===
 
-To summarize, a node that join a cluster which has no alerts configuration, will retain its alerts configuration (if any). A node that join a cluster which has alerts configuration, will have their alerts configuration (if any) overriden by that of the cluster, but will recover its alerts if and when is ceases to be part of the cluster.
+To summarize, a node that join a cluster which has no alerts configuration, will retain its alerts configuration (if any). A node that join a cluster which has alerts configuration, will have their alerts configuration (if any) overridden by that of the cluster, but will recover its alerts if and when is ceases to be part of the cluster.
 
 == Removing a Node With the Management Console
 
