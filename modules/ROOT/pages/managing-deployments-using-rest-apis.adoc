@@ -328,7 +328,7 @@ The returned JSON contains the following fields:
 * status: The current status of the deployment.
 * href: Link to the current deployment screen in management console.
 * servers: List of all the servers IDs that are assigned to the deployment after removing the specified servers and applications.
-* reconcilied: Boolean for the reconciled status of the deployment.
+* reconciled: Boolean for the reconciled status of the deployment.
 * applications: List of all the application IDs that are still assigned to the deployment after removing the specified servers and applications.
 
 == Deploy a Deployment
