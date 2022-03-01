@@ -167,7 +167,7 @@ Lists all available Deployments.
 
 Syntax
 
-`GET http://localhost:8080/mmc/api/deployments[?server={serverId}|?cluster={clusterId}]`
+`GET http://localhost:8080/mmc/api/deployments[?server=\{serverId}|?cluster=\{clusterId}]`
 
 [%header,cols="4*"]
 |===
