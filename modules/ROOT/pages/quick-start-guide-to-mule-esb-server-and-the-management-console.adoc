@@ -79,7 +79,7 @@ To use a sample application, you deploy the example's archive, or `.zip` file co
 [NOTE]
 The term *application* (in the Mule ESB environment) refers to packaging one or many services into a deployment unit that are managed together. Typically, a single application packages services that share a common development life cycle and/or common components. These components are packaged into an archive file, usually a `.zip` file. When you deploy an application, you actually deploy this archive file.
 
-When you view the other sample application folders, notice that the sets of files are similiar to the hello application folder. If you are just getting started, you may want to try using the hello application, since it is the simplest example.
+When you view the other sample application folders, notice that the sets of files are similar to the hello application folder. If you are just getting started, you may want to try using the hello application, since it is the simplest example.
 
 == Deploy an Application
 

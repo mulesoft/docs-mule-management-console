@@ -18,7 +18,7 @@ The response includes a JSON class that contains two properties of particular in
 
 You can specify a `name` parameter with this resource. Specifying a server group name limits the response to the server group whose name matches the supplied name value. The response includes only the server group identifier.
 
-Invoke the resource as follows: `/mmc/api/serverGroupd&name=<myServerGroupName>`, substituting the name of the server group for <myServerGroupName>.
+Invoke the resource as follows: `/mmc/api/serverGroups?name=<myServerGroupName>`, substituting the name of the server group for <myServerGroupName>.
 
 You may also redirect the results by appending the following code after the server group name value: `&redirectOnResult=true`. The second example request below illustrates this form of the request.
 
