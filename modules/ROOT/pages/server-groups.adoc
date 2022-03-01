@@ -205,7 +205,7 @@ Lists details for a specific Server Group.
 ==== SYNTAX
 Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-GET +http://localhost:8080/mmc-console-3.7.3/api/serverGroups/{serverGroupId}+
+GET +http://localhost:8080/mmc-console-3.7.3/api/serverGroups/\{serverGroupId}+
 
 [%header,cols="4*"]
 |===
@@ -303,7 +303,7 @@ Note that this syntax is an example. Be sure to replace +http://locahost:8080/mm
 |href |String |Full link to the Server Group resource on which you can perform an operation |— |No
 |===
 
-Note that the "name" attribute is the only required attribute. The other attributes are include to match the JSON response from an /api/ServerGroups or /api/serverGroups/{serverGroupId} GET request.
+Note that the "name" attribute is the only required attribute. The other attributes are include to match the JSON response from an /api/ServerGroups or /api/serverGroups/\{serverGroupId} GET request.
 
 [discrete]
 ==== Using CURL on Windows
@@ -386,7 +386,7 @@ Removes a specific Server Group.
 ==== SYNTAX
 Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-DELETE +http://localhost:8080/mmc-console-3.7.3/api/serverGroups/{serverGroupId}+
+DELETE +http://localhost:8080/mmc-console-3.7.3/api/serverGroups/\{serverGroupId}+
 
 [%header,cols="4*"]
 |===

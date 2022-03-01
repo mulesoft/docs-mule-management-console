@@ -215,7 +215,7 @@ Lists details for a specific User Group.
 ==== SYNTAX
 Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-GET http://localhost:8585/mmc-console-3.7.3/api/usergroups/{userGroupName}
+GET http://localhost:8585/mmc-console-3.7.3/api/usergroups/\{userGroupName}
 
 [%header,cols="4*"]
 |===
@@ -395,7 +395,7 @@ Removes a specific User Group.
 ==== SYNTAX
 Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-DELETE http://localhost:8585/mmc-console-3.7.3/api/usergroups/{userGroupName}
+DELETE http://localhost:8585/mmc-console-3.7.3/api/usergroups/\{userGroupName}
 
 [%header,cols="4*"]
 |===
