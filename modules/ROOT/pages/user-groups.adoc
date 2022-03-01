@@ -220,7 +220,7 @@ Lists details for a specific User Group.
 [discrete]
 ==== SYNTAX
 
-GET http://localhost:8080/mmc/api/usergroups/{userGroupName}
+GET http://localhost:8080/mmc/api/usergroups/\{userGroupName}
 
 [%header,cols="4*"]
 |===
@@ -397,7 +397,7 @@ Removes a specific User Group.
 [discrete]
 ==== SYNTAX
 
-DELETE http://localhost:8080/mmc/api/usergroups/{userGroupName}
+DELETE http://localhost:8080/mmc/api/usergroups/\{userGroupName}
 
 [%header,cols="4*"]
 |===

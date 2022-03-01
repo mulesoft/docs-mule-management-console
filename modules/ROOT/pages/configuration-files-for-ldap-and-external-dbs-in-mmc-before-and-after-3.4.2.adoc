@@ -2,7 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:keywords: mmc, configuration, ldap, authenthication
+:keywords: mmc, configuration, ldap, authentication
 
 Version 3.4.2 of the Mule Management Console introduced a new, simplified configuration for the following scenarios:
 

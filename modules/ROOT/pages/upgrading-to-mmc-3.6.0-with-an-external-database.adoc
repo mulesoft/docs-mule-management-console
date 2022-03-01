@@ -82,7 +82,7 @@ For example, if the value of `datasource.url` in the old MMC installation is `jd
     -->
     <Workspace name="mmcworkspace">
 ----
-In the example above, both the workspace name and the default workspace name are `mmcworskpace`.
+In the example above, both the workspace name and the default workspace name are `mmcworkspace`.
 . In MMC 3.6.0, go to the `<MMC_HOME>/WEB-INF/classes/META-INF/jackrabbit` directory, then locate the jackrabbit-repo file relevant for your database, for example `jackrabbit-repo-postgres.xml` if persisting data on Postgres. Open the file for editing.
 . Find the workspace name declaration in the 3.6.0 jackrabbit-repo file, and ensure that the *workspace name* and the *default workspace name* coincide between your old MMC version and MMC 3.6.0.
 . Check that the values of all `schemaObjectPrefix` declarations in the jackrabbit-repo file for MMC 3.6.0 follow the values declared in the jackrabbit-repo file of your old MMC installation. For example, if your old MMC jackrabbit-repo file contains the following:

@@ -263,7 +263,7 @@ If you do not have such a file, the driver is not installed and you will need to
 
 ==== MMC Configuration
 
-Configuring MMC to store data on a PostgreSQL databse involves two basic tasks:
+Configuring MMC to store data on a PostgreSQL database involves two basic tasks:
 
 * Modifying the file `web.xml` to tell MMC to use Postgres instead of its default database
 * Modifying the file `mmc-postgres.properties` to set the parameters for connecting to the Postgres database
@@ -475,7 +475,7 @@ See the section <<Database Driver>> in this document to install or verify your i
 
 ==== MMC Configuration
 
-Configuring MMC to store Business Events data on a PostgreSQL databse involves two basic tasks:
+Configuring MMC to store Business Events data on a PostgreSQL database involves two basic tasks:
 
 * Modifying the file `web.xml` to tell MMC to use Postgres instead of its default database
 * Modifying the file `tracking-persistence-postgres.properties` to set the parameters for connecting to the Postgres database

@@ -113,7 +113,7 @@ If SQL developer asks for the full Java path, enter the full path. Typical Java 
 .. Display the **New/Select Database connection** dialog box. To do so, follow these steps:
 ... Click the *Connections* tab in the left-hand pane.
 ... Right-click *Connections*.
-... Select *New Connec* *tion*.
+... Select *New Connection*.
 .. In the connection *Name* field, enter: `mmc_persistency_status`.
 .. In the *Username* field, enter: `SYSTEM`.
 .. In the *Password* field, enter the SYSTEM password that you issued during the Oracle Express installation process.
@@ -197,7 +197,7 @@ This example uses the parameters employed for setting up the Oracle database ear
 
 ==== MMC Configuration
 
-Configuring MMC to store data on an Oracle databse involves two basic tasks:
+Configuring MMC to store data on an Oracle database involves two basic tasks:
 
 * Modifying the file `web.xml` to tell MMC to use Oracle instead of its default database
 * Modifying the file `mmc-oracle.properties` to set the parameters for connecting to the Oracle database
