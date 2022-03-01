@@ -2,7 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:kewords: mmc, monitoring, debugging, flow analyzer, console
+:keywords: mmc, monitoring, debugging, flow analyzer, console
 
 These topics show how to use the Mule Management Console Flows and Flow Analyzer tabs to monitor and track applications on a given server. Together, these tabs let you see what is happening within the application processing. In addition, you may be able to use this information to debug an application.
 

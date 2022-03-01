@@ -164,7 +164,7 @@ env.url=jdbc:oracle:thin:${env.username}/${env.password}@${env.host}:${env.port}
 env.servicename=XEXDB
 ----
 
-After modifying the configuration files as needed, MMC is configured to store data on the extenal database(s) you specified. Start MMC to check your new configuration.
+After modifying the configuration files as needed, MMC is configured to store data on the external database(s) you specified. Start MMC to check your new configuration.
 
 == See Also
 

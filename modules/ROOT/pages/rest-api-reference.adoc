@@ -71,7 +71,7 @@ A single document may contain more than one Resource section. In such cases, the
 ====
 *Resource Description Syntax*
 
-In all documents, variable content that must be provided by the user is enclosed in \{braces}. For example: `/api/clusters{clusterid`}.
+In all documents, variable content that must be provided by the user is enclosed in \{braces}. For example: `/api/clusters/\{clusterId`}.
 
 Variable content that is optional is enclosed in [brackets]. For example: `api/deployments[?server={serverId}]`.
 ====

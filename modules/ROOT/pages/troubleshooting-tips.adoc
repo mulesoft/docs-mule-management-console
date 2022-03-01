@@ -61,7 +61,7 @@ For example, if you start two Mule agent instances, on instance uses the default
 ----
 
 [WARNING]
-If you are using MMC listener-class, remove `org.mule.config.builders.MuleXmlBuilderContextListner` listener-class, because both listeners will try to start the same Mule instance.
+If you are using MMC listener-class, remove `org.mule.config.builders.MuleXmlBuilderContextListener` listener-class, because both listeners will try to start the same Mule instance.
 
 Note that the same two properties, the bind port and listener class, are supported for standalone Mule ESB servers and those servers configured via `web.xml` file.
 

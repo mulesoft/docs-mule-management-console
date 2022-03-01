@@ -20,7 +20,7 @@ The following table lists user and group information, specifying where it is sto
 
 [%header%autowidth.spread]
 |===
-|Information |Managment and Storage
+|Information |Management and Storage
 |User names and passwords |LDAP database
 |Groups names and group members |LDAP database
 |Groups names and group permissions |Console
@@ -577,7 +577,7 @@ The window displays the list of attributes of the object just created.
 
 . Click *Finish* to write the changes to the LDAP database. An object of type OrganizationalUnit called `groups`, with DN `ou=groups`, `dc=company`, `dc=com`, is created, and it appears in the *LDAP Browser* pane.
 
-Repeat the above process, creating a new OrganiationalUnit object called *people*.
+Repeat the above process, creating a new OrganizationalUnit object called *people*.
 
 ===== Creating Users
 
@@ -587,7 +587,7 @@ At this point, the LDAP database contains the root user plus two empty organizat
 |===
 |User |User's function in this configuration
 |mmc |Allow the console to authenticate _itself_ on LDAP, to gain read access to the database. The credentials for this user are stored in the console's LDAP configuration file, `mmc-ldap.properties`.
-|admin |This is a console user. It will be a member of the `Administrators` group, and have full administrative priviligies on the console.
+|admin |This is a console user. It will be a member of the `Administrators` group, and have full administrative privileges on the console.
 |testuser1 |This is a console user with limited permissions, created for this example.
 |===
 
