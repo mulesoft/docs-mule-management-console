@@ -290,7 +290,7 @@ Lists details for a specific Deployment.
 ==== SYNTAX
 Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`+GET http://localhost:8585/mmc-console-3.7.3/api/deployments/{deploymentId}+`
+`+GET http://localhost:8585/mmc-console-3.7.3/api/deployments/\{deploymentId}+`
 
 [%header,cols="4*"]
 |===
@@ -637,7 +637,7 @@ Removes a specific Deployment.
 ==== SYNTAX
 Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`DELETE http://localhost:8585/mmc-console-3.7.3/api/deployments/{deploymentId}`
+`DELETE http://localhost:8585/mmc-console-3.7.3/api/deployments/\{deploymentId}`
 
 [%header,cols="4*"]
 |===
@@ -712,7 +712,7 @@ Deploys the apps specified on the deployment to the specified target.
 ==== JSON
 Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`+POST http://localhost:8585/mmc-console-3.7.3/api/deployments/{deploymentId}/deploy+`
+`+POST http://localhost:8585/mmc-console-3.7.3/api/deployments/\{deploymentId}/deploy+`
 
 [%header,cols="4*"]
 |===
@@ -787,7 +787,7 @@ Redeploys the apps specified on the deployment to the specified target.
 
 Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`+POST http://localhost:8585/mmc-console-3.7.3/api/deployments/{deploymentId}/redeploy+`
+`+POST http://localhost:8585/mmc-console-3.7.3/api/deployments/\{deploymentId}/redeploy+`
 
 [%header,cols="4*"]
 |===
@@ -861,7 +861,7 @@ Undeploys the apps specified on the deployment to the specified target.
 ==== JSON
 Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-console-3.7.3+` with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-`+POST http://localhost:8585/mmc-console-3.7.3/api/deployments/{deploymentId}/undeploy+`
+`+POST http://localhost:8585/mmc-console-3.7.3/api/deployments/\{deploymentId}/undeploy+`
 
 [%header,cols="4*"]
 |===
