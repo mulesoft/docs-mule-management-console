@@ -286,7 +286,7 @@ Lists details for specific Cluster.
 [discrete]
 ==== SYNTAX
 
-GET http://localhost:8080/mmc/api/cluster/{clusterId}
+GET http://localhost:8080/mmc/api/cluster/\{clusterId}
 
 [%header,cols="4*"]
 |===
@@ -394,7 +394,7 @@ Lists node status for specific Cluster.
 [discrete]
 ==== SYNTAX
 
-GET http://localhost:8080/mmc/api/cluster/{clusterId}/status
+GET http://localhost:8080/mmc/api/cluster/\{clusterId}/status
 
 [%header,cols="4*"]
 |===
@@ -459,7 +459,7 @@ Disbands a specific Server.
 [discrete]
 ==== SYNTAX
 
-DELETE http://localhost:8080/mmc/api/clusters/{clusterId}
+DELETE http://localhost:8080/mmc/api/clusters/\{clusterId}
 
 [%header,cols="4*"]
 |===
@@ -532,7 +532,7 @@ Restarts a Cluster.
 [discrete]
 ==== SYNTAX
 
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/restart
+POST http://localhost:8080/mmc/api/clusters/\{clusterId}/restart
 
 [%header,cols="4*"]
 |===
@@ -604,7 +604,7 @@ Stops a Cluster.
 [discrete]
 ==== SYNTAX
 
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/stop
+POST http://localhost:8080/mmc/api/clusters/\{clusterId}/stop
 
 [%header,cols="4*"]
 |===
@@ -838,7 +838,7 @@ Lists all Mule applications currently deployed successfully on a Cluster.
 [discrete]
 ==== SYNTAX
 
-GET http://localhost:8080/mmc/api/cluster/{clusterId}/applications
+GET http://localhost:8080/mmc/api/cluster/\{clusterId}/applications
 
 [%header,cols="4*"]
 |===
@@ -927,7 +927,7 @@ Starts an application from a Cluster.
 [discrete]
 ==== SYNTAX
 
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/applications/{applicationName}/start
+POST http://localhost:8080/mmc/api/clusters/\{clusterId}/applications/\{applicationName}/start
 
 [%header,cols="4*"]
 |===
@@ -1012,7 +1012,7 @@ Restarts an application from a Cluster.
 [discrete]
 ==== SYNTAX
 
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/applications/{applicationName}/restart
+POST http://localhost:8080/mmc/api/clusters/\{clusterId}/applications/\{applicationName}/restart
 
 [%header,cols="4*"]
 |===
@@ -1098,7 +1098,7 @@ Stops an application from a Cluster.
 [discrete]
 ==== SYNTAX
 
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/applications/{applicationName}/stop
+POST http://localhost:8080/mmc/api/clusters/\{clusterId}/applications/\{applicationName}/stop
 
 [%header,cols="4*"]
 |===
@@ -1186,7 +1186,7 @@ Lists all available flows belonging to Mule applications currently deployed succ
 ==== SYNTAX
 
 ----
-GET http://localhost:8080/mmc/api/clusters/{clusterId}/flows[/?refreshStats=TRUE|FALSE]
+GET http://localhost:8080/mmc/api/clusters/\{clusterId}/flows[/?refreshStats=TRUE|FALSE]
 ----
 
 [%header,cols="4*"]
@@ -1322,7 +1322,7 @@ Restarts a flow of an application on a Cluster.
 [discrete]
 ==== SYNTAX
 
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applicationName}/start
+POST http://localhost:8080/mmc/api/clusters/\{clusterId}/flows/\{flowName}/\{applicationName}/start
 
 [%header,cols="4*"]
 |===
@@ -1392,7 +1392,7 @@ Pauses a flow of an application on a Cluster.
 [discrete]
 ==== SYNTAX
 
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applicationName}/pause
+POST http://localhost:8080/mmc/api/clusters/\{clusterId}/flows/\{flowName}/\{applicationName}/pause
 
 [%header,cols="4*"]
 |===
@@ -1464,7 +1464,7 @@ Stops a flow of an application on a Cluster.
 [discrete]
 ==== SYNTAX
 
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applicationName}/stop
+POST http://localhost:8080/mmc/api/clusters/\{clusterId}/flows/\{flowName}/\{applicationName}/stop
 
 [%header,cols="4*"]
 |===
@@ -1538,7 +1538,7 @@ Lists all Flow Endpoints from a Mule application on a Cluster.
 [discrete]
 ==== SYNTAX
 
-GET http://localhost:8080/mmc/api/cluster/{clusterId}/flows/{flowName}/{applicationName}/endpoints
+GET http://localhost:8080/mmc/api/cluster/\{clusterId}/flows/\{flowName}/\{applicationName}/endpoints
 
 [%header,cols="4*"]
 |===
@@ -1644,7 +1644,7 @@ Starts a flow endpoint belonging to an application on a Cluster.
 [discrete]
 ==== SYNTAX
 
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/start
+POST http://localhost:8080/mmc/api/clusters/\{clusterId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/start
 
 [%header,cols="4*"]
 |===
@@ -1721,7 +1721,7 @@ Stops a flow endpoint belonging to an application on a Cluster.
 [discrete]
 ==== SYNTAX
 
-POST http://localhost:8080/mmc/api/clusters/{clusterId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/stop
+POST http://localhost:8080/mmc/api/clusters/\{clusterId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointid}/stop
 
 [%header,cols="4*"]
 |===
