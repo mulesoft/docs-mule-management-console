@@ -120,12 +120,12 @@ userDn=cn=mmc,dc=company,dc=com
 password=mmcadmin
 usernameAttribute=uid
 userSearchBaseContext=ou=people,dc=company,dc=com
-userSearchFilterExpression=(uid=\{0})
+userSearchFilterExpression=(uid={0})
 userSearchBase=ou=people,dc=company,dc=com
 userSearchAttributeKey=objectclass
 userSearchAttributeValue=person
 roleDn=ou=groups,dc=company,dc=com
-groupSearchFilter=(member=\{0})
+groupSearchFilter=(member={0})
 ----
 
 The following table describes the properties set through the configuration file:
@@ -370,7 +370,7 @@ The following table describes LDAP configuration file parameters.
 
 As shown xref:setting-up-and-managing-users-via-ldap.adoc[above], the LDAP configuration file stores the user name and password for the root user of the database. The password can be stored in clear text; however, this constitutes a security risk, since the LDAP configuration file is world-readable. To generate a hash for the password, run the following command: `slappasswd -h <scheme> -s <secret>`
 
-`<scheme>` is an RFC 2307 scheme such as `\{MD5}`, `\{CRYPT}` or `\{SSHA}` \(the default), and `<secret>` is the secret to hash. If invoked with no arguments, the command prompts for the secret and outputs the resulting `\{SSHA}` hash.
+`<scheme>` is an RFC 2307 scheme such as `\{MD5}`, `\{CRYPT}` or `\{SSHA}` (the default), and `<secret>` is the secret to hash. If invoked with no arguments, the command prompts for the secret and outputs the resulting `\{SSHA}` hash.
 
 The output of this command should be similar to the following: `\{MD5}Xr4ilOzQ4PCOq3aQ0qbuaQ==`
 
@@ -657,7 +657,7 @@ When a user logs in to the console, the console first asks the LDAP server to ve
 
 [source,text,linenums]
 ----
-groupSearchFilter=(member=\{0})
+groupSearchFilter=(member={0})
 ----
 
 ===== Creating and Defining a Test User and Group
@@ -674,12 +674,12 @@ providerURL=ldap://127.0.0.1:389/
 userDn=cn=mmc,ou=people,dc=company,dc=com
 password=mmc123
 userSearchBaseContext=ou=people,dc=company,dc=com
-userSearchFilterExpression=(uid=\{0})
+userSearchFilterExpression=(uid={0})
 userSearchBase=ou=people,dc=company,dc=com
 userSearchAttributeKey=objectclass
 userSearchAttributeValue=person
 roleDn=ou=groups,dc=company,dc=com
-groupSearchFilter=(member=\{0})
+groupSearchFilter=(member={0})
 ----
 
 ===== Test Console Logins
