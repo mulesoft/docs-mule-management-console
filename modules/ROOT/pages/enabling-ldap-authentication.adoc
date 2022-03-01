@@ -117,12 +117,12 @@ userDn=cn=mmc,dc=company,dc=com
 password=mmcadmin
 usernameAttribute=uid
 userSearchBaseContext=ou=people,dc=company,dc=com
-userSearchFilterExpression=(uid=\{0})
+userSearchFilterExpression=(uid={0})
 userSearchBase=ou=people,dc=company,dc=com
 userSearchAttributeKey=objectclass
 userSearchAttributeValue=person
 roleDn=ou=groups,dc=company,dc=com
-groupSearchFilter=(member=\{0})
+groupSearchFilter=(member={0})
 ----
 
 The following table describes the properties set through the configuration file:
@@ -669,12 +669,12 @@ providerURL=ldap://127.0.0.1:389/
 userDn=cn=mmc,ou=people,dc=company,dc=com
 password=mmc123
 userSearchBaseContext=ou=people,dc=company,dc=com
-userSearchFilterExpression=(uid=\{0})
+userSearchFilterExpression=(uid={0})
 userSearchBase=ou=people,dc=company,dc=com
 userSearchAttributeKey=objectclass
 userSearchAttributeValue=person
 roleDn=ou=groups,dc=company,dc=com
-groupSearchFilter=(member=\{0})
+groupSearchFilter=(member={0})
 ----
 
 ===== Test console logins
