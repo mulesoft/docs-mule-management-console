@@ -427,7 +427,7 @@ GET http://localhost:8080/mmc/api/servers[?group={serverGroupId}]
 |*DELETE* |UNPAIR/UNREGISTER |
 |===
 
-Unpairs/unregister a specific Server.
+Unpair/unregister a specific Server.
 
 [.ex]
 =====
@@ -439,7 +439,7 @@ Unpairs/unregister a specific Server.
 
 [source,text,linenums]
 ----
-DELETE http://localhost:8080/mmc/api/servers/{serverId}
+DELETE http://localhost:8080/mmc/api/servers/\{serverId}
 ----
 
 [%header,cols="4*a"]
@@ -652,7 +652,7 @@ Lists all available deployed applications on a specific Server.
 
 [source,text,linenums]
 ----
-GET http://localhost:8080/mmc/api/servers/{serverId}/applications
+GET http://localhost:8080/mmc/api/servers/\{serverId}/applications
 ----
 
 [%header,cols="4*a"]
@@ -772,7 +772,7 @@ Restarts a Server.
 
 [source,text,linenums]
 ----
-POST http://localhost:8080/mmc/api/servers/{serverId}/restart
+POST http://localhost:8080/mmc/api/servers/\{serverId}/restart
 ----
 
 #Error rendering macro 'deck' : java.lang.NullPointerException#
@@ -836,7 +836,7 @@ Stops a Server.
 
 [source,text,linenums]
 ----
-POST http://localhost:8080/mmc/api/servers/{serverId}/stop
+POST http://localhost:8080/mmc/api/servers/\{serverId}/stop
 ----
 
 [%header,cols="4*a"]
@@ -912,7 +912,7 @@ Lists files on a specific Server.
 
 [source,text,linenums]
 ----
-GET http://localhost:8080/mmc/api/servers/{serverId}/files
+GET http://localhost:8080/mmc/api/servers/\{serverId}/files
 ----
 
 [%header,cols="4*a"]
@@ -1033,7 +1033,7 @@ Get a specific file from a specific Server.
 
 [source,text,linenums]
 ----
-GET http://localhost:8080/mmc/api/servers/{serverId}/files/{relativePathToFile}[?metadata=true]
+GET http://localhost:8080/mmc/api/servers/\{serverId}/files/{relativePathToFile}[?metadata=true]
 ----
 
 [%header,cols="4*a"]
@@ -1090,7 +1090,7 @@ Metadata=true:
 |===
 |Key |Type |Summary |Child of
 |name |String |Name of the file |—
-|size |Long |Syze of the file in bytes |—
+|size |Long |Size of the file in bytes |—
 |absolutePath |String |Absolute path of the file |—
 |directory |Boolean |True if the entry is a directory |—
 |lastModified |Long |Last modified time since epoch |—
@@ -1141,7 +1141,7 @@ EOL from the source is converted to the native representation of the platform wh
 
 [source,text,linenums]
 ----
-POST http://localhost:8080/mmc/api/server/{serverId}/files/{relative path to file to be created}
+POST http://localhost:8080/mmc/api/server/\{serverId}/files/{relative path to file to be created}
 ----
 
 [%header,cols="4*a"]
@@ -1217,7 +1217,7 @@ EOL from source is converted to a native representation of the platform where th
 
 [source,text,linenums]
 ----
-PUT http://localhost:8080/mmc/api/server/{serverId}/files/{relative path to file to be replaced}
+PUT http://localhost:8080/mmc/api/server/\{serverId}/files/{relative path to file to be replaced}
 ----
 
 [%header,cols="4*a"]
@@ -1293,7 +1293,7 @@ Deletes a target file on the specified server and folder.
 
 [source,text,linenums]
 ----
-DELETE http://localhost:8080/mmc/api/server/{serverId}/files/{relative path to file to be deleted}
+DELETE http://localhost:8080/mmc/api/server/\{serverId}/files/{relative path to file to be deleted}
 ----
 
 [%header,cols="4*a"]
@@ -1372,7 +1372,7 @@ Lists available flows on a specific Server.
 
 [source,text,linenums]
 ----
-GET http://localhost:8080/mmc/api/servers/{serverId}/flows[?refreshStats=TRUE|FALSE]
+GET http://localhost:8080/mmc/api/servers/\{serverId}/flows[?refreshStats=TRUE|FALSE]
 ----
 
 [%header,cols="4*a"]
@@ -1512,7 +1512,7 @@ Starts a specific flow.
 
 [source,text,linenums]
 ----
-POST http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicationName}/start
+POST http://localhost:8080/mmc/api/servers/\{serverId}/flows/\{flowName}/\{applicationName}/start
 ----
 
 [%header,cols="4*a"]
@@ -1594,7 +1594,7 @@ Stops a specific flow.
 [discrete]
 ==== SYNTAX
 
-`POST http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicationName}/stop`
+`POST http://localhost:8080/mmc/api/servers/\{serverId}/flows/\{flowName}/\{applicationName}/stop`
 
 [%header,cols="4*a"]
 |===
@@ -1676,7 +1676,7 @@ Lists available endpoints belonging to specific flows.
 
 [source,text,linenums]
 ----
-GET http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints
+GET http://localhost:8080/mmc/api/servers/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints
 ----
 
 [%header,cols="4*a"]
@@ -1810,7 +1810,7 @@ Starts a specific endpoint.
 
 [source,text,linenums]
 ----
-POST http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/start
+POST http://localhost:8080/mmc/api/servers/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/start
 ----
 
 [%header,cols="4*a"]
@@ -1889,7 +1889,7 @@ Stops a specific endpoint.
 [discrete]
 ==== SYNTAX
 
-`POST http://localhost:8080/mmc/api/servers/{serverId}/flows/{flowName}/{applicationName}/endpoints/{endpointId}/stop`
+`POST http://localhost:8080/mmc/api/servers/\{serverId}/flows/\{flowName}/\{applicationName}/endpoints/\{endpointId}/stop`
 
 [%header,cols="4*a"]
 |===
