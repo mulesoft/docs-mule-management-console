@@ -163,7 +163,7 @@ Lists all available Deployments.
 
 Syntax
 
-`GET http://localhost:8080/mmc/api/deployments[?server={serverId}]`
+`GET http://localhost:8080/mmc/api/deployments[?server=\{serverId}]`
 
 [%header,cols="4*a"]
 |===
@@ -271,7 +271,7 @@ Lists details for a specific Deployment.
 
 SYNTAX
 
-`GET http://localhost:8080/mmc/api/deployments/{deploymentId}`
+`GET http://localhost:8080/mmc/api/deployments/\{deploymentId}`
 
 [%header,cols="4*a"]
 |===
@@ -604,7 +604,7 @@ Removes a specific Deployment.
 
 SYNTAX
 
-`DELETE http://localhost:8080/mmc/api/deployments/{deploymentId}`
+`DELETE http://localhost:8080/mmc/api/deployments/\{deploymentId}`
 
 [%header,cols="4*a"]
 |===
@@ -675,7 +675,7 @@ Deploys the apps specified on the deployment to the specified target.
 
 JSON
 
-`POST http://localhost:8080/mmc/api/deployments/{deploymentId}/deploy`
+`POST http://localhost:8080/mmc/api/deployments/\{deploymentId}/deploy`
 
 [%header,cols="4*a"]
 |===
@@ -740,7 +740,7 @@ Redeploys the apps specified on the deployment to the specified target.
 
 JSON
 
-`POST http://localhost:8080/mmc/api/deployments/{deploymentId}/redeploy`
+`POST http://localhost:8080/mmc/api/deployments/\{deploymentId}/redeploy`
 
 [%header,cols="4*a"]
 |===
@@ -805,7 +805,7 @@ Undeploys the apps specified on the deployment to the specified target.
 
 JSON
 
-`POST http://localhost:8080/mmc/api/deployments/{deploymentId}/undeploy`
+`POST http://localhost:8080/mmc/api/deployments/\{deploymentId}/undeploy`
 
 [%header,cols="4*a"]
 |===
