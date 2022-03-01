@@ -227,7 +227,7 @@ For safety, make sure to delete the following files (if listed) before editing `
 * `jackrabbit-repo-test.xml`
 ====
 
-In the same directory, locate the file `jackrabbit-repo.xml` and open it for editing. Replace the appropiate parameters to use Oracle instead of the default Derby database. A full listing of the modified file is provided below; you may wish to replace your default `jackrabbit-repo.xml` with the contents of this file.
+In the same directory, locate the file `jackrabbit-repo.xml` and open it for editing. Replace the appropriate parameters to use Oracle instead of the default Derby database. A full listing of the modified file is provided below; you may wish to replace your default `jackrabbit-repo.xml` with the contents of this file.
 
 Use the following parameters for the database connection:
 
@@ -428,7 +428,7 @@ In the same directory, locate the file called `applicationContext.xml`. Open it 
 [IMPORTANT]
 For safety, before editing this file delete the following files (if listed): `jackrabbit-repo-default.xml` and `jackrabbit-repo-test.xml`.
 
-In the same directory, locate the file `jackrabbit-repo.xml` and open it for editing. Replace the appropiate parameters to use Postgres instead of the default Derby database. A full listing of the modified file is provided below; you may wish to replace your default `jackrabbit-repo.xml` with the contents of this file.
+In the same directory, locate the file `jackrabbit-repo.xml` and open it for editing. Replace the appropriate parameters to use Postgres instead of the default Derby database. A full listing of the modified file is provided below; you may wish to replace your default `jackrabbit-repo.xml` with the contents of this file.
 
 Use the following parameters for the database connection:
 
@@ -534,7 +534,7 @@ This example uses the parameters employed <<MySQL Setup>> when creating the MySQ
 ==== Obtaining MySQL Drivers
 
 . http://dev.mysql.com/downloads/connector/j/5.0.html[Download] the latest MySQL driver. (You need a free Oracle account to download.) The driver is called `mysql-connector-java-<version>`, such as `mysql-connector-java-5.1.26`. You can download the driver as a zip or  tar.gz file.
-. Extract the .zip or .tar.gz installation and file, then, in the resulting directory structure, locate the file called `mysql-connector-java-<version>-bin.jar`. This is the jbdc driver itself, that you will copy to the Management Console directory structure.
+. Extract the .zip or .tar.gz installation and file, then, in the resulting directory structure, locate the file called `mysql-connector-java-<version>-bin.jar`. This is the JDBC driver itself, that you will copy to the Management Console directory structure.
 
 ===== Driver for MMC run as Mule app
 
