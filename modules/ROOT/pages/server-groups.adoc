@@ -200,7 +200,7 @@ Lists details for a specific Server Group.
 [discrete]
 ==== SYNTAX
 
-GET http://localhost:8080/mmc/api/serverGroups/{serverGroupId}
+GET http://localhost:8080/mmc/api/serverGroups/\{serverGroupId}
 
 [%header,cols="4*"]
 |===
@@ -372,7 +372,7 @@ Removes a specific Server Group.
 [discrete]
 ==== SYNTAX
 
-DELETE http://localhost:8080/mmc/api/serverGroups/{serverGroupId}
+DELETE http://localhost:8080/mmc/api/serverGroups/\{serverGroupId}
 
 [%header,cols="4*"]
 |===
