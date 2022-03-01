@@ -448,7 +448,7 @@ GET http://localhost:8585/mmc-console-3.7.3/api/servers/{serverId}
 |
 |===
 
-Unpairs/unregister a specific Server.
+Unpair/unregister a specific Server.
 
 [.ex]
 =====
@@ -1143,7 +1143,7 @@ Metadata=true:
 |===
 |Key |Type |Summary |Child of
 |name |String |Name of the file |—
-|size |Long |Syze of the file in bytes |—
+|size |Long |Size of the file in bytes |—
 |absolutePath |String |Absolute path of the file |—
 |directory |Boolean |True if the entry is a directory |—
 |lastModified |Long |Last modified time since epoch |—

@@ -29,7 +29,7 @@ Using the Management Console, you can monitor the performance of the following:
 |image:icon-clipboard-blue-big.png[]
 |
 * xref:analyzing-flow-processing-and-payloads.adoc[Flow Content]
-|image:icon-mulesoftm-blue-big.png[]
+|image:icon-mulesoft-blue-big.png[]
 |
 * xref:managing-mule-servers-clusters-and-groups.adoc[JVM] (instances of Mule)
 |image:icon-graph-blue-big.png[]
