@@ -173,7 +173,7 @@ ALTER SYSTEM SET PROCESSES=150 SCOPE=SPFILE;
 
 * Follow the instructions in Step 3: Restart the TNS Listener Service to restart your TNS listener.
 
-xref:business-events-use-cases.adoc[<< Previous: *Business Events Use Caases*]
+xref:business-events-use-cases.adoc[<< Previous: *Business Events Use Cases*]
 
 xref:working-with-alerts.adoc[Next: *Working With Alerts* >>]
 
