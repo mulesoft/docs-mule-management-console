@@ -180,7 +180,7 @@ Lists all available Deployments.
 [discrete]
 ==== Syntax
 
-GET http://localhost:8080/mmc/api/deployments[?server={serverId}|?cluster={clusterId}]
+GET http://localhost:8080/mmc/api/deployments[?server=\{serverId}|?cluster=\{clusterId}]
 
 [%header,cols="4*"]
 |===
@@ -302,7 +302,7 @@ Lists details for a specific Deployment.
 [discrete]
 ==== SYNTAX
 
-GET http://localhost:8080/mmc/api/deployments/{deploymentId}
+GET http://localhost:8080/mmc/api/deployments/\{deploymentId}
 
 [%header,cols="4*"]
 |===
@@ -653,7 +653,7 @@ Removes a specific Deployment.
 [discrete]
 ==== SYNTAX
 
-DELETE http://localhost:8080/mmc/api/deployments/{deploymentId}
+DELETE http://localhost:8080/mmc/api/deployments/\{deploymentId}
 
 [%header,cols="4*"]
 |===
@@ -732,7 +732,7 @@ Deploys the apps specified on the deployment to the specified target.
 [discrete]
 ==== JSON
 
-POST http://localhost:8080/mmc/api/deployments/{deploymentId}/deploy
+POST http://localhost:8080/mmc/api/deployments/\{deploymentId}/deploy
 
 [%header,cols="4*"]
 |===
@@ -810,7 +810,7 @@ Redeploys the apps specified on the deployment to the specified target.
 [discrete]
 ==== JSON
 
-POST http://localhost:8080/mmc/api/deployments/{deploymentId}/redeploy
+POST http://localhost:8080/mmc/api/deployments/\{deploymentId}/redeploy
 
 [%header,cols="4*"]
 |===
@@ -888,7 +888,7 @@ Undeploys the apps specified on the deployment to the specified target.
 [discrete]
 ==== JSON
 
-POST http://localhost:8080/mmc/api/deployments/{deploymentId}/undeploy
+POST http://localhost:8080/mmc/api/deployments/\{deploymentId}/undeploy
 
 [%header,cols="4*"]
 |===
