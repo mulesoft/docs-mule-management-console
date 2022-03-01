@@ -65,11 +65,11 @@ Both Windows and Linux require you to have administrator privileges in order to 
 
 === Configuration Files
 
-The files `listner.ora` and `tnsnames.ora` are automatically generated during installation.
+The files `listener.ora` and `tnsnames.ora` are automatically generated during installation.
 
 For Linux, these files typically resides at `/u01/app/oracle/product/11.2.0/xe/network/admin`.
 
-On Windows, `listner.ora` and `tnsnames.ora` typically reside at: `C:\oracleexe\app\oracle\product\11.2.0\server\network\admin`.
+On Windows, `listener.ora` and `tnsnames.ora` typically reside at: `C:\oraclexe\app\oracle\product\11.2.0\server\network\admin`.
 
 *listener.ora listing*
 
@@ -459,7 +459,7 @@ import server uses AL32UTF8 character set (possible charset conversion)
 . . importing table "WS1_FSENTRY" 1 rows imported
 Import terminated successfully without warnings.
 ----
-*`listner.ora` listing*:
+*`listener.ora` listing*:
 
 [source,text,linenums]
 ----

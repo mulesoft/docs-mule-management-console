@@ -59,15 +59,15 @@ __________
 *_/api/deployments_*
 __________
 
-A single document may contain more than one Resource section. In such cases, the first section always corresponds to the http://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Relationship_to_URL_and_URN[URL], and subsequent sections refer to URIs. For example, in the xref:3.7@servers.adoc[Servers] page, the first Resource section is `/api/Servers`; subsequent sections are `/api/Servers/{serverId`}, `/api/Servers/{serverId}/applications`, etc.
+A single document may contain more than one Resource section. In such cases, the first section always corresponds to the http://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Relationship_to_URL_and_URN[URL], and subsequent sections refer to URIs. For example, in the xref:3.7@servers.adoc[Servers] page, the first Resource section is `/api/Servers`; subsequent sections are `/api/Servers/\{serverId}`, `/api/Servers/\{serverId}/applications`, etc.
 
 [TIP]
 ====
 *Resource Description Syntax*
 
-In all documents, variable content that must be provided by the user is enclosed in \{braces}. For example: `/api/clusters{clusterid`}.
+In all documents, variable content that must be provided by the user is enclosed in \{braces}. For example: `/api/clusters/\{clusterId}`.
 
-Variable content that is optional is enclosed in [brackets]. For example: `api/deployments[?server={serverId}]`.
+Variable content that is optional is enclosed in [brackets]. For example: `api/deployments[?server=`\{serverId}]`.
 ====
 
 === Section: Operation

@@ -467,7 +467,7 @@ There are two methods for populating the LDAP database: manually defining each d
 
 ===== Launch the Apache Studio
 
-Navigate to the directory where you decompressed the Apache Studio gzipped tar file. Open a terminal window and tpye:
+Navigate to the directory where you decompressed the Apache Studio gzipped tar file. Open a terminal window and type:
 
 [source,console,linenums]
 ----
@@ -503,7 +503,7 @@ image::1-conn-parameters.png[1-conn.parameters]
 
 ** *Connection name*: Specify any meaningful name. For this example, we use `local`
 ** *Hostname*: Hostname or IP address of the LDAP sever. In this example, it's on localhost `127.0.0.1`.
-** *Port*: In this example, port `389` (defualt for LDAP).
+** *Port*: In this example, port `389` (default for LDAP).
 ** *Encryption method*: `No encryption`
 
 . To test the connection, click on *Check Network Parameter*, then click *Next*.
@@ -552,7 +552,7 @@ image::4-initial-db-objects.png[4-initial_DB_objects]
 
 We create two organizational units (ou:) *groups*, for storing group definitions; and *people*, for storing user definitions.
 
-. In the *LDAP Browswer* pane, right-click the domain entry for the database, *dc=company,dc=com*.
+. In the *LDAP Browser* pane, right-click the domain entry for the database, *dc=company,dc=com*.
 
 . On the pop-up menu, click *New*, then select *New Entry*.
 
@@ -568,13 +568,13 @@ image::7-create-obj-wizard-dn.png[7-create_obj_wizard-DN]
 
 . In the *RDN* field, enter *ou*, then press *Enter*.
 
-. In the *=* field, enter *groups*. When you do so, the *DN Preview* window fills automatically with teh *Distinguished Name* of the entry you are creating, in theis case `ou=groups,dc=company,dc=com`.
+. In the *=* field, enter *groups*. When you do so, the *DN Preview* window fills automatically with teh *Distinguished Name* of the entry you are creating, in this case `ou=groups,dc=company,dc=com`.
 
 . Click *Next*. The wizard takes you to *Attribute* pop-up window:
 +
 image::8-create-obj-wizard-attrs.png[8-create_obj_wizard-attrs]
 +
-The window displays the list of attirbutes of the object just created.
+The window displays the list of attributes of the object just created.
 
 . Click *Finish* to write the changes to the LDAP database. An object of type OrganizationalUnit called `groups` with DN `ou=groups,dc=company,dc=com` is created, and it appears in the *LDAP Browser* pane.
 
@@ -629,13 +629,13 @@ image::9-create-obj-wizard-user-attrs.png[9-create_obj_wizard-user_attrs]
 image::10-create-obj-wizard-user-pass.png[10-create_obj_wizard-user_pass]
 
 . When prompted for the new password, type *mmc123* (or another password of your choice; you will have to specify this same password in the console's `mmc-ldap.properties` file) in the *Enter New Password* field.
-. In the *Select Hash Method* muen, select *Plaintext*, then click *OK*.
+. In the *Select Hash Method* menu, select *Plaintext*, then click *OK*.
 
 User `mmc` has now been defined with all the attributes that will be employed in this example configuration.
 
 Repeat the above procedure to create users *admin* and *testuser1*, assigning the passwords of your choice. These passwords will be entered by the users when logging into the console.
 
-===== Creating and Defining Adminstrator Groups
+===== Creating and Defining Administrator Groups
 
 . On the *LDAP Browser* pane, right-click on the *ou=groups* entry in the directory tree.
 . Select *New*, then *New Entry*.
