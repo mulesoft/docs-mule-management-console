@@ -182,7 +182,7 @@ If SQL developer asks for the full Java path, enter the full path. Typical Java 
 .. Display the **New/Select Database connection** dialog box. To do so, follow these steps:  +
 ... Click the *Connections* tab in the left-hand pane.
 ... Right-click *Connections*.
-... Select *New Connec* *tion*.
+... Select *New Connection*.
 .. In the connection *Name* field, enter: `mmc_persistency_status`.
 .. In the *Username* field, enter: `SYSTEM`.
 .. In the *Password* field, enter the SYSTEM password that you issued during the Oracle Express installation process.
@@ -336,7 +336,7 @@ For safety, make sure to delete the following files (if listed) before editing `
 ====
 
 . Locate the file `jackrabbit-repo.xml`, then open it for editing.
-. Replace the appropiate parameters to use Oracle instead of the default Derby database. A full listing of the modified file is provided below.
+. Replace the appropriate parameters to use Oracle instead of the default Derby database. A full listing of the modified file is provided below.
 
 Use the following parameters for the database connection:
 

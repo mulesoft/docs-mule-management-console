@@ -357,7 +357,7 @@ curl --basic -u admin:admin 'http://localhost:8080/mmc/api/servers/local$97e3c18
 
 |===
 
-Unpairs/unregister a specific Server.
+Unpair/unregister a specific Server.
 
 [.ex]
 =====
@@ -1027,7 +1027,7 @@ Metadata=true:
 |===
 |Key |Type |Summary |Child of
 |name |String |Name of the file |—
-|size |Long |Syze of the file in bytes |—
+|size |Long |Size of the file in bytes |—
 |absolutePath |String |Absolute path of the file |—
 |directory |Boolean |True if the entry is a directory |—
 |lastModified |Long |Last modified time since epoch |—
