@@ -23,7 +23,7 @@ Mule Management Console's graphical interface offers visibility into your Web ap
 
 This walkthrough assumes that you are familiar with [Mule application and Mule flows] and that you have downloaded and installed *Mule ESB Enterprise Runtime (with Management Tools)* which includes a *trail version* of the Mule Management Console. Beyond installation, you do not need to complete any specific setup configurations to complete this walkthrough. If you have not yet downloaded the trial package, consult the documentation for [installing].
 
-== Launching MMMC
+== Launching MMC
 
 [TIP]
 `$MULE_HOME` is the directory where your Mule installation resides, for example `/opt/mule-3.4.1]`.

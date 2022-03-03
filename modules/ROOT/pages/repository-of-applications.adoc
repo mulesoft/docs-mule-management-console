@@ -237,7 +237,7 @@ Lists all application versions with the same specified application ID.
 [discrete]
 ==== SYNTAX
 
-`GET http://localhost:8080/mmc/api/repository/{applicationId}`
+`GET http://localhost:8080/mmc/api/repository/\{applicationId}`
 
 [%header,cols="4*"]
 |===
@@ -338,7 +338,7 @@ Removes an application and all its corresponding versions from the repository.
 [discrete]
 ==== SYNTAX
 
-`DELETE http://localhost:8080/mmc/api/repository/{versionId}`
+`DELETE http://localhost:8080/mmc/api/repository/\{versionId}`
 
 [%header,cols="4*"]
 |===
