@@ -25,7 +25,7 @@ This walkthrough illustrates some of the basic functionality MMC provides as a m
 
 == Assumptions
 
-This walkthrough assumes that you are familiar with xref:3.7@mule-runtime::mule-concepts.adoc[Mule applications and Mule flows] and that you have downloaded and installed MMC from the Support Portal. Beyond installation, you do not need to complete any specific setup configurations to complete this walkthrough.
+This walkthrough assumes that you are familiar with xref:3.9@mule-runtime::mule-concepts.adoc[Mule applications and Mule flows] and that you have downloaded and installed MMC from the Support Portal. Beyond installation, you do not need to complete any specific setup configurations to complete this walkthrough.
 
 == Launching MMC
 
