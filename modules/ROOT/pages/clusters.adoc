@@ -41,7 +41,7 @@ Creates a new Cluster.
 
 === CREATE - Using CURL on Windows
 
-Note that this syntax is an example. Be sure to replace the locahost address with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace the localhost address with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin -d "{\"name\":\"My Cluster\",\"version\":\"3.7.0\", \"nodes\":[\"local$194cdc5b-2253-4f35-b663-b311e4f28956\", \"local$ef85a37f-a3c1-4d1f-b8e6-8fac85d2fca7\"]}" --header "Content-Type: application/json" http://localhost:8585/mmc-3.7.0/api/clusters
@@ -159,7 +159,7 @@ Lists details for specific Cluster.
 
 === LIST - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin <url>
@@ -216,7 +216,7 @@ Lists node status for specific Cluster.
 
 === STATUS - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/status
@@ -252,7 +252,7 @@ After disbanding all nodes return to standalone mode. See server API.
 
 === DISBAND - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin -X DELETE http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724
@@ -287,7 +287,7 @@ Restarts a Cluster.
 
 === PERFORM RESTART - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin -X POST http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/restart
@@ -325,7 +325,7 @@ Stops a Cluster.
 
 === PERFORM STOP - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin -X POST http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/stop
@@ -365,7 +365,7 @@ Adds a node to a cluster.
 
 === ADD NODES - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin -d '{"nodes":"local$30018f69-2772-428f-b13d-5a0644a7ca51", "local$473e6e0f-0151-445f-81a0-4065297620b6"}' --header 'Content-Type: application/json' http://localhost:8585/mmc-3.7.0/api/clusters/0662f078-6b9b-461d-bce1-48996a59a5d8/addnodes
@@ -402,7 +402,7 @@ Removes a node from a cluster.
 
 === REMOVE NODES - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin -d '{"nodes":"local$30018f69-2772-428f-b13d-5a0644a7ca51", "local$473e6e0f-0151-445f-81a0-4065297620b6"}' --header 'Content-Type: application/json' http://localhost:8585/mmc-3.7.0/api/clusters/0662f078-6b9b-461d-bce1-48996a59a5d8/removenodes
@@ -441,7 +441,7 @@ Lists all Mule applications currently deployed successfully on a Cluster.
 
 === LIST ALL MULE APPS - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications
@@ -456,7 +456,7 @@ curl --basic -u admin:admin http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78
 |total |Integer |Number of deployed applications on Cluster |—
 |data |List |List of deployed applications on Cluster |—
 |name |String |Name of the deployed application |data
-|status |String |Status of the application (that is, INITIALISED, STARTED, STOPPED or DISPOSED) |data
+|status |String |Status of the application (that is, INITIALIZED, STARTED, STOPPED or DISPOSED) |data
 |===
 
 === LIST ALL MULE APPS - Return Codes
@@ -489,7 +489,7 @@ Starts an application from a Cluster.
 
 === PERFORM START MULE APP - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 [source,console]
 ----
@@ -536,7 +536,7 @@ Restarts an application from a Cluster.
 
 === PERFORM RESTART MULE APP - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin -X POST http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications/mule-example-hello/restart
@@ -582,7 +582,7 @@ Stops an application from a Cluster.
 
 === PERFORM STOP MULE APP - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin -X POST http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/applications/mule-example-hello/stop
@@ -632,7 +632,7 @@ Lists all available flows belonging to Mule applications currently deployed succ
 
 === LIST ALL FLOWS - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows
@@ -703,7 +703,7 @@ Restarts a flow of an application on a Cluster.
 
 === PERFORM FLOW START - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin -X POST http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/start
@@ -742,7 +742,7 @@ Pauses a flow of an application on a Cluster.
 
 === PERFORM FLOW PAUSE - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin -X POST http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/pause
@@ -780,7 +780,7 @@ Stops a flow of an application on a Cluster.
 
 === PERFORM FLOW STOP - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin -X POST http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/stop
@@ -823,7 +823,7 @@ Lists all Flow Endpoints from a Mule application on a Cluster.
 
 === LIST ALL FLOW ENDPOINTS - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/endpoints
@@ -883,7 +883,7 @@ Starts a flow endpoint belonging to an application on a Cluster.
 
 === PERFORM FLOW ENDPOINT START - Using CURL
 
-Note that this syntax is an example. Be sure to replace `+http://locahost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace `+http://localhost:8585/mmc-3.7.0+` with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin -X POST http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/endpoints/endpoint.vm.chitchatter/start
@@ -922,7 +922,7 @@ Stops a flow endpoint belonging to an application on a Cluster.
 
 === PERFORM FLOW ENDPOINT STOP - Using CURL
 
-Note that this syntax is an example. Be sure to replace +http://locahost:8585/mmc-3.7.0+ with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace +http://localhost:8585/mmc-3.7.0+ with your own MMC hostname, port number, and setting for mmc-3.7.0 (which is usually the name of the deployed mmc .war file).
 
 ----
 curl --basic -u admin:admin -X POST http://localhost:8585/mmc-3.7.0/api/clusters/cf1fc78b-23a1-491e-93d1-6cc2819c4724/flows/ChitChat/mule-example-hello/endpoints/endpoint.vm.chitchatter/stop

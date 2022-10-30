@@ -15,7 +15,7 @@ Click the Servers tab. A color-coded status icon in the All servers pane lets yo
 
 * All cluster nodes are operational - If all nodes in the cluster are running, the cluster status appears as a green icon. +
 +
-image::normal-cluster-status-greeen.png[normal_cluster_status_greeen]
+image::normal-cluster-status-green.png[normal_cluster_status_green]
 
 * Some cluster nodes are operational - The status icon is orange if some but not all nodes in the cluster are running. +
 +

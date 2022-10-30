@@ -53,7 +53,7 @@ Creates a new Server Group.
 
 [discrete]
 ==== Using CURL on Windows
-Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace +http://localhost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
@@ -73,7 +73,7 @@ Note that this syntax is an example. Be sure to replace +http://locahost:8080/mm
 
 [discrete]
 ==== JSON
-Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace +http://localhost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
@@ -130,7 +130,7 @@ Lists all available Server Groups.
 
 [discrete]
 ==== Using CURL
-Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace +http://localhost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
@@ -206,9 +206,9 @@ Lists details for a specific Server Group.
 
 [discrete]
 ==== SYNTAX
-Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace +http://localhost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-GET +http://localhost:8080/mmc-console-3.7.3/api/serverGroups/{serverGroupId}+
+GET +http://localhost:8080/mmc-console-3.7.3/api/serverGroups/\{serverGroupId}+
 
 [%header,cols="4*"]
 |===
@@ -218,7 +218,7 @@ GET +http://localhost:8080/mmc-console-3.7.3/api/serverGroups/{serverGroupId}+
 
 [discrete]
 ==== Using CURL
-Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace +http://localhost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
@@ -230,7 +230,7 @@ Note that this syntax is an example. Be sure to replace +http://locahost:8080/mm
 
 [discrete]
 ==== JSON
-Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace +http://localhost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
@@ -285,7 +285,7 @@ Renames a specific Server Group.
 
 [discrete]
 ==== JSON
-Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace +http://localhost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
@@ -306,11 +306,11 @@ Note that this syntax is an example. Be sure to replace +http://locahost:8080/mm
 |href |String |Full link to the Server Group resource on which you can perform an operation |— |No
 |===
 
-Note that the "name" attribute is the only required attribute. The other attributes are include to match the JSON response from an /api/ServerGroups or /api/serverGroups/{serverGroupId} GET request.
+Note that the "name" attribute is the only required attribute. The other attributes are include to match the JSON response from an /api/ServerGroups or /api/serverGroups/\{serverGroupId} GET request.
 
 [discrete]
 ==== Using CURL on Windows
-Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the mmc .war file).
+Note that this syntax is an example. Be sure to replace +http://localhost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the mmc .war file).
 
 [source,text,linenums]
 ----
@@ -319,7 +319,7 @@ Note that this syntax is an example. Be sure to replace +http://locahost:8080/mm
 
 [discrete]
 ==== Using CURL on Linux
-Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace +http://localhost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
@@ -331,7 +331,7 @@ curl --basic -u admin:admin -X PUT -d '{"name":"NewName","id":"330d9139-4462-4e3
 
 [discrete]
 ==== JSON
-Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace +http://localhost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----
@@ -387,9 +387,9 @@ Removes a specific Server Group.
 
 [discrete]
 ==== SYNTAX
-Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace +http://localhost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
-DELETE +http://localhost:8080/mmc-console-3.7.3/api/serverGroups/{serverGroupId}+
+DELETE +http://localhost:8080/mmc-console-3.7.3/api/serverGroups/\{serverGroupId}+
 
 [%header,cols="4*"]
 |===
@@ -399,7 +399,7 @@ DELETE +http://localhost:8080/mmc-console-3.7.3/api/serverGroups/{serverGroupId}
 
 [discrete]
 ==== Using CURL
-Note that this syntax is an example. Be sure to replace +http://locahost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
+Note that this syntax is an example. Be sure to replace +http://localhost:8080/mmc-console-3.7.3+ with your own MMC hostname, port number, and setting for mmc-console-3.7.3 (which is usually the name of the deployed mmc .war file).
 
 [source,text,linenums]
 ----

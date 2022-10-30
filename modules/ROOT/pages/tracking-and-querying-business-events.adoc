@@ -34,7 +34,7 @@ When you use multiple selection criteria, you can further designate that the sea
 
 In addition to only letting you select appropriate operators for the key selection fields, the console also helps you enter the correct values. In the figure below, if a key field requires a date value, click the calendar icon in the value box to open a calendar from which you can select a date. The console then enters the date value in the correct format. The transactions from today, the current day, are displayed by default.
 
-image::event-search-mult-keys.png[]
+image::event-search-multi-keys.png[]
 
 After specifying all the search rules, click the Search button to initiate the search and data retrieval. The lower portion of the screen displays a table with the transactions or events that matched the specified criteria. For example, the figure below shows the results of a search.
 
